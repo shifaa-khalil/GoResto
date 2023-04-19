@@ -17,5 +17,6 @@ Route::get('/getChats', [ChatController::class, 'getChats']);
 Route::post('/createChat', [ChatController::class, 'createChat']);
 Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
 Route::middleware('auth:api')->post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
+Route::middleware('auth:api')->post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
 
 ?>
