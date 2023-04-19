@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const chatSchema = new mongoose.Schema({
-  firstUserId: { type: mongoose.ObjectId, ref: "User" },
-  secondUserId: { type: mongoose.ObjectId, ref: "User" },
+  firstUserId: { type: String },
+  secondUserId: { type: String },
 });
 
 const Chat = mongoose.model("Chat", chatSchema);

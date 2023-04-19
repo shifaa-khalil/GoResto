@@ -30,5 +30,3 @@ app.listen(process.env.PORT, async (err) => {
 //   //   });
 //   //   await message.save();
 // });
-
-app.use(express.json());

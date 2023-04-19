@@ -15,18 +15,48 @@ exports.addChat = async (req, res) => {
     await chat.save();
 
     res.json({
-      chat_id: chat._id,
+      chatId: chat._id,
       firstUserId: chat.firstUserId,
       secondUserId: chat.secondUserId,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Could not create chat" });
+  }
+};
+
+exports.sendMessage = async (req, res) => {
+  try {
+    const objectSenderId = new ObjectId(req.body.senderId);
+    const objectChatId = new ObjectId(req.body.chatId);
+    const content = req.body.content;
+
+    const message = new Message({
+      senderId: objectSenderId,
+      chatId: objectChatId,
+      content: content,
+    });
+
+    await message.save();
+
+    res.json({
+      messageId: message._id,
+      senderId: objectSenderId,
+      chatId: objectChatId,
+      content: content,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Could not send message" });
   }
 };
 
 exports.getChats = async (req, res) => {
   const userId = new ObjectId(req.params.userId);
+
+  if (!ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: "Invalid userId" });
+  }
 
   try {
     const chats = await Chat.find({
@@ -47,19 +77,6 @@ exports.getMessages = async (req, res) => {
       $or: [{ chatId: chatId }],
     }).exec();
     res.json(messages);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-exports.sendMessage = async (req, res) => {
-  const { senderId, chatId, content } = req.body;
-
-  try {
-    const message = await Message.create({ senderId, chatId, content });
-
-    res.json(message);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
