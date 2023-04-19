@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Restaurant;
+use App\Models\RestoRequest;
 
 class RestaurantController extends Controller
 {
@@ -19,22 +20,23 @@ class RestaurantController extends Controller
         $request->validate(['name' => 'unique:restaurants']);
       
         $restaurant = new Restaurant;
-
         $restaurant->name = $request->name;
         $restaurant->logo = $request->logo;
         $restaurant->location = $request->location;
         $restaurant->number_of_tables = $request->number_of_tables;
         $restaurant->manager_id = $manager->id;
-
         $restaurant->save();
 
         $menu = new Menu;
-
         $menu->restaurant_id = $restaurant->id;
         $menu->save();
 
         $restaurant->menu_id = $menu->id;
         $restaurant->save();
+
+        $restoRequest= new RestoRequest;
+        $restoRequest->restaurant_id = $restaurant->id;
+        $restoRequest->save();
 
         return response()->json(['status' => 'success', 'message' => $restaurant->id]);
         }
