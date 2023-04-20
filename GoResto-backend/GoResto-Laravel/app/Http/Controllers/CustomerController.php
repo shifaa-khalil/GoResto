@@ -9,6 +9,7 @@ use App\Models\Restaurant;
 use App\Models\Menu;
 use App\Models\Reservation;
 use App\Models\Review;
+use App\Models\Comment;
 
 class CustomerController extends Controller
 {
@@ -119,5 +120,29 @@ class CustomerController extends Controller
         $rating = $sumRatings/$countRatings;
         Restaurant::find($restaurant_id)->update(['rating' => $rating]);
         return response()->json(['rating' => $rating]);
+    }
+
+    function getReviews($restaurant_id){
+        $reviews = Review::where('restaurant_id', $restaurant_id)->get();
+
+        if(!$reviews) return response()->json('no reviews');
+        
+        return response()->json(['reviews' => $reviews]);
+    }
+
+    function addComment(Request $request, $review_id){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $comment = new Comment;
+            $comment->review_id = $review_id;
+            $comment->user_id = $customer->id;
+            $comment->content = $request->content;
+            $comment->save();
+
+            return response()->json(['status' => 'success', 'message' => 'comment added', 'comment' => $comment]);
+        }
     }
 }

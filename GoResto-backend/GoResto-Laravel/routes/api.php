@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
     Route::post('/calculateRating/{restaurant_id}', [CustomerController::class, 'calculateRating']);
+    Route::post('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
+    Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
+
 });
 
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
