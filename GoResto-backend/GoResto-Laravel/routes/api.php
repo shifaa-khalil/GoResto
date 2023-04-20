@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -23,5 +24,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getRequests', [AdminController::class, 'getRequests']);
     Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
     Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
+    Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
 })
 ?>
