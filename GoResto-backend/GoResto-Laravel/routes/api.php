@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
 Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');
 Route::post('rejectRequest/{id}',[AdminController::class,'rejectRequest'])->middleware('admin');
+Route::post('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant'])->middleware('admin');
+
 
 // Route::group(['middleware' => 'auth:api', 'admin'], function () {
 //     Route::get('/getRequests', [AdminController::class, 'getRequests']);

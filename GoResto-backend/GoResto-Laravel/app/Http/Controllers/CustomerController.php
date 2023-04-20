@@ -26,6 +26,12 @@ class CustomerController extends Controller
         }
     }
 
+    function filterByPrice(){}
+
+    function filterByLocation(){}
+
+    function filterByRating(){}
+    
     function getRestaurants(){
         $customer = auth()->user();
 
