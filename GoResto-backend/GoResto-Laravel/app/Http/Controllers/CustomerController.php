@@ -31,6 +31,18 @@ class CustomerController extends Controller
         return response()->json($restaurants);
     }
 
+    function getRestaurant($restaurant_id){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $restaurant = Restaurant::find($restaurant_id);
+            
+            return response()->json(['restaurant' => $restaurant]);
+        }
+    }
+
     function reserveTable(Request $request, $restaurant_id){
         $customer = auth()->user();
 
