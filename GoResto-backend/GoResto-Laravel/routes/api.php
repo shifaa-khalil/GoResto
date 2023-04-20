@@ -29,10 +29,14 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation']);
 });
 
-Route::group(['middleware' => 'auth:api', 'admin'], function () {
-    Route::get('/getRequests', [AdminController::class, 'getRequests']);
-    Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
-    Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
-});
+Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
+Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');
+Route::post('rejectRequest/{id}',[AdminController::class,'rejectRequest'])->middleware('admin');
+
+// Route::group(['middleware' => 'auth:api', 'admin'], function () {
+//     Route::get('/getRequests', [AdminController::class, 'getRequests']);
+//     Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
+//     Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
+// });
 
 ?>
