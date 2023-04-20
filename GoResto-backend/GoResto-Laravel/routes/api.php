@@ -14,13 +14,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::get('/getChats', [ChatController::class, 'getChats']);
-Route::post('/createChat', [ChatController::class, 'createChat']);
-Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
-Route::middleware('auth:api')->post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
-Route::middleware('auth:api')->post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
-Route::middleware('auth:api')->get('/getRequests', [AdminController::class, 'getRequests']);
-Route::middleware('auth:api')->post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
-Route::middleware('auth:api')->post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
-
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('/getChats', [ChatController::class, 'getChats']);
+    Route::post('/createChat', [ChatController::class, 'createChat']);
+    Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
+    Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
+    Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
+    Route::get('/getRequests', [AdminController::class, 'getRequests']);
+    Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
+    Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
+})
 ?>
