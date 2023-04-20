@@ -25,5 +25,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
     Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
+    Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
 })
 ?>
