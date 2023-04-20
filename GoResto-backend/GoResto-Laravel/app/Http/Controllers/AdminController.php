@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RestoRequest;
 use App\Models\Restaurant;
+use App\Models\Menu;
+use App\Models\MenuItem;
 
 class AdminController extends Controller
 {
@@ -48,8 +50,11 @@ class AdminController extends Controller
             $restoRequest = RestoRequest::where('id', $id)->first();
             $restaurant_id = $restoRequest->restaurant_id;
             $restaurant = Restaurant::find($restaurant_id);
+            $menu = Menu::find($restaurant->menu_id);
 
             $restoRequest->delete();
+            MenuItem::where('menu_id', $menu->id)->delete();
+            $menu->delete();
             $restaurant->delete();
 
             return response()->json(['status' => 'success', 'message' => 'request rejected']);

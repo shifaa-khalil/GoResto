@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('requests', function (Blueprint $table) {
-            $table->dropForeign(['restaurant_id']);
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->dropForeign(['menu_id']);
+            $table->foreign('menu_id')
+                  ->references('id')
+                  ->on('menus')
+                  ->onDelete('cascade');
         });
+        
     }
 
     /**
@@ -21,7 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('requests', function (Blueprint $table) {
+        Schema::table('restaurants', function (Blueprint $table) {
             //
         });
     }
