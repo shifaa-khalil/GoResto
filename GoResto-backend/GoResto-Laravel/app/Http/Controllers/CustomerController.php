@@ -14,6 +14,18 @@ use App\Models\Comment;
 
 class CustomerController extends Controller
 {
+    function getCategories(){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $categories = MenuItem::pluck('category')->unique();
+            
+            return response()->json(['menu' => $categories]);
+        }
+    }
+
     function getRestaurants(){
         $customer = auth()->user();
 
