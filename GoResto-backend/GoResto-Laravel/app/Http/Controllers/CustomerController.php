@@ -123,10 +123,12 @@ class CustomerController extends Controller
     }
 
     function getReviews($restaurant_id){
-        $reviews = Review::where('restaurant_id', $restaurant_id)->get();
+        $reviews = Review::where('restaurant_id', $restaurant_id)->with('comment')->get();
 
         if(!$reviews) return response()->json('no reviews');
         
+        $comments = Comment::all();
+
         return response()->json(['reviews' => $reviews]);
     }
 
