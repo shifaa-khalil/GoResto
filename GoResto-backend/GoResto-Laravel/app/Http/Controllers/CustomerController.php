@@ -23,6 +23,14 @@ class CustomerController extends Controller
         }
     }
 
+    public function searchRestaurant(Request $request){
+        $query = $request->input('q');
+
+        $restaurants = Restaurant::where('name', 'like', '%'.$query.'%')->get();
+        
+        return response()->json($restaurants);
+    }
+
     function reserveTable(Request $request, $restaurant_id){
         $customer = auth()->user();
 
