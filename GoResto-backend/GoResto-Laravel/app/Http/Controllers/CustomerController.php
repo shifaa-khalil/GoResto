@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Reservation;
 use App\Models\Review;
 use App\Models\Comment;
@@ -42,6 +43,19 @@ class CustomerController extends Controller
             $restaurant = Restaurant::find($restaurant_id);
             
             return response()->json(['restaurant' => $restaurant]);
+        }
+    }
+
+    function getMenu($restaurant_id){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $menu = Menu::where('restaurant_id', $restaurant_id)->with('menuItem')->first();
+            $menuItems = MenuItem::where('menu_id', $menu->id)->get();
+            
+            return response()->json(['menu' => $menuItems]);
         }
     }
 
