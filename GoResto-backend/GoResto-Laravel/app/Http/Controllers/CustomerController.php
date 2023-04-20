@@ -47,4 +47,22 @@ class CustomerController extends Controller
             }
         }
     }
+
+    function cancelReservation($reservation_id){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $reservation = Reservation::find($reservation_id);
+
+            if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
+            else
+            {
+                $reservation->delete();
+
+                return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
+            }
+        }
+    }
 }
