@@ -11,6 +11,7 @@ class Restaurant extends Model
 
     protected $fillable = [
         'approved',
+        'rating',
     ];
     
     public function user()

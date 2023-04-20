@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Menu;
 use App\Models\Reservation;
+use App\Models\Review;
 
 class CustomerController extends Controller
 {
@@ -50,9 +51,9 @@ class CustomerController extends Controller
         else
         {
             $restaurant = Restaurant::find($restaurant_id);
-            $count = Reservation::where('restaurant_id', $restaurant_id)->count();
+            $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
 
-            if($count == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
+            if($countReservations == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
             else
             {
                 $reservation = new Reservation;
@@ -84,5 +85,39 @@ class CustomerController extends Controller
                 return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
             }
         }
+    }
+
+    function rateRestaurant(Request $request, $restaurant_id){
+        $customer = auth()->user();
+
+        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            // Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->update(["content" => $request->content]);
+            $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
+            if($review) $review->delete();
+        
+            $review = new Review;
+            $review->restaurant_id = $restaurant_id;
+            $review->customer_id = $customer->id;
+            $review->content = $request->content;
+            $review->rating = $request->rating;
+            $review->save();
+
+            // $restaurant = Restaurant::find($restaurant_id);
+
+            // $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
+
+            return response()->json(['status' => 'success', 'message' => 'review added', 'review' => $review]);
+        }
+    }
+
+    function calculateRating($restaurant_id){
+        $countRatings = Review::where('restaurant_id', $restaurant_id)->count();
+        $sumRatings = Review::where('restaurant_id', $restaurant_id)->sum('rating');
+
+        $rating = $sumRatings/$countRatings;
+        Restaurant::find($restaurant_id)->update(['rating' => $rating]);
+        return response()->json(['rating' => $rating]);
     }
 }
