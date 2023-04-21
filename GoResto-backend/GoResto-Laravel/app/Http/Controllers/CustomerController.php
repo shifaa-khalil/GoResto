@@ -27,6 +27,23 @@ class CustomerController extends Controller
         // }
     }
 
+    function fiterByCuisine(Request $request)
+    {
+        $menuItems = MenuItem::where('cuisine', $request->cuisine)->with('menu')->get();
+
+        // $menus = $menuItems->pluck('menu_id');
+
+        $restaurants = $menuItems->pluck('menu.restaurant_id')->unique();
+        // $MenuItems->menu_id
+
+        // $restaurants = Restaurant::where('menu_id', $MenuItems->menu_id)->get();
+        // $menus = $MenuItems->map(function ($menuItem) {
+        //     return $menuItem->menu;
+        // });
+        return response()->json($restaurants);
+    }
+    
+
     function filterByPrice(Request $request)
     {
         $restaurants = Restaurant::whereBetween('deposit', [$request->minimum, $request->maximum])->get();

@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/filterByPrice', [CustomerController::class, 'filterByPrice'])->middleware('customer');
     Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation'])->middleware('customer');
     Route::get('/filterByRating', [CustomerController::class, 'filterByRating'])->middleware('customer');
+    Route::post('/fiterByCuisine', [CustomerController::class, 'fiterByCuisine'])->middleware('customer');
+
+    
 
 Route::post('/updateRestaurant', [RestaurantController::class,'updateRestaurant'])->middleware('manager');
 Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant'])->middleware('manager');
@@ -42,6 +45,7 @@ Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem'])->middl
 Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations'])->middleware('manager');
 Route::post('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem'])->middleware('manager');
 Route::post('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem'])->middleware('manager');
+Route::post('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem'])->middleware('manager');
 
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
 Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');

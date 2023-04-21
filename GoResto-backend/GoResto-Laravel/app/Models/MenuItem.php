@@ -10,7 +10,11 @@ class MenuItem extends Model
     use HasFactory;
 
     protected $fillable= [
+        'description',
+        'price',
+        'category',
         'enabled',
+        'cuisine',
     ];
 
     public function menu()

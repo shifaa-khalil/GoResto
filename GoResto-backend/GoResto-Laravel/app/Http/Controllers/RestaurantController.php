@@ -27,6 +27,7 @@ class RestaurantController extends Controller
         $restaurant->location = $request->location;
         $restaurant->number_of_tables = $request->number_of_tables;
         $restaurant->manager_id = $manager->id;
+        $menuItem->deposit = $request->deposit;
         $restaurant->save();
 
         $menu = new Menu;
@@ -64,6 +65,7 @@ class RestaurantController extends Controller
             $menuItem->description = $request->description;
             $menuItem->price = $request->price;
             $menuItem->category = $request->category;
+            $menuItem->cuisine = $request->cuisine;
 
             $menuItem->save();
 
@@ -96,7 +98,7 @@ class RestaurantController extends Controller
     {
         $manager = auth()->user();
 
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables, 'deposit' => $request->deposit]);
 
         $restaurant = Restaurant::where('manager_id', $manager->id)->first();
 
@@ -115,5 +117,12 @@ class RestaurantController extends Controller
         MenuItem::find($menu_item_id)->update(['enabled' => true]);
 
         return response()->json(['status'=>'success', 'message'=>'item enabled']);
+    }
+
+    function updateMenuItem(Request $request, $menu_item_id)
+    {
+        MenuItem::find($menu_item_id)->update(['description' => $request->description, 'price' => $request->price, 'category' => $request->category, 'cuisine' => $request->cuisine]);
+
+        return response()->json(['status'=>'success', 'message'=>'item updated']);
     }
 }
