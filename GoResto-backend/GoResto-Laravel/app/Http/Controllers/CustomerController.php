@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
     function filterByPrice(Request $request)
     {
-        $restaurants = Restaurant::whereBetween('reservation_cost', [$request->minimum, $request->maximum])->get();
+        $restaurants = Restaurant::whereBetween('deposit', [$request->minimum, $request->maximum])->get();
         
         return response()->json($restaurants);
     }

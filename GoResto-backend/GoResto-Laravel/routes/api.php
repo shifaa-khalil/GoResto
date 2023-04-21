@@ -39,8 +39,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
     Route::post('/filterByPrice', [CustomerController::class, 'filterByPrice']);
-    Route::post('/filterByLocation', [CustomerController::class, 'filterByLocation']);
-    Route::post('/filterByRating', [CustomerController::class, 'filterByRating']);
+    Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation']);
+    Route::get('/filterByRating', [CustomerController::class, 'filterByRating']);
 
 });
 
