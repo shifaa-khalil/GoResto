@@ -105,15 +105,11 @@ class RestaurantController extends Controller
         if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
         else
         {
-            $restaurant = Restaurant::where('manager_id', $manager->id)->first();
-
-            Restaurant::find($restaurant->id)->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
+            $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
 
             $restaurant = Restaurant::where('manager_id', $manager->id)->first();
 
             return response()->json(['status'=>'success', 'message'=>'restaurant updated', 'restaurant'=>$restaurant]);
-
         }
-
     }
 }
