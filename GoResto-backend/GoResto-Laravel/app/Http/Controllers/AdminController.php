@@ -20,24 +20,24 @@ class AdminController extends Controller
 
     function getRequests()
     {
-        $admin = auth()->user();
+        // $admin = auth()->user();
 
-        if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restoRequests = RestoRequest::all();
 
             return response()->json(['message' => $restoRequests]);
-        }
+        // }
     }
 
     function approveRequest($id)
     {
-        $admin = auth()->user();
+        // $admin = auth()->user();
 
-        if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restoRequest = RestoRequest::where('id', $id)->first();
             $restaurant_id = $restoRequest->restaurant_id;
             $restaurant = Restaurant::find($restaurant_id);
@@ -46,16 +46,16 @@ class AdminController extends Controller
             $restoRequest->delete();
 
             return response()->json(['status' => 'success', 'message' => 'request approved']);
-        }
+        // }
     }
 
     function rejectRequest($id)
     {
-        $admin = auth()->user();
+        // $admin = auth()->user();
 
-        if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restoRequest = RestoRequest::where('id', $id)->first();
             $restaurant_id = $restoRequest->restaurant_id;
             $restaurant = Restaurant::find($restaurant_id);
@@ -67,22 +67,22 @@ class AdminController extends Controller
             $restaurant->delete();
 
             return response()->json(['status' => 'success', 'message' => 'request rejected']);
-        }
+        // }
     }
 
     function deleteRestaurant($restaurant_id)
     {
-        $admin = auth()->user();
+        // $admin = auth()->user();
 
-        if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$admin) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restaurant = Restaurant::find($restaurant_id);
 
             $restaurant->delete();
 
             return response()->json(['status' => 'success', 'message' => 'restaurant deleted']);
 
-        }
+        // }
     }
 }
