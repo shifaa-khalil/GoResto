@@ -130,6 +130,14 @@ class CustomerController extends Controller
         // }
     }
 
+    // function getReservations(){
+    //     $customer = auth()->user();
+
+    //     $reservations = Reservation::where('customer_id', $customer->id)->get();
+
+    //     return response()->json(['message' => $reservations]);
+    // }
+
     function cancelReservation($reservation_id)
     {
         // $customer = auth()->user();
