@@ -7,6 +7,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -14,6 +15,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
+
+// Route::post('/password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/forgotPassword', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/resetPassword', [ResetPasswordController::class, 'reset']);
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getChats', [ChatController::class, 'getChats']);
