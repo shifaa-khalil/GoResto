@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\CustomResetPasswordNotification;
 
-class User extends Authenticatable implements JWTSubject, CanResetPassword
+class User extends Authenticatable implements JWTSubject //, CanResetPassword
 {
-    use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
+    use HasFactory, Notifiable; //, CanResetPassword
 
     protected $fillable = [
         'name',
@@ -39,13 +40,13 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
         return [];
     }
 
-    public function getEmailForPasswordReset()
-    {
-        return $this->email;
-    }
+    // public function getEmailForPasswordReset()
+    // {
+    //     return $this->email;
+    // }
 
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPasswordNotification($token));
-    }
+    // public function sendPasswordResetNotification($token)
+    // {
+    //     $this->notify(new CustomResetPasswordNotification($token));
+    // }
 }

@@ -4,26 +4,23 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ResetPassword;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Notifications\CustomResetPasswordNotification;
 
 class ForgotPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
-
     public function sendResetLinkEmail(Request $request)
     {
-        $response = $this->broker()->sendResetLink(
-            $request->only('email')
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email'),
+            new CustomResetPasswordNotification()
         );
-        
-        if ($response === \Illuminate\Auth\Passwords\Password::RESET_LINK_SENT) {
-            Mail::to($request->email)->send(new ResetPassword());
-        }
-        
-        return $response === \Illuminate\Auth\Passwords\Password::RESET_LINK_SENT
-                    ? response()->json(['message' => 'Password reset link sent'])
-                    : response()->json(['message' => 'Password reset link not sent']);
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', __($status))
+            : back()->withErrors(['email' => __($status)]);
     }
 }
+

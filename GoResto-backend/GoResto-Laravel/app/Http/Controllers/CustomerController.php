@@ -14,22 +14,22 @@ use App\Models\Comment;
 
 class CustomerController extends Controller
 {
-    function getCategories()
+    function getCuisines()
     {
         // $customer = auth()->user();
 
         // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
         // else
         // {
-            $categories = MenuItem::pluck('category')->unique();
+            $cuisines = MenuItem::pluck('cuisine')->unique();
             
-            return response()->json(['menu' => $categories]);
+            return response()->json(['cuisines' => $cuisines]);
         // }
     }
 
-    function fiterByCuisine(Request $request)
+    function filterByCuisine($cuisine)
     {
-        $menuItems = MenuItem::where('cuisine', $request->cuisine)->with('menu')->get();
+        $menuItems = MenuItem::where('cuisine', $cuisine)->with('menu')->get();
 
         // $menus = $menuItems->pluck('menu_id');
 
@@ -44,9 +44,9 @@ class CustomerController extends Controller
     }
     
 
-    function filterByPrice(Request $request)
+    function filterByPrice($minimum, $maximum)
     {
-        $restaurants = Restaurant::whereBetween('deposit', [$request->minimum, $request->maximum])->get();
+        $restaurants = Restaurant::whereBetween('deposit', [$minimum, $maximum])->get();
         
         return response()->json($restaurants);
     }
