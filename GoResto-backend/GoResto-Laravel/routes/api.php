@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
     Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations']);
-    Route::post('/updateRestaurant', [RestaurantController::class, 'updateRestaurant']);
+    // Route::post('/updateRestaurant', [RestaurantController::class, 'updateRestaurant']);
 
     // Route::get('/getRequests', [AdminController::class, 'getRequests']);
     // Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/filterByRating', [CustomerController::class, 'filterByRating']);
 
 });
+
+Route::post('/updateRestaurant', [RestaurantController::class,'updateRestaurant'])->middleware('manager');
 
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
 Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');
