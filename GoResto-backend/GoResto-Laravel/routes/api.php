@@ -40,6 +40,8 @@ Route::post('/updateRestaurant', [RestaurantController::class,'updateRestaurant'
 Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant'])->middleware('manager');
 Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem'])->middleware('manager');
 Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations'])->middleware('manager');
+Route::post('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem'])->middleware('manager');
+Route::post('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem'])->middleware('manager');
 
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
 Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');

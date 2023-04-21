@@ -9,6 +9,10 @@ class MenuItem extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        'enabled',
+    ];
+
     public function menu()
     {
         return $this->belongsTo(Menu::class);

@@ -13,7 +13,7 @@ class AdminMiddleware
     {
         $user = auth()->user();
 
-        if(!$user) return response()->json(['error' => 'Unauthorized'], 401);
+        if(!$user) return response()->json(['error' => 'Unauthorized'], 401); //redirect
 
         else if ($user->role !== 'admin')
         {

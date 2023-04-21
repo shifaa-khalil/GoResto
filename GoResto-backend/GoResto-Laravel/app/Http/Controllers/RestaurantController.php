@@ -14,12 +14,13 @@ class RestaurantController extends Controller
 {
     function addRestaurant(Request $request){
         $manager = auth()->user();
-
-        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
-        $request->validate(['name' => 'unique:restaurants']);
-      
+  
+        try{
+            $request->validate(['name' => 'unique:restaurants']);
+        } catch (\Illuminate\Validation\ValidationException $e){
+            return response()->json(['status' => 'failure', 'message' => 'taken']);
+            // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+        }
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
         $restaurant->logo = $request->logo;
@@ -39,17 +40,18 @@ class RestaurantController extends Controller
         $restoRequest->restaurant_id = $restaurant->id;
         $restoRequest->save();
 
-        return response()->json(['status' => 'success', 'message' => $restaurant->id]);
-        }
-        return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+        return response()->json(['status' => 'success', 'message' => $restaurant]);
     }
 
     function addMenuItem(Request $request){
         $manager = auth()->user();
 
-        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {       
+        try{
+            $request->validate(['name' => 'unique:restaurants']);
+        } catch (\Illuminate\Validation\ValidationException $e){
+            return response()->json(['status' => 'failure', 'message' => 'taken']);
+            // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+        }      
             $request->validate(['name' => 'unique:menu_items']);
   
             $restaurant = Restaurant::where('manager_id', $manager->id)->first();
@@ -66,8 +68,6 @@ class RestaurantController extends Controller
             $menuItem->save();
 
             return response()->json(['status' => 'success', 'message' => $menuItem]);
-        }
-        return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
     }
 
     // function deleteMenuItem($menu_item_id){
@@ -87,29 +87,33 @@ class RestaurantController extends Controller
 
     function getReservations($restaurant_id)
     {
-        $manager = auth()->user();
-
-        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
             $reservations = Reservation::where('restaurant_id', $restaurant_id)->get();
             
             return response()->json(['reservations' => $reservations]);
-        }
     }
 
     function updateRestaurant(Request $request)
     {
         $manager = auth()->user();
 
-        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
-            $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
 
-            $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
 
-            return response()->json(['status'=>'success', 'message'=>'restaurant updated', 'restaurant'=>$restaurant]);
-        }
+        return response()->json(['status'=>'success', 'message'=>'restaurant updated', 'restaurant'=>$restaurant]);
+    }
+
+    function disableMenuItem($menu_item_id)
+    {
+        MenuItem::find($menu_item_id)->update(['enabled' => false]);
+
+        return response()->json(['status'=>'success', 'message'=>'item disabled']);
+    }
+
+    function enableMenuItem($menu_item_id)
+    {
+        MenuItem::find($menu_item_id)->update(['enabled' => true]);
+
+        return response()->json(['status'=>'success', 'message'=>'item enabled']);
     }
 }
