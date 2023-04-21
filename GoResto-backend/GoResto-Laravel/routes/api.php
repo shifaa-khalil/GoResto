@@ -19,23 +19,22 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getChats', [ChatController::class, 'getChats']);
     Route::post('/createChat', [ChatController::class, 'createChat']);
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
-
-    Route::get('/getCategories', [CustomerController::class, 'getCategories']);
-    Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
-    Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
-    Route::post('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation']);
-    Route::post('/searchRestaurant', [CustomerController::class, 'searchRestaurant']);
-    Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
-    Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu']);
-    Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
-    Route::post('/calculateRating/{restaurant_id}', [CustomerController::class, 'calculateRating']);
-    Route::post('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
-    Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
-    Route::post('/filterByPrice', [CustomerController::class, 'filterByPrice']);
-    Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation']);
-    Route::get('/filterByRating', [CustomerController::class, 'filterByRating']);
-
 });
+
+    Route::get('/getCategories', [CustomerController::class, 'getCategories'])->middleware('customer');
+    Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants'])->middleware('customer');
+    Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable'])->middleware('customer');
+    Route::post('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation'])->middleware('customer');
+    Route::post('/searchRestaurant', [CustomerController::class, 'searchRestaurant'])->middleware('customer');
+    Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant'])->middleware('customer');
+    Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu'])->middleware('customer');
+    Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant'])->middleware('customer');
+    Route::post('/calculateRating/{restaurant_id}', [CustomerController::class, 'calculateRating'])->middleware('customer');
+    Route::post('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews'])->middleware('customer');
+    Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment'])->middleware('customer');
+    Route::post('/filterByPrice', [CustomerController::class, 'filterByPrice'])->middleware('customer');
+    Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation'])->middleware('customer');
+    Route::get('/filterByRating', [CustomerController::class, 'filterByRating'])->middleware('customer');
 
 Route::post('/updateRestaurant', [RestaurantController::class,'updateRestaurant'])->middleware('manager');
 Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant'])->middleware('manager');
