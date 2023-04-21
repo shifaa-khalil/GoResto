@@ -16,15 +16,15 @@ class CustomerController extends Controller
 {
     function getCategories()
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $categories = MenuItem::pluck('category')->unique();
             
             return response()->json(['menu' => $categories]);
-        }
+        // }
     }
 
     function filterByPrice(Request $request)
@@ -40,15 +40,15 @@ class CustomerController extends Controller
     
     function getRestaurants()
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restaurants = Restaurant::where('approved', true)->with('menu')->get();
             
             return response()->json(['restaurants' => $restaurants]);
-        }
+        // }
     }
 
     function searchRestaurant(Request $request)
@@ -62,38 +62,38 @@ class CustomerController extends Controller
 
     function getRestaurant($restaurant_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restaurant = Restaurant::find($restaurant_id);
             
             return response()->json(['restaurant' => $restaurant]);
-        }
+        // }
     }
 
     function getMenu($restaurant_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $menu = Menu::where('restaurant_id', $restaurant_id)->with('menuItem')->first();
             $menuItems = MenuItem::where('menu_id', $menu->id)->get();
             
             return response()->json(['menu' => $menuItems]);
-        }
+        // }
     }
 
     function reserveTable(Request $request, $restaurant_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $restaurant = Restaurant::find($restaurant_id);
             $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
 
@@ -110,16 +110,16 @@ class CustomerController extends Controller
 
                 return response()->json(['status' => 'success', 'message' => 'table reserved', 'reservation' => $reservation]);
             }
-        }
+        // }
     }
 
     function cancelReservation($reservation_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $reservation = Reservation::find($reservation_id);
 
             if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
@@ -129,16 +129,16 @@ class CustomerController extends Controller
 
                 return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
             }
-        }
+        // }
     }
 
     function rateRestaurant(Request $request, $restaurant_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             // Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->update(["content" => $request->content]);
             $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
             if($review) $review->delete();
@@ -155,7 +155,7 @@ class CustomerController extends Controller
             // $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
 
             return response()->json(['status' => 'success', 'message' => 'review added', 'review' => $review]);
-        }
+        // }
     }
 
     function calculateRating($restaurant_id)
@@ -181,11 +181,11 @@ class CustomerController extends Controller
 
     function addComment(Request $request, $review_id)
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        else
-        {
+        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
+        // else
+        // {
             $comment = new Comment;
             $comment->review_id = $review_id;
             $comment->user_id = $customer->id;
@@ -193,6 +193,6 @@ class CustomerController extends Controller
             $comment->save();
 
             return response()->json(['status' => 'success', 'message' => 'comment added', 'comment' => $comment]);
-        }
+        // }
     }
 }
