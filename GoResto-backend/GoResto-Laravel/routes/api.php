@@ -19,14 +19,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getChats', [ChatController::class, 'getChats']);
     Route::post('/createChat', [ChatController::class, 'createChat']);
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
-    Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
-    Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
-    Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations']);
-    // Route::post('/updateRestaurant', [RestaurantController::class, 'updateRestaurant']);
 
-    // Route::get('/getRequests', [AdminController::class, 'getRequests']);
-    // Route::post('/approveRequest/{id}', [AdminController::class, 'approveRequest']);
-    // Route::post('/rejectRequest/{id}', [AdminController::class, 'rejectRequest']);
     Route::get('/getCategories', [CustomerController::class, 'getCategories']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
@@ -45,6 +38,9 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 
 Route::post('/updateRestaurant', [RestaurantController::class,'updateRestaurant'])->middleware('manager');
+Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant'])->middleware('manager');
+Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem'])->middleware('manager');
+Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations'])->middleware('manager');
 
 Route::get('getRequests',[AdminController::class,'getRequests'])->middleware('admin');
 Route::post('approveRequest/{id}',[AdminController::class,'approveRequest'])->middleware('admin');
