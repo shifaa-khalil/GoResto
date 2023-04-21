@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Restaurant;
 use App\Models\RestoRequest;
+use App\Models\Reservation;
 
 class RestaurantController extends Controller
 {
@@ -67,5 +68,52 @@ class RestaurantController extends Controller
             return response()->json(['status' => 'success', 'message' => $menuItem]);
         }
         return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+    }
+
+    // function deleteMenuItem($menu_item_id){
+    //     $manager = auth()->user();
+
+    //     if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
+    //     else
+    //     {         
+    //         $menu_item = MenuItem::find($menu_item_id);
+            
+    //         $menu_item->delete();
+
+    //         return response()->json(['status' => 'success', 'message' => 'menu item deleted']);
+    //     }
+    //     return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+    // }
+
+    function getReservations($restaurant_id)
+    {
+        $manager = auth()->user();
+
+        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $reservations = Reservation::where('restaurant_id', $restaurant_id)->get();
+            
+            return response()->json(['reservations' => $reservations]);
+        }
+    }
+
+    function updateRestaurant(Request $request)
+    {
+        $manager = auth()->user();
+
+        if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
+        else
+        {
+            $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+
+            Restaurant::find($restaurant->id)->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables]);
+
+            $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+
+            return response()->json(['status'=>'success', 'message'=>'restaurant updated', 'restaurant'=>$restaurant]);
+
+        }
+
     }
 }
