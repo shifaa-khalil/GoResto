@@ -73,7 +73,7 @@ class CustomerController extends Controller
     function getMenu($restaurant_id)
     {
             $menu = Menu::where('restaurant_id', $restaurant_id)->with('menuItem')->first();
-            $menuItems = MenuItem::where('menu_id', $menu->id)->get();
+            $menuItems = MenuItem::where('menu_id', $menu->id)->where('enabled', true)->get();
             
             return response()->json(['menu' => $menuItems]);
     }

@@ -102,21 +102,6 @@ class RestaurantController extends Controller
             return response()->json(['status' => 'success', 'message' => $menuItem]);
     }
 
-    // function deleteMenuItem($menu_item_id){
-    //     $manager = auth()->user();
-
-    //     if(!$manager) return response()->json(['error' => 'Unauthorized'], 401);
-    //     else
-    //     {         
-    //         $menu_item = MenuItem::find($menu_item_id);
-            
-    //         $menu_item->delete();
-
-    //         return response()->json(['status' => 'success', 'message' => 'menu item deleted']);
-    //     }
-    //     return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
-    // }
-
     function getReservations()
     {
         $manager = auth()->user();
@@ -173,5 +158,18 @@ class RestaurantController extends Controller
         Restaurant::find($restaurant_id)->update(['rating' => $rating]);
 
         return response()->json(['rating' => $rating, 'number_of_ratings'=> $countRatings]);
+    }
+
+    function getMenu()
+    {
+        $manager = auth()->user();
+        
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        $menu_id = Menu::where('restaurant_id', $restaurant->id)->first()->id;
+
+        $menuItems = MenuItem::where('menu_id', $menu_id)->where('enabled', true)->get();
+
+        return response()->json(['menu' => $menuItems]);
+
     }
 }
