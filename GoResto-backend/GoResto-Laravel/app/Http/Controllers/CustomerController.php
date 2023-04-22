@@ -4,42 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Models\Restaurant;
-use App\Models\Menu;
-use App\Models\MenuItem;
 use App\Models\Reservation;
-use App\Models\Review;
+use App\Models\Restaurant;
+use App\Models\MenuItem;
 use App\Models\Comment;
+use App\Models\Review;
+use App\Models\Menu;
+use App\Models\User;
 
 class CustomerController extends Controller
 {
     function getCuisines()
     {
-        // $customer = auth()->user();
-
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
             $cuisines = MenuItem::pluck('cuisine')->unique();
             
             return response()->json(['cuisines' => $cuisines]);
-        // }
     }
 
     function filterByCuisine($cuisine)
     {
         $menuItems = MenuItem::where('cuisine', $cuisine)->with('menu')->get();
 
-        // $menus = $menuItems->pluck('menu_id');
-
         $restaurants = $menuItems->pluck('menu.restaurant_id')->unique();
-        // $MenuItems->menu_id
 
-        // $restaurants = Restaurant::where('menu_id', $MenuItems->menu_id)->get();
-        // $menus = $MenuItems->map(function ($menuItem) {
-        //     return $menuItem->menu;
-        // });
+        $restaurants = Restaurant::whereIn('id', $restaurants)->get();
+
         return response()->json($restaurants);
     }
     
@@ -51,146 +40,103 @@ class CustomerController extends Controller
         return response()->json($restaurants);
     }
 
-    function filterByLocation(){}
+    function filterByLocation($rating)
+    {
+        $restaurants = Restaurant::where('rating', $rating);
+
+        return response()->json(['restaurants' => $restaurants]);
+    }
 
     function filterByRating(){}
     
     function getRestaurants()
     {
-        // $customer = auth()->user();
-
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
             $restaurants = Restaurant::where('approved', true)->with('menu')->get();
             
             return response()->json(['restaurants' => $restaurants]);
-        // }
     }
 
-    function searchRestaurant(Request $request)
+    function searchRestaurant($q)
     {
-        $query = $request->input('q');
-
-        $restaurants = Restaurant::where('name', 'like', '%'.$query.'%')->get();
+        $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->get();
         
         return response()->json($restaurants);
     }
 
     function getRestaurant($restaurant_id)
     {
-        // $customer = auth()->user();
-
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
             $restaurant = Restaurant::find($restaurant_id);
             
             return response()->json(['restaurant' => $restaurant]);
-        // }
     }
 
     function getMenu($restaurant_id)
     {
-        // $customer = auth()->user();
-
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
             $menu = Menu::where('restaurant_id', $restaurant_id)->with('menuItem')->first();
             $menuItems = MenuItem::where('menu_id', $menu->id)->get();
             
             return response()->json(['menu' => $menuItems]);
-        // }
     }
 
     function reserveTable(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
+        $customer = auth()->user();
 
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
-            $restaurant = Restaurant::find($restaurant_id);
-            $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
+        $restaurant = Restaurant::find($restaurant_id);
+        $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
 
-            if($countReservations == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
-            else
-            {
-                $reservation = new Reservation;
-                $reservation->restaurant_id = $restaurant_id;
-                $reservation->customer_id = $customer->id;
-                $reservation->date = $request->date;
-                $reservation->time = $request->time;
-                $reservation->count = $request->count;
-                $reservation->save();
+        if($countReservations == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
+        else
+        {
+            $reservation = new Reservation;
+            $reservation->restaurant_id = $restaurant_id;
+            $reservation->customer_id = $customer->id;
+            $reservation->date = $request->date;
+            $reservation->time = $request->time;
+            $reservation->count = $request->count;
+            $reservation->save();
 
-                return response()->json(['status' => 'success', 'message' => 'table reserved', 'reservation' => $reservation]);
-            }
-        // }
+            return response()->json(['status' => 'success', 'message' => 'table reserved', 'reservation' => $reservation]);
+        }
     }
 
-    // function getReservations(){
-    //     $customer = auth()->user();
+    function getReservations()
+    {
+        $customer = auth()->user();
 
-    //     $reservations = Reservation::where('customer_id', $customer->id)->get();
+        $reservations = Reservation::where('customer_id', $customer->id)->get();
 
-    //     return response()->json(['message' => $reservations]);
-    // }
+        return response()->json(['message' => $reservations]);
+    }
 
     function cancelReservation($reservation_id)
     {
-        // $customer = auth()->user();
+        $reservation = Reservation::find($reservation_id);
 
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
-            $reservation = Reservation::find($reservation_id);
+        if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
+        else
+        {
+            $reservation->delete();
 
-            if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
-            else
-            {
-                $reservation->delete();
-
-                return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
-            }
-        // }
+            return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
+        }
     }
 
     function rateRestaurant(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
+        $customer = auth()->user();
 
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
-            // Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->update(["content" => $request->content]);
-            $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
-            if($review) $review->delete();
+        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
+        if($review) $review->delete();
         
-            $review = new Review;
-            $review->restaurant_id = $restaurant_id;
-            $review->customer_id = $customer->id;
-            $review->content = $request->content;
-            $review->rating = $request->rating;
-            $review->save();
+        $review = new Review;
+        $review->restaurant_id = $restaurant_id;
+        $review->customer_id = $customer->id;
+        $review->content = $request->content;
+        $review->rating = $request->rating;
+        $review->save();
 
-            // $restaurant = Restaurant::find($restaurant_id);
-
-            // $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
-
-            return response()->json(['status' => 'success', 'message' => 'review added', 'review' => $review]);
-        // }
-    }
-
-    function calculateRating($restaurant_id)
-    {
-        $countRatings = Review::where('restaurant_id', $restaurant_id)->count();
-        $sumRatings = Review::where('restaurant_id', $restaurant_id)->sum('rating');
-
-        $rating = $sumRatings/$countRatings;
-        Restaurant::find($restaurant_id)->update(['rating' => $rating]);
-        return response()->json(['rating' => $rating]);
+        return response()->json(['status' => 'success', 'message' => 'review added', 'review' => $review]);
     }
 
     function getReviews($restaurant_id)
@@ -206,18 +152,17 @@ class CustomerController extends Controller
 
     function addComment(Request $request, $review_id)
     {
-        // $customer = auth()->user();
+        $customer = auth()->user();
 
-        // if(!$customer) return response()->json(['error' => 'Unauthorized'], 401);
-        // else
-        // {
-            $comment = new Comment;
-            $comment->review_id = $review_id;
-            $comment->user_id = $customer->id;
-            $comment->content = $request->content;
-            $comment->save();
+        $comment = new Comment;
+        $comment->review_id = $review_id;
+        $comment->user_id = $customer->id;
+        $comment->content = $request->content;
+        $comment->save();
 
-            return response()->json(['status' => 'success', 'message' => 'comment added', 'comment' => $comment]);
-        // }
+        return response()->json(['status' => 'success', 'message' => 'comment added', 'comment' => $comment]);
     }
+
+    function getCustomerCount()
+    {}
 }

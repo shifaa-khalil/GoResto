@@ -29,17 +29,17 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
-    Route::get('/searchRestaurant', [CustomerController::class, 'searchRestaurant']);
+    Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
     Route::get('/filterByPrice/{minimum}/{maximum}', [CustomerController::class, 'filterByPrice']);
-    Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation']);
-    Route::get('/filterByRating', [CustomerController::class, 'filterByRating']);
+    // Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation']);
+    // Route::get('/filterByRating/{min_rating}/{max_rating}', [CustomerController::class, 'filterByRating']);
     Route::get('/filterByCuisine/{cuisine}', [CustomerController::class, 'filterByCuisine']);
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
     Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu']);
     Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
+    Route::get('/getReservations', [CustomerController::class, 'getReservations']);
     Route::delete('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation']);
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
-    Route::put('/calculateRating/{restaurant_id}', [CustomerController::class, 'calculateRating']);
     Route::get('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
 });
@@ -47,11 +47,14 @@ Route::middleware(['customer'])->group(function(){
 Route::middleware(['manager'])->group(function(){
     Route::put('/updateRestaurant', [RestaurantController::class,'updateRestaurant']);
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
+    Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);
+
     Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
-    Route::get('/getReservations/{restaurant_id}', [RestaurantController::class, 'getReservations']);
+    Route::get('/getReservations', [RestaurantController::class, 'getReservations']);
     Route::put('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem']);
     Route::put('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem']);
     Route::put('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem']);
+    Route::put('/calculateRating', [RestaurantController::class, 'calculateRating']);
 });
 
 Route::middleware(['admin'])->group(function(){
