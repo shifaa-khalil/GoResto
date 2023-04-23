@@ -3,20 +3,18 @@
 }
 .polygon1 {
   height: 350px;
-  left: 0;
-  top: 0;
   align-self: flex-start;
 }
 .polygon2 {
   height: 350px;
   align-self: flex-end;
-  /* position: absolute; */
-  bottom: 0;
-  right: 0;
 }
 .landingHeading {
   height: 24vh;
   width: 100vh;
+}
+.landing-container {
+  height: 100vh;
 }
 .myButton {
   background-color: var(--red);
@@ -27,17 +25,40 @@
   font-size: 32px;
 }
 .flex-row {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   align-items: center;
+}
+.body-container {
+  height: 100%;
+  width: 100vw;
   justify-content: space-between;
 }
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+.heading-container {
   width: 45%;
 }
+p {
+  font-size: 25px;
+}
+.nav-bar {
+  justify-content: space-between;
+  padding: 20px;
+  /* background-color: beige; */
+  height: 7vh;
+}
+.logo {
+  flex-basis: 10%;
+}
+.nav-links {
+  flex-basis: 35%;
+  justify-content: space-between;
+}
+/* .nav-links {
+  column-gap: 2%;
+} */
 /* .App {
   text-align: center;
 }
