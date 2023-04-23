@@ -8,7 +8,7 @@ import MyButton from "../components/button";
 import NavBar from "../components/navBar";
 import Input from "../components/input";
 
-const Signin = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const handleRegisterClick = () => {
@@ -20,8 +20,14 @@ const Signin = () => {
       <div className="flex-row body-container">
         <img src={polygon1} className="polygon1" />
         <div className="flex-column">
+          <Input type="text" label="Name" placeholder="Name" />
           <Input type="email" label="Email" placeholder="Email" />
           <Input type="password" label="Password" placeholder="Password" />
+          <Input
+            type="password"
+            label="Confirm password"
+            placeholder="Confirm password"
+          />
           <div className="flex-row buttons">
             <MyButton
               className="form-button"
@@ -39,4 +45,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Register;

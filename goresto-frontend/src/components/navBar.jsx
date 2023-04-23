@@ -15,7 +15,7 @@ const NavBar = () => {
     navigate("");
   };
   const handleSigninClick = () => {
-    navigate("");
+    navigate("../pages/login");
   };
   return (
     <div className="flex-row nav-bar">

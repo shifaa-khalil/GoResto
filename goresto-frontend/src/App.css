@@ -14,7 +14,7 @@
   width: 100vh;
 }
 .landing-container,
-.signin-container {
+.register-container {
   height: 100vh;
 }
 .my-button {
@@ -51,7 +51,7 @@
   height: 7vh;
 }
 .nav-bar p {
-  font-size: 25px;
+  font-size: 20px;
 }
 .logo {
   flex-basis: 10%;
@@ -72,7 +72,7 @@
   padding-left: 20px;
 }
 .form-label {
-  font-size: 25px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 .form-button {
@@ -82,6 +82,7 @@
 }
 .form-link {
   color: var(--red);
+  font-size: 20px;
 }
 
 /* .nav-links {
