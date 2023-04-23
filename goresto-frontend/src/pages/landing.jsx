@@ -20,7 +20,8 @@ const Landing = () => {
         <div className="flex-column heading-container">
           <img src={landingHeading} className="landingHeading" />
           <MyButton
-            label={"Join our community"}
+            className="join-button"
+            label="Join our community"
             onClick={() => handleJoinClick()}
           />
         </div>

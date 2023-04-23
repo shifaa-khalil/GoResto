@@ -2,24 +2,27 @@
   --red: #d43325;
 }
 .polygon1 {
-  height: 350px;
+  height: 250px;
   align-self: flex-start;
 }
 .polygon2 {
-  height: 350px;
+  height: 250px;
   align-self: flex-end;
 }
 .landingHeading {
   height: 24vh;
   width: 100vh;
 }
-.landing-container {
+.landing-container,
+.signin-container {
   height: 100vh;
 }
-.myButton {
+.my-button {
   background-color: var(--red);
   color: white;
   border: none;
+}
+.join-button {
   height: 78px;
   width: 360px;
   font-size: 32px;
@@ -27,11 +30,11 @@
 .flex-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .body-container {
   height: 100%;
   width: 100vw;
-  justify-content: space-between;
 }
 .flex-column {
   display: flex;
@@ -40,22 +43,47 @@
 .heading-container {
   width: 45%;
 }
-p {
-  font-size: 25px;
-}
+
 .nav-bar {
   justify-content: space-between;
   padding: 20px;
   /* background-color: beige; */
   height: 7vh;
 }
+.nav-bar p {
+  font-size: 25px;
+}
 .logo {
   flex-basis: 10%;
 }
 .nav-links {
   flex-basis: 35%;
-  justify-content: space-between;
 }
+/* signin */
+.input-container {
+  margin-bottom: 25px;
+}
+.form-input {
+  height: 35px;
+  border: 1px solid var(--red);
+  border-left: 10px solid var(--red);
+  background-color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.form-label {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.form-button {
+  height: 35px;
+  width: 120px;
+  font-size: 20px;
+}
+.form-link {
+  color: var(--red);
+}
+
 /* .nav-links {
   column-gap: 2%;
 } */
