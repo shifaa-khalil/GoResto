@@ -1,7 +1,7 @@
 import "../App.css";
-import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import polygon1 from "../images/Polygon1.png";
 import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
@@ -12,10 +12,53 @@ import styles from "../css/register.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleRegisterClick = () => {
-    navigate("");
+  const validateForm = () => {
+    let isValid = true;
+    if (!name || !email || !password || !confirmPassword) {
+      setError("All fields are required");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Invalid email format");
+      isValid = false;
+    } else if (password.length < 8) {
+      setError("Password must be at least 8 characters");
+      isValid = false;
+    } else if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      isValid = false;
+    }
+
+    return isValid;
   };
+
+  const handleInputChange = (event) => {
+    setError(event.target.value);
+    if (validateForm) {
+      setError("");
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      const data = { name, email, password, confirmPassword };
+      axios
+        .post(`http://127.0.0.1:8000/api/register/manager`, data)
+        .then((response) => {
+          navigate("/setup");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   return (
     <div className={`flex-column ${styles.registerContainer}`}>
       <NavBar />
@@ -25,19 +68,52 @@ const Register = () => {
           <div>
             <img src={gopro} className="go-pro" />
           </div>
-          <Input type="text" label="Name" placeholder="Name" />
-          <Input type="email" label="Email" placeholder="Email" />
-          <Input type="password" label="Password" placeholder="Password" />
+          {error && <p className={styles.error}>{error}</p>}
+          <Input
+            type="text"
+            label="Name"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => {
+              setName(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            type="email"
+            label="Email"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            type="password"
+            label="Password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              handleInputChange(e);
+            }}
+          />
           <Input
             type="password"
             label="Confirm password"
+            value={confirmPassword}
             placeholder="Confirm password"
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              handleInputChange(e);
+            }}
           />
           <div className="flex-row buttons">
             <MyButton
               className={styles.formButton}
               label="Register"
-              onClick={() => handleRegisterClick()}
+              onClick={(event) => handleSubmit(event)}
             />
             <Link to="/signin" className={styles.formLink}>
               sign in instead

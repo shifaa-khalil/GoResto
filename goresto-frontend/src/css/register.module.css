@@ -19,3 +19,9 @@
   color: var(--red);
   font-size: 20px;
 }
+.error {
+  background-color: var(--red);
+  color: white;
+  width: fit-content;
+  padding: 5px;
+}

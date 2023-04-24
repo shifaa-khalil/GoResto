@@ -13,6 +13,7 @@
   background-color: var(--red);
   color: white;
   border: none;
+  cursor: pointer;
 }
 .flex-row {
   display: flex;

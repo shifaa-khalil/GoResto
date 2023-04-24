@@ -1,7 +1,7 @@
 import "../App.css";
-import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import polygon1 from "../images/Polygon1.png";
 import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
@@ -12,10 +12,42 @@ import styles from "../css/register.module.css";
 
 const Signin = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleRegisterClick = () => {
-    navigate("");
+  const validateForm = () => {
+    let isValid = true;
+    if (!email || !password) {
+      setError("All fields are required");
+      isValid = false;
+    }
+    return isValid;
   };
+
+  const handleInputChange = (event) => {
+    setError(event.target.value);
+    if (validateForm) {
+      setError("");
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      const data = { email, password };
+      axios
+        .post(`http://127.0.0.1:8000/api/login`, data)
+        .then((response) => {
+          navigate("/setup");
+        })
+        .catch((error) => {
+          console.error(error);
+          setError("Email/Password is wrong");
+        });
+    }
+  };
+
   return (
     <div className={`flex-column ${styles.registerContainer}`}>
       <NavBar />
@@ -25,13 +57,32 @@ const Signin = () => {
           <div>
             <img src={gopro} className="go-pro" />
           </div>
-          <Input type="email" label="Email" placeholder="Email" />
-          <Input type="password" label="Password" placeholder="Password" />
+          {error && <p className={styles.error}>{error}</p>}
+          <Input
+            type="email"
+            label="Email"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            type="password"
+            label="Password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              handleInputChange(e);
+            }}
+          />
           <div className="flex-row buttons">
             <MyButton
               className={styles.formButton}
               label="Sign in"
-              onClick={() => handleRegisterClick()}
+              onClick={(event) => handleSubmit(event)}
             />
             <Link to="/register" className={styles.formLink}>
               register instead

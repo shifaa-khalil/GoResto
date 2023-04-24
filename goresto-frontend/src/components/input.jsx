@@ -8,7 +8,9 @@ const Input = (props) => {
       <label className={styles.label}>{props.label}</label>
       <input
         type={props.type}
+        value={props.value}
         placeholder={props.placeholder}
+        onChange={props.onChange}
         className={styles.input}
       />
     </div>
