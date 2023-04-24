@@ -7,6 +7,7 @@ import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
 import NavBar from "../components/navBar";
 import Input from "../components/input";
+import gopro from "../images/GoPro.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ const Register = () => {
       <NavBar />
       <div className="flex-row body-container">
         <img src={polygon1} className="polygon1" />
-        <div className="flex-column">
+        <div className="flex-column form">
+          <div>
+            <img src={gopro} className="go-pro" />
+          </div>
           <Input type="text" label="Name" placeholder="Name" />
           <Input type="email" label="Email" placeholder="Email" />
           <Input type="password" label="Password" placeholder="Password" />
@@ -31,11 +35,11 @@ const Register = () => {
           <div className="flex-row buttons">
             <MyButton
               className="form-button"
-              label="Sign in"
+              label="Register"
               onClick={() => handleRegisterClick()}
             />
-            <Link to="../pages/register" className="form-link">
-              register instead
+            <Link to="/signin" className="form-link">
+              sign in instead
             </Link>
           </div>
         </div>

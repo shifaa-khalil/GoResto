@@ -2,11 +2,11 @@
   --red: #d43325;
 }
 .polygon1 {
-  height: 250px;
+  height: 300px;
   align-self: flex-start;
 }
 .polygon2 {
-  height: 250px;
+  height: 300px;
   align-self: flex-end;
 }
 .landingHeading {
@@ -43,11 +43,10 @@
 .heading-container {
   width: 45%;
 }
-
 .nav-bar {
   justify-content: space-between;
   padding: 20px;
-  /* background-color: beige; */
+  border-bottom: 1px solid black;
   height: 7vh;
 }
 .nav-bar p {
@@ -60,11 +59,18 @@
   flex-basis: 35%;
 }
 /* signin */
+.form {
+  width: 280px;
+  align-self: self-start;
+  margin-top: 20px;
+}
+
 .input-container {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .form-input {
-  height: 35px;
+  height: 30px;
+  width: 250px;
   border: 1px solid var(--red);
   border-left: 10px solid var(--red);
   background-color: white;
@@ -84,7 +90,42 @@
   color: var(--red);
   font-size: 20px;
 }
+/* setup */
+.drop-down-menu {
+  position: relative;
+  height: 30px;
+  width: 150px;
+  background-color: var(--red);
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.drop-down-menu i {
+  line-height: 30px;
+}
+.user-name {
+  cursor: pointer;
+}
+.drop-down-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--red);
+  width: 150px;
+  padding: 10px;
+}
 
+.drop-down-items a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 10px;
+}
+
+.drop-down-items a:hover {
+  background-color: white;
+  color: var(--red);
+}
 /* .nav-links {
   column-gap: 2%;
 } */

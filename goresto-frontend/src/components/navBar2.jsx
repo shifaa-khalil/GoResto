@@ -1,9 +1,10 @@
 import React from "react";
 import "../App.css";
 import logo from "../images/logo.png";
+import DropDown from "./dropDown";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const navigate = useNavigate();
   const handleStepsClick = () => {
     navigate("");
@@ -24,10 +25,8 @@ const NavBar = () => {
       </div>
 
       <div className="flex-row nav-links">
-        <p onClick={() => handleStepsClick()}>How it works</p>
-        <p onClick={() => handleAboutClick()}>About</p>
-        <p onClick={() => handleContactClick()}>Contact</p>
-        <p onClick={() => handleSigninClick()}>Sign in</p>
+        <p>{props.sectionName}</p>
+        <DropDown />
       </div>
     </div>
   );
