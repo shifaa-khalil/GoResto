@@ -1,0 +1,15 @@
+.joinButton {
+  height: 78px;
+  width: 360px;
+  font-size: 32px;
+}
+.bodyContainer {
+  height: 100%;
+  width: 100vw;
+}
+.headingContainer {
+  width: 45%;
+}
+.landingContainer {
+  height: 100vh;
+}

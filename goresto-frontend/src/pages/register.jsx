@@ -8,6 +8,7 @@ import MyButton from "../components/button";
 import NavBar from "../components/navBar";
 import Input from "../components/input";
 import gopro from "../images/GoPro.png";
+import styles from "../css/register.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,11 +17,11 @@ const Register = () => {
     navigate("");
   };
   return (
-    <div className="flex-column register-container">
+    <div className={`flex-column ${styles.registerContainer}`}>
       <NavBar />
-      <div className="flex-row body-container">
+      <div className={`flex-row ${styles.bodyContainer}`}>
         <img src={polygon1} className="polygon1" />
-        <div className="flex-column form">
+        <div className={`flex-column ${styles.form}`}>
           <div>
             <img src={gopro} className="go-pro" />
           </div>
@@ -34,11 +35,11 @@ const Register = () => {
           />
           <div className="flex-row buttons">
             <MyButton
-              className="form-button"
+              className={styles.formButton}
               label="Register"
               onClick={() => handleRegisterClick()}
             />
-            <Link to="/signin" className="form-link">
+            <Link to="/signin" className={styles.formLink}>
               sign in instead
             </Link>
           </div>

@@ -1,14 +1,15 @@
 import React from "react";
 import "../App.css";
+import styles from "../css/input.module.css";
 
 const Input = (props) => {
   return (
-    <div className="flex-column input-container">
-      <label className="form-label">{props.label}</label>
+    <div className={`flex-column ${styles.container}`}>
+      <label className={styles.label}>{props.label}</label>
       <input
         type={props.type}
         placeholder={props.placeholder}
-        className="form-input"
+        className={styles.input}
       />
     </div>
   );

@@ -9,123 +9,28 @@
   height: 300px;
   align-self: flex-end;
 }
-.landingHeading {
-  height: 24vh;
-  width: 100vh;
-}
-.landing-container,
-.register-container {
-  height: 100vh;
-}
+
 .my-button {
   background-color: var(--red);
   color: white;
   border: none;
 }
-.join-button {
-  height: 78px;
-  width: 360px;
-  font-size: 32px;
-}
+
 .flex-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.body-container {
-  height: 100%;
-  width: 100vw;
-}
+
 .flex-column {
   display: flex;
   flex-direction: column;
 }
-.heading-container {
-  width: 45%;
-}
-.nav-bar {
-  justify-content: space-between;
-  padding: 20px;
-  border-bottom: 1px solid black;
-  height: 7vh;
-}
-.nav-bar p {
-  font-size: 20px;
-}
+
 .logo {
   flex-basis: 10%;
 }
-.nav-links {
-  flex-basis: 35%;
-}
-/* signin */
-.form {
-  width: 280px;
-  align-self: self-start;
-  margin-top: 20px;
-}
 
-.input-container {
-  margin-bottom: 20px;
-}
-.form-input {
-  height: 30px;
-  width: 250px;
-  border: 1px solid var(--red);
-  border-left: 10px solid var(--red);
-  background-color: white;
-  font-size: 20px;
-  padding-left: 20px;
-}
-.form-label {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.form-button {
-  height: 35px;
-  width: 120px;
-  font-size: 20px;
-}
-.form-link {
-  color: var(--red);
-  font-size: 20px;
-}
-/* setup */
-.drop-down-menu {
-  position: relative;
-  height: 30px;
-  width: 150px;
-  background-color: var(--red);
-  color: white;
-  font-size: 20px;
-  padding-left: 20px;
-}
-.drop-down-menu i {
-  line-height: 30px;
-}
-.user-name {
-  cursor: pointer;
-}
-.drop-down-items {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--red);
-  width: 150px;
-  padding: 10px;
-}
-
-.drop-down-items a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 10px 10px;
-}
-
-.drop-down-items a:hover {
-  background-color: white;
-  color: var(--red);
-}
 /* .nav-links {
   column-gap: 2%;
 } */

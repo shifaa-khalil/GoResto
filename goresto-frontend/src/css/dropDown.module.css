@@ -1,0 +1,33 @@
+.dropDownMenu {
+  position: relative;
+  height: 30px;
+  width: 150px;
+  background-color: var(--red);
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.dropDownMenu i {
+  line-height: 30px;
+}
+.userName {
+  cursor: pointer;
+}
+.dropDownItems {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--red);
+  width: 150px;
+  padding: 10px;
+}
+.dropDownItems a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 10px;
+}
+.dropDownItems a:hover {
+  background-color: white;
+  color: var(--red);
+}

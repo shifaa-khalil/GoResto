@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
+import styles from "../css/dropDown.module.css";
 
-const DropDown = ({ Name }) => {
+const DropDown = (props) => {
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleUserClick = () => {
@@ -9,13 +12,13 @@ const DropDown = ({ Name }) => {
   };
 
   return (
-    <nav className="drop-down-menu">
-      <div className="user-name" onClick={handleUserClick}>
-        {/* {Name} */}
+    <nav className={styles.dropDownMenu}>
+      <div className={styles.userName} onClick={handleUserClick}>
+        {/* {props.name} */}
         <i>Name</i>
       </div>
       {isDropdownOpen && (
-        <div className="drop-down-items">
+        <div className={styles.dropDownItems}>
           <a href="#">Settings</a>
           <a href="#">Logout</a>
         </div>

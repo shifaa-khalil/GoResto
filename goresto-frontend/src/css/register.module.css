@@ -1,0 +1,21 @@
+.registerContainer {
+  height: 100vh;
+}
+.bodyContainer {
+  height: 100%;
+  width: 100vw;
+}
+.form {
+  width: 280px;
+  align-self: self-start;
+  margin-top: 20px;
+}
+.formButton {
+  height: 35px;
+  width: 120px;
+  font-size: 20px;
+}
+.formLink {
+  color: var(--red);
+  font-size: 20px;
+}

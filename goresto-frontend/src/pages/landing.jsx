@@ -6,21 +6,22 @@ import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
 import NavBar from "../components/navBar";
 import gopro from "../images/GoPro.png";
+import styles from "../css/landing.module.css";
 
 const Landing = () => {
   const navigate = useNavigate();
   const handleJoinClick = () => {
-    navigate("");
+    navigate("/register");
   };
   return (
-    <div className="flex-column landing-container">
+    <div className={`flex-column ${styles.landingContainer}`}>
       <NavBar />
-      <div className="flex-row body-container">
+      <div className={`flex-row ${styles.bodyContainer}`}>
         <img src={polygon1} className="polygon1" />
-        <div className="flex-column heading-container">
-          <img src={gopro} className="landingHeading" />
+        <div className={`flex-column ${styles.headingContainer}`}>
+          <img src={gopro} />
           <MyButton
-            className="join-button"
+            className={styles.joinButton}
             label="Join our community"
             onClick={() => handleJoinClick()}
           />

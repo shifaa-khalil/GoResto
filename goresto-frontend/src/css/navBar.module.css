@@ -1,0 +1,23 @@
+.navBar {
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid black;
+  height: 7vh;
+}
+.navBar p {
+  font-size: 20px;
+}
+.navLinks {
+  flex-basis: 35%;
+}
+.navBar2 {
+  justify-content: space-between;
+  padding: 20px;
+  height: 7vh;
+}
+.navBar2 h1 {
+  flex-basis: 55%;
+}
+.dropDownContainer {
+  flex-basis: 5%;
+}

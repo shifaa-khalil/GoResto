@@ -1,0 +1,16 @@
+.container {
+  margin-bottom: 20px;
+}
+.input {
+  height: 30px;
+  width: 250px;
+  border: 1px solid var(--red);
+  border-left: 10px solid var(--red);
+  background-color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+.label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}

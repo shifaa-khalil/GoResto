@@ -2,34 +2,20 @@ import React from "react";
 import "../App.css";
 import logo from "../images/logo.png";
 import DropDown from "./dropDown";
-import { useNavigate } from "react-router-dom";
+import styles from "../css/navBar.module.css";
 
-const NavBar = (props) => {
-  const navigate = useNavigate();
-  const handleStepsClick = () => {
-    navigate("");
-  };
-  const handleAboutClick = () => {
-    navigate("");
-  };
-  const handleContactClick = () => {
-    navigate("");
-  };
-  const handleSigninClick = () => {
-    navigate("/signin");
-  };
+const NavBar2 = (props) => {
   return (
-    <div className="flex-row nav-bar">
+    <div className={`flex-row ${styles.navBar2}`}>
       <div className="logo">
         <img src={logo} />
       </div>
-
-      <div className="flex-row nav-links">
-        <p>{props.sectionName}</p>
+      <h1>{props.sectionName}</h1>
+      <div className={styles.dropDownContainer}>
         <DropDown />
       </div>
     </div>
   );
 };
 
-export default NavBar;
+export default NavBar2;
