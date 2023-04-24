@@ -1,0 +1,15 @@
+.container {
+  padding: 10px 20px;
+  color: var(--red);
+  font-size: 20px;
+  font-weight: 500;
+  height: 30px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+.icon {
+  height: 30px;
+}
+.sectionName {
+  width: 55%;
+}

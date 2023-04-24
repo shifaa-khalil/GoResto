@@ -9,24 +9,20 @@
   height: 300px;
   align-self: flex-end;
 }
-
 .my-button {
   background-color: var(--red);
   color: white;
   border: none;
 }
-
 .flex-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .flex-column {
   display: flex;
   flex-direction: column;
 }
-
 .logo {
   flex-basis: 10%;
 }

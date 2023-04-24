@@ -15,7 +15,11 @@ const DropDown = (props) => {
     <nav className={styles.dropDownMenu}>
       <div className={styles.userName} onClick={handleUserClick}>
         {/* {props.name} */}
-        <i>Name</i>
+
+        <span className="flex-row">
+          <span>Name</span>
+          <span>&#9660;</span>
+        </span>
       </div>
       {isDropdownOpen && (
         <div className={styles.dropDownItems}>
