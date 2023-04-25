@@ -1,0 +1,21 @@
+.form {
+  margin-top: 40px;
+}
+.formButton {
+  height: 35px;
+  width: 120px;
+  font-size: 20px;
+}
+.error {
+  background-color: var(--red);
+  color: white;
+  width: fit-content;
+  padding: 5px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.sectionContainer {
+  width: 78%;
+}

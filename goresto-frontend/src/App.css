@@ -25,7 +25,8 @@
   flex-direction: column;
 }
 .logo {
-  flex-basis: 10%;
+  /* flex-basis: 10%; */
+  padding: 10px 20px;
 }
 
 /* .nav-links {

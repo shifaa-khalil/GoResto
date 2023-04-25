@@ -30,7 +30,7 @@ class RestaurantController extends Controller
     
             return response()->json(['status' => 'success', 'message' => $logoUrl]);
         } else {
-            return response()->json(['status' => 'failure', 'message' => 'No file uploaded.']);
+            return response()->json(['status' => 'failure', 'message' => 'No file uploaded.'], 400);
         }
     }
 
@@ -40,13 +40,13 @@ class RestaurantController extends Controller
   
         $manager_id = Restaurant::where('manager_id', $manager->id)->first();
 
-        if($manager_id) return response()->json(['status'=>'failure', 'message'=>'you already added a restaurant on this account']);
+        if($manager_id) return response()->json(['status'=>'failure', 'message'=>'you already added a restaurant on this account'], 400);
         else
         {
             try{
                 $request->validate(['name' => 'unique:restaurants']);
             } catch (\Illuminate\Validation\ValidationException $e){
-                return response()->json(['status' => 'failure', 'message' => 'taken']);
+                return response()->json(['status' => 'failure', 'message' => 'taken'], 400);
                 // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
             }
             $restaurant = new Restaurant;
@@ -59,6 +59,8 @@ class RestaurantController extends Controller
             $restaurant->deposit = $request->deposit;
             $restaurant->save();
     
+            $createdRestaurant = Restaurant::find($restaurant->id);
+
             $menu = new Menu;
             $menu->restaurant_id = $restaurant->id;
             $menu->save();
@@ -84,7 +86,7 @@ class RestaurantController extends Controller
         try{
             $request->validate(['name' => 'unique:menu_items,name,menu_id'. $menu_id]);
         } catch (\Illuminate\Validation\ValidationException $e){
-            return response()->json(['status' => 'failure', 'message' => 'item already exists']);
+            return response()->json(['status' => 'failure', 'message' => 'item already exists'], 400);
             // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
         }      
 

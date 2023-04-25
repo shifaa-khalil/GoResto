@@ -52,9 +52,12 @@ const Register = () => {
         .post(`http://127.0.0.1:8000/api/register/manager`, data)
         .then((response) => {
           navigate("/setup");
+          localStorage.setItem("name", response.data.user.name);
+          localStorage.setItem("token", response.data.authorisation.token);
         })
         .catch((error) => {
           console.error(error);
+          setError("Email already exists");
         });
     }
   };
