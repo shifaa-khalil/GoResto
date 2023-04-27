@@ -94,6 +94,8 @@ class RestaurantController extends Controller
 
             $menuItem->menu_id = $menu_id;
             $menuItem->name = $request->name;
+            $image = $this->uploadLogo($request);
+            $menuItem->image = $image->getData()->message;
             $menuItem->description = $request->description;
             $menuItem->price = $request->price;
             $menuItem->category = $request->category;
@@ -112,6 +114,11 @@ class RestaurantController extends Controller
 
         $reservations = Reservation::where('restaurant_id', $restaurant->id)->get();
             
+        foreach ($reservations as $reservation) {
+            $customer = User::where('id', $reservation->customer_id)->first();
+            $reservation->name = $customer->name;
+        }
+
         return response()->json(['reservations' => $reservations]);
     }
 
@@ -171,6 +178,18 @@ class RestaurantController extends Controller
         $menuItems = MenuItem::where('menu_id', $menu_id)->where('enabled', true)->get();
 
         return response()->json(['menu' => $menuItems]);
+
+    }
+
+    function getRestaurant()
+    {
+        $manager = auth()->user();
+        
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        $totalReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
+        $totalReviews = Review::where('restaurant_id', $restaurant->id)->count();
+
+        return response()->json(['totalReservations' => $totalReservations, 'totalReviews' => $totalReviews, 'restaurant' => $restaurant]);
 
     }
 }

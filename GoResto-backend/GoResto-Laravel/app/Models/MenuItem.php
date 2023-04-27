@@ -15,6 +15,7 @@ class MenuItem extends Model
         'category',
         'enabled',
         'cuisine',
+        'image',
     ];
 
     public function menu()

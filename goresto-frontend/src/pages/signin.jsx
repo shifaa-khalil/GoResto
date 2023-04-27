@@ -37,15 +37,27 @@ const Signin = () => {
     if (validateForm()) {
       const data = { email, password };
       axios
-        .post(`http://127.0.0.1:8000/api/login`, data)
+        .post(`http://127.0.0.1:8000/api/login/manager`, data)
         .then((response) => {
-          navigate("/setup");
+          console.log(response.data.menuItems);
+          if (response.data.restaurant != null && response.data.menuItems >= 10)
+            navigate("/dashboard");
+          else if (response.data.menuItems < 10) navigate("/menu");
+          else navigate("/setup");
+
           localStorage.setItem("name", response.data.user.name);
           localStorage.setItem("token", response.data.authorisation.token);
         })
         .catch((error) => {
           console.error(error);
-          setError("Email/Password is wrong");
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.status === "failure" &&
+            error.response.data.message === "you are not a manager"
+          )
+            setError("You are not a manager");
+          else setError("Email/Password is wrong");
         });
     }
   };

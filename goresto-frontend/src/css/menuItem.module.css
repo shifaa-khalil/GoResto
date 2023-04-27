@@ -1,0 +1,21 @@
+.card {
+  height: 180px;
+  width: 160px;
+  /* padding-left: 20px; */
+  /* background-color: blueviolet; */
+  /* align-items: center; */
+  /* float: left; */
+  /* justify-content: space-between; */
+  flex-basis: 43%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-bottom: 8%; */
+}
+.image {
+  height: 160px;
+  width: 100%;
+  background-color: var(--grey);
+  align-self: center;
+  margin-bottom: 10px;
+}

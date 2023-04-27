@@ -6,6 +6,7 @@
 }
 .navBar p {
   font-size: 20px;
+  cursor: pointer;
 }
 .navLinks {
   flex-basis: 35%;

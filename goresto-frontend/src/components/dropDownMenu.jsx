@@ -7,28 +7,28 @@ import axios from "axios";
 const DropDownMenu = (props) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const [token, setToken] = localStorage.getItem("token");
   const handleUserClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleSignoutClick = () => {
-    const token = localStorage.getItem("token");
     if (token) {
-      axios
-        .post(`http://127.0.0.1:8000/api/logout`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("name");
-          navigate("/signin");
-        })
-        .catch((error) => {
-          console.error({ error });
-        });
+      localStorage.removeItem("token");
+      localStorage.removeItem("name");
+      navigate("/signin");
+      // axios
+      //   .post(`http://127.0.0.1:8000/api/logout`, {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     console.log(response.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error({ error });
+      //   });
     }
   };
 

@@ -4,7 +4,7 @@ import styles from "../css/leftMenuItem.module.css";
 
 const LeftMenuItem = (props) => {
   return (
-    <div className={`flex-row ${styles.container}`}>
+    <div className={`flex-row ${styles.container}`} onClick={props.onClick}>
       <img src={props.icon} className={styles.icon} />
       <div className={`flex-row ${props.className} ${styles.sectionName}`}>
         <p>{props.sectionName}</p>

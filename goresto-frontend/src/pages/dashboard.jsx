@@ -16,7 +16,29 @@ import DropDownList from "../components/dropDownList";
 const Dashboard = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const navigate = useNavigate();
+  const [totalReservations, setTotalReservations] = useState("");
+  const [totalReviews, setTotalReviews] = useState("");
+  const [rating, setRating] = useState("");
 
+  if (token) {
+    axios
+      .get(`http://127.0.0.1:8000/api/getRestaurant`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setTotalReservations(response.data.totalReservations);
+        setTotalReviews(response.data.totalReviews);
+        setRating(response.data.restaurant.rating);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  } else navigate("/signin");
+
+  // const totalReviews = "13";
   return (
     <div className={styles.container}>
       <div>
@@ -29,13 +51,13 @@ const Dashboard = () => {
           <DashboardCard
             className={styles.grey}
             title="Total reservations"
-            value="62"
+            value={totalReservations}
             src={reservations}
           />
           <DashboardCard
             className={styles.grey}
             title="Total earnings"
-            value="$12k"
+            value="$12.4k"
             src={earnings}
           />
           <DashboardCard
@@ -47,13 +69,13 @@ const Dashboard = () => {
           <DashboardCard
             className={styles.grey}
             title="Total reviews"
-            value="62"
+            value={totalReviews}
             src={chats}
           />
           <DashboardCard
             className={styles.red}
             title="Rating"
-            value="4.2"
+            value={rating}
             src={star}
           />
         </div>

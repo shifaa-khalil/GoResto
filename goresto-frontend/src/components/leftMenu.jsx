@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import styles from "../css/leftMenu.module.css";
 import LeftMenuItem from "../components/leftMenuItem";
@@ -13,6 +14,8 @@ import about from "../images/about.png";
 import logo from "../images/logo.png";
 
 const LeftMenu = (props) => {
+  const navigate = useNavigate();
+
   return (
     <div className={`flex-column ${styles.container} ${props.className}`}>
       <div className="logo">
@@ -24,41 +27,49 @@ const LeftMenu = (props) => {
           icon={dashboard}
           sectionName="Dashboard"
           className={props.dashboardClassName}
+          onClick={() => navigate("/dashboard")}
         />
         <LeftMenuItem
           icon={menu}
           sectionName="Menu"
           className={props.menuClassName}
+          onClick={() => navigate("/")}
         />
         <LeftMenuItem
           icon={reservations}
           sectionName="Reservations"
           className={props.reservationsClassName}
+          onClick={() => navigate("/reservations")}
         />
         <LeftMenuItem
           icon={customers}
           sectionName="Customers"
           className={props.customersClassName}
+          onClick={() => navigate("/")}
         />
         <LeftMenuItem
           icon={offers}
           sectionName="Offers"
           className={props.offersClassName}
+          onClick={() => navigate("/")}
         />
         <LeftMenuItem
           icon={chats}
           sectionName="Chats"
           className={props.chatsClassName}
+          onClick={() => navigate("/chatsReviews")}
         />
         <LeftMenuItem
           icon={earnings}
           sectionName="Earnings"
           className={props.earningsClassName}
+          onClick={() => navigate("/")}
         />
         <LeftMenuItem
           icon={about}
           sectionName="About"
           className={props.aboutClassName}
+          onClick={() => navigate("/")}
         />
       </div>
     </div>

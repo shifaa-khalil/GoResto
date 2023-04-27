@@ -10,7 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::post('login/{role}', 'login');
     Route::post('/register/{role}', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
@@ -55,6 +55,7 @@ Route::middleware(['manager'])->group(function(){
     Route::put('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem']);
     Route::put('/calculateRating', [RestaurantController::class, 'calculateRating']);
     Route::get('/getMenu', [RestaurantController::class, 'getMenu']);
+    Route::get('/getRestaurant', [RestaurantController::class, 'getRestaurant']);
 
 });
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\MenuItem;
+use App\Models\Restaurant;
 
 class AuthController extends Controller
 {
@@ -15,7 +17,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
-    public function login(Request $request)
+    public function login(Request $request, $role)
     {
         $request->validate([
             'email' => 'required|string|email',
@@ -31,10 +33,16 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
+        $user = User::where('email', $request->email)->first();
+
+        $restaurant = Restaurant::where('manager_id', $user->id)->first();
+        $menuItems = MenuItem::where('menu_id', $restaurant->menu_id)->count();
+
+        if($user->role == $role){
         return response()->json([
                 'status' => 'success',
-                // 'user' => $user,
+                'restaurant' => $restaurant,
+                'menuItems' => $menuItems,
                 'user' => [
                     'name'=>$user->name,
                     'email'=>$user->email,
@@ -45,7 +53,9 @@ class AuthController extends Controller
                     'type' => 'bearer',
                 ]
             ]);
-
+        }else{
+            return response()->json(['status'=>'failure', 'message'=>'you are not a manager'], 400);
+        }
     }
 
     public function register(Request $request, $role){
@@ -63,7 +73,7 @@ class AuthController extends Controller
             'role' => $role,
         ]);
 
-        $token = Auth::login($user);
+        $token = Auth::login($user, $role);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
@@ -72,8 +82,9 @@ class AuthController extends Controller
                 'token' => $token,
                 'type' => 'bearer',
             ]
-        ]);
-    }
+            ]);
+        }
+    
 
     public function logout()
     {
@@ -82,6 +93,9 @@ class AuthController extends Controller
             'status' => 'success',
             'message' => 'Successfully logged out',
         ]);
+        // $user = Auth::user();
+        // if($user) return response()->json(['user'=>$user]);
+        // else return response()->json(['message'=>'no user'], 401);
     }
 
     public function refresh()

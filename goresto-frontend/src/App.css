@@ -3,6 +3,7 @@
 :root {
   --red: #d43325;
   --grey: #f5f5f5;
+  --yellow: #d6c02c;
 }
 * {
   font-family: "Raleway";
@@ -51,6 +52,9 @@
 }
 .smallsize {
   font-size: 20px;
+}
+.tinysize {
+  font-size: 12px;
 }
 .block {
   display: block;
