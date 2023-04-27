@@ -21,6 +21,7 @@ const Menu = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
 
   const validateForm = () => {
     let isValid = true;
@@ -44,6 +45,13 @@ const Menu = () => {
     setImage(file);
   };
 
+  const handleDone = (event) => {
+    event.preventDefault();
+    if (token) {
+      if (menuItems < 10) setError("Add at least 10 items");
+      else navigate("/dahsboard");
+    } else navigate("/signin");
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     if (token) {
@@ -64,12 +72,12 @@ const Menu = () => {
             },
           })
           .then((response) => {
-            // setName("");
-            // setImage(null);
-            // setDescription("");
-            // setPrice("");
-            // setCategory("");
-            // setCuisine("");
+            setName("");
+            setImage(null);
+            setDescription("");
+            setPrice("");
+            setCategory("");
+            setCuisine("");
             setSuccess("Item added successfully!");
             // navigate("/pending");
             // localStorage.setItem("name", response.data.message.name);
@@ -179,7 +187,7 @@ const Menu = () => {
               <MyButton
                 className={styles.formButton}
                 label="done"
-                //   onClick={(event) => handleSubmit(event)}
+                onClick={(event) => handleDone(event)}
               />
             </div>
           </div>

@@ -47,6 +47,7 @@ const Signin = () => {
 
           localStorage.setItem("name", response.data.user.name);
           localStorage.setItem("token", response.data.authorisation.token);
+          localStorage.setItem("menuItems", response.data.menuItems);
         })
         .catch((error) => {
           console.error(error);

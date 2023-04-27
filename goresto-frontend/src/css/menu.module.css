@@ -43,7 +43,12 @@
   width: 120px;
   font-size: 22px;
 }
-
+.done {
+  height: 35px;
+  width: 120px;
+  font-size: 22px;
+  background-color: var(--yellow);
+}
 .open {
   box-shadow: 10px 0 0 var(--red);
 }
