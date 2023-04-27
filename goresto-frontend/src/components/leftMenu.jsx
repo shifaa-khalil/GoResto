@@ -33,7 +33,7 @@ const LeftMenu = (props) => {
           icon={menu}
           sectionName="Menu"
           className={props.menuClassName}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/menu")}
         />
         <LeftMenuItem
           icon={reservations}

@@ -37,7 +37,7 @@ const DropDownMenu = (props) => {
       <div className={styles.value} onClick={handleUserClick}>
         <span className="flex-row">
           <span>{props.value}</span>
-          <span>&#9660;</span>
+          <span className={styles.arrow}>&#9660;</span>
         </span>
       </div>
       {isDropdownOpen && (

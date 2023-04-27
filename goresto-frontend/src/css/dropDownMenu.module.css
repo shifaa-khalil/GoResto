@@ -13,6 +13,9 @@
 .value {
   cursor: pointer;
 }
+.arrow {
+  /* margin-left: 95px; */
+}
 .dropDownItems {
   position: absolute;
   top: 100%;

@@ -49,7 +49,7 @@ const Menu = () => {
     event.preventDefault();
     if (token) {
       if (menuItems < 10) setError("Add at least 10 items");
-      else navigate("/dahsboard");
+      else navigate("/dashboard");
     } else navigate("/signin");
   };
   const handleSubmit = (event) => {
@@ -185,7 +185,7 @@ const Menu = () => {
                 onClick={(event) => handleSubmit(event)}
               />
               <MyButton
-                className={styles.formButton}
+                className={styles.done}
                 label="done"
                 onClick={(event) => handleDone(event)}
               />

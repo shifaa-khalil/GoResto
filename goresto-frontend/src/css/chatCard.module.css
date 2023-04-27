@@ -6,7 +6,7 @@
   column-gap: 2%;
   margin-bottom: 20px;
 }
-span {
+.chatCard span {
   flex-basis: 50%;
   text-align: left;
   white-space: nowrap;
