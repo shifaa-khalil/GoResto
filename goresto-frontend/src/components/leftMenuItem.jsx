@@ -6,7 +6,7 @@ const LeftMenuItem = (props) => {
   return (
     <div className={`flex-row ${styles.container}`}>
       <img src={props.icon} className={styles.icon} />
-      <div className={styles.sectionName}>
+      <div className={`flex-row ${props.className} ${styles.sectionName}`}>
         <p>{props.sectionName}</p>
       </div>
     </div>

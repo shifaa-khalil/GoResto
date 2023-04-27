@@ -1,0 +1,28 @@
+.reviewCard {
+  height: 150px;
+  width: 460px;
+  background-color: var(--grey);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+span {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.name {
+  flex-basis: 40%;
+}
+.rating {
+  flex-basis: 10%;
+}
+.date {
+  flex-basis: 30%;
+}
+p {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

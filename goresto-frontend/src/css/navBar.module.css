@@ -11,6 +11,9 @@
   flex-basis: 35%;
 }
 .navBar2 {
-  padding: 20px 20px 0 0;
+  padding: 20px 60px 0 0;
   height: 7vh;
+}
+.navBar2 h1 {
+  font-weight: bold;
 }

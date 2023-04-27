@@ -1,7 +1,7 @@
 .dropDownMenu {
   position: relative;
-  height: 30px;
-  width: 150px;
+  height: 35px;
+  width: 130px;
   background-color: var(--red);
   color: white;
   font-size: 20px;
@@ -10,7 +10,7 @@
 .dropDownMenu span {
   line-height: 30px;
 }
-.userName {
+.value {
   cursor: pointer;
 }
 .dropDownItems {
@@ -18,8 +18,8 @@
   top: 100%;
   left: 0;
   background-color: var(--red);
-  width: 150px;
-  padding: 10px 20px;
+  width: 130px;
+  padding: 0 20px;
 }
 .dropDownItems a {
   display: block;

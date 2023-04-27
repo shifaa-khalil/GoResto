@@ -1,0 +1,39 @@
+:root {
+  --red: #d43325;
+}
+.form {
+  margin-top: 40px;
+}
+.formButton {
+  height: 35px;
+  width: 120px;
+  font-size: 22px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.sectionContainer {
+  width: 75%;
+  row-gap: 52px;
+}
+.body {
+  text-align: center;
+  /* margin-top: 80px; */
+  font-size: 25px;
+  padding-right: 60px;
+  flex-wrap: wrap;
+  column-gap: 9.8%;
+  justify-content: center;
+  display: flex;
+}
+.open {
+  box-shadow: 10px 0 0 var(--red);
+}
+.red {
+  background-color: var(--red);
+  /* color: white; */
+}
+.grey {
+  background-color: var(--grey);
+}

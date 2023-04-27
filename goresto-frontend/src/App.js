@@ -9,6 +9,10 @@ import Landing from "./pages/landing";
 import Signin from "./pages/signin";
 import Register from "./pages/register";
 import Setup from "./pages/setup";
+import Pending from "./pages/pending";
+import Dashboard from "./pages/dashboard";
+import ChatsReviews from "./pages/chatsReviews";
+import Reservations from "./pages/reservations";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,13 +35,12 @@ function App() {
             isAuthenticated ? <Setup /> : <Navigate to="/signin" replace />
           }
         />
-        <Route path="/pending" element={<pending />} />
+        <Route path="/pending" element={<Pending />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/chatsReviews" element={<ChatsReviews />} />
+        <Route path="/reservations" element={<Reservations />} />
 
         {/* <Route path="/admin" element={<UserList />} />
-      <Route path="/dashboard" element={<dashboard />} />
-      <Route path="/chatsReviews" element={<chatsReviews />} />
-      <Route path="/reservations" element={<reservations />} />
-      <Route path="/reservations" element={<reservations />} />
       <Route path="/about" element={<about />} />
       <Route path="/menu" element={<menu />} /> */}
       </Routes>

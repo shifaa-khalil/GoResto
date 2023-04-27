@@ -4,7 +4,7 @@
 .formButton {
   height: 35px;
   width: 120px;
-  font-size: 20px;
+  font-size: 22px;
 }
 .error {
   background-color: var(--red);
@@ -17,5 +17,31 @@
   justify-content: space-between;
 }
 .sectionContainer {
-  width: 78%;
+  width: 75%;
 }
+.body {
+  text-align: center;
+  margin-top: 180px;
+  font-size: 25px;
+  padding-right: 60px;
+}
+.input {
+  margin-bottom: 35px;
+}
+input[type="file"] {
+  font-size: 15px;
+}
+
+/* .parent {
+  position: relative;
+  background-color: blue;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1;
+} */

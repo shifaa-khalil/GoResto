@@ -1,0 +1,15 @@
+.chatCard {
+  background-color: var(--grey);
+  width: 460px;
+  padding: 20px;
+  display: flex;
+  column-gap: 2%;
+  margin-bottom: 20px;
+}
+span {
+  flex-basis: 50%;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

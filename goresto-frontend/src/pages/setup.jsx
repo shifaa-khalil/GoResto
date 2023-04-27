@@ -86,17 +86,19 @@ const Setup = () => {
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu />
+        <LeftMenu overlay={styles.overlay} parent={styles.parent} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Setup" />
+        <NavBar2 sectionName="Setup" className="hidden" />
         <div className={`flexcolumn ${styles.form}`}>
           {error && <p className={styles.error}>{error}</p>}
           <Input
             label="Enter the name of your restaurant"
+            labelClassName="semibold"
             type="text"
             value={name}
             placeholder="type here"
+            className={styles.input}
             onChange={(e) => {
               setName(e.target.value);
               handleInputChange(e);
@@ -104,8 +106,10 @@ const Setup = () => {
           />
           <Input
             label="Upload the logo of your restaurant"
+            labelClassName="semibold"
             type="file"
             placeholder="file name"
+            className={styles.input}
             onChange={(e) => {
               setLogo(e.target.files[0]);
               handleFileChange(e);
@@ -113,9 +117,11 @@ const Setup = () => {
           />
           <Input
             label="Enter the number of tables in your restaurant"
+            labelClassName="semibold"
             type="text"
             value={tables}
             placeholder="type here"
+            className={styles.input}
             onChange={(e) => {
               setTables(e.target.value);
               handleInputChange(e);
@@ -123,9 +129,11 @@ const Setup = () => {
           />
           <Input
             label="Add the location of your restaurant"
+            labelClassName="semibold"
             type="text"
             value={location}
             placeholder="type here"
+            className={styles.input}
             onChange={(e) => {
               setLocation(e.target.value);
               handleInputChange(e);
@@ -133,9 +141,11 @@ const Setup = () => {
           />
           <Input
             label="Add the deposit for reservation in your restaurant"
+            labelClassName="semibold"
             type="text"
             value={deposit}
             placeholder="type here"
+            className={styles.input}
             onChange={(e) => {
               setDeposit(e.target.value);
               handleInputChange(e);

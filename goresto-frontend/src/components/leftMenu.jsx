@@ -12,21 +12,54 @@ import earnings from "../images/earnings.png";
 import about from "../images/about.png";
 import logo from "../images/logo.png";
 
-const LeftMenu = () => {
+const LeftMenu = (props) => {
   return (
-    <div className={`flex-column ${styles.container}`}>
+    <div className={`flex-column ${styles.container} ${props.className}`}>
       <div className="logo">
         <img src={logo} />
       </div>
-      <div>
-        <LeftMenuItem icon={dashboard} sectionName="Dashboard" />
-        <LeftMenuItem icon={menu} sectionName="Menu" />
-        <LeftMenuItem icon={reservations} sectionName="Reservations" />
-        <LeftMenuItem icon={customers} sectionName="Customers" />
-        <LeftMenuItem icon={offers} sectionName="Offers" />
-        <LeftMenuItem icon={chats} sectionName="Chats" />
-        <LeftMenuItem icon={earnings} sectionName="Earnings" />
-        <LeftMenuItem icon={about} sectionName="About" />
+      <div className={props.parent}>
+        <div className={props.overlay}></div>
+        <LeftMenuItem
+          icon={dashboard}
+          sectionName="Dashboard"
+          className={props.dashboardClassName}
+        />
+        <LeftMenuItem
+          icon={menu}
+          sectionName="Menu"
+          className={props.menuClassName}
+        />
+        <LeftMenuItem
+          icon={reservations}
+          sectionName="Reservations"
+          className={props.reservationsClassName}
+        />
+        <LeftMenuItem
+          icon={customers}
+          sectionName="Customers"
+          className={props.customersClassName}
+        />
+        <LeftMenuItem
+          icon={offers}
+          sectionName="Offers"
+          className={props.offersClassName}
+        />
+        <LeftMenuItem
+          icon={chats}
+          sectionName="Chats"
+          className={props.chatsClassName}
+        />
+        <LeftMenuItem
+          icon={earnings}
+          sectionName="Earnings"
+          className={props.earningsClassName}
+        />
+        <LeftMenuItem
+          icon={about}
+          sectionName="About"
+          className={props.aboutClassName}
+        />
       </div>
     </div>
   );

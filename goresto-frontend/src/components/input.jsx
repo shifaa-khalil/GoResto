@@ -4,8 +4,10 @@ import styles from "../css/input.module.css";
 
 const Input = (props) => {
   return (
-    <div className={`flex-column ${styles.container}`}>
-      <label className={styles.label}>{props.label}</label>
+    <div className={`flex-column ${styles.container} ${props.className}`}>
+      <label className={`${styles.label} ${props.labelClassName}`}>
+        {props.label}
+      </label>
       <input
         type={props.type}
         value={props.value}
@@ -18,18 +20,3 @@ const Input = (props) => {
 };
 
 export default Input;
-
-// function InputExample() {
-//   const [inputValue, setInputValue] = useState('');
-
-//   const handleChange = (event) => {
-//     setInputValue(event.target.value);
-//   };
-
-//   return (
-//     <div>
-//       <input type="text" value={inputValue} onChange={handleChange} />
-//       <p>You typed: {inputValue}</p>
-//     </div>
-//   );
-// }
