@@ -49,7 +49,7 @@ const Reservations = () => {
                 </tr>
               </thead>
               <tbody>
-                {reservations.length > 0 &&
+                {reservations &&
                   reservations.map((reservation) => (
                     <tr
                       className="normalweight mediumsize"

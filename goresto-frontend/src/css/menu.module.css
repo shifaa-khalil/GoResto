@@ -15,7 +15,7 @@
 .screen {
   width: 330px;
   height: 610px;
-  border: 3px solid black;
+  border: 3px solid var(--grey);
   padding: 10px;
   display: flex;
   justify-content: space-between;

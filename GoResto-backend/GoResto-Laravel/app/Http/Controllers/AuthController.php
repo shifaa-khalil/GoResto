@@ -36,7 +36,8 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         $restaurant = Restaurant::where('manager_id', $user->id)->first();
-        $menuItems = MenuItem::where('menu_id', $restaurant->menu_id)->count();
+        $menuItems = 0;
+        if($restaurant) $menuItems = MenuItem::where('menu_id', $restaurant->menu_id)->count();
 
         if($user->role == $role){
         return response()->json([

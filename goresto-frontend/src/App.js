@@ -14,20 +14,22 @@ import Dashboard from "./pages/dashboard";
 import ChatsReviews from "./pages/chatsReviews";
 import Reservations from "./pages/reservations";
 import Menu from "./pages/menu";
+import About from "./pages/about";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   }, []);
 
-  if (isLoading) return <h1>loading</h1>;
+  // if (isLoading) return <h1>loading</h1>;
+
   return (
     <Router>
       <Routes>
@@ -45,8 +47,10 @@ function App() {
         <Route path="/chatsReviews" element={<ChatsReviews />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/about" element={<About />} />
+
         {/* <Route path="/admin" element={<UserList />} />
-      <Route path="/about" element={<about />} /> */}
+         */}
       </Routes>
     </Router>
   );

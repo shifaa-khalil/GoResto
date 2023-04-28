@@ -6,7 +6,10 @@ import styles from "../css/dashboardCard.module.css";
 
 const DashboardCard = (props) => {
   return (
-    <div className={`flex-column ${styles.card} ${props.className}`}>
+    <div
+      className={`flex-column ${styles.card} ${props.className}`}
+      onClick={props.onClick}
+    >
       <span className="normalweight">{props.title}</span>
       <span className="bold">{props.value}</span>
       <img src={props.src} className={styles.icon} />

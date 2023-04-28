@@ -69,7 +69,7 @@ const LeftMenu = (props) => {
           icon={about}
           sectionName="About"
           className={props.aboutClassName}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/about")}
         />
       </div>
     </div>

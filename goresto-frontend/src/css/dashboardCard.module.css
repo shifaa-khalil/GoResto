@@ -9,6 +9,7 @@
   justify-content: space-between;
   flex-basis: 23%;
   margin-bottom: 8%;
+  cursor: pointer;
 }
 .icon {
   height: 50px;

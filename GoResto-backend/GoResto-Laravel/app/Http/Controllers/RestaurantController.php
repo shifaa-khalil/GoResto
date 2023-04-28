@@ -126,7 +126,14 @@ class RestaurantController extends Controller
     {
         $manager = auth()->user();
 
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables, 'deposit' => $request->deposit]);
+        try{
+            $request->validate(['name' => 'unique:restaurants']);
+        } catch (\Illuminate\Validation\ValidationException $e){
+            return response()->json(['status' => 'failure', 'message' => 'taken'], 400);
+            // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
+        }
+
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['name' => $request->name, 'logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables, 'deposit' => $request->deposit]);
 
         $restaurant = Restaurant::where('manager_id', $manager->id)->first();
 
@@ -186,10 +193,11 @@ class RestaurantController extends Controller
         $manager = auth()->user();
         
         $restaurant = Restaurant::where('manager_id', $manager->id)->first();
-        $totalReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
-        $totalReviews = Review::where('restaurant_id', $restaurant->id)->count();
-
-        return response()->json(['totalReservations' => $totalReservations, 'totalReviews' => $totalReviews, 'restaurant' => $restaurant]);
-
+        if($restaurant){
+            $totalReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
+            $totalReviews = Review::where('restaurant_id', $restaurant->id)->count();
+            return response()->json(['totalReservations' => $totalReservations, 'totalReviews' => $totalReviews, 'restaurant' => $restaurant]);
+        }
+        return response()->json(['status'=>'failure', 'message'=>'no restaurant added']);
     }
 }

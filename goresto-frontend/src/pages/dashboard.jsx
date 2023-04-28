@@ -38,7 +38,6 @@ const Dashboard = () => {
       });
   } else navigate("/signin");
 
-  // const totalReviews = "13";
   return (
     <div className={styles.container}>
       <div>
@@ -53,30 +52,35 @@ const Dashboard = () => {
             title="Total reservations"
             value={totalReservations}
             src={reservations}
+            onClick={() => navigate("/reservations")}
           />
           <DashboardCard
             className={styles.grey}
             title="Total earnings"
             value="$12.4k"
             src={earnings}
+            // onClick={() => navigate("/earnings")}
           />
           <DashboardCard
             className={styles.grey}
             title="Total customers"
             value="62"
             src={customers}
+            // onClick={() => navigate("/customers")}
           />
           <DashboardCard
             className={styles.grey}
             title="Total reviews"
             value={totalReviews}
             src={chats}
+            onClick={() => navigate("/chatsReviews")}
           />
           <DashboardCard
             className={styles.red}
             title="Rating"
             value={rating}
             src={star}
+            onClick={() => navigate("/chatsReviews")}
           />
         </div>
       </div>

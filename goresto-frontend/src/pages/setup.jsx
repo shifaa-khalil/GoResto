@@ -14,13 +14,13 @@ const Setup = () => {
   const [logo, setLogo] = useState(null);
   const [tables, setTables] = useState("");
   const [location, setLocation] = useState("");
-  const [error, setError] = useState("");
   const [deposit, setDeposit] = useState("");
+  const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const validateForm = () => {
     let isValid = true;
-    if (!name || !logo || !tables || !location) {
+    if (!name || !logo || !tables || !location || !deposit) {
       setError("All fields are required");
       isValid = false;
     }

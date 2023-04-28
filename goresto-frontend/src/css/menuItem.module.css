@@ -12,9 +12,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* line-height: 0px; */
 }
 .image {
-  height: 160px;
+  height: 120px;
   width: 100%;
   background-color: var(--grey);
   align-self: center;
