@@ -11,7 +11,6 @@ class TrustHosts extends Middleware
      *
      * @return array<int, string|null>
      */
-    protected $proxies = '*';
 
     // protected $headers = [
     //     Request::HEADER_FORWARDED_HOST,
@@ -21,6 +20,7 @@ class TrustHosts extends Middleware
     public function hosts(): array
     {
         return [
+            'laravel.test',
             $this->allSubdomainsOfApplicationUrl(),
         ];
     }
