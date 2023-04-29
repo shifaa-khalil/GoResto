@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
+import MyLink from "../components/link";
 
 const Register = ({ navigation }) => {
   return (
@@ -15,8 +16,12 @@ const Register = ({ navigation }) => {
         <Input title="Password" placeHolder="Password" />
         <Input title="Confirm password" placeHolder="Confirm password" />
       </View>
-      <View>
+      <View style={styles.buttons}>
         <MyButton title="Register" onPress={() => navigation.navigate("")} />
+        <MyLink
+          title="Sign in instead"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </View>
   );
@@ -24,13 +29,18 @@ const Register = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // width: "80%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   form: {
     marginBottom: 20,
+  },
+  buttons: {
+    width: 260,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 export default Register;

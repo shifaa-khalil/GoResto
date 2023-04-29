@@ -14,8 +14,7 @@ const MyButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    // flex: 1,
-    width: "40%",
+    width: 120,
     height: 40,
     padding: 5,
     backgroundColor: "#D43325",
