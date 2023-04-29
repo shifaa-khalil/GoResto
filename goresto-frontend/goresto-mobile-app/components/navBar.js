@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { TouchableOpacity, View, Text, Image } from "react-native";
+import React from "react";
+import { View, Text, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
+import Signin from "../screens/signin";
 import Logo from "../assets/Logo.png";
 
 const NavBar = ({ navigation }) => {
@@ -13,14 +14,14 @@ const NavBar = ({ navigation }) => {
         <Text style={[styles.text]} onPress={() => navigation.navigate("")}>
           Contact
         </Text>
-        <Text style={[styles.text]} onPress={() => navigation.navigate("")}>
+        <Text
+          style={[styles.text]}
+          onPress={() => navigation.navigate("Signin")}
+        >
           Sign in
         </Text>
       </View>
     </View>
-    // <TouchableOpacity title={title} onPress={onPress} style={[styles.link]}>
-    //   <Text style={styles.text}>{title}</Text>
-    // </TouchableOpacity>
   );
 };
 
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     // height: 70,
-    marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#D9D9D9",
     padding: 20,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   navLinks: {
     flexDirection: "row",
     justifyContent: "space-between",
-    columnGap: 8,
+    columnGap: 12,
     fontSize: 18,
   },
   text: {

@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { TouchableOpacity, View, Text, TextInput } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import { TouchableOpacity, Text } from "react-native";
 import { StyleSheet } from "react-native";
 
 const MyButton = ({ title, onPress }) => {
