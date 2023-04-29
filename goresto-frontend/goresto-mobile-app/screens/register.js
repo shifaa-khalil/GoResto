@@ -1,15 +1,17 @@
 import * as React from "react";
-import { Button, View, Text, TextInput } from "react-native";
+import { Image, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
+import GoPro from "../assets/GoPro.png";
 
 const Register = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
+      <Image source={GoPro} style={[styles.heading]} />
       <View style={[styles.form]}>
         <Input title="Name" placeHolder="Name" />
         <Input title="Email" placeHolder="Email" />
@@ -32,6 +34,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  heading: {
+    width: 260,
+    height: 30,
+    marginBottom: 20,
   },
   form: {
     marginBottom: 20,
