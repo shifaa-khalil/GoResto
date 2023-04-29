@@ -15,7 +15,9 @@ const Register = ({ navigation }) => {
         <Input title="Password" placeHolder="Password" />
         <Input title="Confirm password" placeHolder="Confirm password" />
       </View>
-      <MyButton title="Register" onPress={() => navigation.navigate("")} />
+      <View>
+        <MyButton title="Register" onPress={() => navigation.navigate("")} />
+      </View>
     </View>
   );
 };
