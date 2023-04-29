@@ -1,23 +1,23 @@
 import * as React from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { StyleSheet } from "react-native";
 import Register from "./screens/register";
 import Signin from "./screens/signin";
+import Home from "./screens/home";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Register"
           component={Register}
           options={{ title: "Setup" }}
         />
-        <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="Signin" component={Signin} /> */}
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
