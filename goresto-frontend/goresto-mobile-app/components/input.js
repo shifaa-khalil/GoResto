@@ -25,10 +25,11 @@ const Input = ({ title, placeHolder }) => {
 };
 
 const styles = StyleSheet.create({
-  inputContainer: { marginBottom: 20 },
+  inputContainer: { marginBottom: 20, width: 260 },
   label: { fontSize: 20, marginBottom: 5 },
   input: {
-    width: "80%",
+    // flex: 3,
+    width: "100%",
     height: 40,
     paddingLeft: 15,
     borderColor: "#D43325",

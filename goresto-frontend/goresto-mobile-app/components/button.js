@@ -1,26 +1,33 @@
 import React, { useState } from "react";
-import { Button, View, Text, TextInput } from "react-native";
+import { TouchableOpacity, View, Text, TextInput } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
 
 const MyButton = ({ title, onPress }) => {
-  return <Button title={title} onPress={onPress} />;
+  return (
+    <TouchableOpacity title={title} onPress={onPress} style={[styles.button]}>
+      <Text style={styles.text}>{title}</Text>
+    </TouchableOpacity>
+  );
 };
 
-// const styles = StyleSheet.create({
-//   inputContainer: { marginBottom: 20 },
-//   label: { fontSize: 20, marginBottom: 5 },
-//   input: {
-//     width: "80%",
-//     height: 40,
-//     paddingLeft: 15,
-//     borderColor: "#D43325",
-//     borderLeftColor: "#D43325",
-//     borderLeftWidth: 10,
-//     borderWidth: 1,
-//     fontSize: 18,
-//   },
-// });
+const styles = StyleSheet.create({
+  button: {
+    // flex: 1,
+    width: "40%",
+    height: 40,
+    padding: 5,
+    backgroundColor: "#D43325",
+    fontSize: 18,
+    justifyContent: "center",
+  },
+  text: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});
 
 export default MyButton;

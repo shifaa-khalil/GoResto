@@ -9,10 +9,12 @@ import MyButton from "../components/button";
 const Register = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
-      <Input title="Name" placeHolder="Name" />
-      <Input title="Email" placeHolder="Email" />
-      <Input title="Password" placeHolder="Password" />
-      <Input title="Confirm password" placeHolder="Confirm password" />
+      <View style={[styles.form]}>
+        <Input title="Name" placeHolder="Name" />
+        <Input title="Email" placeHolder="Email" />
+        <Input title="Password" placeHolder="Password" />
+        <Input title="Confirm password" placeHolder="Confirm password" />
+      </View>
       <MyButton title="Register" onPress={() => navigation.navigate("")} />
     </View>
   );
@@ -20,9 +22,13 @@ const Register = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    // width: "80%",
     flex: 1,
     justifyContent: "center",
-    alignContent: "center",
+    alignItems: "center",
+  },
+  form: {
+    marginBottom: 20,
   },
 });
 export default Register;
