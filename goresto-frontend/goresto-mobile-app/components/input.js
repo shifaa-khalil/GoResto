@@ -1,9 +1,10 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Button, View, Text, TextInput } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet } from "react-native";
 
-function Input({ props }) {
+const Input = ({ title, placeHolder }) => {
   const [text, setText] = useState("");
 
   const handleChangeText = (value) => {
@@ -11,32 +12,31 @@ function Input({ props }) {
   };
 
   return (
-    <View style={Styles.inputContainer}>
-      <Text style={styles.label}>{props.title}</Text>
+    <View style={[styles.inputContainer]}>
+      <Text style={[styles.label]}>{title}</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input]}
         value={text}
         onChangeText={handleChangeText}
-        placeholder="Type here"
+        placeholder={placeHolder}
       />
     </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
-  inputContainer: {},
-  label: {},
+  inputContainer: { marginBottom: 20 },
+  label: { fontSize: 20, marginBottom: 5 },
   input: {
     width: "80%",
-    height: "50px",
+    height: 40,
+    paddingLeft: 15,
+    borderColor: "#D43325",
+    borderLeftColor: "#D43325",
+    borderLeftWidth: 10,
+    borderWidth: 1,
+    fontSize: 18,
   },
 });
 
 export default Input;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
