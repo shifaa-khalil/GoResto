@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     // height: 70,
     borderBottomWidth: 1,
     borderBottomColor: "#D9D9D9",
-    padding: 20,
+    paddingHorizontal: 25,
+    paddingVertical: 20,
   },
   logo: {
     height: 40,
