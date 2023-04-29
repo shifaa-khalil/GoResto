@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Register from "./screens/register";
 import Signin from "./screens/signin";
 import Home from "./screens/home";
+import Restaurants from "./screens/restaurants";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ function App() {
           options={{ title: "Setup" }}
         />
         <Stack.Screen name="Signin" component={Signin} /> */}
-        <Stack.Screen name="Home" component={Home} />
+        {/* <Stack.Screen name="Home" component={Home} /> */}
+        <Stack.Screen name="Restaurants" component={Restaurants} />
       </Stack.Navigator>
     </NavigationContainer>
   );
