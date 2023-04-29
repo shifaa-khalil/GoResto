@@ -11,6 +11,7 @@ import NavBar from "../components/navBar";
 import Signin from "../screens/signin";
 import NavCard from "../components/navigationalCard";
 import Reservations from "../assets/reservationsWhite.png";
+import Chats from "../assets/chatsWhite.png";
 
 const Home = () => {
   return (
@@ -20,6 +21,11 @@ const Home = () => {
       <NavCard
         text="Check my reservations"
         icon={Reservations}
+        onPress={() => console.log("pressed")}
+      />
+      <NavCard
+        text="Go to chats"
+        icon={Chats}
         onPress={() => console.log("pressed")}
       />
     </View>
@@ -33,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    width: 260,
-    height: 30,
+    width: 310,
+    height: 37,
     marginBottom: 40,
     marginTop: 20,
   },
