@@ -7,10 +7,12 @@ import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
+import NavBar from "../components/navBar";
 
 const Register = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
+      <NavBar />
       <Image source={GoPro} style={[styles.heading]} />
       <View style={[styles.form]}>
         <Input title="Name" placeHolder="Name" />
@@ -32,7 +34,8 @@ const Register = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
+    backgroundColor: "white",
     alignItems: "center",
   },
   heading: {

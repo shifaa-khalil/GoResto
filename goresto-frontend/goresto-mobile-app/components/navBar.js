@@ -10,8 +10,12 @@ const NavBar = ({ navigation }) => {
     <View style={[styles.navBar]}>
       <Image source={Logo} style={[styles.logo]} />
       <View style={[styles.navLinks]}>
-        <Text onPress={() => navigation.navigate("")}>Contact</Text>
-        <Text onPress={() => navigation.navigate("")}>Sign in</Text>
+        <Text style={[styles.text]} onPress={() => navigation.navigate("")}>
+          Contact
+        </Text>
+        <Text style={[styles.text]} onPress={() => navigation.navigate("")}>
+          Sign in
+        </Text>
       </View>
     </View>
     // <TouchableOpacity title={title} onPress={onPress} style={[styles.link]}>
@@ -24,12 +28,25 @@ const styles = StyleSheet.create({
   navBar: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    // height: 70,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#D9D9D9",
+    padding: 20,
   },
   logo: {
-    // flexBasis: "30%",
+    height: 40,
+    width: 70,
   },
   navLinks: {
-    flexBasis: "30%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    columnGap: 8,
+    fontSize: 18,
+  },
+  text: {
     fontSize: 18,
   },
 });
