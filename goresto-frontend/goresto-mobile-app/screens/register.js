@@ -4,14 +4,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
+import MyButton from "../components/button";
 
-const Register = () => {
+const Register = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
       <Input title="Name" placeHolder="Name" />
       <Input title="Email" placeHolder="Email" />
       <Input title="Password" placeHolder="Password" />
       <Input title="Confirm password" placeHolder="Confirm password" />
+      <MyButton title="Register" onPress={() => navigation.navigate("")} />
     </View>
   );
 };
