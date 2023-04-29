@@ -9,14 +9,19 @@ import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
 import Signin from "../screens/signin";
+import NavCard from "../components/navigationalCard";
+import Reservations from "../assets/reservationsWhite.png";
 
 const Home = () => {
-  const navigation = useNavigation();
-
   return (
     <View style={[styles.container]}>
       <NavBar />
       <Image source={GoPro} style={[styles.heading]} />
+      <NavCard
+        text="Check my reservations"
+        icon={Reservations}
+        onPress={() => console.log("pressed")}
+      />
     </View>
   );
 };
