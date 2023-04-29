@@ -6,17 +6,14 @@ import { StyleSheet } from "react-native";
 
 const MyLink = ({ title, onPress }) => {
   return (
-    <TouchableOpacity title={title} onPress={onPress} style={[styles.link]}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+    <Text onPress={onPress} style={[styles.link]}>
+      {title}
+    </Text>
   );
 };
 
 const styles = StyleSheet.create({
   link: {
-    backgroundColor: "transparent",
-  },
-  text: {
     color: "#D43325",
     fontSize: 18,
     textDecorationLine: "underline",
