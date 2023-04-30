@@ -1,14 +1,14 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { View, Image } from "react-native";
 import { StyleSheet } from "react-native";
-import Signin from "../screens/signin";
 import Logo from "../assets/Logo.png";
 import Heart from "../assets/heart.png";
 import SearchBar from "../components/searchBar";
+import { useNavigation } from "@react-navigation/native";
 
-const NavBar2 = ({ navigation }) => {
+const NavBar2 = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={[styles.navBar]}>
       <Image source={Logo} style={[styles.logo]} />

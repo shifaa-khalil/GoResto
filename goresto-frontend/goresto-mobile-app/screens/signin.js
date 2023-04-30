@@ -1,14 +1,12 @@
 import * as React from "react";
-import { Image, View, Button } from "react-native";
+import { Image, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
-import Register from "../screens/register";
 
 const Signin = () => {
   const navigation = useNavigation();

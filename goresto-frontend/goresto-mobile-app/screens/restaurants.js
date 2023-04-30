@@ -1,18 +1,8 @@
 import * as React from "react";
-import { ScrollView, Image, View, Text, Button } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
-import Input from "../components/input";
-import MyButton from "../components/button";
-import MyLink from "../components/link";
-import GoPro from "../assets/GoPro.png";
 import NavBar2 from "../components/navBar2";
-import Signin from "../screens/signin";
-import NavCard from "../components/navigationalCard";
-import Reservations from "../assets/reservationsWhite.png";
-import Chats from "../assets/chatsWhite.png";
-import DownArrow from "../assets/downArrow.png";
 import Chinese from "../assets/chinese.png";
 import Japanese from "../assets/japanese.png";
 import Italian from "../assets/italian.png";
@@ -24,6 +14,8 @@ import CategoryBar from "../components/categoriesBar";
 import FilterBar from "../components/filterBar";
 
 const Restaurants = () => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
@@ -37,7 +29,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="French"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "French" })
+            }
           />
           <RestaurantCard
             image={Chinese}
@@ -45,7 +39,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="Chinese"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "Chinese" })
+            }
           />
           <RestaurantCard
             image={Japanese}
@@ -53,7 +49,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="Japanese"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "Japanese" })
+            }
           />
           <RestaurantCard
             image={Italian}
@@ -61,7 +59,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="Italian"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "Italian" })
+            }
           />
           <RestaurantCard
             image={Lebanese}
@@ -69,7 +69,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="Lebanese"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "Lebanese" })
+            }
           />
           <RestaurantCard
             image={Indian}
@@ -77,7 +79,9 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="Indian"
             location="Beirut-Sioufi"
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "Indian" })
+            }
           />
         </View>
       </View>

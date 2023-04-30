@@ -1,14 +1,8 @@
 import * as React from "react";
 import { ScrollView, Image, View, Text, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
-import Input from "../components/input";
-import MyButton from "../components/button";
-import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
-import Signin from "../screens/signin";
 import NavCard from "../components/navigationalCard";
 import Reservations from "../assets/reservationsWhite.png";
 import Chats from "../assets/chatsWhite.png";

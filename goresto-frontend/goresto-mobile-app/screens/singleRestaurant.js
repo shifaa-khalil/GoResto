@@ -1,29 +1,12 @@
 import * as React from "react";
-import { ScrollView, Image, View, Text, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ScrollView, Image, View, Text } from "react-native";
 import { StyleSheet } from "react-native";
-import Input from "../components/input";
-import MyButton from "../components/button";
-import MyLink from "../components/link";
-import GoPro from "../assets/GoPro.png";
 import NavBar2 from "../components/navBar2";
-import Signin from "./signin";
-import NavCard from "../components/navigationalCard";
-import Reservations from "../assets/reservationsWhite.png";
-import Chats from "../assets/chatsWhite.png";
-import DownArrow from "../assets/downArrow.png";
 import Chinese from "../assets/chinese.png";
 import Heart from "../assets/heart.png";
 import Star from "../assets/Star.png";
-import Lebanese from "../assets/lebanese.png";
-import French from "../assets/french.png";
-import Indian from "../assets/indian.png";
-import RestaurantCard from "../components/restaurantCard";
-import CategoryBar from "../components/categoriesBar";
-import FilterBar from "../components/filterBar";
 
-const Restaurant = ({ image, name, rating, cuisine, location }) => {
+const Restaurant = ({ image, name, rating, cuisine, location, route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
@@ -36,7 +19,7 @@ const Restaurant = ({ image, name, rating, cuisine, location }) => {
               <View style={[styles.row]}>
                 <Text style={[styles.rating]}>4.2</Text>
                 <Image source={Star} style={styles.star} />
-                <Text style={[styles.cuisine]}>Chinese</Text>
+                <Text style={[styles.cuisine]}>{route.params.cuisine}</Text>
               </View>
               <Text style={[styles.location]} numberOfLines={1}>
                 Beirut-Sioufi
@@ -82,7 +65,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   text: {
-    // height: "100%",
     justifyContent: "center",
     flexBasis: "40%",
   },
@@ -101,13 +83,11 @@ const styles = StyleSheet.create({
   },
   cuisine: {
     fontSize: 20,
-    // fontWeight: "bold",
   },
   location: {
     fontSize: 20,
     overflow: "hidden",
     textOverflow: "ellipsis",
-    // fontWeight: "bold",
   },
   star: {
     height: 20,
@@ -123,7 +103,6 @@ const styles = StyleSheet.create({
   },
   cost: {
     fontSize: 20,
-    // fontWeight: "bold",
   },
 });
 

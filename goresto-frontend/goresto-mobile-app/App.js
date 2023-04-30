@@ -5,22 +5,22 @@ import Register from "./screens/register";
 import Signin from "./screens/signin";
 import Home from "./screens/home";
 import Restaurants from "./screens/restaurants";
-import Restaurant from "./screens/singleRestaurant";
+import Restaurant from "./screens/SingleRestaurant";
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen
+      <Stack.Navigator initialRouteName="Register">
+        <Stack.Screen
           name="Register"
           component={Register}
           options={{ title: "Setup" }}
         />
-        <Stack.Screen name="Signin" component={Signin} /> */}
-        {/* <Stack.Screen name="Home" component={Home} /> */}
-        {/* <Stack.Screen name="Restaurants" component={Restaurants} /> */}
+        <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Restaurants" component={Restaurants} />
         <Stack.Screen name="Restaurant" component={Restaurant} />
       </Stack.Navigator>
     </NavigationContainer>

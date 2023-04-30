@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
-import Signin from "../screens/signin";
+import { useNavigation } from "@react-navigation/native";
 import Logo from "../assets/Logo.png";
 
-const NavBar = ({ navigation }) => {
+const NavBar = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={[styles.navBar]}>
       <Image source={Logo} style={[styles.logo]} />
