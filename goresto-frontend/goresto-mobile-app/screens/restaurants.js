@@ -7,7 +7,7 @@ import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
-import NavBar from "../components/navBar";
+import NavBar2 from "../components/navBar2";
 import Signin from "../screens/signin";
 import NavCard from "../components/navigationalCard";
 import Reservations from "../assets/reservationsWhite.png";
@@ -27,7 +27,7 @@ const Restaurants = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        <NavBar />
+        <NavBar2 />
         <CategoryBar />
         <FilterBar />
         <View style={[styles.restaurants]}>
