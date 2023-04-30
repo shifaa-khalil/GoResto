@@ -12,7 +12,7 @@ class CustomerMiddleware
     {
         $user = auth()->user();
 
-        // if(!$user) return response()->json(['error' => 'Unauthorized'], 401);
+        if(!$user) return response()->json(['error' => 'Unauthorized'], 401);
 
         if ($user->role !== 'customer') {
             return response()->json('no access');

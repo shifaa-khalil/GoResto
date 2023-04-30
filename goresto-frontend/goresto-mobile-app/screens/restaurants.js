@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from "axios";
 import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
@@ -16,6 +17,17 @@ import FilterBar from "../components/filterBar";
 const Restaurants = () => {
   const navigation = useNavigation();
 
+  const handlePress = () => {
+    axios
+      .get(`http://192.168.1.6:8000/api/getRestaurants`)
+      .then((response) => {
+        console.log(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
@@ -29,9 +41,10 @@ const Restaurants = () => {
             rating="4.2"
             cuisine="French"
             location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "French" })
-            }
+            onPress={handlePress}
+            // onPress={() =>
+            //   navigation.navigate("Restaurant", { cuisine: "French" })
+            // }
           />
           <RestaurantCard
             image={Chinese}

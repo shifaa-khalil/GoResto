@@ -16,9 +16,9 @@ class CustomerController extends Controller
 {
     function getCuisines()
     {
-            $cuisines = MenuItem::pluck('cuisine')->unique();
+        $cuisines = MenuItem::pluck('cuisine')->unique();
             
-            return response()->json(['cuisines' => $cuisines]);
+        return response()->json(['cuisines' => $cuisines]);
     }
 
     function filterByCuisine($cuisine)
@@ -32,7 +32,6 @@ class CustomerController extends Controller
         return response()->json($restaurants);
     }
     
-
     function filterByPrice($minimum, $maximum)
     {
         $restaurants = Restaurant::whereBetween('deposit', [$minimum, $maximum])->get();
@@ -51,9 +50,9 @@ class CustomerController extends Controller
     
     function getRestaurants()
     {
-            $restaurants = Restaurant::where('approved', true)->with('menu')->get();
+        $restaurants = Restaurant::where('approved', true)->with('menu')->get();
             
-            return response()->json(['restaurants' => $restaurants]);
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     function searchRestaurant($q)
