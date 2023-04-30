@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 const MyButton = ({ title, onPress }) => {
   return (
     <TouchableOpacity title={title} onPress={onPress} style={[styles.button]}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text]}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 5,
     backgroundColor: "#D43325",
-    fontSize: 18,
     justifyContent: "center",
   },
   text: {
