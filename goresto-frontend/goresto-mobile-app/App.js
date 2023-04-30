@@ -5,7 +5,7 @@ import Register from "./screens/register";
 import Signin from "./screens/signin";
 import Home from "./screens/home";
 import Restaurants from "./screens/restaurants";
-import Restaurant from "./screens/SingleRestaurant";
+import Restaurant from "./screens/singleRestaurant";
 
 const Stack = createStackNavigator();
 

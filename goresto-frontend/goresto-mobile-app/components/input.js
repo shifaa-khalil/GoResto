@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { View, Text, TextInput } from "react-native";
 import { StyleSheet } from "react-native";
 
-const Input = ({ title, placeHolder }) => {
-  const [text, setText] = useState("");
+const Input = ({ title, placeHolder, onChangeText, value }) => {
+  // const [text, setText] = useState("");
 
-  const handleChangeText = (value) => {
-    setText(value);
-  };
+  // const handleChangeText = (value) => {
+  //   setText(value);
+  //   onCustomChange(value);
+  // };
 
   return (
     <View style={[styles.inputContainer]}>
       <Text style={[styles.label]}>{title}</Text>
       <TextInput
         style={[styles.input]}
-        value={text}
-        onChangeText={handleChangeText}
+        value={value}
+        onChangeText={onChangeText}
         placeholder={placeHolder}
       />
     </View>
