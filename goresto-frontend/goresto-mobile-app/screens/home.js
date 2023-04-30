@@ -37,7 +37,7 @@ const Home = () => {
   //   }
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar />
         <Image source={GoPro} style={[styles.heading]} />

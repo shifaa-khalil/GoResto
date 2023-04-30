@@ -6,11 +6,16 @@ import Icon from "react-native-vector-icons/Ionicons";
 const CategoryBar = () => {
   return (
     <View style={styles.container}>
-      <Text style={[styles.all, styles.text]}>All</Text>
-      <Icon name="chevron-back" size={24} color="#000" style={styles.icon} />
+      <Text style={[styles.all]}>All</Text>
+      <Icon
+        name="chevron-back"
+        size={24}
+        color="#000"
+        style={styles.iconLeft}
+      />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.barContainer]} numberOfLines={1}>
-          <View style={[styles.bar]} numberOfLines={1}>
+          <View style={[styles.bar]}>
             <Text style={[styles.text]}>Chinese</Text>
             <Text style={[styles.text]}>French</Text>
             <Text style={[styles.text]}>Japanese</Text>
@@ -20,21 +25,25 @@ const CategoryBar = () => {
           </View>
         </View>
       </ScrollView>
-      <Icon name="chevron-forward" size={24} color="#000" style={styles.icon} />
+      <Icon
+        name="chevron-forward"
+        size={24}
+        color="#000"
+        style={styles.iconRight}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: 310,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
     marginVertical: 20,
   },
   barContainer: {
     width: "100%",
-    // paddingHorizontal: 25,
   },
   bar: {
     flexDirection: "row",
@@ -43,13 +52,19 @@ const styles = StyleSheet.create({
     textOverflow: "ellipsis",
   },
   text: {
-    fontSize: 18,
+    fontSize: 15,
+    color: "rgba(0,0,0,0.2)",
   },
-  icon: {
+  iconLeft: {
     paddingHorizontal: 3,
+  },
+  iconRight: {
+    paddingLeft: 3,
   },
   all: {
     fontWeight: "bold",
+    color: "black",
+    fontSize: 15,
   },
 });
 
