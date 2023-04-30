@@ -6,23 +6,23 @@ import Chinese from "../assets/chinese.png";
 import Heart from "../assets/heart.png";
 import Star from "../assets/Star.png";
 
-const Restaurant = ({ image, name, rating, cuisine, location, route }) => {
+const Restaurant = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
         <View style={[styles.restaurant]}>
-          <Image source={Chinese} style={[styles.image]} />
+          <Image source={route.params.image} style={[styles.image]} />
           <View style={[styles.details]}>
             <View style={[styles.text]}>
-              <Text style={[styles.name]}>Doudou</Text>
+              <Text style={[styles.name]}>{route.params.name}</Text>
               <View style={[styles.row]}>
-                <Text style={[styles.rating]}>4.2</Text>
+                <Text style={[styles.rating]}>{route.params.rating}</Text>
                 <Image source={Star} style={styles.star} />
-                <Text style={[styles.cuisine]}>{route.params.cuisine}</Text>
+                {/* <Text style={[styles.cuisine]}>{route.params.cuisine}</Text> */}
               </View>
               <Text style={[styles.location]} numberOfLines={1}>
-                Beirut-Sioufi
+                {route.params.location}
               </Text>
             </View>
             <View style={[styles.heart]}>

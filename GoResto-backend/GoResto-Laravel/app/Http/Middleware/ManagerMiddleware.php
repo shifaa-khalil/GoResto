@@ -12,9 +12,9 @@ class ManagerMiddleware
     {
         $user = auth()->user();
 
-        // if(!$user) return response()->json(['error' => 'Unauthorized'], 401); 
+        if(!$user) return response()->json(['error' => 'Unauthorized'], 401); 
 
-        if ($user->role !== 'manager') {
+        else if ($user->role !== 'manager') {
             return response()->json('no access');
         }
         

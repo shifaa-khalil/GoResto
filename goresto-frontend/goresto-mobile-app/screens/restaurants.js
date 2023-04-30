@@ -1,32 +1,39 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
-import Chinese from "../assets/chinese.png";
-import Japanese from "../assets/japanese.png";
-import Italian from "../assets/italian.png";
-import Lebanese from "../assets/lebanese.png";
-import French from "../assets/french.png";
-import Indian from "../assets/indian.png";
 import RestaurantCard from "../components/restaurantCard";
 import CategoryBar from "../components/categoriesBar";
 import FilterBar from "../components/filterBar";
+import { URL } from "../configs/URL";
 
-const Restaurants = () => {
+const Restaurants = ({ route }) => {
   const navigation = useNavigation();
+  const [restaurants, setRestaurants] = useState([]);
 
-  const handlePress = () => {
-    axios
-      .get(`http://192.168.1.6:8000/api/getRestaurants`)
-      .then((response) => {
-        console.log(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  useEffect(() => {
+    if (route.params?.cuisine) {
+      axios
+        .get(`${URL}/api/filterByCuisine/${route.params.cuisine}`)
+        .then((response) => {
+          setRestaurants(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(`${URL}/api/getRestaurants`)
+        .then((response) => {
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -35,16 +42,34 @@ const Restaurants = () => {
         <CategoryBar />
         <FilterBar />
         <View style={[styles.restaurants]}>
-          <RestaurantCard
+          {restaurants.map((restaurant) => (
+            <RestaurantCard
+              key={restaurant.id}
+              image={restaurant.logo}
+              name={restaurant.name}
+              rating={restaurant.rating}
+              // cuisine={restaurant.cuisine}
+              location={restaurant.location}
+              onPress={() =>
+                navigation.navigate("Restaurant", {
+                  name: restaurant.name,
+                  rating: restaurant.rating,
+                  location: restaurant.location,
+                  image: restaurant.logo,
+                })
+              }
+            />
+          ))}
+
+          {/* <RestaurantCard
             image={French}
             name="Doudou"
             rating="4.2"
             cuisine="French"
             location="Beirut-Sioufi"
-            onPress={handlePress}
-            // onPress={() =>
-            //   navigation.navigate("Restaurant", { cuisine: "French" })
-            // }
+            onPress={() =>
+              navigation.navigate("Restaurant", { cuisine: "French" })
+            }
           />
           <RestaurantCard
             image={Chinese}
@@ -95,7 +120,7 @@ const Restaurants = () => {
             onPress={() =>
               navigation.navigate("Restaurant", { cuisine: "Indian" })
             }
-          />
+          /> */}
         </View>
       </View>
     </ScrollView>

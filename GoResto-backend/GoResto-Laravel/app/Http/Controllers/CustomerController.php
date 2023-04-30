@@ -51,7 +51,7 @@ class CustomerController extends Controller
     function getRestaurants()
     {
         $restaurants = Restaurant::where('approved', true)->with('menu')->get();
-            
+        
         return response()->json(['restaurants' => $restaurants]);
     }
 

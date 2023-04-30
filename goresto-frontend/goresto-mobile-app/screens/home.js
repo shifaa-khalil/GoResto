@@ -11,7 +11,7 @@ import Chinese from "../assets/chinese.png";
 import Japanese from "../assets/japanese.png";
 import Italian from "../assets/italian.png";
 import Lebanese from "../assets/lebanese.png";
-import French from "../assets/french.png";
+import French from "../assets/french.jpg";
 import Indian from "../assets/indian.png";
 import CategoryCard from "../components/categoryCard";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -23,7 +23,7 @@ const Home = () => {
   const scrollViewRef = useRef();
 
   const handleScroll = () => {
-    scrollViewRef.current.scrollTo({ y: 100, animated: true });
+    scrollViewRef.current.scrollTo({ y: 500, animated: true });
   };
 
   //   const images = [
@@ -66,32 +66,51 @@ const Home = () => {
           <CategoryCard
             text="Chinese"
             image={Chinese}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "chinese" })
+            }
           />
           <CategoryCard
             text="Japanese"
             image={Japanese}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "japanese" })
+            }
           />
           <CategoryCard
             text="Italian"
             image={Italian}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "italian" })
+            }
           />
           <CategoryCard
             text="Lebanese"
             image={Lebanese}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "lebanese" })
+            }
           />
           <CategoryCard
             text="French"
             image={French}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "french" })
+            }
+          />
+          <CategoryCard
+            text="American"
+            image={Indian}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "american" })
+            }
           />
           <CategoryCard
             text="Indian"
             image={Indian}
-            onPress={() => console.log("pressed")}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "indian" })
+            }
           />
         </View>
         <TouchableOpacity

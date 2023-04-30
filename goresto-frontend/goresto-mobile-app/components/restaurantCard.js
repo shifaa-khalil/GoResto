@@ -9,7 +9,7 @@ const RestaurantCard = ({
   onPress,
   image,
   rating,
-  cuisine,
+
   location,
 }) => {
   return (
@@ -17,11 +17,13 @@ const RestaurantCard = ({
       <View style={[styles.card]}>
         <Image source={image} style={[styles.image]} />
         <View style={[styles.text]}>
-          <Text style={[styles.name]}>{name}</Text>
+          <Text style={[styles.name]} numberOfLines={1}>
+            {name}
+          </Text>
           <View style={[styles.row]}>
             <Text style={[styles.rating]}>{rating}</Text>
             <Image source={Star} style={styles.star} />
-            <Text style={[styles.cuisine]}>{cuisine}</Text>
+            {/* <Text style={[styles.cuisine]}>{cuisine}</Text> */}
           </View>
           <Text style={[styles.location]} numberOfLines={1}>
             {location}
@@ -54,11 +56,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
+    // width: 40,
   },
   name: {
     fontSize: 24,
     fontWeight: "bold",
+    overflow: "hidden",
   },
   rating: {
     fontSize: 18,

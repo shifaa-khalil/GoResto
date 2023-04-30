@@ -1,13 +1,13 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 
 const CategoryCard = ({ text, onPress, image }) => {
   return (
-    <View onPress={onPress} style={[styles.card]}>
+    <TouchableOpacity onPress={onPress} style={[styles.card]}>
       <Image source={image} style={[styles.image]} />
       <Text style={[styles.text]}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
