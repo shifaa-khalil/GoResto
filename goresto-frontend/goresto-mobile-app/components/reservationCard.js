@@ -37,18 +37,15 @@ const styles = StyleSheet.create({
   card: {
     width: 310,
     backgroundColor: "#F5F5F5",
-    // width: 125,
-    margin: 20,
+    marginBottom: 50,
+    marginTop: -30,
   },
   details: {
-    // width: 310,
-
     flexDirection: "row",
     height: 100,
     justifyContent: "space-between",
     alignItems: "center",
     padding: 20,
-    // borderWidth: 3,
   },
   dateTime: {
     fontSize: 20,
@@ -71,14 +68,13 @@ const styles = StyleSheet.create({
   buttons: {
     justifyContent: "space-between",
     height: "100%",
-    // borderWidth: 3,
   },
   button: {
-    width: 60,
-    height: 20,
+    width: 80,
+    height: 25,
   },
   text: {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
     color: "white",

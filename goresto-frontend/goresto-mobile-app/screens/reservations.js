@@ -1,10 +1,11 @@
 import * as React from "react";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import ReservationCard from "../components/reservationCard";
 import Icon from "react-native-vector-icons/Ionicons";
+import Reserved from "../assets/reserved.png";
 
 const Restaurants = () => {
   const navigation = useNavigation();
@@ -13,6 +14,9 @@ const Restaurants = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
+
+        <Image style={styles.backgroundImage} source={Reserved}></Image>
+        {/* 
         <TouchableOpacity
           style={styles.row}
           onPress={() => navigation.navigate("Restaurants")}
@@ -20,7 +24,7 @@ const Restaurants = () => {
           <Icon name="chevron-back" size={24} color="#000" />
           <Text style={[styles.title]}>Upcoming reservations</Text>
           <Icon name="chevron-forward" size={24} color="#000" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <ReservationCard
           restaurant="Doudou"
@@ -54,6 +58,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
   },
+  backgroundImage: {
+    height: 250,
+    resizeMode: "contain",
+  },
   restaurants: {
     width: 310,
     marginVertical: 40,
@@ -61,7 +69,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderWidth: 2,
     marginTop: 20,
   },
   title: {
