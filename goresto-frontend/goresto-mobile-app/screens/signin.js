@@ -23,7 +23,7 @@ const Signin = () => {
         <MyButton title="Sign in" onPress={() => navigation.navigate("")} />
         <MyLink
           title="Register instead"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.replace("Register")}
         />
       </View>
     </View>

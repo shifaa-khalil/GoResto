@@ -1,5 +1,5 @@
-import * as React from "react";
-import { ScrollView, Image, View, Text, Button } from "react-native";
+import React, { useRef } from "react";
+import { ScrollView, Image, View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
@@ -14,8 +14,18 @@ import Lebanese from "../assets/lebanese.png";
 import French from "../assets/french.png";
 import Indian from "../assets/indian.png";
 import CategoryCard from "../components/categoryCard";
+import Icon from "react-native-vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
+  const navigation = useNavigation();
+
+  const scrollViewRef = useRef();
+
+  const handleScroll = () => {
+    scrollViewRef.current.scrollTo({ y: 100, animated: true });
+  };
+
   //   const images = [
   //     { Chinese },
   //     { Japanese },
@@ -31,7 +41,7 @@ const Home = () => {
   //   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar />
         <Image source={GoPro} style={[styles.heading]} />
@@ -39,7 +49,7 @@ const Home = () => {
           color={styles.yellow}
           text="Check my reservations"
           icon={Reservations}
-          onPress={() => console.log("pressed")}
+          onPress={() => navigation.navigate("Reservations")}
         />
         <NavCard
           color={styles.red}
@@ -48,7 +58,10 @@ const Home = () => {
           onPress={() => console.log("pressed")}
         />
         <Text style={[styles.text]}>Check categories</Text>
-        <Image source={DownArrow} style={[styles.downArrow]} />
+        <TouchableOpacity onPress={handleScroll}>
+          <Image source={DownArrow} style={[styles.downArrow]} />
+        </TouchableOpacity>
+
         <View style={[styles.categories]}>
           <CategoryCard
             text="Chinese"
@@ -81,6 +94,14 @@ const Home = () => {
             onPress={() => console.log("pressed")}
           />
         </View>
+        <TouchableOpacity
+          style={styles.row}
+          onPress={() => navigation.navigate("Restaurants")}
+        >
+          <Icon name="chevron-back" size={24} color="#000" />
+          <Text style={[styles.discover]}>Discover restaurants</Text>
+          <Icon name="chevron-forward" size={24} color="#000" />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -97,6 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
+    paddingBottom: 40,
   },
   heading: {
     width: 310,
@@ -119,7 +141,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     columnGap: 60,
     flexWrap: "wrap",
-    marginVertical: 40,
+    marginTop: 50,
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    // borderWidth: 2,
+    marginTop: 20,
+  },
+  discover: {
+    fontSize: 20,
   },
 });
 

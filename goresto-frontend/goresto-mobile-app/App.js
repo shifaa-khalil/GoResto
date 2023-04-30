@@ -6,13 +6,14 @@ import Signin from "./screens/signin";
 import Home from "./screens/home";
 import Restaurants from "./screens/restaurants";
 import Restaurant from "./screens/singleRestaurant";
+import Reservations from "./screens/reservations";
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Register"
           component={Register}
@@ -22,6 +23,7 @@ function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Restaurants" component={Restaurants} />
         <Stack.Screen name="Restaurant" component={Restaurant} />
+        <Stack.Screen name="Reservations" component={Reservations} />
       </Stack.Navigator>
     </NavigationContainer>
   );

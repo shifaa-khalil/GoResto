@@ -1,13 +1,13 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 
 const NavCard = ({ color, text, onPress, icon }) => {
   return (
-    <View onPress={onPress} style={[styles.card, color]}>
+    <TouchableOpacity onPress={onPress} style={[styles.card, color]}>
       <Text style={[styles.text]}>{text}</Text>
       <Image source={icon} style={[styles.icon]} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

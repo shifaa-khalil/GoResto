@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Image, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
@@ -42,23 +43,70 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = () => {
+  async function saveData(key, value) {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  }
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      return value !== null ? JSON.parse(value) : null;
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  async function registerUser(data) {
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/register/customer`,
+        data
+      );
+      const { user, authorisation } = response.data;
+      await saveData("name", user.name);
+      await saveData("token", authorisation.token);
+      return { success: true };
+    } catch (error) {
+      console.error("Error registering user:", error);
+      return { success: false, error: "An error occurred" };
+    }
+  }
+
+  // usage example
+  async function handleSubmit() {
     if (validateForm()) {
-      console.log("submitted");
-      // const data = { name, email, password, confirmPassword };
-      // axios
-      //   .post("http://127.0.0.1:8000/api/register/customer", data)
-      //   .then((response) => {
-      //     navigation.navigate("Setup");
-      //     localStorage.setItem("name", response.data.user.name);
-      //     localStorage.setItem("token", response.data.authorisation.token);
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //     setError("Email already exists");
-      //   });
-    } else console.log({ error });
-  };
+      const data = { name, email, password, confirmPassword };
+      const result = await registerUser(data);
+      if (result.success) {
+        navigation.navigate("Setup");
+      } else {
+        setError(result.error);
+      }
+    }
+  }
+
+  // const handleSubmit = () => {
+  //   if (validateForm()) {
+  //     console.log("submitted");
+
+  // const data = { name, email, password, confirmPassword };
+  // axios
+  //   .post("http://127.0.0.1:8000/api/register/customer", data)
+  //   .then((response) => {
+  //     navigation.navigate("Setup");
+  //     localStorage.setItem("name", response.data.user.name);
+  //     localStorage.setItem("token", response.data.authorisation.token);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     setError("Email already exists");
+  //   });
+  //   } else console.log({ error });
+  // };
 
   return (
     <View style={[styles.container]}>
@@ -107,7 +155,7 @@ const Register = () => {
         <MyButton title="Register" onPress={handleSubmit} />
         <MyLink
           title="Sign in instead"
-          onPress={() => navigation.navigate("Signin")}
+          onPress={() => navigation.replace("Signin")}
         />
       </View>
     </View>
