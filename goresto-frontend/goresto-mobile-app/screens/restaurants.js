@@ -20,12 +20,14 @@ import Lebanese from "../assets/lebanese.png";
 import French from "../assets/french.png";
 import Indian from "../assets/indian.png";
 import RestaurantCard from "../components/restaurantCard";
+import CategoryBar from "../components/categoriesBar";
 
 const Restaurants = () => {
   return (
     <ScrollView>
       <View style={[styles.container]}>
         <NavBar />
+        <CategoryBar />
         <View style={[styles.restaurants]}>
           <RestaurantCard
             image={French}
