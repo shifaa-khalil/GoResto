@@ -45,8 +45,12 @@ const Restaurant = ({ image, name, rating, cuisine, location }) => {
             <View style={[styles.heart]}>
               <Image source={Heart} />
             </View>
-            <Text style={[styles.reserve]}>Reserve</Text>
+            <Text style={[styles.link]}>Reserve</Text>
           </View>
+          <Text style={[styles.cost]}>Average per person: $65</Text>
+          <Text style={[styles.link]}>View on map</Text>
+          <Text style={[styles.link]}>View menu</Text>
+          <Text style={[styles.link]}>Contact</Text>
         </View>
       </View>
     </ScrollView>
@@ -62,6 +66,7 @@ const styles = StyleSheet.create({
   restaurant: {
     width: 310,
     marginVertical: 40,
+    alignItems: "center",
   },
   image: {
     width: "100%",
@@ -112,9 +117,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     paddingLeft: 25,
   },
-  reserve: {
+  link: {
     textDecorationLine: "underline",
     fontSize: 20,
+  },
+  cost: {
+    fontSize: 20,
+    // fontWeight: "bold",
   },
 });
 
