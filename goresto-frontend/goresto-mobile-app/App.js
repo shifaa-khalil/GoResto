@@ -56,10 +56,21 @@ export default class App extends Component {
     const startDate = selectedStartDate ? selectedStartDate.toString() : "";
     return (
       <View style={styles.container}>
-        <CalendarPicker onDateChange={this.onDateChange} />
-
-        <View>
-          <Text>SELECTED DATE:{startDate}</Text>
+        <View style={styles.bodyContainer}>
+          <View style={styles.calendar}>
+            <CalendarPicker
+              onDateChange={this.onDateChange}
+              todayBackgroundColor="#D6C02C"
+              selectedDayColor="#D43325"
+              selectedDayTextColor="#FFFFFF"
+              // textStyle={{
+              //   color: "black",
+              // }}
+            />
+          </View>
+          <View style={styles.confirmSelected}>
+            <Text>SELECTED DATE:{startDate}</Text>
+          </View>
         </View>
       </View>
     );
@@ -69,7 +80,15 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
-    marginTop: 100,
+    alignItems: "center",
+    backgroundColor: "white",
+    // marginTop: 100,
+  },
+  bodyContainer: {
+    width: 310,
+  },
+  calendar: {},
+  confirmSelected: {
+    marginVertical: 40,
   },
 });
