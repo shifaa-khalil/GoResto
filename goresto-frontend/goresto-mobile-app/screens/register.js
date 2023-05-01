@@ -9,6 +9,7 @@ import MyButton from "../components/button";
 import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
+import { URL } from "../configs/URL";
 
 const Register = () => {
   const navigation = useNavigation();

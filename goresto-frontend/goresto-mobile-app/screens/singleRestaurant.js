@@ -5,6 +5,7 @@ import NavBar2 from "../components/navBar2";
 import Chinese from "../assets/chinese.png";
 import Heart from "../assets/heart.png";
 import Star from "../assets/Star.png";
+import { URL } from "../configs/URL";
 
 const Restaurant = ({ route }) => {
   return (

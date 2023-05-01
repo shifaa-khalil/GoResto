@@ -22,6 +22,7 @@ import American from "../assets/american.png";
 import CategoryCard from "../components/categoryCard";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { URL } from "../configs/URL";
 
 const Home = () => {
   const navigation = useNavigation();

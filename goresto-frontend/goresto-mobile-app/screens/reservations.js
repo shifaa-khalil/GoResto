@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import ReservationCard from "../components/reservationCard";
 import Reserved from "../assets/reserved.png";
+import { URL } from "../configs/URL";
 
 const Reservations = () => {
   const navigation = useNavigation();
@@ -27,9 +28,7 @@ const Reservations = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
-
         <Image source={Reserved} style={[styles.backgroundImage]} />
-
         <ReservationCard
           restaurant="Doudou"
           date="Friday, May 3, 2023"
