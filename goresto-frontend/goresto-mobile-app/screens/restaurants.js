@@ -14,6 +14,11 @@ const Restaurants = ({ route }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("");
+  const [minPriceSelected, setMinPriceSelected] = useState("");
+  const [maxPriceSelected, setMaxPriceSelected] = useState("");
+  const [minRatingSelected, setMinRatingSelected] = useState("");
+  const [maxRatingSelected, setMaxRatingSelected] = useState("");
+  const [locationSelected, setLocationSelected] = useState("");
 
   useEffect(() => {
     if (route.params?.cuisine) {
@@ -64,40 +69,116 @@ const Restaurants = ({ route }) => {
     }
   };
 
+  const handleMaxPriceChange = (maxPrice) => {
+    setMaxPriceSelected(maxPrice);
+
+    axios
+      .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleMinPriceChange = (minPrice) => {
+    setMinPriceSelected(minPrice);
+
+    axios
+      .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleMinRatingChange = (minRating) => {
+    setMinRatingSelected(minRating);
+
+    axios
+      .get(
+        `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
+      )
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleMaxRatingChange = (maxRating) => {
+    setMaxRatingSelected(maxRating);
+
+    axios
+      .get(
+        `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
+      )
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleLocationChange = (location) => {
+    setLocationSelected(location);
+  };
+
+  const handleSubmit = () => {
+    axios
+      .get(`${URL}/api/filterByLocation/${locationSelected}`)
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleFilterSelection = (filter) => {
     setSelectedFilter(filter);
 
-    if (selectedFilter == "price") {
-      axios
-        .get(`${URL}/api/filterByPrice/5/55`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else if (selectedFilter == "rating") {
-      axios
-        .get(`${URL}/api/filterByRating/4/5`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else if (selectedFilter == "location") {
-      axios
-        .get(`${URL}/api/filterByLocation/hsas`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    // if (selectedFilter == "price") {
+    //   axios
+    //     .get(`${URL}/api/filterByPrice/5/55`)
+    //     .then((response) => {
+    //       console.log(response.data.restaurants);
+    //       setRestaurants(response.data.restaurants);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // } else if (selectedFilter == "rating") {
+    //   axios
+    //     .get(`${URL}/api/filterByRating/4/5`)
+    //     .then((response) => {
+    //       console.log(response.data.restaurants);
+    //       setRestaurants(response.data.restaurants);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // } else if (selectedFilter == "location") {
+    //   axios
+    //     .get(`${URL}/api/filterByLocation/hsas`)
+    //     .then((response) => {
+    //       console.log(response.data.restaurants);
+    //       setRestaurants(response.data.restaurants);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
   };
 
   return (
@@ -105,7 +186,15 @@ const Restaurants = ({ route }) => {
       <View style={[styles.container]}>
         <NavBar2 />
         <CategoryBar onCategorySelected={handleCategorySelection} />
-        <FilterBar onFilterSelected={handleFilterSelection} />
+        <FilterBar
+          onFilterSelected={handleFilterSelection}
+          onMinPriceChange={handleMinPriceChange}
+          onMaxPriceChange={handleMaxPriceChange}
+          onMinRatingChange={handleMinRatingChange}
+          onMaxRatingChange={handleMaxRatingChange}
+          onLocationChange={handleLocationChange}
+          onSubmit={handleSubmit}
+        />
         <View style={[styles.restaurants]}>
           {restaurants.map((restaurant) => (
             <RestaurantCard
