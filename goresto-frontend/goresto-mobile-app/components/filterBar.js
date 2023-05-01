@@ -23,9 +23,27 @@ const FilterBar = ({
   const [minRating, setMinRating] = useState("");
   const [maxRating, setMaxRating] = useState("");
   const [location, setLocation] = useState("");
+  const [priceVisible, setPriceVisible] = useState(false);
+  const [ratingVisible, setRatingVisible] = useState(false);
+  const [locationVisible, setLocationVisible] = useState(false);
 
   const handleFilterSelection = (filter) => {
     onFilterSelected(filter);
+    if (filter == "price") {
+      setPriceVisible(true);
+      setRatingVisible(false);
+      setLocationVisible(false);
+    }
+    if (filter == "rating") {
+      setPriceVisible(false);
+      setRatingVisible(true);
+      setLocationVisible(false);
+    }
+    if (filter == "location") {
+      setPriceVisible(false);
+      setRatingVisible(false);
+      setLocationVisible(true);
+    }
   };
 
   const handleMinPriceChange = (minPrice) => {
@@ -83,58 +101,73 @@ const FilterBar = ({
         >
           <Text style={[styles.filterText]}>price</Text>
         </TouchableWithoutFeedback>
-        <TextInput
-          style={styles.filterInput}
-          value={minPrice}
-          onChangeText={(text) => {
-            setMinPrice(text);
-            handleMinPriceChange(text);
-          }}
-        />
-        <TextInput
-          style={styles.filterInput}
-          value={maxPrice}
-          onChangeText={(text) => {
-            setMaxPrice(text);
-            handleMaxPriceChange(text);
-          }}
-        />
+        <View
+          style={[styles.price, { display: priceVisible ? "flex" : "none" }]}
+        >
+          <TextInput
+            style={styles.filterInput}
+            value={minPrice}
+            onChangeText={(text) => {
+              setMinPrice(text);
+              handleMinPriceChange(text);
+            }}
+          />
+          <TextInput
+            style={styles.filterInput}
+            value={maxPrice}
+            onChangeText={(text) => {
+              setMaxPrice(text);
+              handleMaxPriceChange(text);
+            }}
+          />
+        </View>
         <TouchableWithoutFeedback
           onPress={() => handleFilterSelection("rating")}
         >
           <Text style={[styles.filterText]}>rating</Text>
         </TouchableWithoutFeedback>
-        <TextInput
-          style={styles.filterInput}
-          value={minRating}
-          onChangeText={(text) => {
-            setMinRating(text);
-            handleMinRatingChange(text);
-          }}
-        />
-        <TextInput
-          style={styles.filterInput}
-          value={maxRating}
-          onChangeText={(text) => {
-            setMaxRating(text);
-            handleMaxRatingChange(text);
-          }}
-        />
+        <View
+          style={[styles.rating, { display: ratingVisible ? "flex" : "none" }]}
+        >
+          <TextInput
+            style={styles.filterInput}
+            value={minRating}
+            onChangeText={(text) => {
+              setMinRating(text);
+              handleMinRatingChange(text);
+            }}
+          />
+          <TextInput
+            style={styles.filterInput}
+            value={maxRating}
+            onChangeText={(text) => {
+              setMaxRating(text);
+              handleMaxRatingChange(text);
+            }}
+          />
+        </View>
         <TouchableWithoutFeedback
           onPress={() => handleFilterSelection("location")}
         >
           <Text style={[styles.filterText]}>location</Text>
         </TouchableWithoutFeedback>
-        <TextInput
-          style={styles.filterInput}
-          value={location}
-          onChangeText={(text) => {
-            setLocation(text);
-            handleLocationChange(text);
-          }}
-        />
+        <View
+          style={[
+            styles.location,
+            { display: locationVisible ? "flex" : "none" },
+          ]}
+        >
+          <TextInput
+            style={styles.filterInput}
+            value={location}
+            onChangeText={(text) => {
+              setLocation(text);
+              handleLocationChange(text);
+            }}
+          />
+        </View>
         <TouchableOpacity onPress={onSubmit}>
-          <Text>Submit</Text>
+          <Text style={[styles.filter]}>Submit</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -179,7 +212,15 @@ const styles = StyleSheet.create({
     width: 30,
     height: 15,
     borderWidth: 1,
+    textAlign: "center",
   },
+  price: {
+    flexDirection: "row",
+  },
+  rating: {
+    flexDirection: "row",
+  },
+  location: {},
 });
 
 export default FilterBar;

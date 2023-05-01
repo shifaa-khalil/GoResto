@@ -64,7 +64,7 @@ class CustomerController extends Controller
     {
         $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->get();
         
-        return response()->json($restaurants);
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     function getRestaurant($restaurant_id)

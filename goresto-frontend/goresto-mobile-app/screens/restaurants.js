@@ -69,64 +69,24 @@ const Restaurants = ({ route }) => {
     }
   };
 
-  const handleMaxPriceChange = (maxPrice) => {
-    setMaxPriceSelected(maxPrice);
-
-    axios
-      .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
-      .then((response) => {
-        console.log(response.data.restaurants);
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleFilterSelection = (filter) => {
+    setSelectedFilter(filter);
   };
 
   const handleMinPriceChange = (minPrice) => {
     setMinPriceSelected(minPrice);
+  };
 
-    axios
-      .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
-      .then((response) => {
-        console.log(response.data.restaurants);
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleMaxPriceChange = (maxPrice) => {
+    setMaxPriceSelected(maxPrice);
   };
 
   const handleMinRatingChange = (minRating) => {
     setMinRatingSelected(minRating);
-
-    axios
-      .get(
-        `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
-      )
-      .then((response) => {
-        console.log(response.data.restaurants);
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   const handleMaxRatingChange = (maxRating) => {
     setMaxRatingSelected(maxRating);
-
-    axios
-      .get(
-        `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
-      )
-      .then((response) => {
-        console.log(response.data.restaurants);
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   const handleLocationChange = (location) => {
@@ -134,51 +94,39 @@ const Restaurants = ({ route }) => {
   };
 
   const handleSubmit = () => {
-    axios
-      .get(`${URL}/api/filterByLocation/${locationSelected}`)
-      .then((response) => {
-        console.log(response.data.restaurants);
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleFilterSelection = (filter) => {
-    setSelectedFilter(filter);
-
-    // if (selectedFilter == "price") {
-    //   axios
-    //     .get(`${URL}/api/filterByPrice/5/55`)
-    //     .then((response) => {
-    //       console.log(response.data.restaurants);
-    //       setRestaurants(response.data.restaurants);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // } else if (selectedFilter == "rating") {
-    //   axios
-    //     .get(`${URL}/api/filterByRating/4/5`)
-    //     .then((response) => {
-    //       console.log(response.data.restaurants);
-    //       setRestaurants(response.data.restaurants);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // } else if (selectedFilter == "location") {
-    //   axios
-    //     .get(`${URL}/api/filterByLocation/hsas`)
-    //     .then((response) => {
-    //       console.log(response.data.restaurants);
-    //       setRestaurants(response.data.restaurants);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
+    if (selectedFilter == "price") {
+      axios
+        .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (selectedFilter == "rating") {
+      axios
+        .get(
+          `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
+        )
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (selectedFilter == "location") {
+      axios
+        .get(`${URL}/api/filterByLocation/${locationSelected}`)
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -215,67 +163,6 @@ const Restaurants = ({ route }) => {
               }
             />
           ))}
-
-          {/* <RestaurantCard
-            image={French}
-            name="Doudou"
-            rating="4.2"
-            cuisine="French"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "French" })
-            }
-          />
-          <RestaurantCard
-            image={Chinese}
-            name="Doudou"
-            rating="4.2"
-            cuisine="Chinese"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "Chinese" })
-            }
-          />
-          <RestaurantCard
-            image={Japanese}
-            name="Doudou"
-            rating="4.2"
-            cuisine="Japanese"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "Japanese" })
-            }
-          />
-          <RestaurantCard
-            image={Italian}
-            name="Doudou"
-            rating="4.2"
-            cuisine="Italian"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "Italian" })
-            }
-          />
-          <RestaurantCard
-            image={Lebanese}
-            name="Doudou"
-            rating="4.2"
-            cuisine="Lebanese"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "Lebanese" })
-            }
-          />
-          <RestaurantCard
-            image={Indian}
-            name="Doudou"
-            rating="4.2"
-            cuisine="Indian"
-            location="Beirut-Sioufi"
-            onPress={() =>
-              navigation.navigate("Restaurant", { cuisine: "Indian" })
-            }
-          /> */}
         </View>
       </View>
     </ScrollView>
