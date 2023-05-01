@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
     Route::get('/filterByPrice/{minimum}/{maximum}', [CustomerController::class, 'filterByPrice']);
-    // Route::get('/filterByLocation', [CustomerController::class, 'filterByLocation']);
+    Route::get('/filterByLocation/{location}', [CustomerController::class, 'filterByLocation']);
     Route::get('/filterByRating/{min_rating}/{max_rating}', [CustomerController::class, 'filterByRating']);
     Route::get('/filterByCuisine/{cuisine}', [CustomerController::class, 'filterByCuisine']);
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);

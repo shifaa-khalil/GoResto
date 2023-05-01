@@ -38,8 +38,9 @@ const Restaurants = ({ route }) => {
     }
   }, []);
 
-  const handleCategorySelected = (category) => {
+  const handleCategorySelection = (category) => {
     setSelectedCategory(category);
+
     if (selectedCategory == "all") {
       axios
         .get(`${URL}/api/getRestaurants`)
@@ -65,9 +66,10 @@ const Restaurants = ({ route }) => {
 
   const handleFilterSelection = (filter) => {
     setSelectedFilter(filter);
+
     if (selectedFilter == "price") {
       axios
-        .get(`${URL}/api/filterByPrice`)
+        .get(`${URL}/api/filterByPrice/5/55`)
         .then((response) => {
           console.log(response.data.restaurants);
           setRestaurants(response.data.restaurants);
@@ -75,12 +77,22 @@ const Restaurants = ({ route }) => {
         .catch((error) => {
           console.log(error);
         });
-    } else {
+    } else if (selectedFilter == "rating") {
       axios
-        .get(`${URL}/api/filterByCuisine/${selectedCategory}`)
+        .get(`${URL}/api/filterByRating/4/5`)
         .then((response) => {
-          setRestaurants(response.data);
-          console.log(response.data);
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (selectedFilter == "location") {
+      axios
+        .get(`${URL}/api/filterByLocation/hsas`)
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
         })
         .catch((error) => {
           console.log(error);
@@ -92,11 +104,8 @@ const Restaurants = ({ route }) => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
-        <CategoryBar
-          onCategorySelected={handleCategorySelected}
-          onFilterSelected={handleFilterSelection}
-        />
-        <FilterBar />
+        <CategoryBar onCategorySelected={handleCategorySelection} />
+        <FilterBar onFilterSelected={handleFilterSelection} />
         <View style={[styles.restaurants]}>
           {restaurants.map((restaurant) => (
             <RestaurantCard

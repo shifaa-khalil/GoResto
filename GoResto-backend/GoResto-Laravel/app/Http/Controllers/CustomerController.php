@@ -36,17 +36,22 @@ class CustomerController extends Controller
     {
         $restaurants = Restaurant::whereBetween('deposit', [$minimum, $maximum])->get();
         
-        return response()->json($restaurants);
+        return response()->json(['restaurants' => $restaurants]);
     }
 
-    function filterByLocation($rating)
+    function filterByLocation($location)
     {
-        $restaurants = Restaurant::where('rating', $rating);
+        $restaurants = Restaurant::where('location', 'like', '%'.$location.'%')->get();
 
         return response()->json(['restaurants' => $restaurants]);
     }
 
-    function filterByRating(){}
+    function filterByRating($minimum, $maximum)
+    {
+        $restaurants = Restaurant::whereBetween('rating', [$minimum, $maximum])->get();
+        
+        return response()->json(['restaurants' => $restaurants]);
+    }
     
     function getRestaurants()
     {
