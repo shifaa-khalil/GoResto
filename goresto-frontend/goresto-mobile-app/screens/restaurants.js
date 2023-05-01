@@ -13,6 +13,7 @@ const Restaurants = ({ route }) => {
   const navigation = useNavigation();
   const [restaurants, setRestaurants] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   useEffect(() => {
     if (route.params?.cuisine) {
@@ -62,11 +63,39 @@ const Restaurants = ({ route }) => {
     }
   };
 
+  const handleFilterSelection = (filter) => {
+    setSelectedFilter(filter);
+    if (selectedFilter == "price") {
+      axios
+        .get(`${URL}/api/filterByPrice`)
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(`${URL}/api/filterByCuisine/${selectedCategory}`)
+        .then((response) => {
+          setRestaurants(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
-        <CategoryBar onCategorySelected={handleCategorySelected} />
+        <CategoryBar
+          onCategorySelected={handleCategorySelected}
+          onFilterSelected={handleFilterSelection}
+        />
         <FilterBar />
         <View style={[styles.restaurants]}>
           {restaurants.map((restaurant) => (

@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Text, View, TouchableWithoutFeedback } from "react-native";
 import { StyleSheet } from "react-native";
 
-const FilterBar = () => {
+const FilterBar = ({ onFilterSelected }) => {
   const [visible, setVisible] = useState(false);
+
+  const handleFilterSelection = (filter) => {
+    onFilterSelected(filter);
+  };
 
   return (
     <View>
@@ -21,9 +25,21 @@ const FilterBar = () => {
         </TouchableWithoutFeedback>
       </View>
       <View style={[styles.filters, { display: visible ? "flex" : "none" }]}>
-        <Text style={[styles.filterText]}>price</Text>
-        <Text style={[styles.filterText]}>rating</Text>
-        <Text style={[styles.filterText]}>location</Text>
+        <TouchableWithoutFeedback
+          onPress={() => handleFilterSelection("price")}
+        >
+          <Text style={[styles.filterText]}>price</Text>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => handleFilterSelection("rating")}
+        >
+          <Text style={[styles.filterText]}>rating</Text>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => handleFilterSelection("location")}
+        >
+          <Text style={[styles.filterText]}>location</Text>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
