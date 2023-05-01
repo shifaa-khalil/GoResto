@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Image, View, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -9,14 +9,14 @@ import MyButton from "../components/button";
 import MyLink from "../components/link";
 // import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
-
+import Calendar from "../components/calendar";
+import TimePicker from "../components/timePicker";
 import { URL } from "../configs/URL";
 
 const Reserving = () => {
   const navigation = useNavigation();
-
-  // const [date, setDate] = useState("");
-  // const [time, setTime] = useState("");
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState("");
   const [count, setCount] = useState("");
   const [error, setError] = useState("");
   const today = new Date();
@@ -24,36 +24,54 @@ const Reserving = () => {
 
   const validateForm = () => {
     let isValid = true;
-    if (!date || !time || !count) {
-      setError("All fields are required");
-      isValid = false;
-    } else if (date < today) {
-      setError("Invalid date");
-      isValid = false;
-    } else if (time < now) {
-      setError("Invalid time");
-      isValid = false;
-    }
+    // if (!date || !time || !count) {
+    //   setError("All fields are required");
+    //   isValid = false;
+    // } else if (date < today) {
+    //   setError("Invalid date");
+    //   isValid = false;
+    // } else if (time < now) {
+    //   setError("Invalid time");
+    //   isValid = false;
+    // }
     return isValid;
   };
 
-  async function handleSubmit() {
+  const handleChangeText = () => {
     if (validateForm()) {
-      console.log("success");
-      // const data = { name, email, password, confirmPassword };
-      // const result = await registerUser(data);
-      // if (result.success) {
-      //   navigation.navigate("Setup");
-      // } else {
-      //   setError(result.error);
-      // }
+      setError("");
     }
-  }
+  };
+
+  const handleDateSelection = (date) => {
+    setDate(date);
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      const data = { date, time, count };
+      axios
+        .post(`${URL}/api/reserveTable/28`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((response) => {
+          console.log("success");
+          console.log(response.data.reservation);
+          navigation.navigate("Reservations");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <View style={[styles.container]}>
       <NavBar />
       <Text>{error}</Text>
       <View style={[styles.form]}>
+        <Calendar onDateSelect={handleDateSelection} />
+        {/* <TimePicker /> */}
         <Input
           title="Time"
           placeHolder="Time"

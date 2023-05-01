@@ -1,12 +1,21 @@
-import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
 import { StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const CategoryBar = () => {
+const CategoryBar = ({ onCategorySelected }) => {
+  // const [pressedCategory, setPressedCategory] = useState("");
+
+  const handleCategorySelection = (category) => {
+    // setPressedCategory(category);
+    onCategorySelected(category);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={[styles.all]}>All</Text>
+      <TouchableWithoutFeedback onPress={() => handleCategorySelection("all")}>
+        <Text style={[styles.all]}>All</Text>
+      </TouchableWithoutFeedback>
       <Icon
         name="chevron-back"
         size={24}
@@ -16,12 +25,69 @@ const CategoryBar = () => {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.barContainer]} numberOfLines={1}>
           <View style={[styles.bar]}>
-            <Text style={[styles.text]}>Chinese</Text>
-            <Text style={[styles.text]}>French</Text>
-            <Text style={[styles.text]}>Japanese</Text>
-            <Text style={[styles.text]}>Italian</Text>
-            <Text style={[styles.text]}>Lebanese</Text>
-            <Text style={[styles.text]}>Indian</Text>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("chinese")}
+            >
+              <Text style={[styles.text]}>Chinese</Text>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("french")}
+            >
+              <Text style={[styles.text]}>French</Text>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("japanese")}
+            >
+              <Text style={[styles.text]}>Japanese</Text>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("italian")}
+            >
+              <Text style={[styles.text]}>Italian</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("lebanese")}
+            >
+              <Text style={[styles.text]}>Lebanese</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("american")}
+            >
+              <Text style={[styles.text]}>American</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("mexican")}
+            >
+              <Text style={[styles.text]}>Mexican</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("indian")}
+            >
+              <Text style={[styles.text]}>Indian</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("turkish")}
+            >
+              <Text style={[styles.text]}>Turkish</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("Spanish")}
+            >
+              <Text style={[styles.text]}>spanish</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("greek")}
+            >
+              <Text style={[styles.text]}>Greek</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("thai")}
+            >
+              <Text style={[styles.text]}>Thai</Text>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ScrollView>

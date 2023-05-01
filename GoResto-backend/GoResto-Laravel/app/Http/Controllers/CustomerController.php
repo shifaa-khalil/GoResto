@@ -80,7 +80,7 @@ class CustomerController extends Controller
     function reserveTable(Request $request, $restaurant_id)
     {
         // $customer = auth()->user();
-$customer_id=8;
+        $customer_id=8;
         $restaurant = Restaurant::find($restaurant_id);
         $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
 

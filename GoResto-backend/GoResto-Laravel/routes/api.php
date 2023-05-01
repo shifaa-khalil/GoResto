@@ -46,7 +46,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/filterByCuisine/{cuisine}', [CustomerController::class, 'filterByCuisine']);
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
     Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu']);
-    Route::post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
+    Route::middleware('cors')->post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
+
     Route::get('/getReservations', [CustomerController::class, 'getReservations']);
     Route::delete('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation']);
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);

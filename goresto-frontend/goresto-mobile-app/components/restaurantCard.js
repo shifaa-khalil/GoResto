@@ -9,7 +9,6 @@ const RestaurantCard = ({
   onPress,
   image,
   rating,
-
   location,
 }) => {
   return (

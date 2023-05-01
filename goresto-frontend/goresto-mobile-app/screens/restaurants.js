@@ -12,6 +12,7 @@ import { URL } from "../configs/URL";
 const Restaurants = ({ route }) => {
   const navigation = useNavigation();
   const [restaurants, setRestaurants] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     if (route.params?.cuisine) {
@@ -24,7 +25,6 @@ const Restaurants = ({ route }) => {
           console.log(error);
         });
     } else {
-      console.log("all");
       axios
         .get(`${URL}/api/getRestaurants`)
         .then((response) => {
@@ -37,11 +37,36 @@ const Restaurants = ({ route }) => {
     }
   }, []);
 
+  const handleCategorySelected = (category) => {
+    setSelectedCategory(category);
+    if (selectedCategory == "all") {
+      axios
+        .get(`${URL}/api/getRestaurants`)
+        .then((response) => {
+          console.log(response.data.restaurants);
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(`${URL}/api/filterByCuisine/${selectedCategory}`)
+        .then((response) => {
+          setRestaurants(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
-        <CategoryBar />
+        <CategoryBar onCategorySelected={handleCategorySelected} />
         <FilterBar />
         <View style={[styles.restaurants]}>
           {restaurants.map((restaurant) => (
