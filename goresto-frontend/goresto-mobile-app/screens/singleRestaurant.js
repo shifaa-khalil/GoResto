@@ -30,7 +30,9 @@ const Restaurant = ({ route }) => {
             </View>
             <Text style={[styles.link]}>Reserve</Text>
           </View>
-          <Text style={[styles.cost]}>Average per person: $65</Text>
+          <Text style={[styles.cost]}>
+            Average per person: ${route.params.deposit}
+          </Text>
           <Text style={[styles.link]}>View on map</Text>
           <Text style={[styles.link]}>View menu</Text>
           <Text style={[styles.link]}>Contact</Text>

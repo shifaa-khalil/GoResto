@@ -1,30 +1,34 @@
-import * as React from "react";
-import { ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { ScrollView, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import ReservationCard from "../components/reservationCard";
-import Icon from "react-native-vector-icons/Ionicons";
 import Reserved from "../assets/reserved.png";
 
-const Restaurants = () => {
+const Reservations = () => {
   const navigation = useNavigation();
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${URL}/api/getReservations`)
+      .then((response) => {
+        console.log(response.data);
+        setReservations(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         <NavBar2 />
 
-        <Image style={styles.backgroundImage} source={Reserved}></Image>
-        {/* 
-        <TouchableOpacity
-          style={styles.row}
-          onPress={() => navigation.navigate("Restaurants")}
-        >
-          <Icon name="chevron-back" size={24} color="#000" />
-          <Text style={[styles.title]}>Upcoming reservations</Text>
-          <Icon name="chevron-forward" size={24} color="#000" />
-        </TouchableOpacity> */}
+        <Image source={Reserved} style={[styles.backgroundImage]} />
 
         <ReservationCard
           restaurant="Doudou"
@@ -76,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Restaurants;
+export default Reservations;

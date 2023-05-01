@@ -14,7 +14,7 @@ class CustomerMiddleware
 
         if(!$user) return response()->json(['error' => 'Unauthorized'], 401);
 
-        if ($user->role !== 'customer') {
+        else if ($user->role !== 'customer') {
             return response()->json('no access');
         }
         

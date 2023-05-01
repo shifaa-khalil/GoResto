@@ -13,6 +13,12 @@ import Italian from "../assets/italian.png";
 import Lebanese from "../assets/lebanese.png";
 import French from "../assets/french.jpg";
 import Indian from "../assets/indian.png";
+import Thai from "../assets/thai.png";
+import Turkish from "../assets/turkish.png";
+import Mexican from "../assets/mexican.png";
+import Spanish from "../assets/spanish.jpg";
+import Greek from "../assets/greek.jpg";
+import American from "../assets/american.png";
 import CategoryCard from "../components/categoryCard";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -100,9 +106,16 @@ const Home = () => {
           />
           <CategoryCard
             text="American"
-            image={Indian}
+            image={American}
             onPress={() =>
               navigation.navigate("Restaurants", { cuisine: "american" })
+            }
+          />
+          <CategoryCard
+            text="Mexican"
+            image={Mexican}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "mexican" })
             }
           />
           <CategoryCard
@@ -110,6 +123,34 @@ const Home = () => {
             image={Indian}
             onPress={() =>
               navigation.navigate("Restaurants", { cuisine: "indian" })
+            }
+          />
+          <CategoryCard
+            text="Turkish"
+            image={Turkish}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "turkish" })
+            }
+          />
+          <CategoryCard
+            text="Spanish"
+            image={Spanish}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "spanish" })
+            }
+          />
+          <CategoryCard
+            text="Greek"
+            image={Greek}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "greek" })
+            }
+          />
+          <CategoryCard
+            text="Thai"
+            image={Thai}
+            onPress={() =>
+              navigation.navigate("Restaurants", { cuisine: "thai" })
             }
           />
         </View>

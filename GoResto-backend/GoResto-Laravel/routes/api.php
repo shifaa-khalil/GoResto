@@ -54,19 +54,19 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
 // });
 
-Route::middleware(['admin'])->group(function(){
+// Route::middleware(['admin'])->group(function(){
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);
     Route::delete('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant']);
-});
+// });
 
-Route::middleware(['manager'])->group(function(){
+// Route::middleware(['manager'])->group(function(){
     Route::put('/updateRestaurant', [RestaurantController::class,'updateRestaurant']);
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);
     Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
-    Route::get('/getReservations', [RestaurantController::class, 'getReservations']);
+    // Route::get('/getReservations', [RestaurantController::class, 'getReservations']);
     Route::put('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem']);
     Route::put('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem']);
     Route::put('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem']);
@@ -74,6 +74,6 @@ Route::middleware(['manager'])->group(function(){
     Route::get('/getMenu', [RestaurantController::class, 'getMenu']);
     Route::get('/getRestaurant', [RestaurantController::class, 'getRestaurant']);
 
-});
+// });
 
 ?>

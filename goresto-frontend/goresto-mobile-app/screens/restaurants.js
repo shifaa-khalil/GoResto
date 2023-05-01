@@ -24,9 +24,11 @@ const Restaurants = ({ route }) => {
           console.log(error);
         });
     } else {
+      console.log("all");
       axios
         .get(`${URL}/api/getRestaurants`)
         .then((response) => {
+          console.log(response.data.restaurants);
           setRestaurants(response.data.restaurants);
         })
         .catch((error) => {

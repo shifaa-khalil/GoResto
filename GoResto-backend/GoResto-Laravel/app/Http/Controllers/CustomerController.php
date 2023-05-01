@@ -101,9 +101,11 @@ class CustomerController extends Controller
 
     function getReservations()
     {
-        $customer = auth()->user();
+        // $customer = auth()->user();
 
-        $reservations = Reservation::where('customer_id', $customer->id)->get();
+        $customer_id=8;
+
+        $reservations = Reservation::where('customer_id', $customer_id)->with('restaurant')->get();
 
         return response()->json(['message' => $reservations]);
     }
