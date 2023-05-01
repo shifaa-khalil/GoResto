@@ -50,13 +50,14 @@ const Restaurants = ({ route }) => {
               image={restaurant.logo}
               name={restaurant.name}
               rating={restaurant.rating}
-              // cuisine={restaurant.cuisine}
+              // deposit={restaurant.deposit}
               location={restaurant.location}
               onPress={() =>
                 navigation.navigate("Restaurant", {
                   name: restaurant.name,
                   rating: restaurant.rating,
                   location: restaurant.location,
+                  deposit: restaurant.deposit,
                   image: restaurant.logo,
                 })
               }

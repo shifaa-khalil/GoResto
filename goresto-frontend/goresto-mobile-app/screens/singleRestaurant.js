@@ -1,5 +1,6 @@
 import * as React from "react";
-import { ScrollView, Image, View, Text } from "react-native";
+import { ScrollView, Image, View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import Chinese from "../assets/chinese.png";
@@ -8,6 +9,8 @@ import Star from "../assets/Star.png";
 import { URL } from "../configs/URL";
 
 const Restaurant = ({ route }) => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
@@ -29,7 +32,9 @@ const Restaurant = ({ route }) => {
             <View style={[styles.heart]}>
               <Image source={Heart} />
             </View>
-            <Text style={[styles.link]}>Reserve</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Reserving")}>
+              <Text style={[styles.link]}>Reserve</Text>
+            </TouchableOpacity>
           </View>
           <Text style={[styles.cost]}>
             Average per person: ${route.params.deposit}

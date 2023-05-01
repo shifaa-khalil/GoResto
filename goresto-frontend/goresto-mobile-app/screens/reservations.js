@@ -16,8 +16,8 @@ const Reservations = () => {
     axios
       .get(`${URL}/api/getReservations`)
       .then((response) => {
-        console.log(response.data);
-        setReservations(response.data);
+        console.log(response.data.reservations);
+        setReservations(response.data.reservations);
       })
       .catch((error) => {
         console.log(error);
@@ -29,7 +29,17 @@ const Reservations = () => {
       <View style={[styles.container]}>
         <NavBar2 />
         <Image source={Reserved} style={[styles.backgroundImage]} />
-        <ReservationCard
+        {reservations.map((reservation) => (
+          <ReservationCard
+            key={reservation.id}
+            restaurant={reservation.restaurant.name}
+            date={reservation.date}
+            time={reservation.time}
+            location={reservation.restaurant.location}
+            count={reservation.count}
+          />
+        ))}
+        {/* <ReservationCard
           restaurant="Doudou"
           date="Friday, May 3, 2023"
           time="19:00"
@@ -49,7 +59,7 @@ const Reservations = () => {
           time="19:00"
           location="Beirut, Hamra"
           count="5"
-        />
+        /> */}
       </View>
     </ScrollView>
   );
