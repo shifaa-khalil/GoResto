@@ -46,6 +46,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/filterByCuisine/{cuisine}', [CustomerController::class, 'filterByCuisine']);
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
     Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu']);
+    Route::get('/filterMenuByCuisine/{cuisine}', [CustomerController::class, 'filterMenuByCuisine']);
+    Route::get('/filterMenuByCategory/{category}', [CustomerController::class, 'filterMenuByCategory']);
+
     Route::middleware('cors')->post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
 
     Route::get('/getReservations', [CustomerController::class, 'getReservations']);
