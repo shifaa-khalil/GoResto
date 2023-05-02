@@ -11,7 +11,7 @@ const SearchBar = ({ onChangeText, value }) => {
         style={[styles.input]}
         value={value}
         onChangeText={onChangeText}
-        placeholder="search anything"
+        placeholder="type to search..."
       />
     </View>
   );
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5F5F5",
     fontSize: 15,
+    borderRadius: 15,
   },
 });
 

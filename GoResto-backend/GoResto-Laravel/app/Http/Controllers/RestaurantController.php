@@ -17,14 +17,14 @@ class RestaurantController extends Controller
 {
     function uploadLogo(Request $request)
     {
-        $manager = auth()->user();
-    
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        // $manager = auth()->user();
+        $manager_id=1;
+        $restaurant = Restaurant::where('manager_id', $manager_id)->first();
 
         if ($request->hasFile('logo')) {
             
             $file = $request->file('logo');
-            $fileName = $manager->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $fileName = $manager_id . '_' . time() . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/logos', $fileName);
             $logoUrl = url(Storage::url('public/logos/' . $fileName));
     
@@ -36,11 +36,12 @@ class RestaurantController extends Controller
 
     function addRestaurant(Request $request)
     {
-        $manager = auth()->user();
-  
-        $manager_id = Restaurant::where('manager_id', $manager->id)->first();
+        // $manager = auth()->user();
+        $manager_id=10;
 
-        if($manager_id) return response()->json(['status'=>'failure', 'message'=>'you already added a restaurant on this account'], 400);
+        $new_manager_id = Restaurant::where('manager_id', $manager_id)->first();
+
+        if($new_manager_id) return response()->json(['status'=>'failure', 'message'=>'you already added a restaurant on this account'], 400);
         else
         {
             try{
@@ -55,7 +56,7 @@ class RestaurantController extends Controller
             $restaurant->logo = $logo->getData()->message;
             $restaurant->location = $request->location;
             $restaurant->number_of_tables = $request->number_of_tables;
-            $restaurant->manager_id = $manager->id;
+            $restaurant->manager_id = $manager_id;
             $restaurant->deposit = $request->deposit;
             $restaurant->save();
     
@@ -78,9 +79,9 @@ class RestaurantController extends Controller
 
     function addMenuItem(Request $request)
     {
-        $manager = auth()->user();
-
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        // $manager = auth()->user();
+        $manager_id=1;
+        $restaurant = Restaurant::where('manager_id', $manager_id)->first();
         $menu_id = $restaurant->menu_id;
 
         try{

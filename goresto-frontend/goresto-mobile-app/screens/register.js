@@ -77,7 +77,6 @@ const Register = () => {
     }
   }
 
-  // usage example
   async function handleSubmit() {
     if (validateForm()) {
       const data = { name, email, password, confirmPassword };
