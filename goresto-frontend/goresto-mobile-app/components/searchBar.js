@@ -4,36 +4,13 @@ import { StyleSheet } from "react-native";
 import { URL } from "../configs/URL";
 import axios from "axios";
 
-const SearchBar = () => {
-  const [text, setText] = useState("");
-  const [result, setResult] = useState([]);
-
-  const handleChangeText = (value) => {
-    setText(value);
-  };
-
-  useEffect(() => {
-    if (text.length > 0) {
-      axios
-        .get(`${URL}/api/searchRestaurant/${text}`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setResult(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setResult([]);
-    }
-  }, [text]);
-
+const SearchBar = ({ onChangeText, value }) => {
   return (
     <View style={[styles.searchBar]}>
       <TextInput
         style={[styles.input]}
-        value={text}
-        onChangeText={handleChangeText}
+        value={value}
+        onChangeText={onChangeText}
         placeholder="search anything"
       />
     </View>

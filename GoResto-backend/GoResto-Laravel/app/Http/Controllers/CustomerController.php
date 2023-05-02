@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
         $restaurants = Restaurant::whereIn('id', $restaurants)->get();
 
-        return response()->json($restaurants);
+        return response()->json(['restaurants' => $restaurants]);
     }
     
     function filterByPrice($minimum, $maximum)

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import Logo from "../assets/Logo.png";
@@ -6,13 +6,19 @@ import Heart from "../assets/heart.png";
 import SearchBar from "../components/searchBar";
 import { useNavigation } from "@react-navigation/native";
 
-const NavBar2 = () => {
+const NavBar2 = ({ onChangeText, value }) => {
   const navigation = useNavigation();
+
+  // const handleSearchInput = (text) => {
+  //   setSearchInput(text);
+  //   console.log(searchInput);
+  //   console.log(text);
+  // };
 
   return (
     <View style={[styles.navBar]}>
       <Image source={Logo} style={[styles.logo]} />
-      <SearchBar />
+      <SearchBar value={value} onChangeText={onChangeText} />
       <Image source={Heart} />
     </View>
   );

@@ -19,54 +19,10 @@ const Restaurants = ({ route }) => {
   const [minRatingSelected, setMinRatingSelected] = useState("");
   const [maxRatingSelected, setMaxRatingSelected] = useState("");
   const [locationSelected, setLocationSelected] = useState("");
-
-  useEffect(() => {
-    if (route.params?.cuisine) {
-      axios
-        .get(`${URL}/api/filterByCuisine/${route.params.cuisine}`)
-        .then((response) => {
-          setRestaurants(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      axios
-        .get(`${URL}/api/getRestaurants`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, []);
+  const [searchInput, setSearchInput] = useState("");
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
-
-    if (selectedCategory == "all") {
-      axios
-        .get(`${URL}/api/getRestaurants`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      axios
-        .get(`${URL}/api/filterByCuisine/${selectedCategory}`)
-        .then((response) => {
-          setRestaurants(response.data);
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   };
 
   const handleFilterSelection = (filter) => {
@@ -93,46 +49,66 @@ const Restaurants = ({ route }) => {
     setLocationSelected(location);
   };
 
+  const callAxios = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data.restaurants);
+        setRestaurants(response.data.restaurants);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (route.params?.cuisine) {
+      callAxios(`${URL}/api/filterByCuisine/${route.params.cuisine}`);
+    } else {
+      callAxios(`${URL}/api/getRestaurants`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedCategory == "all") {
+      callAxios(`${URL}/api/getRestaurants`);
+    } else {
+      callAxios(`${URL}/api/filterByCuisine/${selectedCategory}`);
+    }
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      callAxios(`${URL}/api/searchRestaurant/${searchInput}`);
+    } else {
+      callAxios(`${URL}/api/getRestaurants`);
+    }
+  }, [searchInput]);
+
   const handleSubmit = () => {
     if (selectedFilter == "price") {
-      axios
-        .get(`${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      callAxios(
+        `${URL}/api/filterByPrice/${minPriceSelected}/${maxPriceSelected}`
+      );
     } else if (selectedFilter == "rating") {
-      axios
-        .get(
-          `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
-        )
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      callAxios(
+        `${URL}/api/filterByRating/${minRatingSelected}/${maxRatingSelected}`
+      );
     } else if (selectedFilter == "location") {
-      axios
-        .get(`${URL}/api/filterByLocation/${locationSelected}`)
-        .then((response) => {
-          console.log(response.data.restaurants);
-          setRestaurants(response.data.restaurants);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      callAxios(`${URL}/api/filterByLocation/${locationSelected}`);
     }
   };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        <NavBar2 />
+        <NavBar2
+          onChangeText={(text) => {
+            setSearchInput(text);
+            console.log(text);
+            console.log(searchInput);
+          }}
+        />
         <CategoryBar onCategorySelected={handleCategorySelection} />
         <FilterBar
           onFilterSelected={handleFilterSelection}
