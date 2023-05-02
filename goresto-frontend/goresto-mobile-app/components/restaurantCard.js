@@ -4,13 +4,7 @@ import { StyleSheet } from "react-native";
 import Heart from "../assets/heart.png";
 import Star from "../assets/Star.png";
 
-const RestaurantCard = ({
-  name,
-  onPress,
-  image,
-  rating,
-  location,
-}) => {
+const RestaurantCard = ({ name, onPress, image, rating, location }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.card]}>
@@ -51,6 +45,7 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     width: "35%",
+    borderRadius: 15,
   },
   row: {
     flexDirection: "row",

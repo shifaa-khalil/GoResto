@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 10,
     borderWidth: 1,
     fontSize: 18,
+    borderRadius: 15,
   },
 });
 
