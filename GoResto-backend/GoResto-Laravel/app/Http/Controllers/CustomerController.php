@@ -82,6 +82,20 @@ class CustomerController extends Controller
             return response()->json(['menu' => $menuItems]);
     }
 
+    function filterMenuByCategory($category){
+
+        $menuItems = MenuItem::where('category', $category)->with('menu')->get();
+
+        return response()->json(['menuItems' => $menuItems]);
+    }
+
+    function filterMenuByCuisine($cuisine){
+
+        $menuItems = MenuItem::where('cuisine', $cuisine)->with('menu')->get();
+
+        return response()->json(['menuItems' => $menuItems]);
+    }
+
     function reserveTable(Request $request, $restaurant_id)
     {
         // $customer = auth()->user();

@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   card: {
     width: 125,
     marginBottom: 20,
-    // textAlign: "center",
   },
   itemName: {
     fontSize: 20,
