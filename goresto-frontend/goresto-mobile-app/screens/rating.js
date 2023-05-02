@@ -40,9 +40,9 @@ const Rating = ({ route }) => {
   const handleSubmit = () => {
     if (validateForm()) {
       const data = { rating, content };
-      console.log(data);
+      console.log(route.params.restaurant_id);
       axios
-        .post(`${URL}/api/rateRestaurant/${route.params.id}`, data, {
+        .post(`${URL}/api/rateRestaurant/${route.params.restaurant_id}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((response) => {

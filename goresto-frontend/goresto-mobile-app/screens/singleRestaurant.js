@@ -36,7 +36,7 @@ const Restaurant = ({ route }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Reserving", {
-                    id: route.params.id,
+                    restaurant_id: route.params.restaurant_id,
                     name: route.params.name,
                     rating: route.params.rating,
                     location: route.params.location,
@@ -50,7 +50,7 @@ const Restaurant = ({ route }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Rating", {
-                    id: route.params.id,
+                    restaurant_id: route.params.restaurant_id,
                     name: route.params.name,
                     rating: route.params.rating,
                     location: route.params.location,
