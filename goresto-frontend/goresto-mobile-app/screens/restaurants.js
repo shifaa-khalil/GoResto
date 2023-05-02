@@ -130,6 +130,7 @@ const Restaurants = ({ route }) => {
               location={restaurant.location}
               onPress={() =>
                 navigation.navigate("Restaurant", {
+                  restaurant_id: restaurant.id,
                   name: restaurant.name,
                   rating: restaurant.rating,
                   location: restaurant.location,

@@ -2,7 +2,15 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
 
-const ReservationCard = ({ restaurant, date, time, location, count }) => {
+const ReservationCard = ({
+  restaurant,
+  date,
+  time,
+  location,
+  count,
+  onEdit,
+  onCancel,
+}) => {
   return (
     <View style={[styles.card]}>
       <Text style={[styles.dateTime]}>
@@ -16,13 +24,13 @@ const ReservationCard = ({ restaurant, date, time, location, count }) => {
         </View>
         <View style={styles.buttons}>
           <TouchableOpacity
-            onPress={() => console.log("edited")}
+            onPress={onEdit}
             style={[styles.button, styles.edit]}
           >
             <Text style={[styles.text]}>Edit</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => console.log("cancelled")}
+            onPress={onCancel}
             style={[styles.button, styles.cancel]}
           >
             <Text style={[styles.text]}>Cancel</Text>

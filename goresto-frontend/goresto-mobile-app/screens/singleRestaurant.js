@@ -32,7 +32,18 @@ const Restaurant = ({ route }) => {
             <View style={[styles.heart]}>
               <Image source={Heart} />
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("Reserving")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Reserving", {
+                  id: route.params.id,
+                  name: route.params.name,
+                  rating: route.params.rating,
+                  location: route.params.location,
+                  deposit: route.params.deposit,
+                  image: route.params.image,
+                })
+              }
+            >
               <Text style={[styles.link]}>Reserve</Text>
             </TouchableOpacity>
           </View>

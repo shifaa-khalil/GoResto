@@ -37,6 +37,20 @@ const Reservations = () => {
             time={reservation.time}
             location={reservation.restaurant.location}
             count={reservation.count}
+            onEdit={() =>
+              navigation.navigate("Reserving", {
+                reservation_id: reservation.id,
+                date: reservation.date,
+                time: reservation.time,
+                count: reservation.count,
+                restaurant_id: reservation.restaurant_id,
+              })
+            }
+            onCancel={() =>
+              navigation.navigate("Reserving", {
+                reservation_id: reservation.id,
+              })
+            }
           />
         ))}
       </View>

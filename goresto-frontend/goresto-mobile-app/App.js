@@ -15,11 +15,11 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Menu">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Register"
           component={Register}
-          options={{ title: "Setup" }}
+          // options={{ title: "Setup" }}
         />
         <Stack.Screen name="Signin" component={Signin} />
         <Stack.Screen name="Home" component={Home} />

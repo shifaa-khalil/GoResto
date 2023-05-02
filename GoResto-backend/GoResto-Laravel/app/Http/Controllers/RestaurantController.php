@@ -136,9 +136,9 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['name' => $request->name, 'logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables, 'deposit' => $request->deposit]);
 
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        // $restaurant = Restaurant::where('manager_id', $manager->id)->first();
 
-        return response()->json(['status'=>'success', 'message'=>'restaurant updated', 'restaurant'=>$restaurant]);
+        return response()->json(['status'=>'success', 'message'=>'restaurant updated']);
     }
 
     function disableMenuItem($menu_item_id)

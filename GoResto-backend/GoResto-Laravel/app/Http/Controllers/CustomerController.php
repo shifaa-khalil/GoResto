@@ -114,7 +114,7 @@ class CustomerController extends Controller
             $reservation->count = $request->count;
             $reservation->save();
 
-            return response()->json(['status' => 'success', 'message' => 'table reserved', 'reservation' => $reservation]);
+            return response()->json(['status' => 'success', 'message' => 'table reserved']);
         }
     }
 
@@ -142,6 +142,23 @@ class CustomerController extends Controller
         }
     }
 
+    function updateReservation($reservation_id, Request $request)
+    {
+        $reservation = Reservation::find($reservation_id);
+
+        if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
+        else
+        {
+            $reservation->update(['date' => $request->date, 'time' => $request->time, 'count' => $request->count]);
+
+            // 'number_of_tables' => $request->number_of_tables
+
+            // $reservation = Reservation::find($reservation_id);
+
+            return response()->json(['status' => 'success', 'message' => 'reservation updated']);
+        }
+    }
+    
     function rateRestaurant(Request $request, $restaurant_id)
     {
         $customer = auth()->user();
