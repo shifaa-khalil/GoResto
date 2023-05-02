@@ -32,20 +32,36 @@ const Restaurant = ({ route }) => {
             <View style={[styles.heart]}>
               <Image source={Heart} />
             </View>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Reserving", {
-                  id: route.params.id,
-                  name: route.params.name,
-                  rating: route.params.rating,
-                  location: route.params.location,
-                  deposit: route.params.deposit,
-                  image: route.params.image,
-                })
-              }
-            >
-              <Text style={[styles.link]}>Reserve</Text>
-            </TouchableOpacity>
+            <View style={styles.links}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Reserving", {
+                    id: route.params.id,
+                    name: route.params.name,
+                    rating: route.params.rating,
+                    location: route.params.location,
+                    deposit: route.params.deposit,
+                    image: route.params.image,
+                  })
+                }
+              >
+                <Text style={[styles.link]}>Reserve</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Rating", {
+                    id: route.params.id,
+                    name: route.params.name,
+                    rating: route.params.rating,
+                    location: route.params.location,
+                    deposit: route.params.deposit,
+                    image: route.params.image,
+                  })
+                }
+              >
+                <Text style={[styles.link]}>Rate</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <Text style={[styles.cost]}>
             Average per person: ${route.params.deposit}
@@ -125,6 +141,7 @@ const styles = StyleSheet.create({
   cost: {
     fontSize: 20,
   },
+  links: {},
 });
 
 export default Restaurant;
