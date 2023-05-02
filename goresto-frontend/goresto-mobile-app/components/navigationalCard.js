@@ -14,8 +14,7 @@ const NavCard = ({ color, text, onPress, icon }) => {
 const styles = StyleSheet.create({
   card: {
     width: 310,
-    height: 80,
-    padding: 5,
+    padding: 15,
     marginBottom: 20,
     borderRadius: 15,
   },

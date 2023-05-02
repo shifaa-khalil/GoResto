@@ -13,7 +13,7 @@ const CategoryCard = ({ text, onPress, image }) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 125,
+    width: 135,
     marginBottom: 20,
   },
   text: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   image: {
-    height: 90,
+    height: 120,
     width: "100%",
     borderRadius: 15,
   },

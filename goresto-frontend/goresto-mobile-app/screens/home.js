@@ -195,19 +195,19 @@ const styles = StyleSheet.create({
   downArrow: {
     height: 23,
     width: 25,
+    borderRadius: 8,
   },
   categories: {
     width: 310,
     flexDirection: "row",
     justifyContent: "center",
-    columnGap: 60,
+    columnGap: 30,
     flexWrap: "wrap",
     marginTop: 50,
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderWidth: 2,
     marginTop: 20,
   },
   discover: {
