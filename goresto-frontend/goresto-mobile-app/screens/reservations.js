@@ -39,27 +39,6 @@ const Reservations = () => {
             count={reservation.count}
           />
         ))}
-        {/* <ReservationCard
-          restaurant="Doudou"
-          date="Friday, May 3, 2023"
-          time="19:00"
-          location="Beirut, Hamra"
-          count="5"
-        />
-        <ReservationCard
-          restaurant="Doudou"
-          date="Friday, May 3, 2023"
-          time="19:00"
-          location="Beirut, Hamra"
-          count="5"
-        />
-        <ReservationCard
-          restaurant="Doudou"
-          date="Friday, May 3, 2023"
-          time="19:00"
-          location="Beirut, Hamra"
-          count="5"
-        /> */}
       </View>
     </ScrollView>
   );

@@ -40,7 +40,9 @@ const Restaurant = ({ route }) => {
             Average per person: ${route.params.deposit}
           </Text>
           <Text style={[styles.link]}>View on map</Text>
-          <Text style={[styles.link]}>View menu</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+            <Text style={[styles.link]}>View menu</Text>
+          </TouchableOpacity>
           <Text style={[styles.link]}>Contact</Text>
         </View>
       </View>
