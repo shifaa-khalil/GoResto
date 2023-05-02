@@ -19,6 +19,7 @@ const Reservations = () => {
   const navigation = useNavigation();
   const [reservations, setReservations] = useState([]);
   const [questionVisible, setQuestionVisible] = useState(false);
+  const [reservationId, setReservationId] = useState(null);
 
   useEffect(() => {
     axios
@@ -31,6 +32,19 @@ const Reservations = () => {
         console.log(error);
       });
   }, []);
+
+  const handleCancel = () => {
+    setQuestionVisible(false);
+    axios
+      .delete(`${URL}/api/cancelReservation/${reservationId}`)
+      .then((response) => {
+        console.log(response.data.stutus);
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -54,7 +68,10 @@ const Reservations = () => {
                 restaurant_id: reservation.restaurant_id,
               })
             }
-            onCancel={() => setQuestionVisible(true)}
+            onCancel={() => {
+              setQuestionVisible(true);
+              setReservationId(reservation.id);
+            }}
           />
         ))}
         <Modal
@@ -101,14 +118,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   modalContainer: {
-    // height: 250
     backgroundColor: "#D43325",
     padding: 20,
     borderRadius: 10,
     marginTop: 200,
     width: "70%",
     alignItems: "center",
-    justifySelf: "center",
+    alignSelf: "center",
   },
   modalText: {
     color: "white",
