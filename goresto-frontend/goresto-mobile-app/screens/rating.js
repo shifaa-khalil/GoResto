@@ -8,13 +8,12 @@ import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
 import NavBar from "../components/navBar";
-import Calendar from "../components/calendar";
-import TimePicker from "../components/timePicker";
 import { URL } from "../configs/URL";
 
-const Reserving = ({ route }) => {
+const Rating = ({ route }) => {
   const navigation = useNavigation();
-
+  const [rating, setRating] = useState("");
+  const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
   const validateForm = () => {
@@ -39,26 +38,22 @@ const Reserving = ({ route }) => {
   };
 
   const handleSubmit = () => {
-    // if (validateForm()) {
-    //   const data = { date, time, count };
-    //   console.log(data);
-    //     axios
-    //       .put(
-    //         `${URL}/api/updateReservation/${route.params.reservation_id}`,
-    //         data,
-    //         {
-    //           headers: { "Content-Type": "application/json" },
-    //         }
-    //       )
-    //       .then((response) => {
-    //         console.log(response.data.stutus);
-    //         console.log(response.data.message);
-    //         navigation.navigate("Reservations");
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    // }
+    if (validateForm()) {
+      const data = { rating, content };
+      console.log(data);
+      axios
+        .post(`${URL}/api/rateRestaurant/${route.params.id}`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((response) => {
+          console.log(response.data.status);
+          console.log(response.data.message);
+          // navigation.navigate("Ratings");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -79,7 +74,7 @@ const Reserving = ({ route }) => {
         <Input
           title="Content"
           placeHolder="Content"
-          value={time}
+          value={content}
           onChangeText={(text) => {
             setContent(text);
             handleChangeText();
@@ -116,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Reserving;
+export default Rating;

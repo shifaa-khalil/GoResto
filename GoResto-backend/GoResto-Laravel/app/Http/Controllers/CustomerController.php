@@ -161,14 +161,14 @@ class CustomerController extends Controller
     
     function rateRestaurant(Request $request, $restaurant_id)
     {
-        $customer = auth()->user();
-
-        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
+        // $customer = auth()->user();
+        $customer_id=8;
+        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer_id])->first();
         if($review) $review->delete();
         
         $review = new Review;
         $review->restaurant_id = $restaurant_id;
-        $review->customer_id = $customer->id;
+        $review->customer_id = $customer_id;
         $review->content = $request->content;
         $review->rating = $request->rating;
         $review->save();

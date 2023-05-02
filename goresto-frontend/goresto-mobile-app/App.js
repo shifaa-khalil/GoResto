@@ -9,7 +9,7 @@ import Restaurant from "./screens/singleRestaurant";
 import Reservations from "./screens/reservations";
 import Reserving from "./screens/reserving";
 import Menu from "./screens/menu";
-import Rating from "./screen/rating";
+import Rating from "./screens/rating";
 
 const Stack = createStackNavigator();
 
