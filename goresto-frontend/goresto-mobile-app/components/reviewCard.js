@@ -3,27 +3,23 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
 
 const ReviewCard = ({
-  restaurant,
+  customerName,
   date,
-  time,
-  location,
-  count,
-  onEdit,
-  onCancel,
+  rating,
+  review,
+  //   onEdit,
+  //   onCancel,
 }) => {
   return (
     <View style={[styles.card]}>
       <View style={styles.row}>
-        <Text style={[styles.name]}>Name</Text>
-        <Text style={[styles.rating]}>Rating</Text>
+        <Text style={[styles.name]}>{customerName}</Text>
+        <Text style={[styles.rating]}>{rating}</Text>
       </View>
-      <Text style={[styles.review]}>
-        The food was exquisite, with a perfect blend of flavors and textures.
-        The service was exceptional, with a warm and welcoming atmosphere.
-        Overall, a truly memorable dining experience that I would highly
-        recommend
-      </Text>
-      <Text style={[styles.date]}>1 month ago</Text>
+      <View style={styles.review}>
+        <Text style={[styles.content]}>{review}</Text>
+      </View>
+      <Text style={[styles.date]}>{date}</Text>
       {/* <Text style={[styles.dateTime]}>
         {date} at {time}
       </Text>
@@ -57,7 +53,8 @@ const styles = StyleSheet.create({
     width: 310,
     paddingVertical: 20,
     justifyContent: "space-between",
-    height: 280,
+    height: 260,
+    borderBottomWidth: 1,
   },
   row: {
     flexDirection: "row",
@@ -72,13 +69,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   date: {
-    // fontWeight: 600,
     alignSelf: "flex-end",
     fontSize: 13,
   },
-  review: {
+  content: {
     fontWeight: 600,
     fontSize: 15,
+  },
+  review: {
+    flexBasis: "70%",
   },
 
   //   buttons: {

@@ -66,7 +66,15 @@ const Restaurant = ({ route }) => {
           <Text style={[styles.cost]}>
             Average per person: ${route.params.deposit}
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Ratings")}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Ratings", {
+                restaurant_id: route.params.restaurant_id,
+                name: route.params.name,
+                image: route.params.image,
+              })
+            }
+          >
             <Text style={[styles.link]}>Ratings & Reviews</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Menu")}>

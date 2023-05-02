@@ -1,95 +1,48 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  ScrollView,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  Modal,
-} from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 // import NavBar2 from "../components/navBar2";
-import ReservationCard from "../components/reservationCard";
 import ReviewCard from "../components/reviewCard";
 import { URL } from "../configs/URL";
 
-const Ratings = () => {
+const Ratings = ({ route }) => {
   const navigation = useNavigation();
-  //   const [reservations, setReservations] = useState([]);
-  //   const [questionVisible, setQuestionVisible] = useState(false);
-  //   const [reservationId, setReservationId] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
-  //   useEffect(() => {
-  //     axios
-  //       .get(`${URL}/api/getReservations`)
-  //       .then((response) => {
-  //         console.log(response.data.reservations);
-  //         setReservations(response.data.reservations);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }, []);
-
-  //   const handleCancel = () => {
-  //     setQuestionVisible(false);
-  //     axios
-  //       .delete(`${URL}/api/cancelReservation/${reservationId}`)
-  //       .then((response) => {
-  //         console.log(response.data.stutus);
-  //         console.log(response.data.message);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+  useEffect(() => {
+    axios
+      .get(`${URL}/api/getReviews/${route.params.restaurant_id}`)
+      .then((response) => {
+        console.log(response.data.reviews);
+        setReviews(response.data.reviews);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
         {/* <NavBar2 /> */}
         {/* <Image source={Reserved} style={[styles.backgroundImage]} /> */}
-        {/* {reservations.map((reservation) => ( */}
-        <ReviewCard
-        // key={reservation.id}
-        // restaurant={reservation.restaurant.name}
-        // date={reservation.date}
-        // time={reservation.time}
-        // location={reservation.restaurant.location}
-        // count={reservation.count}
-        // onEdit={() =>
-        //   navigation.navigate("Reserving", {
-        //     reservation_id: reservation.id,
-        //     date: reservation.date,
-        //     time: reservation.time,
-        //     count: reservation.count,
-        //     restaurant_id: reservation.restaurant_id,
-        //   })
-        // }
-        // onCancel={() => {
-        //   setQuestionVisible(true);
-        //   setReservationId(reservation.id);
-        // }}
-        />
-        {/* ))} */}
-        {/* <Modal
-          visible={questionVisible}
-          animationType="slide"
-          transparent={true}
-          onRequestClose={() => setQuestionVisible(false)}
-        >
-          <View style={styles.modalContainer}>
-            <Text style={styles.modalText}>Are you sure?</Text>
-            <TouchableOpacity onPress={handleCancel}>
-              <Text style={styles.modalText}>yes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setQuestionVisible(false)}>
-              <Text style={styles.modalText}>cancel</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal> */}
+
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <ReviewCard
+              key={review.id}
+              restaurant={review.restaurant_id}
+              date={review.created_at}
+              customerName={review.customer_id}
+              rating={review.rating}
+              review={review.content}
+            />
+          ))
+        ) : (
+          <Text>No reviews</Text>
+        )}
       </View>
     </ScrollView>
   );
