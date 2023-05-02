@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import RestaurantCard from "../components/restaurantCard";
 import CategoryBar from "../components/categoriesBar";
-import FilterBar from "../components/filterBar";
+// import FilterBar from "../components/filterBar";
 import { URL } from "../configs/URL";
 
 const Restaurants = ({ route }) => {
@@ -102,15 +102,13 @@ const Restaurants = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
+        <CategoryBar onCategorySelected={handleCategorySelection} />
         <NavBar2
           onChangeText={(text) => {
             setSearchInput(text);
             console.log(text);
             console.log(searchInput);
           }}
-        />
-        <CategoryBar onCategorySelected={handleCategorySelection} />
-        <FilterBar
           onFilterSelected={handleFilterSelection}
           onMinPriceChange={handleMinPriceChange}
           onMaxPriceChange={handleMaxPriceChange}

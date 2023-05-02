@@ -18,7 +18,7 @@ const SearchBar = ({ onChangeText, value }) => {
 };
 
 const styles = StyleSheet.create({
-  searchBar: { width: 160 },
+  searchBar: { width: 225 },
   input: {
     width: "100%",
     height: 30,
