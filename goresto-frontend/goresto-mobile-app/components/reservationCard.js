@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   button: {
     width: 80,
     height: 25,
+    borderRadius: 15,
   },
   text: {
     fontSize: 16,

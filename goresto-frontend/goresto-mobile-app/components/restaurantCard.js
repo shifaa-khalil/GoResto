@@ -50,8 +50,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "space-between",
-    // width: 40,
   },
   name: {
     fontSize: 24,

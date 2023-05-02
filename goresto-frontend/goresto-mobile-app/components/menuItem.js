@@ -27,10 +27,8 @@ const styles = StyleSheet.create({
     textOverflow: "ellipsis",
   },
   price: {
-    // fontSize: 15,
     fontWeight: "bold",
     color: "#D43325",
-    // textDecorationLine: "underline",
   },
   itemImage: {
     height: 110,

@@ -34,10 +34,11 @@ const Ratings = ({ route }) => {
             <ReviewCard
               key={review.id}
               restaurant={review.restaurant_id}
-              date={review.created_at}
+              date={new Date(review.created_at).toLocaleDateString()}
               customerName={review.customer_id}
               rating={review.rating}
               review={review.content}
+              onComment={() => console.log("I am a comment")}
             />
           ))
         ) : (

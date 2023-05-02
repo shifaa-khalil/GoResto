@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TextInput } from "react-native";
+import React from "react";
+import { View, TextInput } from "react-native";
 import { StyleSheet } from "react-native";
-import { URL } from "../configs/URL";
-import axios from "axios";
 
 const SearchBar = ({ onChangeText, value }) => {
   return (

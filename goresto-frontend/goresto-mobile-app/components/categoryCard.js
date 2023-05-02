@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 
 const CategoryCard = ({ text, onPress, image }) => {

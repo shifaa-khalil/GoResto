@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
 import { StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";

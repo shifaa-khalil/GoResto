@@ -104,16 +104,6 @@ const NavBar2 = ({
         transparent={true}
         onRequestClose={() => setVisible(false)}
       >
-        {/* <View style={styles.modalContainer}>
-            <Text style={styles.modalText}>Are you sure?</Text>
-            <TouchableOpacity onPress={handleCancel}>
-              <Text style={styles.modalText}>yes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setVisible(false)}>
-              <Text style={styles.modalText}>cancel</Text>
-            </TouchableOpacity>
-          </View> */}
-
         <View style={styles.modalContainer}>
           <TouchableWithoutFeedback
             onPress={() => handleFilterSelection("price")}
@@ -243,10 +233,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: 310,
-    // height: 70,
     borderBottomWidth: 1,
     borderBottomColor: "#D9D9D9",
-    // paddingHorizontal: 25,
     paddingVertical: 20,
   },
   modalContainer: {

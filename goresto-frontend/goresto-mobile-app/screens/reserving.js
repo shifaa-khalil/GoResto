@@ -102,7 +102,6 @@ const Reserving = ({ route }) => {
       <Text>{error}</Text>
       <View style={[styles.form]}>
         <Calendar onDateSelect={handleDateSelection} />
-        <Text>Reserve at {route.params.name}</Text>
         {/* <Input
           title="Date"
           placeHolder="Date"
