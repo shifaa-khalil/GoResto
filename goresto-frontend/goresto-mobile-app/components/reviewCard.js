@@ -14,11 +14,16 @@ const ReviewCard = ({
   return (
     <View style={[styles.card]}>
       <View style={styles.row}>
-        <Text>Name</Text>
-        <Text>Rating</Text>
+        <Text style={[styles.name]}>Name</Text>
+        <Text style={[styles.rating]}>Rating</Text>
       </View>
-      <Text style={styles.review}>Review</Text>
-      <Text style={styles.date}>1 month ago</Text>
+      <Text style={[styles.review]}>
+        The food was exquisite, with a perfect blend of flavors and textures.
+        The service was exceptional, with a warm and welcoming atmosphere.
+        Overall, a truly memorable dining experience that I would highly
+        recommend
+      </Text>
+      <Text style={[styles.date]}>1 month ago</Text>
       {/* <Text style={[styles.dateTime]}>
         {date} at {time}
       </Text>
@@ -50,24 +55,30 @@ const ReviewCard = ({
 const styles = StyleSheet.create({
   card: {
     width: 310,
-    backgroundColor: "#F5F5F5",
-    marginBottom: 50,
-    marginTop: -30,
+    paddingVertical: 20,
+    justifyContent: "space-between",
+    height: 280,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
   },
-  review: {
+  name: {
+    fontWeight: 600,
     fontSize: 20,
-    fontWeight: "bold",
-    // paddingVertical: 20,
-    // textAlign: "center",
+  },
+  rating: {
+    fontWeight: 600,
+    fontSize: 20,
   },
   date: {
-    fontSize: 18,
+    // fontWeight: 600,
     alignSelf: "flex-end",
+    fontSize: 13,
+  },
+  review: {
+    fontWeight: 600,
+    fontSize: 15,
   },
 
   //   buttons: {

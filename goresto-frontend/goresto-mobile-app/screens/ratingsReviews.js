@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
-import NavBar2 from "../components/navBar2";
+// import NavBar2 from "../components/navBar2";
 import ReservationCard from "../components/reservationCard";
 import ReviewCard from "../components/reviewCard";
 import { URL } from "../configs/URL";
@@ -49,7 +49,7 @@ const Ratings = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        <NavBar2 />
+        {/* <NavBar2 /> */}
         {/* <Image source={Reserved} style={[styles.backgroundImage]} /> */}
         {/* {reservations.map((reservation) => ( */}
         <ReviewCard
