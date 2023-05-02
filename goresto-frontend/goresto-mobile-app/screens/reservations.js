@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ScrollView, View, Image } from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
@@ -11,6 +18,7 @@ import { URL } from "../configs/URL";
 const Reservations = () => {
   const navigation = useNavigation();
   const [reservations, setReservations] = useState([]);
+  const [questionVisible, setQuestionVisible] = useState(false);
 
   useEffect(() => {
     axios
@@ -46,13 +54,25 @@ const Reservations = () => {
                 restaurant_id: reservation.restaurant_id,
               })
             }
-            onCancel={() =>
-              navigation.navigate("Reserving", {
-                reservation_id: reservation.id,
-              })
-            }
+            onCancel={() => setQuestionVisible(true)}
           />
         ))}
+        <Modal
+          visible={questionVisible}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => setQuestionVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalText}>Are you sure?</Text>
+            <TouchableOpacity onPress={handleCancel}>
+              <Text style={styles.modalText}>yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setQuestionVisible(false)}>
+              <Text style={styles.modalText}>cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
     </ScrollView>
   );
@@ -79,6 +99,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+  },
+  modalContainer: {
+    // height: 250
+    backgroundColor: "#D43325",
+    padding: 20,
+    borderRadius: 10,
+    marginTop: 200,
+    width: "70%",
+    alignItems: "center",
+    justifySelf: "center",
+  },
+  modalText: {
+    color: "white",
   },
 });
 
