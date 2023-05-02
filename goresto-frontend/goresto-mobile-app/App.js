@@ -9,7 +9,8 @@ import Restaurant from "./screens/singleRestaurant";
 import Reservations from "./screens/reservations";
 import Reserving from "./screens/reserving";
 import Menu from "./screens/menu";
-import Rating from "./screens/rating";
+import Rating from "./screens/ratingForm";
+import Ratings from "./screens/ratingsReviews";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ function App() {
         <Stack.Screen name="Reserving" component={Reserving} />
         <Stack.Screen name="Menu" component={Menu} />
         <Stack.Screen name="Rating" component={Rating} />
+        <Stack.Screen name="Ratings" component={Ratings} />
       </Stack.Navigator>
     </NavigationContainer>
   );
