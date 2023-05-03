@@ -8,7 +8,7 @@ const RestaurantCard = ({ name, onPress, image, rating, location }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.card]}>
-        <Image source={image} style={[styles.image]} />
+        <Image source={{ uri: image }} style={[styles.image]} />
         <View style={[styles.text]}>
           <Text style={[styles.name]} numberOfLines={1}>
             {name}

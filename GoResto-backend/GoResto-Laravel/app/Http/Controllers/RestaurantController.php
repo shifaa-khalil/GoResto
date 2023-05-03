@@ -18,7 +18,7 @@ class RestaurantController extends Controller
     function uploadLogo(Request $request)
     {
         // $manager = auth()->user();
-        $manager_id=1;
+        $manager_id=12;
         $restaurant = Restaurant::where('manager_id', $manager_id)->first();
 
         if ($request->hasFile('logo')) {
@@ -37,7 +37,7 @@ class RestaurantController extends Controller
     function addRestaurant(Request $request)
     {
         // $manager = auth()->user();
-        $manager_id=10;
+        $manager_id=12;
 
         $new_manager_id = Restaurant::where('manager_id', $manager_id)->first();
 
