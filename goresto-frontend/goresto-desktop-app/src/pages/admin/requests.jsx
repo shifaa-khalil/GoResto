@@ -6,6 +6,7 @@ import NavBar2 from "../../components/navBar2";
 import LeftMenu from "../../components/admin/leftMenu";
 import styles from "../../css/reservations.module.css";
 import DropDownList from "../../components/dropDownList";
+import RequestCard from "../../components/admin/requestCard";
 
 const Admin = () => {
   const [error, setError] = useState("");
@@ -40,6 +41,7 @@ const Admin = () => {
         <DropDownList />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
+            <RequestCard />
             <table>
               <thead>
                 <tr className="semibold">
