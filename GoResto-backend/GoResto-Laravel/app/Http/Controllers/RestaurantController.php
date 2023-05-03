@@ -38,7 +38,7 @@ class RestaurantController extends Controller
     {
         $manager = auth()->user();
 
-        $manager_id = Restaurant::where('manager_id', $manager_id)->first();
+        $manager_id = Restaurant::where('manager_id', $manager->id)->first();
 
         if($manager_id) return response()->json(['status'=>'failure', 'message'=>'you already added a restaurant on this account'], 400);
         else

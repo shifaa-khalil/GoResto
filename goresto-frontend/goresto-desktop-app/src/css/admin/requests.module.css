@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.sectionContainer {
+  width: 75%;
+  row-gap: 52px;
+}
+.body {
+  text-align: center;
+  /* margin-top: 80px; */
+  font-size: 25px;
+  padding-right: 60px;
+  flex-wrap: wrap;
+  column-gap: 9.8%;
+  justify-content: center;
+}
+.tableContainer {
+  display: flex;
+  overflow-y: scroll;
+  height: 65vh;
+  width: 100%;
+}
+.open {
+  box-shadow: 10px 0 0 var(--red);
+}
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid black;
+  height: 35px;
+  width: 211px;
+  vertical-align: middle;
+  text-align: left;
+  padding: 20px;
+}
+/* For Webkit Browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--grey);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  /* border-radius: 15px; */
+}
