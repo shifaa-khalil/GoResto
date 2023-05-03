@@ -58,12 +58,12 @@ Route::middleware(['customer'])->group(function(){
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
 });
 
-Route::middleware(['admin'])->group(function(){
+// Route::middleware(['admin'])->group(function(){
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);
     Route::delete('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant']);
-});
+// });
 
 Route::middleware(['manager'])->group(function(){
     Route::put('/updateRestaurant', [RestaurantController::class,'updateRestaurant']);

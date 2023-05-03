@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
         $restoRequests = RestoRequest::with(['restaurant', 'restaurant.menu'])->get();
 
-        return response()->json(['resoRequests' => $restoRequests]);
+        return response()->json(['restoRequests' => $restoRequests]);
     }
 
     function approveRequest($id)

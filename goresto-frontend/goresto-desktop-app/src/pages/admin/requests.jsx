@@ -11,21 +11,23 @@ const Admin = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
-  const [reservations, setReservations] = useState("");
+  const [restoRequests, setRestoRequests] = useState([]);
 
   useEffect(() => {
-    if (token) {
-      axios
-        .get(`http://127.0.0.1:8000/api/getRequests`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => setReservations(response.data.reservations))
-        .catch((error) => {
-          console.error(error);
-        });
-    } else navigate("/signin");
+    // if (token) {
+    axios
+      .get(`http://127.0.0.1:8000/api/getRequests`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setRestoRequests(response.data.restoRequests);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // } else navigate("/signin");
   }, []);
 
   return (
@@ -34,7 +36,7 @@ const Admin = () => {
         <LeftMenu requestsClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Reservations" className="block" />
+        <NavBar2 sectionName="Requests" className="block" />
         <DropDownList />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
@@ -43,23 +45,25 @@ const Admin = () => {
                 <tr className="semibold">
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Count</th>
+                  <th>Manager</th>
+                  <th>Logo</th>
+                  <th>Location</th>
+                  <th>number_of_tables</th>
                 </tr>
               </thead>
               <tbody>
-                {reservations &&
-                  reservations.map((reservation) => (
+                {restoRequests &&
+                  restoRequests.map((restoRequest) => (
                     <tr
                       className="normalweight mediumsize"
-                      key={reservation.id}
+                      key={restoRequest.id}
                     >
-                      <td>{reservation.id}</td>
-                      <td>{reservation.name}</td>
-                      <td>{reservation.date}</td>
-                      <td>{reservation.time}</td>
-                      <td>{reservation.count}</td>
+                      <td>{restoRequest.id}</td>
+                      <td>{restoRequest.restaurant.name}</td>
+                      <td>{restoRequest.restaurant.manager_id}</td>
+                      <td>{restoRequest.restaurant.logo}</td>
+                      <td>{restoRequest.restaurant.location}</td>
+                      <td>{restoRequest.restaurant.number_of_tables}</td>
                     </tr>
                   ))}
               </tbody>
