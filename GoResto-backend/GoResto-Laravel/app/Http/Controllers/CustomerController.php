@@ -98,8 +98,8 @@ class CustomerController extends Controller
 
     function reserveTable(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
-        $customer_id=8;
+        $customer = auth()->user();
+
         $restaurant = Restaurant::find($restaurant_id);
         $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
 
@@ -108,7 +108,7 @@ class CustomerController extends Controller
         {
             $reservation = new Reservation;
             $reservation->restaurant_id = $restaurant_id;
-            $reservation->customer_id = $customer_id;
+            $reservation->customer_id = $customer->id;
             $reservation->date = $request->date;
             $reservation->time = $request->time;
             $reservation->count = $request->count;
@@ -120,11 +120,9 @@ class CustomerController extends Controller
 
     function getReservations()
     {
-        // $customer = auth()->user();
+        $customer = auth()->user();
 
-        $customer_id=8;
-
-        $reservations = Reservation::where('customer_id', $customer_id)->with('restaurant')->get();
+        $reservations = Reservation::where('customer_id', $customer->id)->with('restaurant')->get();
 
         return response()->json(['reservations' => $reservations]);
     }
@@ -161,14 +159,14 @@ class CustomerController extends Controller
     
     function rateRestaurant(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
-        $customer_id=8;
-        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer_id])->first();
+        $customer = auth()->user();
+
+        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
         if($review) $review->delete();
         
         $review = new Review;
         $review->restaurant_id = $restaurant_id;
-        $review->customer_id = $customer_id;
+        $review->customer_id = $customer->id;
         $review->content = $request->content;
         $review->rating = $request->rating;
         $review->save();

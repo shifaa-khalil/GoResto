@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 });
 
-// Route::middleware(['customer'])->group(function(){
+Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
@@ -56,16 +56,16 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
     Route::get('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
-// });
+});
 
-// Route::middleware(['admin'])->group(function(){
+Route::middleware(['admin'])->group(function(){
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);
     Route::delete('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant']);
-// });
+});
 
-// Route::middleware(['manager'])->group(function(){
+Route::middleware(['manager'])->group(function(){
     Route::put('/updateRestaurant', [RestaurantController::class,'updateRestaurant']);
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);
@@ -78,6 +78,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getMenu', [RestaurantController::class, 'getMenu']);
     Route::get('/getRestaurant', [RestaurantController::class, 'getRestaurant']);
 
-// });
+});
 
 ?>

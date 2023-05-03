@@ -55,7 +55,7 @@ class AuthController extends Controller
                 ]
             ]);
         }else{
-            return response()->json(['status'=>'failure', 'message'=>'you are not a manager'], 400);
+            return response()->json(['status'=>'failure', 'message'=>'no access'], 400);
         }
     }
 

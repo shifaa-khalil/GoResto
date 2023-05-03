@@ -39,10 +39,7 @@ const Signin = () => {
       axios
         .post(`http://127.0.0.1:8000/api/login/manager`, data)
         .then((response) => {
-          console.log(response.data.restaurant.approved);
-          if (response.data.restaurant != null && response.data.menuItems >= 10)
-            navigate("/dashboard");
-          else if (response.data.restaurant == null) navigate("/setup");
+          if (response.data.restaurant == null) navigate("/setup");
           else if (response.data.menuItems < 10) navigate("/menu");
           else if (response.data.restaurant.approved === 0)
             navigate("/pending");
@@ -58,12 +55,37 @@ const Signin = () => {
             error.response &&
             error.response.data &&
             error.response.data.status === "failure" &&
-            error.response.data.message === "you are not a manager"
+            error.response.data.message === "no access"
           )
-            setError("You are not a manager");
+            submitAdmin();
+          // setError("You are not a manager");
           else setError("Email/Password is wrong");
         });
     }
+  };
+
+  const submitAdmin = () => {
+    const data = { email, password };
+    axios
+      .post(`http://127.0.0.1:8000/api/login/admin`, data)
+      .then((response) => {
+        // navigate("/admin");
+        console.log("admin");
+
+        localStorage.setItem("name", response.data.user.name);
+        localStorage.setItem("token", response.data.authorisation.token);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.status === "failure" &&
+          error.response.data.message === "no access"
+        )
+          setError("If you are a customer, download our mobile app");
+        else setError("Email/Password is wrong");
+      });
   };
 
   return (

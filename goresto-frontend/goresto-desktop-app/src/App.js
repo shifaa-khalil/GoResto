@@ -15,6 +15,7 @@ import ChatsReviews from "./pages/chatsReviews";
 import Reservations from "./pages/reservations";
 import Menu from "./pages/menu";
 import About from "./pages/about";
+import Admin from "./pages/admin";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,9 +49,7 @@ function App() {
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<About />} />
-
-        {/* <Route path="/admin" element={<UserList />} />
-         */}
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
