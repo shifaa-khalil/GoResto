@@ -2,10 +2,8 @@ import React from "react";
 import "../App.css";
 import DropDownMenu from "./dropDownMenu";
 import styles from "../css/navBar.module.css";
-import SearchBar from "../components/searchBar";
 
 const NavBar2 = (props) => {
-  const token = localStorage.getItem("token");
   const name = localStorage.getItem("name");
 
   return (
