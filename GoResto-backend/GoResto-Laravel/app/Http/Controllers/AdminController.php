@@ -51,8 +51,9 @@ class AdminController extends Controller
         $restaurant = Restaurant::find($restaurant_id);
         $menu = Menu::find($restaurant->menu_id);
 
-        $restaurant->delete();
-
+        $restoRequest->delete();
+        // $restaurant->delete();
+        
         return response()->json(['status' => 'success', 'message' => 'request rejected']);
     }
 

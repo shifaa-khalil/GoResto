@@ -17,7 +17,7 @@ class AdminMiddleware
 
         else if ($user->role !== 'admin')
         {
-            return response()->json('no access');
+            return response()->json(['error' => 'no access'], 400);
         }
         
         return $next($request);

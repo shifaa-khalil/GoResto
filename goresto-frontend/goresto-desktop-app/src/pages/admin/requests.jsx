@@ -33,17 +33,22 @@ const Requests = () => {
   }, []);
 
   const handleApprove = (id) => {
+    console.log("before");
     axios
-      .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, {
+      .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        console.log("approved");
+        console.log("in");
         setApproved(id);
       })
       .catch((error) => {
+        console.log("after");
+        if (error.response.data.error === "Unauthorized")
+          console.log("no token");
+        else console.log("no access");
         console.error(error);
       });
   };
@@ -102,9 +107,9 @@ const Requests = () => {
                       <td>{restoRequest.restaurant.menu.menuItem}</td>
                       <td>
                         <div className={styles.row}>
-                          {approved == restoRequest.id ? (
+                          {approved === restoRequest.id ? (
                             <span>Approved</span>
-                          ) : rejected == restoRequest.id ? (
+                          ) : rejected === restoRequest.id ? (
                             <span>Rejected</span>
                           ) : (
                             <>

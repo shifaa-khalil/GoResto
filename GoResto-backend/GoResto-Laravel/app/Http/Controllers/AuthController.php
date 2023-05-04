@@ -94,9 +94,6 @@ class AuthController extends Controller
             'status' => 'success',
             'message' => 'Successfully logged out',
         ]);
-        // $user = Auth::user();
-        // if($user) return response()->json(['user'=>$user]);
-        // else return response()->json(['message'=>'no user'], 401);
     }
 
     public function refresh()

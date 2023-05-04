@@ -20,17 +20,25 @@ import Restaurants from "./pages/admin/restaurants";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
-      // setIsLoading(false);
+      setIsLoading(false);
     }
+
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
-  // if (isLoading) return <h1>loading</h1>;
+  if (isLoading) return <h1>loading</h1>;
 
   return (
     <Router>

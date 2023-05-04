@@ -10,6 +10,7 @@
   flex-basis: 23%;
   margin-bottom: 8%;
   cursor: pointer;
+  border-radius: 15px;
 }
 .icon {
   height: 50px;
