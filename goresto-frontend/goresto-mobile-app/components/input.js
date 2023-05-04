@@ -2,7 +2,15 @@ import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { StyleSheet } from "react-native";
 
-const Input = ({ title, placeHolder, onChangeText, value }) => {
+const Input = ({
+  title,
+  placeHolder,
+  onChangeText,
+  value,
+  maxLength,
+  multiline,
+  numberOfLines,
+}) => {
   return (
     <View style={[styles.inputContainer]}>
       <Text style={[styles.label]}>{title}</Text>
@@ -11,6 +19,9 @@ const Input = ({ title, placeHolder, onChangeText, value }) => {
         value={value}
         onChangeText={onChangeText}
         placeholder={placeHolder}
+        maxLength={maxLength}
+        multiline={multiline}
+        numberOfLines={numberOfLines}
       />
     </View>
   );
@@ -28,7 +39,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 10,
     borderWidth: 1,
     fontSize: 18,
-    borderRadius: 15,
+    borderRadius: 8,
   },
 });
 

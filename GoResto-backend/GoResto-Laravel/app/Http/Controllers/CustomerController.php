@@ -190,15 +190,15 @@ class CustomerController extends Controller
 
     function addComment(Request $request, $review_id)
     {
-        $customer = auth()->user();
-
+        // $customer = auth()->user();
+        $customer_id=9;
         $comment = new Comment;
         $comment->review_id = $review_id;
-        $comment->user_id = $customer->id;
+        $comment->user_id = $customer_id;
         $comment->content = $request->content;
         $comment->save();
 
-        return response()->json(['status' => 'success', 'message' => 'comment added', 'comment' => $comment]);
+        return response()->json(['status' => 'success', 'message' => 'comment added']);
     }
 
     function getCustomerCount()

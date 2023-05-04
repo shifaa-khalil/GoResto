@@ -10,6 +10,7 @@ import { URL } from "../configs/URL";
 const Ratings = ({ route }) => {
   const navigation = useNavigation();
   const [reviews, setReviews] = useState([]);
+  const [reviewId, setReviewId] = useState("");
 
   useEffect(() => {
     axios
@@ -22,6 +23,26 @@ const Ratings = ({ route }) => {
         console.log(error);
       });
   }, []);
+
+  const handleSend = () => {
+    if (content !== "") {
+      const data = { content };
+      axios
+        .post(`${URL}/api/addComment/${reviewId}`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((response) => {
+          console.log(response.data.status);
+          console.log(response.data.message);
+          setContent("");
+          // Navigation.replace("RatingsReviews");
+          // navigation.navigate("Ratings");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -38,7 +59,10 @@ const Ratings = ({ route }) => {
               customerName={review.customer_id}
               rating={review.rating}
               review={review.content}
-              onComment={() => console.log("I am a comment")}
+              onComment={() => {
+                setReviewId(review.id);
+                handleSend();
+              }}
             />
           ))
         ) : (
