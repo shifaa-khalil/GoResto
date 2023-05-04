@@ -38,7 +38,7 @@ const LeftMenu = (props) => {
           icon={restaurants}
           sectionName="Restaurants"
           className={props.restaurantClassName}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/restaurants")}
         />
         <LeftMenuItem
           icon={customers}

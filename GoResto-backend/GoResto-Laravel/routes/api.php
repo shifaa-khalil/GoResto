@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 // });
 
 Route::middleware(['admin'])->group(function(){
-    Route::get('getRestaurants',[AdminController::class,'getRestaurants']);
+    Route::get('getRestaurantsdata',[AdminController::class,'getRestaurants']);
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);

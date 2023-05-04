@@ -7,24 +7,24 @@ import LeftMenu from "../../components/admin/leftMenu";
 import DropDownList from "../../components/dropDownList";
 import styles from "../../css/admin/admin.module.css";
 
-const Requests = () => {
+const Restaurants = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
-  const [restoRequests, setRestoRequests] = useState([]);
-  const [approved, setApproved] = useState("");
-  const [rejected, setRejected] = useState("");
+  const [restaurants, setRestaurants] = useState([]);
+  //   const [approved, setApproved] = useState("");
+  //   const [rejected, setRejected] = useState("");
 
   useEffect(() => {
     // if (token) {
     axios
-      .get(`http://127.0.0.1:8000/api/getRequests`, {
+      .get(`http://127.0.0.1:8000/api/getRestaurants`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        setRestoRequests(response.data.restoRequests);
+        setRestaurants(response.data.restaurants);
       })
       .catch((error) => {
         console.error(error);
@@ -32,41 +32,41 @@ const Requests = () => {
     // } else navigate("/signin");
   }, []);
 
-  const handleApprove = (id) => {
-    axios
-      .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log("approved");
-        setApproved(id);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  //   const handleApprove = (id) => {
+  //     axios
+  //       .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log("approved");
+  //         setApproved(id);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   };
 
-  const handleReject = (id) => {
-    axios
-      .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setRejected(id);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  //   const handleReject = (id) => {
+  //     axios
+  //       .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setRejected(id);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   };
 
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu requestsClassName={styles.open} />
+        <LeftMenu restaurantClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Requests" className="block" />
@@ -83,24 +83,21 @@ const Requests = () => {
                   <th>Location</th>
                   <th>tables</th>
                   <th>Menu</th>
-                  <th>approval</th>
+                  {/* <th>approval</th> */}
                 </tr>
               </thead>
               <tbody>
-                {restoRequests &&
-                  restoRequests.map((restoRequest) => (
-                    <tr
-                      className="normalweight mediumsize"
-                      key={restoRequest.id}
-                    >
-                      <td>{restoRequest.id}</td>
-                      <td>{restoRequest.restaurant.name}</td>
-                      <td>{restoRequest.restaurant.manager_id}</td>
-                      <td>{restoRequest.restaurant.logo}</td>
-                      <td>{restoRequest.restaurant.location}</td>
-                      <td>{restoRequest.restaurant.number_of_tables}</td>
-                      <td>{restoRequest.restaurant.menu.menuItem}</td>
-                      <td>
+                {restaurants &&
+                  restaurants.map((restaurant) => (
+                    <tr className="normalweight mediumsize" key={restaurant.id}>
+                      <td>{restaurant.id}</td>
+                      <td>{restaurant.name}</td>
+                      <td>{restaurant.manager_id}</td>
+                      <td>{restaurant.logo}</td>
+                      <td>{restaurant.location}</td>
+                      <td>{restaurant.number_of_tables}</td>
+                      <td>{restaurant.menu.menuItem}</td>
+                      {/* <td>
                         {approved == restoRequest.id ? (
                           <span>Approved</span>
                         ) : rejected == restoRequest.id ? (
@@ -119,7 +116,7 @@ const Requests = () => {
                             </button>
                           </>
                         )}
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
               </tbody>
@@ -131,4 +128,4 @@ const Requests = () => {
   );
 };
 
-export default Requests;
+export default Restaurants;
