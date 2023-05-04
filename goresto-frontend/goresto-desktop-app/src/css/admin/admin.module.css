@@ -18,7 +18,7 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  /* height: 65vh; */
+  height: 20vh;
   width: 100%;
 }
 .open {
@@ -26,28 +26,41 @@
 }
 table {
   border-collapse: collapse;
+  table-layout: fixed;
+  border-radius: 10px;
+}
+/* tr {
+  height: 10px;
+  max-height: 15px;
+  line-height: 40px;
+} */
+th,
+td {
+  border: 1px solid rgb(136, 132, 132);
+  width: 120px;
+  max-width: 190px;
+  /* min-height: 15px; */
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 40px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 th {
   background-color: rgba(133, 128, 128, 0.719);
   font-size: 14px;
-  border-color: rgb(136, 132, 132);
-  max-width: 150px;
-  width: 70px;
-  text-align: center;
 }
 td {
-  border-color: rgb(136, 132, 132);
-  text-align: center;
   font-size: 13px;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px;
-  width: 70px;
   background-color: var(--grey);
 }
-.approve {
-  margin-bottom: 5px;
+.row {
+  display: flex;
+  justify-content: space-between;
 }
+
 /* For Webkit Browsers */
 ::-webkit-scrollbar {
   width: 8px;

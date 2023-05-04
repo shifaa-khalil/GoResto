@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
 import NavBar2 from "../../components/navBar2";
@@ -10,10 +9,8 @@ import styles from "../../css/admin/admin.module.css";
 const Restaurants = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
-  //   const [approved, setApproved] = useState("");
-  //   const [rejected, setRejected] = useState("");
+  const [deleted, setDeleted] = useState("");
 
   useEffect(() => {
     // if (token) {
@@ -32,36 +29,20 @@ const Restaurants = () => {
     // } else navigate("/signin");
   }, []);
 
-  //   const handleApprove = (id) => {
-  //     axios
-  //       .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         console.log("approved");
-  //         setApproved(id);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
-
-  //   const handleReject = (id) => {
-  //     axios
-  //       .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setRejected(id);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/deleteRestaurant/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setDeleted(id);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -69,7 +50,7 @@ const Restaurants = () => {
         <LeftMenu restaurantClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Requests" className="block" />
+        <NavBar2 sectionName="Restaurants" className="block" />
         <DropDownList />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
@@ -83,7 +64,7 @@ const Restaurants = () => {
                   <th>Location</th>
                   <th>tables</th>
                   <th>Menu</th>
-                  {/* <th>approval</th> */}
+                  <th>action</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,26 +78,15 @@ const Restaurants = () => {
                       <td>{restaurant.location}</td>
                       <td>{restaurant.number_of_tables}</td>
                       <td>{restaurant.menu.menuItem}</td>
-                      {/* <td>
-                        {approved == restoRequest.id ? (
-                          <span>Approved</span>
-                        ) : rejected == restoRequest.id ? (
-                          <span>Rejected</span>
+                      <td>
+                        {deleted == restaurant.id ? (
+                          <span>Deleted</span>
                         ) : (
-                          <>
-                            <button
-                              onClick={() => handleApprove(restoRequest.id)}
-                            >
-                              approve
-                            </button>
-                            <button
-                              onClick={() => handleReject(restoRequest.id)}
-                            >
-                              reject
-                            </button>
-                          </>
+                          <button onClick={() => handleDelete(restaurant.id)}>
+                            remove
+                          </button>
                         )}
-                      </td> */}
+                      </td>
                     </tr>
                   ))}
               </tbody>

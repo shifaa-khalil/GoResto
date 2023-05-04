@@ -18,7 +18,7 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  height: 65vh;
+  height: 20vh;
   width: 100%;
 }
 .open {
@@ -26,19 +26,44 @@
 }
 table {
   border-collapse: collapse;
+  table-layout: fixed;
+  border-radius: 10px;
 }
+/* tr {
+  height: 10px;
+  max-height: 15px;
+  line-height: 40px;
+} */
 th,
 td {
-  border: 1px solid black;
-  height: 15px;
-  width: 211px;
-  vertical-align: middle;
-  text-align: left;
-  padding: 20px;
+  border: 1px solid rgb(136, 132, 132);
+  width: 120px;
+  max-width: 190px;
+  /* min-height: 15px; */
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 40px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
+th {
+  background-color: rgba(133, 128, 128, 0.719);
+  font-size: 14px;
+}
+td {
+  font-size: 13px;
+  background-color: var(--grey);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* For Webkit Browsers */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -46,6 +71,5 @@ td {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: black;
-  /* border-radius: 15px; */
+  background-color: rgb(136, 132, 132);
 }

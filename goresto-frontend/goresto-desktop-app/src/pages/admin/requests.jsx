@@ -101,24 +101,26 @@ const Requests = () => {
                       <td>{restoRequest.restaurant.number_of_tables}</td>
                       <td>{restoRequest.restaurant.menu.menuItem}</td>
                       <td>
-                        {approved == restoRequest.id ? (
-                          <span>Approved</span>
-                        ) : rejected == restoRequest.id ? (
-                          <span>Rejected</span>
-                        ) : (
-                          <>
-                            <button
-                              onClick={() => handleApprove(restoRequest.id)}
-                            >
-                              approve
-                            </button>
-                            <button
-                              onClick={() => handleReject(restoRequest.id)}
-                            >
-                              reject
-                            </button>
-                          </>
-                        )}
+                        <div className={styles.row}>
+                          {approved == restoRequest.id ? (
+                            <span>Approved</span>
+                          ) : rejected == restoRequest.id ? (
+                            <span>Rejected</span>
+                          ) : (
+                            <>
+                              <button
+                                onClick={() => handleApprove(restoRequest.id)}
+                              >
+                                approve
+                              </button>
+                              <button
+                                onClick={() => handleReject(restoRequest.id)}
+                              >
+                                reject
+                              </button>
+                            </>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
