@@ -32,35 +32,37 @@ const Signin = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
       const data = { email, password };
-      axios
-        .post(`http://127.0.0.1:8000/api/login/manager`, data)
-        .then((response) => {
-          if (response.data.restaurant == null) navigate("/setup");
-          else if (response.data.menuItems < 10) navigate("/menu");
-          else if (response.data.restaurant.approved === 0)
-            navigate("/pending");
-          else navigate("/dashboard");
+      try {
+        const response = await axios.post(
+          `http://127.0.0.1:8000/api/login/manager`,
+          data
+        );
+        localStorage.setItem("name", response.data.user.name);
+        localStorage.setItem("token", response.data.authorisation.token);
+        localStorage.setItem("role", response.data.user.role);
+        localStorage.setItem("menuItems", response.data.menuItems);
+        localStorage.setItem("restaurant", response.data.restaurant);
 
-          localStorage.setItem("name", response.data.user.name);
-          localStorage.setItem("token", response.data.authorisation.token);
-          localStorage.setItem("menuItems", response.data.menuItems);
-        })
-        .catch((error) => {
-          console.error(error);
-          if (
-            error.response &&
-            error.response.data &&
-            error.response.data.status === "failure" &&
-            error.response.data.message === "no access"
-          )
-            submitAdmin();
-          // setError("You are not a manager");
-          else setError("Email/Password is wrong");
-        });
+        await new Promise((resolve) => setTimeout(resolve, 0));
+        if (response.data.restaurant == null) navigate("/setup");
+        else if (response.data.menuItems < 10) navigate("/menu");
+        else if (response.data.restaurant.approved === 0) navigate("/pending");
+        else navigate("/dashboard");
+      } catch (error) {
+        console.error(error);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.status === "failure" &&
+          error.response.data.message === "no access"
+        )
+          submitAdmin();
+        else setError("Email/Password is wrong");
+      }
     }
   };
 
@@ -69,11 +71,10 @@ const Signin = () => {
     axios
       .post(`http://127.0.0.1:8000/api/login/admin`, data)
       .then((response) => {
-        navigate("/requests");
-
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("token", response.data.authorisation.token);
         localStorage.setItem("role", response.data.user.role);
+        navigate("/requests");
       })
       .catch((error) => {
         console.error(error);

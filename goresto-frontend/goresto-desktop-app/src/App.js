@@ -22,17 +22,38 @@ import NoAccess from "./pages/noAccess";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isManager, setIsManager] = useState(false);
+  const [hasRestaurant, setHasRestaurant] = useState(false);
+  const [hasMenu, setHasMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
+    const menuItems = localStorage.getItem("menuItems");
+    // const name = localStorage.getItem("name");
+    const restaurant = localStorage.getItem("restaurant");
+
+    // if (response.data.restaurant == null) navigate("/setup");
+    // else if (response.data.menuItems < 10) navigate("/menu");
+    // else if (response.data.restaurant.approved === 0) navigate("/pending");
+    // else navigate("/dashboard");
 
     if (token) {
-      // setIsAuthenticated(true);
+      setIsAuthenticated(true);
       if (role == "admin") {
         setIsAdmin(true);
         setIsLoading(false);
+      }
+      if (role == "manager") {
+        setIsManager(true);
+        if (restaurant !== null) {
+          setHasRestaurant(true);
+          if (menuItems) {
+            setHasMenu(true);
+            setIsLoading(false);
+          }
+        }
       }
     }
 
@@ -55,43 +76,33 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />}></Route>
+        <Route path="/noAccess" element={<NoAccess />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/setup"
           element={
-            <Setup />
-            // isAuthenticated ? <Setup /> : <Navigate to="/signin" replace />
-          }
-        />
-        {/* <Route
-          path="/pending"
-          element={
-            isAuthenticated ? <Pending /> : <Navigate to="/signin" replace />
-          }
-        /> */}
-        {/* <Route
-          path="/dashboard"
-          element={
-            isAuthenticated ? <Dashboard /> : <Navigate to="/signin" replace />
-          }
-        />
-        <Route
-          path="/chatsReviews"
-          element={
             isAuthenticated ? (
-              <ChatsReviews />
+              isManager ? (
+                <Setup />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
             ) : (
               <Navigate to="/signin" replace />
             )
           }
-        /> */}
-        {/* <Route
-          path="/reservations"
+        />
+        <Route
+          path="/pending"
           element={
             isAuthenticated ? (
-              <Reservations />
+              isManager ? (
+                <Pending />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
             ) : (
               <Navigate to="/signin" replace />
             )
@@ -100,26 +111,104 @@ function App() {
         <Route
           path="/menu"
           element={
-            isAuthenticated ? <Menu /> : <Navigate to="/signin" replace />
+            isAuthenticated ? (
+              isManager ? (
+                hasRestaurant ? (
+                  <Menu />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
           }
         />
         <Route
+          path="/dashboard"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <Dashboard />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/chatsReviews"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <ChatsReviews />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <Reservations />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+
+        <Route
           path="/about"
           element={
-            isAuthenticated ? <About /> : <Navigate to="/signin" replace />
+            isAuthenticated ? (
+              isManager ? (
+                <Restaurants />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
           }
         />
         <Route
           path="/requests"
           element={
-            isAuthenticated ? <Requests /> : <Navigate to="/signin" replace />
+            isAuthenticated ? (
+              isAdmin ? (
+                <Requests />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
           }
-        /> */}
-        <Route path="/noAccess" element={<NoAccess />} />
+        />
         <Route
           path="/restaurants"
           element={
-            isAdmin ? <Restaurants /> : <Navigate to="/noAccess" replace />
+            isAuthenticated ? (
+              isAdmin ? (
+                <Restaurants />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
           }
         />
       </Routes>

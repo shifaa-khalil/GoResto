@@ -22,6 +22,9 @@ const LeftMenu = (props) => {
     if (token) {
       localStorage.removeItem("token");
       localStorage.removeItem("name");
+      localStorage.removeItem("role");
+      localStorage.removeItem("menuItems");
+      localStorage.removeItem("restaurant");
       navigate("/signin");
     }
   };
@@ -83,7 +86,7 @@ const LeftMenu = (props) => {
         />
         <LeftMenuItem
           icon={signout}
-          sectionName="Signout"
+          sectionName="Sign out"
           onClick={handleSignoutClick}
         />
       </div>
