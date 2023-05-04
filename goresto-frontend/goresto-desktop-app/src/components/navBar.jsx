@@ -15,18 +15,6 @@ const NavBar = () => {
     if (token) setAuthenticated(true);
   }, []);
 
-  const handleStepsClick = () => {
-    navigate("");
-  };
-  const handleAboutClick = () => {
-    navigate("");
-  };
-  const handleContactClick = () => {
-    navigate("");
-  };
-  const handleSigninClick = () => {
-    navigate("/signin");
-  };
   return (
     <div className={`flex-row ${styles.navBar}`}>
       <div className="logo">
@@ -34,10 +22,10 @@ const NavBar = () => {
       </div>
 
       <div className={`flex-row ${styles.navLinks}`}>
-        <p onClick={() => handleStepsClick()}>How it works</p>
-        <p onClick={() => handleAboutClick()}>About</p>
-        <p onClick={() => handleContactClick()}>Contact</p>
-        <p onClick={() => handleSigninClick()}>
+        <p onClick={() => navigate("/")}>How it works</p>
+        <p onClick={() => navigate("/")}>About</p>
+        <p onClick={() => navigate("/")}>Contact</p>
+        <p onClick={() => navigate("/signin")}>
           {authenticated ? name : "Sign in"}
         </p>
       </div>

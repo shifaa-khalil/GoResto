@@ -11,7 +11,6 @@ const NavBar2 = (props) => {
   return (
     <div className={`flex-row ${styles.navBar2}`}>
       <h1>{props.sectionName}</h1>
-      <SearchBar className={props.className} />
       <div className={styles.dropDownContainer}>
         <DropDownMenu value={name} />
       </div>
