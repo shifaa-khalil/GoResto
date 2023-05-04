@@ -183,7 +183,7 @@ class CustomerController extends Controller
 
         if(!$reviews) return response()->json('no reviews');
         
-        $comments = Comment::all();
+        // $comments = Comment::all();
 
         return response()->json(['reviews' => $reviews]);
     }

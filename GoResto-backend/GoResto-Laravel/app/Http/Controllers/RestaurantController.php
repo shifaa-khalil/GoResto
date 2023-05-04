@@ -200,4 +200,23 @@ class RestaurantController extends Controller
         }
         return response()->json(['status'=>'failure', 'message'=>'no restaurant added']);
     }
+
+    function getReviews()
+    {
+        $manager = auth()->user();
+        
+        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        if($restaurant){
+
+        $reviews = Review::where('restaurant_id', $restaurant->id)->with('comment')->get();
+
+        if(!$reviews) return response()->json('no reviews');
+        
+        // $comments = Comment::all();
+
+        return response()->json(['reviews' => $reviews]);
+        }
+        return response()->json(['status'=>'failure', 'message'=>'no restaurant added']);
+
+    }
 }

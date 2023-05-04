@@ -78,6 +78,7 @@ Route::middleware(['manager'])->group(function(){
     Route::put('/calculateRating', [RestaurantController::class, 'calculateRating']);
     Route::get('/getMenu', [RestaurantController::class, 'getMenu']);
     Route::get('/getRestaurant', [RestaurantController::class, 'getRestaurant']);
+    Route::get('/getReviewsRestaurant', [RestaurantController::class, 'getReviews']);
 
 });
 
