@@ -27,14 +27,19 @@
 table {
   border-collapse: collapse;
 }
-th,
+th {
+  background-color: rgb(177, 175, 175);
+  font-size: 15px;
+  height: 5px;
+}
 td {
+  font-size: 15px;
   border: 1px solid black;
-  height: 35px;
-  width: 211px;
-  vertical-align: middle;
+  height: 15px;
+  /* vertical-align: middle; */
   text-align: left;
-  padding: 20px;
+  /* padding: 20px; */
+  background-color: var(--grey);
 }
 /* For Webkit Browsers */
 ::-webkit-scrollbar {

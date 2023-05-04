@@ -4,9 +4,8 @@ import axios from "axios";
 import "../../App.css";
 import NavBar2 from "../../components/navBar2";
 import LeftMenu from "../../components/admin/leftMenu";
-import styles from "../../css/reservations.module.css";
 import DropDownList from "../../components/dropDownList";
-import RequestCard from "../../components/admin/requestCard";
+import styles from "../../css/admin/admin.module.css";
 
 const Admin = () => {
   const [error, setError] = useState("");
@@ -41,7 +40,6 @@ const Admin = () => {
         <DropDownList />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            <RequestCard />
             <table>
               <thead>
                 <tr className="semibold">
@@ -50,7 +48,8 @@ const Admin = () => {
                   <th>Manager</th>
                   <th>Logo</th>
                   <th>Location</th>
-                  <th>number_of_tables</th>
+                  <th>Number of tables</th>
+                  <th>Menu</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,6 +65,7 @@ const Admin = () => {
                       <td>{restoRequest.restaurant.logo}</td>
                       <td>{restoRequest.restaurant.location}</td>
                       <td>{restoRequest.restaurant.number_of_tables}</td>
+                      <td>{restoRequest.restaurant.menu.menuItem}</td>
                     </tr>
                   ))}
               </tbody>

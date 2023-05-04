@@ -10,8 +10,8 @@ const RequestCard = (props) => {
       className={`flex-column ${styles.card} ${props.className}`}
       onClick={props.onClick}
     >
-      <span className="normalweight">{props.title}</span>
-      <span className="bold">{props.value}</span>
+      <span className="normalweight">{props.requestId}</span>
+      <span className="bold">{props.restaurantName}</span>
       <img src={props.src} className={styles.icon} />
     </div>
   );
