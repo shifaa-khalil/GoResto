@@ -15,6 +15,15 @@ import logo from "../images/logo.png";
 
 const LeftMenu = (props) => {
   const navigate = useNavigate();
+  const [token, setToken] = localStorage.getItem("token");
+
+  const handleSignoutClick = () => {
+    if (token) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("name");
+      navigate("/signin");
+    }
+  };
 
   return (
     <div className={`flex-column ${styles.container} ${props.className}`}>
@@ -71,6 +80,7 @@ const LeftMenu = (props) => {
           className={props.aboutClassName}
           onClick={() => navigate("/about")}
         />
+        <LeftMenuItem sectionName="Signout" onClick={handleSignoutClick} />
       </div>
     </div>
   );

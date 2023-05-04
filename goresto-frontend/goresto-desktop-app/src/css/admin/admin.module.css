@@ -28,26 +28,25 @@ table {
   border-collapse: collapse;
 }
 th {
-  background-color: rgb(177, 175, 175);
+  background-color: rgba(133, 128, 128, 0.719);
   font-size: 14px;
   border-color: rgb(119, 117, 117);
   max-width: 150px;
-
-  width: 80px;
+  width: 70px;
+  text-align: center;
 }
 td {
   border-color: rgb(119, 117, 117);
-  /* height: 15px; */
-  /* vertical-align: middle; */
-  text-align: left;
+  text-align: center;
   font-size: 13px;
   overflow-x: hidden;
   text-overflow: ellipsis;
   max-width: 150px;
-
-  width: 80px;
-  /* padding: 20px; */
+  width: 70px;
   background-color: var(--grey);
+}
+.approve {
+  margin-bottom: 5px;
 }
 /* For Webkit Browsers */
 ::-webkit-scrollbar {

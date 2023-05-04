@@ -50,6 +50,7 @@ const Admin = () => {
                   <th>Location</th>
                   <th>tables</th>
                   <th>Menu</th>
+                  <th>approval</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,6 +67,17 @@ const Admin = () => {
                       <td>{restoRequest.restaurant.location}</td>
                       <td>{restoRequest.restaurant.number_of_tables}</td>
                       <td>{restoRequest.restaurant.menu.menuItem}</td>
+                      <td>
+                        <button
+                          className="approve"
+                          onClick={() => console.log("approved")}
+                        >
+                          approve
+                        </button>
+                        <button onClick={() => console.log("rejected")}>
+                          reject
+                        </button>
+                      </td>
                     </tr>
                   ))}
               </tbody>

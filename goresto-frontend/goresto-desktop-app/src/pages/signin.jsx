@@ -69,8 +69,7 @@ const Signin = () => {
     axios
       .post(`http://127.0.0.1:8000/api/login/admin`, data)
       .then((response) => {
-        // navigate("/admin");
-        console.log("admin");
+        navigate("/requests");
 
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("token", response.data.authorisation.token);
