@@ -6,36 +6,29 @@ import Input from "./input";
 import Send from "../assets/send.png";
 import { URL } from "../configs/URL";
 
-const ReviewCard = ({
-  customerName,
-  date,
-  rating,
-  review,
-  onComment,
-  content,
-}) => {
+const ReviewCard = ({ customerName, date, rating, review, reviewId }) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [content, setContent] = useState("");
 
-  // const handleSend = () => {
-  //   if (content !== "") {
-  //     const data = { content };
-  //     axios
-  //       .post(`${URL}/api/addComment/20`, data, {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       })
-  //       .then((response) => {
-  //         console.log(response.data.status);
-  //         console.log(response.data.message);
-  //         setContent("");
-  //         // Navigation.replace("RatingsReviews");
-  //         // navigation.navigate("Ratings");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // };
+  const handleSend = () => {
+    if (content !== "") {
+      const data = { content };
+      axios
+        .post(`${URL}/api/addComment/${reviewId}`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((response) => {
+          console.log(response.data.status);
+          console.log(response.data.message);
+          setContent("");
+          // Navigation.replace("RatingsReviews");
+          // navigation.navigate("Ratings");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,7 +66,7 @@ const ReviewCard = ({
               multiline={true}
               numberOfLines={4}
             />
-            <TouchableOpacity onPress={onComment} style={[styles.button]}>
+            <TouchableOpacity onPress={handleSend} style={[styles.button]}>
               <Image source={Send} />
             </TouchableOpacity>
           </View>

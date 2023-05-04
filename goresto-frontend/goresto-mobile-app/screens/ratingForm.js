@@ -48,7 +48,9 @@ const Rating = ({ route }) => {
         .then((response) => {
           console.log(response.data.status);
           console.log(response.data.message);
-          navigation.navigate("Ratings");
+          navigation.navigate("Ratings", {
+            restaurant_id: route.params.restaurant_id,
+          });
         })
         .catch((error) => {
           console.log(error);
