@@ -12,6 +12,7 @@ const Admin = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
   const [restoRequests, setRestoRequests] = useState([]);
+  const [approved, setApproved] = useState(false);
 
   useEffect(() => {
     // if (token) {
@@ -29,6 +30,21 @@ const Admin = () => {
       });
     // } else navigate("/signin");
   }, []);
+
+  const handleApprove = (id) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setApproved(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -68,15 +84,18 @@ const Admin = () => {
                       <td>{restoRequest.restaurant.number_of_tables}</td>
                       <td>{restoRequest.restaurant.menu.menuItem}</td>
                       <td>
-                        <button
-                          className="approve"
-                          onClick={() => console.log("approved")}
-                        >
-                          approve
-                        </button>
-                        <button onClick={() => console.log("rejected")}>
-                          reject
-                        </button>
+                        {approved ? (
+                          <span>Approved</span>
+                        ) : (
+                          <>
+                            <button onClick={handleApprove(restoRequest.id)}>
+                              approve
+                            </button>
+                            <button onClick={() => console.log("rejected")}>
+                              reject
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))}
