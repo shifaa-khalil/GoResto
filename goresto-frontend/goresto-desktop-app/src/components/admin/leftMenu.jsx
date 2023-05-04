@@ -7,6 +7,7 @@ import requests from "../../images/request.png";
 import customers from "../../images/customers.png";
 import restaurants from "../../images/restaurant.png";
 import chats from "../../images/chats.png";
+import signout from "../../images/signout.png";
 import logo from "../../images/logo.png";
 
 const LeftMenu = (props) => {
@@ -51,7 +52,11 @@ const LeftMenu = (props) => {
           className={props.chatsClassName}
           onClick={() => navigate("/")}
         />
-        <LeftMenuItem sectionName="Signout" onClick={handleSignoutClick} />
+        <LeftMenuItem
+          icon={signout}
+          sectionName="Signout"
+          onClick={handleSignoutClick}
+        />
       </div>
     </div>
   );

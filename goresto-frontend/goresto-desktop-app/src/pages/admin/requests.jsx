@@ -12,8 +12,8 @@ const Admin = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
   const [restoRequests, setRestoRequests] = useState([]);
-  const [approved, setApproved] = useState(false);
-  const [rejected, setRejected] = useState(false);
+  const [approved, setApproved] = useState("");
+  const [rejected, setRejected] = useState("");
 
   useEffect(() => {
     // if (token) {
@@ -41,7 +41,7 @@ const Admin = () => {
       })
       .then((response) => {
         console.log("approved");
-        // setApproved(true);
+        setApproved(id);
       })
       .catch((error) => {
         console.error(error);
@@ -56,8 +56,7 @@ const Admin = () => {
         },
       })
       .then((response) => {
-        console.log("Rejected");
-        // setRejected(true);
+        setRejected(id);
       })
       .catch((error) => {
         console.error(error);
@@ -102,9 +101,9 @@ const Admin = () => {
                       <td>{restoRequest.restaurant.number_of_tables}</td>
                       <td>{restoRequest.restaurant.menu.menuItem}</td>
                       <td>
-                        {approved ? (
+                        {approved == restoRequest.id ? (
                           <span>Approved</span>
-                        ) : rejected ? (
+                        ) : rejected == restoRequest.id ? (
                           <span>Rejected</span>
                         ) : (
                           <>

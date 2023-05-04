@@ -11,6 +11,7 @@ import offers from "../images/offers.jpeg";
 import chats from "../images/chats.png";
 import earnings from "../images/earnings.png";
 import about from "../images/about.png";
+import signout from "../images/signout.png";
 import logo from "../images/logo.png";
 
 const LeftMenu = (props) => {
@@ -80,7 +81,11 @@ const LeftMenu = (props) => {
           className={props.aboutClassName}
           onClick={() => navigate("/about")}
         />
-        <LeftMenuItem sectionName="Signout" onClick={handleSignoutClick} />
+        <LeftMenuItem
+          icon={signout}
+          sectionName="Signout"
+          onClick={handleSignoutClick}
+        />
       </div>
     </div>
   );
