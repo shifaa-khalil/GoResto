@@ -14,13 +14,13 @@ const ReviewCard = (props) => {
           {props.rating}
           <img src={star} />
         </span>
-        <span className={`normalweight smallsize ${styles.date}`}>
-          {props.date}
-        </span>
       </div>
       <div>
         <p className="normalweight smallsize">{props.content}</p>
       </div>
+      <span className={`normalweight smallsize ${styles.date}`}>
+        {props.date}
+      </span>
     </div>
   );
 };

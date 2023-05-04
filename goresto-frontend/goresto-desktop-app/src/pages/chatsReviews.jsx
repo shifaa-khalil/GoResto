@@ -58,7 +58,7 @@ const ChatsReviews = () => {
                 <ReviewCard
                   name={review.customer_id}
                   rating={review.rating}
-                  date="a month ago"
+                  date={new Date(review.created_at).toLocaleDateString()}
                   content={review.content}
                 />
               ))}

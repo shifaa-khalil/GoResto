@@ -1,4 +1,6 @@
 .reviewCard {
+  display: flex;
+  flex-direction: column;
   height: 150px;
   width: 460px;
   background-color: var(--grey);
@@ -6,7 +8,7 @@
   margin-bottom: 20px;
 }
 .reviewCard span {
-  text-align: left;
+  /* text-align: left; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -18,7 +20,8 @@
   flex-basis: 10%;
 }
 .date {
-  flex-basis: 30%;
+  /* flex-basis: 30%; */
+  align-self: flex-end;
 }
 p {
   text-align: left;
