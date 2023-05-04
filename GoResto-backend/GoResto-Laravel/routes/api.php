@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 });
 
-Route::middleware(['customer'])->group(function(){
+// Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
@@ -56,7 +56,7 @@ Route::middleware(['customer'])->group(function(){
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
     Route::get('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);
-});
+// });
 
 // Route::middleware(['admin'])->group(function(){
     Route::get('getRequests',[AdminController::class,'getRequests']);

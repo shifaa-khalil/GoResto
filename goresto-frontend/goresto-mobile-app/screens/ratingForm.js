@@ -58,7 +58,7 @@ const Rating = ({ route }) => {
 
   return (
     <View style={[styles.container]}>
-      <NavBar />
+      {/* <NavBar /> */}
       <Text>{error}</Text>
       <View style={[styles.form]}>
         <Text>Rate {route.params.name}</Text>

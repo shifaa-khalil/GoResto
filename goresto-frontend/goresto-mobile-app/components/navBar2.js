@@ -181,6 +181,9 @@ const NavBar2 = ({
           <TouchableOpacity onPress={onSubmit}>
             <Text style={[styles.filter]}>Submit</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => setVisible(false)}>
+            <Text style={[styles.filter]}>Hide</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </View>

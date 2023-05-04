@@ -84,7 +84,7 @@ class RestaurantController extends Controller
         $menu_id = $restaurant->menu_id;
 
         try{
-            $request->validate(['name' => 'unique:menu_items,name,menu_id'. $menu_id]);
+            $request->validate([ 'name' => 'unique:menu_items,name,NULL,id,menu_id,' . $menu_id]);
         } catch (\Illuminate\Validation\ValidationException $e){
             return response()->json(['status' => 'failure', 'message' => 'item already exists'], 400);
             // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);

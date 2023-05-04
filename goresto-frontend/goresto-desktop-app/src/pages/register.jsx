@@ -68,15 +68,15 @@ const Register = () => {
       <div className={`flex-row ${styles.bodyContainer}`}>
         <img src={polygon1} className="polygon1" />
         <div className={`flex-column ${styles.form}`}>
-          <div>
-            <img src={gopro} className="go-pro" />
+          <div className={styles.heading}>
+            <p className="giantsize bold">Register</p>
           </div>
           {error && <p className={styles.error}>{error}</p>}
           <Input
             type="text"
             label="Name"
             value={name}
-            placeholder="Name"
+            placeholder="John Doe"
             onChange={(e) => {
               setName(e.target.value);
               handleInputChange(e);
@@ -86,7 +86,7 @@ const Register = () => {
             type="email"
             label="Email"
             value={email}
-            placeholder="Email"
+            placeholder="example@domain.com"
             onChange={(e) => {
               setEmail(e.target.value);
               handleInputChange(e);
@@ -96,7 +96,7 @@ const Register = () => {
             type="password"
             label="Password"
             value={password}
-            placeholder="Password"
+            placeholder="********"
             onChange={(e) => {
               setPassword(e.target.value);
               handleInputChange(e);
@@ -106,7 +106,7 @@ const Register = () => {
             type="password"
             label="Confirm password"
             value={confirmPassword}
-            placeholder="Confirm password"
+            placeholder="********"
             onChange={(e) => {
               setConfirmPassword(e.target.value);
               handleInputChange(e);

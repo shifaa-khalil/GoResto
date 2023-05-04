@@ -8,11 +8,7 @@ const DropDownMenu = (props) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  return (
-    <div className={styles.value} onClick={handleUserClick}>
-      <span>Welcome, {props.value}</span>
-    </div>
-  );
+  return <span>Welcome, {props.value}</span>;
 };
 
 export default DropDownMenu;

@@ -13,6 +13,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const [restoRequests, setRestoRequests] = useState([]);
   const [approved, setApproved] = useState(false);
+  const [rejected, setRejected] = useState(false);
 
   useEffect(() => {
     // if (token) {
@@ -39,7 +40,24 @@ const Admin = () => {
         },
       })
       .then((response) => {
-        setApproved(true);
+        console.log("approved");
+        // setApproved(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleReject = (id) => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("Rejected");
+        // setRejected(true);
       })
       .catch((error) => {
         console.error(error);
@@ -86,12 +104,18 @@ const Admin = () => {
                       <td>
                         {approved ? (
                           <span>Approved</span>
+                        ) : rejected ? (
+                          <span>Rejected</span>
                         ) : (
                           <>
-                            <button onClick={handleApprove(restoRequest.id)}>
+                            <button
+                              onClick={() => handleApprove(restoRequest.id)}
+                            >
                               approve
                             </button>
-                            <button onClick={() => console.log("rejected")}>
+                            <button
+                              onClick={() => handleReject(restoRequest.id)}
+                            >
                               reject
                             </button>
                           </>

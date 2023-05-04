@@ -79,6 +79,8 @@ const Menu = () => {
             setCategory("");
             setCuisine("");
             setSuccess("Item added successfully!");
+            setError("");
+            setMenuItems(menuItems + 1);
             // navigate("/pending");
             // localStorage.setItem("name", response.data.message.name);
           })

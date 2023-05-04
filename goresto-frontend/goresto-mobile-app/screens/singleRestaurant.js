@@ -14,7 +14,7 @@ const Restaurant = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        <NavBar2 />
+        {/* <NavBar2 /> */}
         <View style={[styles.restaurant]}>
           <Image source={route.params.image} style={[styles.image]} />
           <View style={[styles.details]}>

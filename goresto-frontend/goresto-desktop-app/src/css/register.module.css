@@ -25,3 +25,7 @@
   width: fit-content;
   padding: 5px;
 }
+.heading {
+  align-self: center;
+  margin-bottom: 30px;
+}

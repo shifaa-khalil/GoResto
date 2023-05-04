@@ -98,7 +98,7 @@ const Reserving = ({ route }) => {
 
   return (
     <View style={[styles.container]}>
-      <NavBar />
+      {/* <NavBar /> */}
       <Text>{error}</Text>
       <View style={[styles.form]}>
         <Calendar onDateSelect={handleDateSelection} />

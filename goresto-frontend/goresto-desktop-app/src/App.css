@@ -21,6 +21,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
 }
 .flex-row {
   display: flex;
@@ -43,6 +44,9 @@
 }
 .bold {
   font-weight: bold;
+}
+.giantsize {
+  font-size: 30px;
 }
 .largesize {
   font-size: 25px;

@@ -49,7 +49,7 @@ const Reservations = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        <NavBar2 />
+        {/* <NavBar2 /> */}
         <Image source={Reserved} style={[styles.backgroundImage]} />
         {reservations.map((reservation) => (
           <ReservationCard
