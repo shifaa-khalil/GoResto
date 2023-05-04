@@ -42,13 +42,13 @@ const Admin = () => {
           <div className={styles.tableContainer}>
             <table>
               <thead>
-                <tr className="semibold">
+                <tr className="semibold tr">
                   <th>ID</th>
                   <th>Name</th>
                   <th>Manager</th>
                   <th>Logo</th>
                   <th>Location</th>
-                  <th>Number of tables</th>
+                  <th>tables</th>
                   <th>Menu</th>
                 </tr>
               </thead>
