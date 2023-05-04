@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
@@ -11,6 +11,24 @@ import ReviewCard from "../components/reviewCard";
 const ChatsReviews = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    // if (token) {
+    axios
+      .get(`http://127.0.0.1:8000/api/getReviewsRestaurant`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setReviews(response.data.reviews);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // } else navigate("/signin");
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -35,18 +53,15 @@ const ChatsReviews = () => {
             />
           </div>
           <div className={`semibold ${styles.reviews}`}>
-            <ReviewCard
-              name="Shifaa Khalil"
-              rating="4"
-              date="a month ago"
-              content="good restaurant"
-            />
-            <ReviewCard
-              name="Shifaa Khalil"
-              rating="4"
-              date="a month ago"
-              content="good restaurant"
-            />
+            {reviews &&
+              reviews.map((review) => (
+                <ReviewCard
+                  name={review.customer_id}
+                  rating={review.rating}
+                  date="a month ago"
+                  content={review.content}
+                />
+              ))}
           </div>
         </div>
       </div>
