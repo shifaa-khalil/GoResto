@@ -73,6 +73,7 @@ const Signin = () => {
 
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("token", response.data.authorisation.token);
+        localStorage.setItem("role", response.data.user.role);
       })
       .catch((error) => {
         console.error(error);

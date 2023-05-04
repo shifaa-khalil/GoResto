@@ -15,7 +15,7 @@ const Restaurants = () => {
   useEffect(() => {
     // if (token) {
     axios
-      .get(`http://127.0.0.1:8000/api/getRestaurants`, {
+      .get(`http://127.0.0.1:8000/api/getRestaurantsdata`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

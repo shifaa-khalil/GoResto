@@ -41,7 +41,6 @@ const Requests = () => {
         },
       })
       .then((response) => {
-        console.log("in");
         setApproved(id);
       })
       .catch((error) => {

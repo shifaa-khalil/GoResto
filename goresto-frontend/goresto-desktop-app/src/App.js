@@ -17,16 +17,23 @@ import Menu from "./pages/menu";
 import About from "./pages/about";
 import Requests from "./pages/admin/requests";
 import Restaurants from "./pages/admin/restaurants";
+import NoAccess from "./pages/noAccess";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
     if (token) {
-      setIsAuthenticated(true);
-      setIsLoading(false);
+      // setIsAuthenticated(true);
+      if (role == "admin") {
+        setIsAdmin(true);
+        setIsLoading(false);
+      }
     }
 
     const timeout = setTimeout(() => {
@@ -38,7 +45,12 @@ function App() {
     };
   }, []);
 
-  if (isLoading) return <h1>loading</h1>;
+  if (isLoading)
+    return (
+      <div className="container">
+        <div className="spinner"></div>
+      </div>
+    );
 
   return (
     <Router>
@@ -49,17 +61,67 @@ function App() {
         <Route
           path="/setup"
           element={
-            isAuthenticated ? <Setup /> : <Navigate to="/signin" replace />
+            <Setup />
+            // isAuthenticated ? <Setup /> : <Navigate to="/signin" replace />
           }
         />
-        <Route path="/pending" element={<Pending />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/chatsReviews" element={<ChatsReviews />} />
-        <Route path="/reservations" element={<Reservations />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/requests" element={<Requests />} />
-        <Route path="/restaurants" element={<Restaurants />} />
+        {/* <Route
+          path="/pending"
+          element={
+            isAuthenticated ? <Pending /> : <Navigate to="/signin" replace />
+          }
+        /> */}
+        {/* <Route
+          path="/dashboard"
+          element={
+            isAuthenticated ? <Dashboard /> : <Navigate to="/signin" replace />
+          }
+        />
+        <Route
+          path="/chatsReviews"
+          element={
+            isAuthenticated ? (
+              <ChatsReviews />
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        /> */}
+        {/* <Route
+          path="/reservations"
+          element={
+            isAuthenticated ? (
+              <Reservations />
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            isAuthenticated ? <Menu /> : <Navigate to="/signin" replace />
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            isAuthenticated ? <About /> : <Navigate to="/signin" replace />
+          }
+        />
+        <Route
+          path="/requests"
+          element={
+            isAuthenticated ? <Requests /> : <Navigate to="/signin" replace />
+          }
+        /> */}
+        <Route path="/noAccess" element={<NoAccess />} />
+        <Route
+          path="/restaurants"
+          element={
+            isAdmin ? <Restaurants /> : <Navigate to="/noAccess" replace />
+          }
+        />
       </Routes>
     </Router>
   );
