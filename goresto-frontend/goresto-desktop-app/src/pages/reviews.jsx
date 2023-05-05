@@ -8,7 +8,7 @@ import styles from "../css/chatsReviews.module.css";
 import ChatCard from "../components/chatCard";
 import ReviewCard from "../components/reviewCard";
 
-const ChatsReviews = () => {
+const Reviews = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [reviews, setReviews] = useState([]);
@@ -69,4 +69,4 @@ const ChatsReviews = () => {
   );
 };
 
-export default ChatsReviews;
+export default Reviews;

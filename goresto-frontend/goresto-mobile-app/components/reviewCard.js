@@ -77,10 +77,7 @@ const ReviewCard = ({
               multiline={true}
               numberOfLines={4}
             />
-            <TouchableOpacity
-              onPress={handleSend}
-              style={[styles.send, styles.button]}
-            >
+            <TouchableOpacity onPress={handleSend} style={[styles.send]}>
               <Image source={Send} />
             </TouchableOpacity>
           </View>

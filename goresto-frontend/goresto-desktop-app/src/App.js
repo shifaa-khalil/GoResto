@@ -11,7 +11,8 @@ import Register from "./pages/register";
 import Setup from "./pages/setup";
 import Pending from "./pages/pending";
 import Dashboard from "./pages/dashboard";
-import ChatsReviews from "./pages/chatsReviews";
+import Chats from "./pages/chats";
+import Reviews from "./pages/reviews";
 import Reservations from "./pages/reservations";
 import Menu from "./pages/menu";
 import About from "./pages/about";
@@ -141,11 +142,11 @@ function App() {
           }
         />
         <Route
-          path="/chatsReviews"
+          path="/reviews"
           element={
             isAuthenticated ? (
               isManager ? (
-                <ChatsReviews />
+                <Reviews />
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -168,7 +169,20 @@ function App() {
             )
           }
         />
-
+        <Route
+          path="/chats"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <Chats />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
         <Route
           path="/about"
           element={
