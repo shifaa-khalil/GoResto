@@ -6,7 +6,12 @@ const ChatCard = (props) => {
   return (
     <div className={`${styles.chatCard}`}>
       <span className="semibold mediumsize">{props.name}</span>
-      <span className="normalweight smallsize">{props.lastMessage}</span>
+      <div className={styles.lastMessage}>
+        <span className={`normalweight smallsize ${styles.content}`}>
+          {props.content}
+        </span>
+        <span className="normalweight smallsize">{props.dateTime}</span>
+      </div>
     </div>
   );
 };

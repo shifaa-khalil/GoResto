@@ -4,8 +4,9 @@ import axios from "axios";
 import "../App.css";
 import NavBar2 from "../components/navBar2";
 import LeftMenu from "../components/leftMenu";
-import styles from "../css/chatsReviews.module.css";
+import styles from "../css/chats.module.css";
 import ChatCard from "../components/chatCard";
+import MessageCard from "../components/messageCard";
 
 const Chats = () => {
   const [error, setError] = useState("");
@@ -22,7 +23,8 @@ const Chats = () => {
           <div className={`semibold flex-column ${styles.chats}`}>
             <ChatCard
               name="Shifaa Khalil"
-              lastMessage="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
+              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
+              dateTime="14:02"
             />
             <ChatCard
               name="Shifaa Khalil"
@@ -35,7 +37,11 @@ const Chats = () => {
           </div>
           <div className={styles.conversation}>
             <p>Name</p>
-            <div className={styles.messages}></div>
+            <div className={styles.messages}>
+              <MessageCard />
+              <MessageCard />
+              <MessageCard />
+            </div>
             <div className={styles.inputContainer}></div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import axios from "axios";
 import "../App.css";
 import NavBar2 from "../components/navBar2";
 import LeftMenu from "../components/leftMenu";
-import styles from "../css/chatsReviews.module.css";
+import styles from "../css/reviews.module.css";
 import ChatCard from "../components/chatCard";
 import ReviewCard from "../components/reviewCard";
 
@@ -36,7 +36,7 @@ const Reviews = () => {
         <LeftMenu reviewsClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Chats & Reviews" className="block" />
+        <NavBar2 sectionName="Reviews" className="block" />
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
             <ChatCard

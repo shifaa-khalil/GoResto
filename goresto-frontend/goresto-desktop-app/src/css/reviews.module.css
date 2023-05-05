@@ -21,7 +21,3 @@
 .open {
   box-shadow: 10px 0 0 var(--red);
 }
-.conversation {
-  display: flex;
-  flex-direction: column;
-}

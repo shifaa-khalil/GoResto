@@ -1,0 +1,28 @@
+.sectionContainer {
+  width: 75%;
+  row-gap: 52px;
+}
+
+.open {
+  box-shadow: 10px 0 0 var(--red);
+}
+.body {
+  display: flex;
+  column-gap: 2%;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.chats {
+  /* background-color: blueviolet; */
+  /* flex-basis: 10%; */
+}
+
+.conversation {
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
+  flex-basis: 70%;
+}

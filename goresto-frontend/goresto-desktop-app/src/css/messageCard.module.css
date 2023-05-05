@@ -1,0 +1,16 @@
+.messageCard {
+  background-color: var(--grey);
+  /* width: 260px; */
+  padding: 20px;
+  display: flex;
+  /* column-gap: 2%; */
+  margin-bottom: 20px;
+  border-radius: 15px;
+}
+/* .messageCard span {
+    flex-basis: 50%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } */
