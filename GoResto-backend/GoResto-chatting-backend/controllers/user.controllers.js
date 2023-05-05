@@ -49,9 +49,7 @@ exports.sendMessage = async (req, res) => {
 };
 
 exports.getChats = async (req, res) => {
-  // const userId = req.params.firstUserId; //auth
   const userId = req.userId;
-  // res.json({ userId });
 
   try {
     const chats = await Chat.find({
