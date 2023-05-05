@@ -68,9 +68,15 @@ const LeftMenu = (props) => {
         />
         <LeftMenuItem
           icon={chats}
+          sectionName="Reviews"
+          className={props.reviewsClassName}
+          onClick={() => navigate("/reviews")}
+        />
+        <LeftMenuItem
+          icon={chats}
           sectionName="Chats"
           className={props.chatsClassName}
-          onClick={() => navigate("/chatsReviews")}
+          onClick={() => navigate("/chats")}
         />
         <LeftMenuItem
           icon={earnings}

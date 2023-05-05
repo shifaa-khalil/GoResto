@@ -33,7 +33,7 @@ const Reviews = () => {
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu chatsClassName={styles.open} />
+        <LeftMenu reviewsClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Chats & Reviews" className="block" />
