@@ -9,6 +9,7 @@ import { URL } from "../configs/URL";
 import CommentCard from "./commentCard";
 
 const ReviewCard = ({
+  restaurant,
   customerName,
   date,
   rating,
@@ -31,7 +32,7 @@ const ReviewCard = ({
           console.log(response.data.status);
           console.log(response.data.message);
           setContent("");
-          navigation.replace("RatingsReviews");
+          navigation.replace("Ratings", { restaurant_id: restaurant });
           // navigation.navigate("Ratings");
         })
         .catch((error) => {
@@ -76,7 +77,10 @@ const ReviewCard = ({
               multiline={true}
               numberOfLines={4}
             />
-            <TouchableOpacity onPress={handleSend} style={[styles.button]}>
+            <TouchableOpacity
+              onPress={handleSend}
+              style={[styles.send, styles.button]}
+            >
               <Image source={Send} />
             </TouchableOpacity>
           </View>
@@ -134,9 +138,15 @@ const styles = StyleSheet.create({
     width: 70,
     height: 20,
     borderRadius: 15,
-    // marginTop: 20,
+    marginTop: 20,
     backgroundColor: "#D43325",
     alignSelf: "center",
+  },
+  send: {
+    width: 30,
+    height: 20,
+    borderRadius: 15,
+    backgroundColor: "#D43325",
   },
   text: {
     fontSize: 12,
