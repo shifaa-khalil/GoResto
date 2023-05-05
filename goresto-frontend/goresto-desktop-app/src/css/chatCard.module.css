@@ -17,7 +17,9 @@
 .lastMessage {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
+  color: rgba(0, 0, 0, 0.63);
 }
 .lastMessage .content {
   flex-basis: 60%;

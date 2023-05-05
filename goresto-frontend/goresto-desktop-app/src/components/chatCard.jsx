@@ -10,7 +10,7 @@ const ChatCard = (props) => {
         <span className={`normalweight smallsize ${styles.content}`}>
           {props.content}
         </span>
-        <span className="normalweight smallsize">{props.dateTime}</span>
+        <span className="normalweight tinysize">{props.dateTime}</span>
       </div>
     </div>
   );

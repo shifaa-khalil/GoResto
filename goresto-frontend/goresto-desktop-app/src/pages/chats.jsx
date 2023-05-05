@@ -39,7 +39,7 @@ const Chats = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => console.log(response.data.chats))
+        .then((response) => setChats(response.data.chats))
         .catch((error) => {
           console.error(error);
         });
@@ -60,8 +60,10 @@ const Chats = () => {
               chats.map((chat) => (
                 <ChatCard
                   name="Shifaa Khalil"
-                  content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
-                  dateTime="14:02"
+                  content={chat.lastMessage.content}
+                  dateTime={new Date(
+                    chat.lastMessage.createdAt
+                  ).toLocaleDateString()}
                 />
               ))}
           </div>
