@@ -39,6 +39,7 @@ const Ratings = ({ route }) => {
               rating={review.rating}
               review={review.content}
               reviewId={review.id}
+              comments={review.comment}
             />
           ))
         ) : (

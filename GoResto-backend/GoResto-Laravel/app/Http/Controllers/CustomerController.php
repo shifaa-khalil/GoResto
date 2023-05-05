@@ -201,6 +201,17 @@ class CustomerController extends Controller
         return response()->json(['status' => 'success', 'message' => 'comment added']);
     }
 
+    // function getComments($review_id)
+    // {
+    //     $comment = Comment::where('review_id', $review_id)->get();
+
+    //     if(!$comment) return response()->json('no comment');
+        
+    //     // $comments = Comment::all();
+
+    //     return response()->json(['comment' => $comment]);
+    // }
+
     function getCustomerCount()
     {}
 }

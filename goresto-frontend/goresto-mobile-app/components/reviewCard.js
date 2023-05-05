@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import axios from "axios";
 import Input from "./input";
 import Send from "../assets/send.png";
 import { URL } from "../configs/URL";
+import CommentCard from "./commentCard";
 
-const ReviewCard = ({ customerName, date, rating, review, reviewId }) => {
+const ReviewCard = ({
+  customerName,
+  date,
+  rating,
+  review,
+  reviewId,
+  comments,
+}) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [content, setContent] = useState("");
+  const navigation = useNavigation();
 
   const handleSend = () => {
     if (content !== "") {
@@ -21,7 +31,7 @@ const ReviewCard = ({ customerName, date, rating, review, reviewId }) => {
           console.log(response.data.status);
           console.log(response.data.message);
           setContent("");
-          // Navigation.replace("RatingsReviews");
+          navigation.replace("RatingsReviews");
           // navigation.navigate("Ratings");
         })
         .catch((error) => {
@@ -70,24 +80,15 @@ const ReviewCard = ({ customerName, date, rating, review, reviewId }) => {
               <Image source={Send} />
             </TouchableOpacity>
           </View>
-          <View style={styles.commentCard}>
-            <View style={styles.row}>
-              <Text style={[styles.name]}>Carla</Text>
-              <Text style={styles.date}>2023-2-3</Text>
-            </View>
-            <View style={styles.review}>
-              <Text>Thanks for the comment</Text>
-            </View>
-          </View>
-          <View style={styles.commentCard}>
-            <View style={styles.row}>
-              <Text style={[styles.name]}>Sara</Text>
-              <Text style={styles.date}>2023-5-5</Text>
-            </View>
-            <View style={styles.review}>
-              <Text>Helpful</Text>
-            </View>
-          </View>
+          {comments &&
+            comments.map((comment) => (
+              <CommentCard
+                key={comment.id}
+                customer={comment.user_id}
+                date={new Date(comment.created_at).toLocaleDateString()}
+                comment={comment.content}
+              />
+            ))}
         </View>
       )}
     </View>
