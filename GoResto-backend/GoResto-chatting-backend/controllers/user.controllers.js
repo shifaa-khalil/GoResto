@@ -73,7 +73,7 @@ exports.getMessages = async (req, res) => {
     const messages = await Message.find({
       $or: [{ chatId: chatId }],
     }).exec();
-    res.json(messages);
+    res.json({ messages });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

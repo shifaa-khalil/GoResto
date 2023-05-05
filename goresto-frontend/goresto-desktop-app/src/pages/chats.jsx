@@ -15,6 +15,21 @@ const Chats = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [inputText, setInputText] = useState("");
 
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`http://localhost:3000/user/messages/6455273d3372d15408f88421`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => console.log(response))
+        .catch((error) => {
+          console.error(error);
+        });
+    } else console.log("no token");
+  }, []);
+
   return (
     <div className={styles.container}>
       <div>

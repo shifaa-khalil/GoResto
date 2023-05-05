@@ -30,10 +30,10 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('/getChats', [ChatController::class, 'getChats']);
     Route::post('/createChat', [ChatController::class, 'createChat']);
+    Route::get('/getChats', [ChatController::class, 'getChats']);
+    Route::get('/getMessages', [ChatController::class, 'getMessages']);
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
-
 });
 
 // Route::middleware(['customer'])->group(function(){
