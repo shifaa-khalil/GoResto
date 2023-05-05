@@ -7,6 +7,8 @@ import LeftMenu from "../components/leftMenu";
 import styles from "../css/chats.module.css";
 import ChatCard from "../components/chatCard";
 import MessageCard from "../components/messageCard";
+import Send from "../images/send.png";
+import SearchBar from "../components/searchBar";
 
 const Chats = () => {
   const [error, setError] = useState("");
@@ -22,6 +24,18 @@ const Chats = () => {
         <NavBar2 sectionName="Chats" className="block" />
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
+            <SearchBar />
+            <ChatCard
+              name="Shifaa Khalil"
+              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
+              dateTime="14:02"
+            />
+            <ChatCard
+              name="Shifaa Khalil"
+              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
+              dateTime="14:02"
+              className={styles.selected}
+            />
             <ChatCard
               name="Shifaa Khalil"
               content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
@@ -29,11 +43,14 @@ const Chats = () => {
             />
           </div>
           <div className={styles.conversation}>
-            <p className={`semibold mediumsize ${styles.name}`}>Name</p>
+            <span className={`semibold mediumsize ${styles.name}`}>Name</span>
             <div className={styles.messages}>
               <MessageCard />
+              <MessageCard className={styles.right} />
               <MessageCard />
               <MessageCard />
+              <MessageCard className={styles.right} />
+              <MessageCard className={styles.right} />
             </div>
             <div className={styles.inputContainer}>
               <input
@@ -43,7 +60,7 @@ const Chats = () => {
                 onChange={(event) => setInputText(event.target.value)}
                 className={styles.input}
               />
-              <span>send</span>
+              <img src={Send} className={styles.send} />
             </div>
           </div>
         </div>

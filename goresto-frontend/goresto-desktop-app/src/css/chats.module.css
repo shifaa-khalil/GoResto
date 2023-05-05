@@ -15,37 +15,52 @@
   justify-content: space-between;
 }
 .chats {
-  /* background-color: blueviolet; */
-  /* flex-basis: 10%; */
 }
 
 .conversation {
-  background-color: blue;
+  flex-basis: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0 60px 10px 20px;
-  flex-basis: 70%;
+  row-gap: 5%;
 }
 .name {
 }
 .messages {
   flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll;
-  /* padding-bottom: 10px; */
+  padding-right: 20px;
 }
 .inputContainer {
-  display: flex;
-  margin-top: 20px;
-  display: flex;
   flex-basis: 10%;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 20px;
+  /* margin-top: 20px; */
+  padding-right: 27px;
 }
 .input {
   flex-basis: 85%;
   border-radius: 15px;
   padding: 0 15px;
   height: 100%;
+  border: none;
+  background-color: var(--grey);
+}
+.right {
+  align-self: flex-end;
+  background-color: var(--red);
+  color: white;
+}
+.selected {
+  background-color: white;
+}
+.send {
+  height: 40px;
+  background-color: var(--grey);
+  border-radius: 8px;
+  /* width: 20px; */
 }
