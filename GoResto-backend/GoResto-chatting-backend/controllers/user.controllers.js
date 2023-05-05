@@ -25,8 +25,7 @@ exports.addChat = async (req, res) => {
 exports.sendMessage = async (req, res) => {
   try {
     const message = new Message({
-      // const userId = req.userId;
-      senderId: req.body.senderId, //auth
+      senderId: req.userId, //auth
       chatId: req.body.chatId,
       content: req.body.content,
     });
