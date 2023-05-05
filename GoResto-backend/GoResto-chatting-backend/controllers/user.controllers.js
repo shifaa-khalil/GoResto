@@ -53,17 +53,17 @@ exports.sendMessage = async (req, res) => {
 exports.getChats = async (req, res) => {
   // const userId = req.params.firstUserId; //auth
   const userId = req.userId;
-  res.json({ userId });
+  // res.json({ userId });
 
-  // try {
-  //   const chats = await Chat.find({
-  //     $or: [{ firstUserId: userId }, { secondUserId: userId }],
-  //   }).exec();
-  //   res.json({ userId: req.userId, chats });
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).json({ message: "Internal Server Error" });
-  // }
+  try {
+    const chats = await Chat.find({
+      $or: [{ firstUserId: userId }, { secondUserId: userId }],
+    }).exec();
+    res.json({ chats });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 };
 
 exports.getMessages = async (req, res) => {
