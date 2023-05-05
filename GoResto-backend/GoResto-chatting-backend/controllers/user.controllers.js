@@ -4,12 +4,10 @@ const { ObjectId } = require("bson");
 
 exports.addChat = async (req, res) => {
   try {
-    const objectFirstUserId = new ObjectId(req.body.firstUserId);
-    const objectSecondUserId = new ObjectId(req.body.secondUserId);
-
     const chat = new Chat({
-      firstUserId: objectFirstUserId,
-      secondUserId: objectSecondUserId,
+      // firstUserId: req.userId,
+      senderId: req.body.senderId, //auth
+      secondUserId: req.params.secondUserId,
     });
 
     await chat.save();
@@ -27,23 +25,24 @@ exports.addChat = async (req, res) => {
 
 exports.sendMessage = async (req, res) => {
   try {
-    const objectSenderId = new ObjectId(req.body.senderId);
-    const objectChatId = new ObjectId(req.body.chatId);
-    const content = req.body.content;
-
     const message = new Message({
-      senderId: objectSenderId,
-      chatId: objectChatId,
-      content: content,
+      // const userId = req.userId;
+      senderId: req.body.senderId, //auth
+      chatId: req.body.chatId,
+      content: req.body.content,
     });
+
+    if (!ObjectId.isValid(message.chatId)) {
+      return res.status(400).json({ message: "Invalid chatId" });
+    }
 
     await message.save();
 
     res.json({
       messageId: message._id,
-      senderId: objectSenderId,
-      chatId: objectChatId,
-      content: content,
+      senderId: message.senderId,
+      chatId: message.chatId,
+      content: message.content,
     });
   } catch (error) {
     console.error(error);
@@ -52,25 +51,27 @@ exports.sendMessage = async (req, res) => {
 };
 
 exports.getChats = async (req, res) => {
-  const userId = new ObjectId(req.params.userId);
+  // const userId = req.params.firstUserId; //auth
+  const userId = req.userId;
+  res.json({ userId });
 
-  if (!ObjectId.isValid(userId)) {
-    return res.status(400).json({ message: "Invalid userId" });
-  }
-
-  try {
-    const chats = await Chat.find({
-      $or: [{ firstUserId: userId }, { secondUserId: userId }],
-    }).exec();
-    res.json(chats);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+  // try {
+  //   const chats = await Chat.find({
+  //     $or: [{ firstUserId: userId }, { secondUserId: userId }],
+  //   }).exec();
+  //   res.json({ userId: req.userId, chats });
+  // } catch (error) {
+  //   console.error(error);
+  //   res.status(500).json({ message: "Internal Server Error" });
+  // }
 };
 
 exports.getMessages = async (req, res) => {
   const chatId = req.params.chatId;
+
+  if (!ObjectId.isValid(chatId)) {
+    return res.status(400).json({ message: "Invalid chatId" });
+  }
 
   try {
     const messages = await Message.find({

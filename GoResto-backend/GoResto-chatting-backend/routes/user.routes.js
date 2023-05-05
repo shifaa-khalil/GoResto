@@ -8,9 +8,9 @@ const {
   sendMessage,
 } = require("../controllers/user.controllers");
 
-router.post("/addChat", addChat);
-router.get("/user/:userId/getChats", getChats);
-router.get("/chat/:chatId/getMessages", getMessages);
-router.post("/sendMessage", sendMessage);
+router.post("/chat/:firstUserId/:secondUserId", addChat);
+router.get("/chats", getChats);
+router.get("/messages/:chatId", getMessages);
+router.post("/message", sendMessage);
 
 module.exports = router;
