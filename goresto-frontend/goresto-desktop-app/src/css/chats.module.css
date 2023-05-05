@@ -2,13 +2,13 @@
   width: 75%;
   row-gap: 52px;
 }
-
 .open {
   box-shadow: 10px 0 0 var(--red);
 }
 .body {
   display: flex;
   column-gap: 2%;
+  height: 75vh;
 }
 .container {
   display: flex;
@@ -23,6 +23,29 @@
   background-color: blue;
   display: flex;
   flex-direction: column;
-  padding-right: 60px;
+  justify-content: space-between;
+  padding: 0 60px 10px 20px;
   flex-basis: 70%;
+}
+.name {
+}
+.messages {
+  flex-basis: 80%;
+  overflow-y: scroll;
+  /* padding-bottom: 10px; */
+}
+.inputContainer {
+  display: flex;
+  margin-top: 20px;
+  display: flex;
+  flex-basis: 10%;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+.input {
+  flex-basis: 85%;
+  border-radius: 15px;
+  padding: 0 15px;
+  height: 100%;
 }

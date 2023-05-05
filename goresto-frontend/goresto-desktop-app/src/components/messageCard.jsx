@@ -5,8 +5,11 @@ import styles from "../css/messageCard.module.css";
 const messageCard = (props) => {
   return (
     <div className={`${styles.messageCard}`}>
-      <span className="semibold mediumsize">message</span>
-      <span className="normalweight smallsize">dateTime</span>
+      <span className={`normalweight mediumsize ${styles.messageContent}`}>
+        messagemessagemessagem essagemessagemessagemessagemessagemessagemessage
+        messagemessagemessagemessagemessagemessagemessage
+      </span>
+      <span className={`normalweight tinysize ${styles.time}`}>dateTime</span>
     </div>
   );
 };
