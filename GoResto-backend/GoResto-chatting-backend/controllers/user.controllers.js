@@ -5,8 +5,7 @@ const { ObjectId } = require("bson");
 exports.addChat = async (req, res) => {
   try {
     const chat = new Chat({
-      // firstUserId: req.userId,
-      senderId: req.body.senderId, //auth
+      firstUserId: req.userId,
       secondUserId: req.params.secondUserId,
     });
 
