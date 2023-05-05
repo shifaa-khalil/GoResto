@@ -36,6 +36,12 @@ exports.sendMessage = async (req, res) => {
 
     await message.save();
 
+    const chat = await Chat.findOneAndUpdate(
+      { _id: message.chatId },
+      { lastMessage: message._id },
+      { new: true }
+    );
+
     res.json({
       messageId: message._id,
       senderId: message.senderId,
@@ -54,8 +60,24 @@ exports.getChats = async (req, res) => {
   try {
     const chats = await Chat.find({
       $or: [{ firstUserId: userId }, { secondUserId: userId }],
-    }).exec();
-    res.json({ chats });
+    }).populate({
+      path: "lastMessage",
+      select: "content createdAt",
+      sort: { createdAt: -1 },
+      limit: 1,
+    });
+
+    const chatsWithTimestamp = chats.map((chat) => ({
+      chatId: chat._id,
+      secondUserId: chat.secondUserId,
+      lastMessage: chat.lastMessage
+        ? {
+            content: chat.lastMessage.content,
+            createdAt: chat.lastMessage.createdAt,
+          }
+        : null,
+    }));
+    res.json({ chats: chatsWithTimestamp });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -73,6 +95,7 @@ exports.getMessages = async (req, res) => {
     const messages = await Message.find({
       $or: [{ chatId: chatId }],
     }).exec();
+
     res.json({ messages });
   } catch (error) {
     console.error(error);

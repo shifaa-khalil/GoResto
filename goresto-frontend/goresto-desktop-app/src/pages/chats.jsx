@@ -14,16 +14,32 @@ const Chats = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [inputText, setInputText] = useState("");
+  const [chats, setChats] = useState([]);
+
+  // useEffect(() => {
+  //   if (token) {
+  //     axios
+  //       .get(`http://localhost:3000/user/messages/6455273d3372d15408f88421`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((response) => console.log(response))
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   } else console.log("no token");
+  // }, []);
 
   useEffect(() => {
     if (token) {
       axios
-        .get(`http://localhost:3000/user/messages/6455273d3372d15408f88421`, {
+        .get(`http://localhost:3000/user/chats`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => console.log(response))
+        .then((response) => console.log(response.data.chats))
         .catch((error) => {
           console.error(error);
         });
@@ -40,22 +56,14 @@ const Chats = () => {
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
             <SearchBar />
-            <ChatCard
-              name="Shifaa Khalil"
-              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
-              dateTime="14:02"
-            />
-            <ChatCard
-              name="Shifaa Khalil"
-              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
-              dateTime="14:02"
-              className={styles.selected}
-            />
-            <ChatCard
-              name="Shifaa Khalil"
-              content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
-              dateTime="14:02"
-            />
+            {chats &&
+              chats.map((chat) => (
+                <ChatCard
+                  name="Shifaa Khalil"
+                  content="nog vhbh bjjbhjjjhjhjhjhh jbbghghvgb"
+                  dateTime="14:02"
+                />
+              ))}
           </div>
           <div className={styles.conversation}>
             <span className={`semibold mediumsize ${styles.name}`}>Name</span>
