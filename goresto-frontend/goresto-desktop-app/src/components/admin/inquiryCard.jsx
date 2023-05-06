@@ -11,8 +11,12 @@ const InquiryCard = (props) => {
       </div>
       <span className={`normalweight ${styles.content}`}>{props.content}</span>
       <div className={`flex-row ${styles.buttons}`}>
-        <button className="bold">mark as solved</button>
-        <button className="bold">ignore</button>
+        <button className="bold" onClick={props.onSolve}>
+          mark as solved
+        </button>
+        <button className="bold" onClick={props.onIgnore}>
+          ignore
+        </button>
       </div>
     </div>
   );

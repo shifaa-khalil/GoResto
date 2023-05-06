@@ -34,26 +34,24 @@ const Inquiries = () => {
     } else navigate("/signin");
   }, []);
 
-  //   const handleApprove = (id) => {
-  //     console.log("before");
-  //     axios
-  //       .put(`http://127.0.0.1:8000/api/approveRequest/${id}`, null, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setSolved(id);
-  //         window.location.reload();
-  //       })
-  //       .catch((error) => {
-  //         console.log("after");
-  //         if (error.response.data.error === "Unauthorized")
-  //           console.log("no token");
-  //         else console.log("no access");
-  //         console.error(error);
-  //       });
-  //   };
+  const handleSolve = (id) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/solveInquiry/${id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setSolved(id);
+        window.location.reload();
+      })
+      .catch((error) => {
+        if (error.response.data.error === "Unauthorized")
+          console.log("no token");
+        else console.log("no access");
+        console.error(error);
+      });
+  };
 
   //   const handleReject = (id) => {
   //     axios
@@ -86,6 +84,8 @@ const Inquiries = () => {
                 restaurantName={inquiry.restaurant.name}
                 content={inquiry.content}
                 date={new Date(inquiry.created_at).toLocaleDateString()}
+                onSolve={() => handleSolve(inquiry.id)}
+                onIgnore={() => console.log("ignored")}
               />
             ))}
         </div>
