@@ -14,13 +14,14 @@ const Setup = () => {
   const [logo, setLogo] = useState(null);
   const [tables, setTables] = useState("");
   const [location, setLocation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [deposit, setDeposit] = useState("");
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const validateForm = () => {
     let isValid = true;
-    if (!name || !logo || !tables || !location || !deposit) {
+    if (!name || !logo || !tables || !location || !deposit || !phoneNumber) {
       setError("All fields are required");
       isValid = false;
     }
@@ -49,6 +50,7 @@ const Setup = () => {
         data.append("number_of_tables", tables);
         data.append("logo", logo);
         data.append("deposit", deposit);
+        data.append("phone_number", phoneNumber);
 
         axios
           .post(`http://127.0.0.1:8000/api/addRestaurant`, data, {
@@ -136,6 +138,18 @@ const Setup = () => {
             className={styles.input}
             onChange={(e) => {
               setLocation(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Add the phone number of your restaurant"
+            labelClassName="semibold"
+            type="text"
+            value={phone_number}
+            placeholder="00-000-000"
+            className={styles.input}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
               handleInputChange(e);
             }}
           />

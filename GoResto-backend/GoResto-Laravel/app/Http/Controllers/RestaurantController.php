@@ -57,6 +57,7 @@ class RestaurantController extends Controller
             $restaurant->number_of_tables = $request->number_of_tables;
             $restaurant->manager_id = $manager->id;
             $restaurant->deposit = $request->deposit;
+            $restaurant->phone_number = $request->phone_number;
             $restaurant->save();
     
             $createdRestaurant = Restaurant::find($restaurant->id);
