@@ -69,6 +69,7 @@ exports.getChats = async (req, res) => {
 
     const chatsWithTimestamp = chats.map((chat) => ({
       chatId: chat._id,
+      firstUserId: chat.firstUserId,
       secondUserId: chat.secondUserId,
       lastMessage: chat.lastMessage
         ? {

@@ -19,7 +19,6 @@ const Chats = () => {
   const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
-  const decodedToken = jwt_decode(token);
   const [activeChatId, setActiveChatId] = useState("");
 
   const openChat = () => {
@@ -32,13 +31,6 @@ const Chats = () => {
         })
         .then((response) => {
           setMessages(response.data.messages);
-          console.log(messages);
-          if (decodedToken) {
-            console.log("decodedToken.sub", decodedToken.sub);
-            setUserId(decodedToken.sub);
-          } else console.log("not decoded");
-          if (userId) console.log("userId", userId);
-          else console.log("no userId");
         })
         .catch((error) => {
           console.error(error);
@@ -48,6 +40,14 @@ const Chats = () => {
 
   useEffect(() => {
     if (token) {
+      const decodedToken = jwt_decode(token);
+      if (decodedToken) {
+        console.log("decodedToken.sub", decodedToken.sub);
+        setUserId(decodedToken.sub);
+      } else console.log("not decoded");
+
+      if (userId) console.log("userId", userId);
+      else console.log("no userId");
       axios
         .get(`http://localhost:3000/user/chats`, {
           headers: {
@@ -74,7 +74,13 @@ const Chats = () => {
             {chats &&
               chats.map((chat) => (
                 <ChatCard
-                  name="Shifaa Khalil"
+                  name={
+                    chat.firstUserId == userId
+                      ? chat.secondUserId
+                      : chat.secondUserId == userId
+                      ? chat.firstUserId
+                      : "hey"
+                  }
                   content={chat.lastMessage.content}
                   dateTime={new Date(
                     chat.lastMessage.createdAt
@@ -86,7 +92,9 @@ const Chats = () => {
                 />
               ))}
           </div>
-          <div className={styles.conversation}>
+          <div
+            className={messages.length > 0 ? styles.conversation : styles.none}
+          >
             <span className={`semibold mediumsize ${styles.name}`}>Name</span>
             <div className={styles.messages}>
               {messages &&
@@ -99,11 +107,6 @@ const Chats = () => {
                     }
                   />
                 ))}
-              {/* <MessageCard className={styles.right} />
-              <MessageCard />
-              <MessageCard />
-              <MessageCard className={styles.right} />
-              <MessageCard className={styles.right} /> */}
             </div>
             <div className={styles.inputContainer}>
               <input

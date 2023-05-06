@@ -73,14 +73,14 @@ const Dashboard = () => {
             title="Total reviews"
             value={totalReviews}
             src={chats}
-            onClick={() => navigate("/chatsReviews")}
+            onClick={() => navigate("/reviews")}
           />
           <DashboardCard
             className={styles.red}
             title="Rating"
             value={rating}
             src={star}
-            onClick={() => navigate("/chatsReviews")}
+            onClick={() => navigate("/reviews")}
           />
         </div>
       </div>
