@@ -6,7 +6,7 @@ import NavBar2 from "../../components/navBar2";
 import LeftMenu from "../../components/admin/leftMenu";
 import DropDownList from "../../components/admin/dropDownListInquiries";
 import InquiryCard from "../../components/admin/inquiryCard";
-import styles from "../../css/admin/admin.module.css";
+import styles from "../../css/admin/inquiries.module.css";
 
 const Inquiries = () => {
   const [error, setError] = useState("");
@@ -71,20 +71,22 @@ const Inquiries = () => {
   //       });
   //   };
 
-  //   return (
-  //     <div className={styles.container}>
-  //       <div>
-  //         <LeftMenu inquiriesClassName={styles.open} />
-  //       </div>
-  //       <div className={`flex-column ${styles.sectionContainer}`}>
-  //         <NavBar2 sectionName="Dashboard" className="block" />
-  //         <DropDownList />
-  //         <div className={`semibold ${styles.body}`}>
-  //           <InquiryCard restaurantName="test" content="test" />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
+  return (
+    <div className={styles.container}>
+      <div>
+        <LeftMenu inquiriesClassName={styles.open} />
+      </div>
+      <div className={`flex-column ${styles.sectionContainer}`}>
+        <NavBar2 sectionName="Inquiries" />
+        <DropDownList />
+        <div className={`semibold ${styles.body}`}>
+          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
+          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
+          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
+        </div>
+      </div>
+    </div>
+  );
 
   //   return (
   //     <div className={styles.container}>

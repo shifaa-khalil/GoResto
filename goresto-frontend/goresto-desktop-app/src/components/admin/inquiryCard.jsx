@@ -5,9 +5,16 @@ import styles from "../../css/admin/inquiryCard.module.css";
 const InquiryCard = (props) => {
   return (
     <div className={`flex-column ${styles.card}`}>
-      <span className="normalweight">{props.restaurantName}</span>
-      <span className="bold">{props.content}</span>
-      <input />
+      <div className={styles.row}>
+        <span className="bold">{props.restaurantName}</span>
+        <span className="normalweight">{props.date}</span>
+      </div>
+      <span className={`normalweight ${styles.content}`}>{props.content}</span>
+      {/* <input className={styles.input} /> */}
+      <div className={`flex-row ${styles.buttons}`}>
+        <button className="bold">mark as solved</button>
+        <button className="bold">ignore</button>
+      </div>
     </div>
   );
 };
