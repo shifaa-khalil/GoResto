@@ -14,6 +14,7 @@ class Restaurant extends Model
         'location',
         'number_of_tables',
         'approved',
+        'status',
         'deposit',
         'rating',
     ];

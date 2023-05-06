@@ -38,7 +38,7 @@ class AdminController extends Controller
         $restaurant_id = $restoRequest->restaurant_id;
         $restaurant = Restaurant::find($restaurant_id);
 
-        $restaurant->update(['approved'=>true]);
+        $restaurant->update(['approved'=>true, 'status'=>'approved']);
         $restoRequest->delete();
 
         return response()->json(['status' => 'success', 'message' => 'request approved']);
@@ -52,7 +52,7 @@ class AdminController extends Controller
         $menu = Menu::find($restaurant->menu_id);
 
         $restoRequest->delete();
-        // $restaurant->delete();
+        $restaurant->update(['status'=>'rejected']);
         
         return response()->json(['status' => 'success', 'message' => 'request rejected']);
     }
