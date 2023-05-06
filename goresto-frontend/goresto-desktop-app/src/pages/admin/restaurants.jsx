@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../App.css";
 import NavBar2 from "../../components/navBar2";
 import LeftMenu from "../../components/admin/leftMenu";
-import DropDownList from "../../components/dropDownList";
+import DropDownList from "../../components/admin/dropDownList";
 import styles from "../../css/admin/admin.module.css";
 
 const Restaurants = () => {
@@ -11,22 +12,38 @@ const Restaurants = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [restaurants, setRestaurants] = useState([]);
   const [deleted, setDeleted] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("upcoming");
+  const navigate = useNavigate();
+
+  const handleFilter = (event) => {
+    setSelectedFilter(event.target.value);
+  };
+
+  const filteredRestaurants = () => {
+    switch (selectedFilter) {
+      case "approved":
+        return restaurants.filter((r) => r.approved === 1);
+      case "all":
+      default:
+        return restaurants;
+    }
+  };
 
   useEffect(() => {
-    // if (token) {
-    axios
-      .get(`http://127.0.0.1:8000/api/getRestaurantsdata`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setRestaurants(response.data.restaurants);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // } else navigate("/signin");
+    if (token) {
+      axios
+        .get(`http://127.0.0.1:8000/api/getRestaurantsdata`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setRestaurants(response.data.restaurants);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else navigate("/signin");
   }, []);
 
   const handleDelete = (id) => {
@@ -52,7 +69,7 @@ const Restaurants = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Restaurants" className="block" />
-        <DropDownList />
+        <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
             <table>
@@ -70,7 +87,7 @@ const Restaurants = () => {
               </thead>
               <tbody>
                 {restaurants &&
-                  restaurants.map((restaurant) => (
+                  filteredRestaurants().map((restaurant) => (
                     <tr className="normalweight mediumsize" key={restaurant.id}>
                       <td>{restaurant.id}</td>
                       <td>{restaurant.name}</td>
