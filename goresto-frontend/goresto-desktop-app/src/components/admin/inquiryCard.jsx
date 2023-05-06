@@ -12,18 +12,42 @@ const InquiryCard = (props) => {
       <span className={`normalweight ${styles.content}`}>{props.content}</span>
       <div className={`flex-row ${styles.buttons}`}>
         {props.solvedStatus ? (
-          <span>Solved</span>
+          <>
+            <span>Solved</span>
+            <button
+              className={`bold ${styles.disabled}`}
+              onClick={props.onIgnore}
+              disabled
+            >
+              ignore
+            </button>
+          </>
+        ) : props.ignoredStatus ? (
+          <>
+            <button
+              className={`bold ${styles.disabled}`}
+              onClick={props.onSolve}
+              disabled
+            >
+              mark as solved
+            </button>
+            <span>Ignored</span>
+          </>
         ) : (
-          <button className="bold" onClick={props.onSolve}>
-            mark as solved
-          </button>
-        )}
-        {props.ignoredStatus ? (
-          <span>Ignored</span>
-        ) : (
-          <button className="bold" onClick={props.onIgnore}>
-            ignore
-          </button>
+          <>
+            <button
+              className={`bold ${styles.enabled}`}
+              onClick={props.onSolve}
+            >
+              mark as solved
+            </button>
+            <button
+              className={`bold ${styles.enabled}`}
+              onClick={props.onIgnore}
+            >
+              ignore
+            </button>
+          </>
         )}
       </div>
     </div>

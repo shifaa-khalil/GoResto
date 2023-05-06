@@ -26,9 +26,14 @@
   border-radius: 8px;
   background-color: grey;
   padding: 5px 10px;
-  color: white;
   cursor: pointer;
 }
 .buttons span {
   color: grey;
+}
+.enabled {
+  color: white;
+}
+.disabled {
+  color: rgb(163, 161, 161);
 }

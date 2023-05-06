@@ -42,7 +42,6 @@ const Inquiries = () => {
         },
       })
       .then((response) => {
-        setSolved(id);
         window.location.reload();
       })
       .catch((error) => {
@@ -53,21 +52,23 @@ const Inquiries = () => {
       });
   };
 
-  //   const handleReject = (id) => {
-  //     axios
-  //       .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setIgnored(id);
-  //         window.location.reload();
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
+  const handleIgnore = (id) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/ignoreInquiry/${id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        if (error.response.data.error === "Unauthorized")
+          console.log("no token");
+        else console.log("no access");
+        console.error(error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -85,7 +86,7 @@ const Inquiries = () => {
                 content={inquiry.content}
                 date={new Date(inquiry.created_at).toLocaleDateString()}
                 onSolve={() => handleSolve(inquiry.id)}
-                onIgnore={() => console.log("ignored")}
+                onIgnore={() => handleIgnore(inquiry.id)}
                 solvedStatus={inquiry.status == "solved" ? true : false}
                 ignoredStatus={inquiry.status == "ignored" ? true : false}
               />
