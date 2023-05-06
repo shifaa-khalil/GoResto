@@ -9,6 +9,10 @@ class Inquiry extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status',
+    ];
+
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);

@@ -89,4 +89,12 @@ class AdminController extends Controller
 
         return response()->json(['status' => 'success', 'message' => 'user deleted']);
     }
+    function solveInquiry($inquiry_id)
+    {
+        $inquiry = Inquiry::find($inquiry_id)->update(['status'=>'solved']);
+
+        return response()->json(['status'=>'success', 'message'=>'inquiry updated']);
+
+
+    }
 }

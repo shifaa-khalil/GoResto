@@ -12,7 +12,7 @@ class Reservation extends Model
     protected $fillable = [
         'date',
         'time',
-        'count',
+        'count', //seats
         // 'number_of_tables',
     ];
 
