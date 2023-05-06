@@ -230,4 +230,10 @@ class RestaurantController extends Controller
             return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
         }
     }
+
+    function getUserName($id){
+        $user = User::find($id);
+
+        return response()->json(["userName" => $user->name]);
+    }
 }
