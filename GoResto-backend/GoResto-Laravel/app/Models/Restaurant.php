@@ -17,6 +17,7 @@ class Restaurant extends Model
         'status',
         'deposit',
         'rating',
+        'phone_number',
     ];
     
     public function user()
