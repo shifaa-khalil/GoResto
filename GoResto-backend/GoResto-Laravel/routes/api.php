@@ -68,6 +68,7 @@ Route::middleware(['admin'])->group(function(){
 
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
     Route::put('solveInquiry/{id}',[AdminController::class,'solveInquiry']);
+    Route::put('ignoreInquiry/{id}',[AdminController::class,'ignoreInquiry']);
 
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);
     Route::delete('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant']);
