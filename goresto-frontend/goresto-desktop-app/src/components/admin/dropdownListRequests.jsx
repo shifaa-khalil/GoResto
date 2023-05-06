@@ -8,10 +8,8 @@ const DropDownList = (props) => {
   return (
     <div>
       <select className={styles.dropDownList} onChange={props.onChange}>
-        <option>all</option>
-        <option>rejected</option>
-        <option>pending</option>
-        <option>approved</option>
+      <option>newest first</option>
+        <option>oldest first</option>
       </select>
     </div>
   );

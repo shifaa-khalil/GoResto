@@ -12,7 +12,7 @@ const Restaurants = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [restaurants, setRestaurants] = useState([]);
   const [deleted, setDeleted] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("upcoming");
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const navigate = useNavigate();
 
   const handleFilter = (event) => {
@@ -21,8 +21,12 @@ const Restaurants = () => {
 
   const filteredRestaurants = () => {
     switch (selectedFilter) {
+      case "rejected":
+        return restaurants.filter((r) => r.status === "rejected");
+      case "pending":
+        return restaurants.filter((r) => r.status === "pending");
       case "approved":
-        return restaurants.filter((r) => r.approved === 1);
+        return restaurants.filter((r) => r.status === "approved");
       case "all":
       default:
         return restaurants;

@@ -4,7 +4,7 @@ import axios from "axios";
 import "../../App.css";
 import NavBar2 from "../../components/navBar2";
 import LeftMenu from "../../components/admin/leftMenu";
-import DropDownList from "../../components/dropDownList";
+import DropDownList from "../../components/admin/dropdownListRequests";
 import styles from "../../css/admin/admin.module.css";
 
 const Requests = () => {
@@ -14,6 +14,7 @@ const Requests = () => {
   const [restoRequests, setRestoRequests] = useState([]);
   const [approved, setApproved] = useState("");
   const [rejected, setRejected] = useState("");
+  const [sortOption, setSortOption] = useState("newest first");
 
   useEffect(() => {
     // if (token) {
@@ -31,6 +32,20 @@ const Requests = () => {
       });
     // } else navigate("/signin");
   }, []);
+
+  useEffect(() => {
+    let sortedRequests = [...restoRequests];
+    if (sortOption === "newest first") {
+      sortedRequests.sort((a, b) => b.id - a.id);
+    } else if (sortOption === "oldest first") {
+      sortedRequests.sort((a, b) => a.id - b.id);
+    }
+    setRestoRequests(sortedRequests);
+  }, [sortOption]);
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
 
   const handleApprove = (id) => {
     console.log("before");
@@ -76,7 +91,7 @@ const Requests = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Requests" className="block" />
-        <DropDownList />
+        <DropDownList onChange={handleSortChange} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
             <table>
