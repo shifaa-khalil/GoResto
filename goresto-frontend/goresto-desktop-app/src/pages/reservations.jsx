@@ -13,6 +13,7 @@ const Reservations = () => {
   const navigate = useNavigate();
   const [reservations, setReservations] = useState("");
   const [cancelled, setCancelled] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("upcoming");
 
   useEffect(() => {
     if (token) {
@@ -30,7 +31,6 @@ const Reservations = () => {
   }, []);
 
   const handleCancel = (id) => {
-    console.log(id);
     axios
       .delete(`http://127.0.0.1:8000/api/cancelReservationResto/${id}`, {
         headers: {
@@ -39,12 +39,38 @@ const Reservations = () => {
       })
       .then((response) => {
         setCancelled(id);
-        console.log(cancelled, "cancelled");
         window.location.reload();
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleFilter = (event) => {
+    setSelectedFilter(event.target.value);
+  };
+
+  const filteredReservations = () => {
+    switch (selectedFilter) {
+      case "previous month":
+        const previousMonth = new Date().getMonth() - 1;
+        return reservations.filter(
+          (r) => new Date(r.date).getMonth() === previousMonth
+        );
+      case "this month":
+        return reservations.filter(
+          (r) => new Date(r.date).getMonth() === new Date().getMonth()
+        );
+      case "this year":
+        return reservations.filter(
+          (r) => new Date(r.date).getFullYear() === new Date().getFullYear()
+        );
+      case "upcoming":
+        return reservations.filter((r) => new Date(r.date) >= new Date());
+      case "all":
+      default:
+        return reservations;
+    }
   };
 
   return (
@@ -54,7 +80,7 @@ const Reservations = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Reservations" className="block" />
-        <DropDownList />
+        <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
             <table>
@@ -70,7 +96,7 @@ const Reservations = () => {
               </thead>
               <tbody>
                 {reservations &&
-                  reservations.map((reservation) => (
+                  filteredReservations().map((reservation) => (
                     <tr
                       className="normalweight mediumsize"
                       key={reservation.id}

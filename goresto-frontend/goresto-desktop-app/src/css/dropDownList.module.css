@@ -1,27 +1,12 @@
 .dropDownList {
-  position: relative;
+  /* position: relative; */
   height: 35px;
   width: 170px;
   background-color: var(--red);
   color: white;
-  font-size: 20px;
-  padding: 0 20px;
+  font-size: 18px;
+  padding: 0 10px;
   border: none;
   cursor: pointer;
-  /* -webkit-appearance: none; */
-  /* -moz-appearance: none; */
-  appearance: none;
   border-radius: 8px;
 }
-.arrow {
-  position: absolute;
-  top: 18.5%;
-  left: 510px;
-  color: white;
-  cursor: pointer;
-}
-
-/* option:hover {
-  background-color: white;
-  color: var(--red);
-} */
