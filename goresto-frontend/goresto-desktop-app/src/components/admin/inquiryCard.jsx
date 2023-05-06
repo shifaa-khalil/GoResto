@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../App.css";
 import styles from "../../css/admin/inquiryCard.module.css";
 
@@ -10,7 +10,6 @@ const InquiryCard = (props) => {
         <span className="normalweight">{props.date}</span>
       </div>
       <span className={`normalweight ${styles.content}`}>{props.content}</span>
-      {/* <input className={styles.input} /> */}
       <div className={`flex-row ${styles.buttons}`}>
         <button className="bold">mark as solved</button>
         <button className="bold">ignore</button>
