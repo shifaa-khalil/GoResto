@@ -71,7 +71,9 @@ Route::middleware(['manager'])->group(function(){
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);
     Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
-    // Route::get('/getReservations', [RestaurantController::class, 'getReservations']);
+    Route::get('/cancelReservationResto', [RestaurantController::class, 'cancelReservationResto']);
+
+    Route::get('/getReservationsReso', [RestaurantController::class, 'getReservationsResto']);
     Route::put('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem']);
     Route::put('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem']);
     Route::put('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem']);

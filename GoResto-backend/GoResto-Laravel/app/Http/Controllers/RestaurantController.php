@@ -106,7 +106,7 @@ class RestaurantController extends Controller
             return response()->json(['status' => 'success', 'message' => $menuItem]);
     }
 
-    function getReservations()
+    function getReservationsReso()
     {
         $manager = auth()->user();
 
@@ -212,11 +212,22 @@ class RestaurantController extends Controller
 
         if(!$reviews) return response()->json('no reviews');
         
-        // $comments = Comment::all();
-
         return response()->json(['reviews' => $reviews]);
         }
         return response()->json(['status'=>'failure', 'message'=>'no restaurant added']);
 
+    }
+
+    function cancelReservationResto($reservation_id)
+    {
+        $reservation = Reservation::find($reservation_id);
+
+        if(!$reservation) return response()->json(['status' => 'failure', 'message' => 'not found']);
+        else
+        {
+            $reservation->delete();
+
+            return response()->json(['status' => 'success', 'message' => 'reservation cancelled']);
+        }
     }
 }
