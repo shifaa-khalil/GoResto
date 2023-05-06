@@ -18,7 +18,7 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  height: 20vh;
+  height: 65vh;
   width: 100%;
 }
 .open {

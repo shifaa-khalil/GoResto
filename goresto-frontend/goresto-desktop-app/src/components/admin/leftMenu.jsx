@@ -4,7 +4,7 @@ import "../../App.css";
 import styles from "../../css/admin/leftMenu.module.css";
 import LeftMenuItem from "../leftMenuItem";
 import requests from "../../images/request.png";
-import customers from "../../images/customers.png";
+import users from "../../images/user.png";
 import restaurants from "../../images/restaurant.png";
 import chats from "../../images/chats.png";
 import signout from "../../images/signout.png";
@@ -44,10 +44,10 @@ const LeftMenu = (props) => {
           onClick={() => navigate("/restaurants")}
         />
         <LeftMenuItem
-          icon={customers}
+          icon={users}
           sectionName="Users"
           className={props.usersClassName}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/users")}
         />
         <LeftMenuItem
           icon={chats}
