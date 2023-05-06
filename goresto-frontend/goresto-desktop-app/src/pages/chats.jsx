@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+// import jwt from "jsonwebtoken";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 import "../App.css";
 import NavBar2 from "../components/navBar2";
@@ -15,21 +17,34 @@ const Chats = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [inputText, setInputText] = useState("");
   const [chats, setChats] = useState([]);
+  const [messages, setMessages] = useState([]);
+  // const userId = useSelector((state) => state.auth.userId);
+  const [userId, setUserId] = useState("");
+  const decodedToken = jwt_decode(token);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     axios
-  //       .get(`http://localhost:3000/user/messages/6455273d3372d15408f88421`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => console.log(response))
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   } else console.log("no token");
-  // }, []);
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`http://localhost:3000/user/messages/64552810f805d155f62b7ff6`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setMessages(response.data.messages);
+          console.log(messages);
+          if (decodedToken) {
+            console.log("decodedToken.sub", decodedToken.sub);
+            setUserId(decodedToken.sub);
+          } else console.log("not decoded");
+          if (userId) console.log("userId", userId);
+          else console.log("no userId");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else console.log("no token");
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -70,12 +85,21 @@ const Chats = () => {
           <div className={styles.conversation}>
             <span className={`semibold mediumsize ${styles.name}`}>Name</span>
             <div className={styles.messages}>
+              {messages &&
+                messages.map((message) => (
+                  <MessageCard
+                    content={message.content}
+                    dateTime={new Date(message.createdAt).toLocaleTimeString()}
+                    className={
+                      message.senderId == userId ? styles.right : styles.left
+                    }
+                  />
+                ))}
+              {/* <MessageCard className={styles.right} />
+              <MessageCard />
               <MessageCard />
               <MessageCard className={styles.right} />
-              <MessageCard />
-              <MessageCard />
-              <MessageCard className={styles.right} />
-              <MessageCard className={styles.right} />
+              <MessageCard className={styles.right} /> */}
             </div>
             <div className={styles.inputContainer}>
               <input

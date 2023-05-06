@@ -55,6 +55,9 @@
   background-color: var(--red);
   color: white;
 }
+.left {
+  background-color: var(--grey);
+}
 .selected {
   background-color: white;
 }
