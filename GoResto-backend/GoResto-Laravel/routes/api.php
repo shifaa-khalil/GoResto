@@ -69,6 +69,7 @@ Route::middleware(['admin'])->group(function(){
 
     Route::delete('rejectRequest/{id}',[AdminController::class,'rejectRequest']);
     Route::delete('deleteRestaurant/{restaurant_id}',[AdminController::class,'deleteRestaurant']);
+    Route::delete('deleteUser/{user_id}',[AdminController::class,'deleteUser']);
 });
 
 Route::middleware(['manager'])->group(function(){

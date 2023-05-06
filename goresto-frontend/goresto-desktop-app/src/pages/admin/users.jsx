@@ -12,6 +12,8 @@ const Users = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [users, setUsers] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [removed, setRemoved] = useState("");
+
   const navigate = useNavigate();
 
   const handleFilter = (event) => {
@@ -47,21 +49,21 @@ const Users = () => {
     } else navigate("/signin");
   }, []);
 
-  //   const handleDelete = (id) => {
-  //     axios
-  //       .delete(`http://127.0.0.1:8000/api/deleteRestaurant/${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setDeleted(id);
-  //         window.location.reload();
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
+  const handleRemove = (id) => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/deleteUser/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setRemoved(id);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -97,15 +99,15 @@ const Users = () => {
                           {new Date(user.created_at).toLocaleDateString()}
                         </td>
                         <td></td>
-                        {/* <td>
-                        {deleted == restaurant.id ? (
-                          <span>Deleted</span>
-                        ) : (
-                          <button onClick={() => handleDelete(restaurant.id)}>
-                            remove
-                          </button>
-                        )}
-                      </td> */}
+                        <td>
+                          {removed == user.id ? (
+                            <span>Removed</span>
+                          ) : (
+                            <button onClick={() => handleRemove(user.id)}>
+                              remove
+                            </button>
+                          )}
+                        </td>
                       </tr>
                     ))}
                 </tbody>

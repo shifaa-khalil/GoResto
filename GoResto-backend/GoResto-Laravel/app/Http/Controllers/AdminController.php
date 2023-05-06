@@ -72,4 +72,13 @@ class AdminController extends Controller
 
         return response()->json(['status' => 'success', 'message' => 'restaurant deleted']);
     }
+
+    function deleteUser($user_id)
+    {
+        $user = User::find($user_id);
+
+        $user->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'user deleted']);
+    }
 }
