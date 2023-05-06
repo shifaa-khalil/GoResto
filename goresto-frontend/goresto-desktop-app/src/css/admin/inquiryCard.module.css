@@ -16,6 +16,7 @@
 }
 .content {
   flex-basis: 60%;
+  overflow-y: scroll;
 }
 .buttons {
   width: 100%;
