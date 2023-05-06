@@ -38,6 +38,7 @@ const Restaurants = () => {
       })
       .then((response) => {
         setDeleted(id);
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);

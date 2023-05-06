@@ -20,6 +20,8 @@ const Chats = () => {
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
   const [activeChatId, setActiveChatId] = useState("");
+  const [receiverId, setReceiverId] = useState("");
+  const [receiverName, setReceiverName] = useState("");
 
   const openChat = () => {
     if (token) {
@@ -38,6 +40,40 @@ const Chats = () => {
     } else console.log("no token");
   };
 
+  // const renderChatCards = () => {
+  //   {
+  //     chats &&
+  //       chats.map((chat) => {
+  //         if (chat.firstUserId == userId) setReceiverId(chat.secondUserId);
+  //         else if (chat.secondUserId == userId) setReceiverId(chat.firstUserId);
+  //         else setReceiverName("Unknown");
+
+  //         axios
+  //           .get(`http://localhost:8000/api/getUserName/${receiverId}`, {
+  //             headers: { Authorization: `Bearer ${token}` },
+  //           })
+  //           .then((response) => setReceiverName(response.data.userName))
+  //           .catch((error) => {
+  //             console.error(error);
+  //           });
+
+  //         return (
+  //           <ChatCard
+  //             name={receiverName}
+  //             content={chat.lastMessage.content}
+  //             dateTime={new Date(
+  //               chat.lastMessage.createdAt
+  //             ).toLocaleDateString()}
+  //             onClick={() => {
+  //               setActiveChatId(chat.chatId);
+  //               openChat();
+  //             }}
+  //           />
+  //         );
+  //       });
+  //   }
+  // };
+
   useEffect(() => {
     if (token) {
       const decodedToken = jwt_decode(token);
@@ -54,7 +90,9 @@ const Chats = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => setChats(response.data.chats))
+        .then((response) => {
+          setChats(response.data.chats);
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -71,16 +109,11 @@ const Chats = () => {
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
             <SearchBar />
+            {/* {renderChatCards} */}
             {chats &&
               chats.map((chat) => (
                 <ChatCard
-                  name={
-                    chat.firstUserId == userId
-                      ? chat.secondUserId
-                      : chat.secondUserId == userId
-                      ? chat.firstUserId
-                      : "hey"
-                  }
+                  name="Unknown"
                   content={chat.lastMessage.content}
                   dateTime={new Date(
                     chat.lastMessage.createdAt
@@ -95,7 +128,9 @@ const Chats = () => {
           <div
             className={messages.length > 0 ? styles.conversation : styles.none}
           >
-            <span className={`semibold mediumsize ${styles.name}`}>Name</span>
+            <span className={`semibold mediumsize ${styles.name}`}>
+              Unknown
+            </span>
             <div className={styles.messages}>
               {messages &&
                 messages.map((message) => (
