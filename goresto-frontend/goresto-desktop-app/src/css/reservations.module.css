@@ -18,7 +18,7 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  height: 20vh;
+  height: 65vh;
   width: 100%;
 }
 .open {
@@ -39,6 +39,8 @@ td {
   border: 1px solid rgb(136, 132, 132);
   width: 120px;
   max-width: 190px;
+  height: 10px;
+  max-height: 20px;
   /* min-height: 15px; */
   text-align: center;
   overflow: hidden;

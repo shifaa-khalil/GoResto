@@ -52,7 +52,7 @@
 }
 .right {
   align-self: flex-end;
-  background-color: var(--red);
+  background-color: grey;
   color: white;
 }
 .left {

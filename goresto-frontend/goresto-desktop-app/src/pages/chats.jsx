@@ -18,14 +18,14 @@ const Chats = () => {
   const [inputText, setInputText] = useState("");
   const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
-  // const userId = useSelector((state) => state.auth.userId);
   const [userId, setUserId] = useState("");
   const decodedToken = jwt_decode(token);
+  const [activeChatId, setActiveChatId] = useState("");
 
-  useEffect(() => {
+  const openChat = () => {
     if (token) {
       axios
-        .get(`http://localhost:3000/user/messages/64552810f805d155f62b7ff6`, {
+        .get(`http://localhost:3000/user/messages/${activeChatId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -44,7 +44,7 @@ const Chats = () => {
           console.error(error);
         });
     } else console.log("no token");
-  }, []);
+  };
 
   useEffect(() => {
     if (token) {
@@ -79,6 +79,10 @@ const Chats = () => {
                   dateTime={new Date(
                     chat.lastMessage.createdAt
                   ).toLocaleDateString()}
+                  onClick={() => {
+                    setActiveChatId(chat.chatId);
+                    openChat();
+                  }}
                 />
               ))}
           </div>

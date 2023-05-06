@@ -12,6 +12,7 @@ const Reservations = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
   const [reservations, setReservations] = useState("");
+  const [cancelled, setCancelled] = useState("");
 
   useEffect(() => {
     if (token) {
@@ -27,6 +28,24 @@ const Reservations = () => {
         });
     } else navigate("/signin");
   }, []);
+
+  const handleCancel = (id) => {
+    setCancelled(id);
+    console.log(cancelled);
+
+    // axios
+    //   .delete(`http://127.0.0.1:8000/api/rejectRequest/${id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setRejected(id);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+  };
 
   return (
     <div className={styles.container}>
@@ -46,6 +65,7 @@ const Reservations = () => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>Count</th>
+                  <th>Cancel</th>
                 </tr>
               </thead>
               <tbody>
@@ -60,6 +80,15 @@ const Reservations = () => {
                       <td>{reservation.date}</td>
                       <td>{reservation.time}</td>
                       <td>{reservation.count}</td>
+                      <td>
+                        {cancelled === reservation.id ? (
+                          <span>Cancelled</span>
+                        ) : (
+                          <button onClick={() => handleCancel(reservation.id)}>
+                            cancel
+                          </button>
+                        )}
+                      </td>
                     </tr>
                   ))}
               </tbody>
