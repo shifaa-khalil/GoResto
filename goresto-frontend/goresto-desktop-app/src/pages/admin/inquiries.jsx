@@ -86,6 +86,8 @@ const Inquiries = () => {
                 date={new Date(inquiry.created_at).toLocaleDateString()}
                 onSolve={() => handleSolve(inquiry.id)}
                 onIgnore={() => console.log("ignored")}
+                solvedStatus={inquiry.status == "solved" ? true : false}
+                ignoredStatus={inquiry.status == "ignored" ? true : false}
               />
             ))}
         </div>

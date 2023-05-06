@@ -29,3 +29,6 @@
   color: white;
   cursor: pointer;
 }
+.buttons p {
+  color: grey;
+}

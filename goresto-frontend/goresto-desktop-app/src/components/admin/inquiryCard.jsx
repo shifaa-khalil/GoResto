@@ -11,12 +11,20 @@ const InquiryCard = (props) => {
       </div>
       <span className={`normalweight ${styles.content}`}>{props.content}</span>
       <div className={`flex-row ${styles.buttons}`}>
-        <button className="bold" onClick={props.onSolve}>
-          mark as solved
-        </button>
-        <button className="bold" onClick={props.onIgnore}>
-          ignore
-        </button>
+        {props.solvedStatus ? (
+          <p>Solved</p>
+        ) : (
+          <button className="bold" onClick={props.onSolve}>
+            mark as solved
+          </button>
+        )}
+        {props.ignoredStatus ? (
+          <p>Ignored</p>
+        ) : (
+          <button className="bold" onClick={props.onIgnore}>
+            ignore
+          </button>
+        )}
       </div>
     </div>
   );
