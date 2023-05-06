@@ -42,6 +42,7 @@ const Requests = () => {
       })
       .then((response) => {
         setApproved(id);
+        window.location.reload();
       })
       .catch((error) => {
         console.log("after");
@@ -61,6 +62,7 @@ const Requests = () => {
       })
       .then((response) => {
         setRejected(id);
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
