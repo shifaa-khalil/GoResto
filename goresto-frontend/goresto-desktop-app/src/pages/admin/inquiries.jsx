@@ -18,20 +18,20 @@ const Inquiries = () => {
   const [sortOption, setSortOption] = useState("newest first");
 
   useEffect(() => {
-    // if (token) {
-    axios
-      .get(`http://127.0.0.1:8000/api/getInquiries`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data.inquiries);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // } else navigate("/signin");
+    if (token) {
+      axios
+        .get(`http://127.0.0.1:8000/api/getInquiries`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setInquiries(response.data.inquiries);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else navigate("/signin");
   }, []);
 
   //   const handleApprove = (id) => {
@@ -80,9 +80,14 @@ const Inquiries = () => {
         <NavBar2 sectionName="Inquiries" />
         <DropDownList />
         <div className={`semibold ${styles.body}`}>
-          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
-          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
-          <InquiryCard restaurantName="test" content="test" date="2023-2-2" />
+          {inquiries &&
+            inquiries.map((inquiry) => (
+              <InquiryCard
+                restaurantName={inquiry.restaurant.name}
+                content={inquiry.content}
+                date={new Date(inquiry.created_at).toLocaleDateString()}
+              />
+            ))}
         </div>
       </div>
     </div>
