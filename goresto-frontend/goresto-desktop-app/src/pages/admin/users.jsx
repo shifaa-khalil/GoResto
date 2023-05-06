@@ -73,28 +73,31 @@ const Users = () => {
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            <table>
-              <thead>
-                <tr className="semibold tr">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Joined in</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users &&
-                  filteredUsers().map((user) => (
-                    <tr className="normalweight mediumsize" key={user.id}>
-                      <td>{user.id}</td>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>{user.role}</td>
-                      <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                      <td></td>
-                      {/* <td>
+            {filteredUsers().length > 0 ? (
+              <table>
+                <thead>
+                  <tr className="semibold tr">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined in</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users &&
+                    filteredUsers().map((user) => (
+                      <tr className="normalweight mediumsize" key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          {new Date(user.created_at).toLocaleDateString()}
+                        </td>
+                        <td></td>
+                        {/* <td>
                         {deleted == restaurant.id ? (
                           <span>Deleted</span>
                         ) : (
@@ -103,10 +106,13 @@ const Users = () => {
                           </button>
                         )}
                       </td> */}
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>no data</p>
+            )}
           </div>
         </div>
       </div>

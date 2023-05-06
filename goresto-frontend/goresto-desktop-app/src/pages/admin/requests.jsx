@@ -94,59 +94,63 @@ const Requests = () => {
         <DropDownList onChange={handleSortChange} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            <table>
-              <thead>
-                <tr className="semibold tr">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Manager</th>
-                  <th>Logo</th>
-                  <th>Location</th>
-                  <th>tables</th>
-                  <th>Menu</th>
-                  <th>approval</th>
-                </tr>
-              </thead>
-              <tbody>
-                {restoRequests &&
-                  restoRequests.map((restoRequest) => (
-                    <tr
-                      className="normalweight mediumsize"
-                      key={restoRequest.id}
-                    >
-                      <td>{restoRequest.id}</td>
-                      <td>{restoRequest.restaurant.name}</td>
-                      <td>{restoRequest.restaurant.manager_id}</td>
-                      <td>{restoRequest.restaurant.logo}</td>
-                      <td>{restoRequest.restaurant.location}</td>
-                      <td>{restoRequest.restaurant.number_of_tables}</td>
-                      <td>{restoRequest.restaurant.menu.menuItem}</td>
-                      <td>
-                        <div className={styles.row}>
-                          {approved === restoRequest.id ? (
-                            <span>Approved</span>
-                          ) : rejected === restoRequest.id ? (
-                            <span>Rejected</span>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() => handleApprove(restoRequest.id)}
-                              >
-                                approve
-                              </button>
-                              <button
-                                onClick={() => handleReject(restoRequest.id)}
-                              >
-                                reject
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+            {restoRequests.length > 0 ? (
+              <table>
+                <thead>
+                  <tr className="semibold tr">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Manager</th>
+                    <th>Logo</th>
+                    <th>Location</th>
+                    <th>tables</th>
+                    <th>Menu</th>
+                    <th>approval</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {restoRequests &&
+                    restoRequests.map((restoRequest) => (
+                      <tr
+                        className="normalweight mediumsize"
+                        key={restoRequest.id}
+                      >
+                        <td>{restoRequest.id}</td>
+                        <td>{restoRequest.restaurant.name}</td>
+                        <td>{restoRequest.restaurant.manager_id}</td>
+                        <td>{restoRequest.restaurant.logo}</td>
+                        <td>{restoRequest.restaurant.location}</td>
+                        <td>{restoRequest.restaurant.number_of_tables}</td>
+                        <td>{restoRequest.restaurant.menu.menuItem}</td>
+                        <td>
+                          <div className={styles.row}>
+                            {approved === restoRequest.id ? (
+                              <span>Approved</span>
+                            ) : rejected === restoRequest.id ? (
+                              <span>Rejected</span>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() => handleApprove(restoRequest.id)}
+                                >
+                                  approve
+                                </button>
+                                <button
+                                  onClick={() => handleReject(restoRequest.id)}
+                                >
+                                  reject
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>no data</p>
+            )}
           </div>
         </div>
       </div>

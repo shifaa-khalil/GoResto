@@ -76,43 +76,50 @@ const Restaurants = () => {
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            <table>
-              <thead>
-                <tr className="semibold tr">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Manager</th>
-                  <th>Logo</th>
-                  <th>Location</th>
-                  <th>tables</th>
-                  <th>Menu</th>
-                  <th>action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {restaurants &&
-                  filteredRestaurants().map((restaurant) => (
-                    <tr className="normalweight mediumsize" key={restaurant.id}>
-                      <td>{restaurant.id}</td>
-                      <td>{restaurant.name}</td>
-                      <td>{restaurant.manager_id}</td>
-                      <td>{restaurant.logo}</td>
-                      <td>{restaurant.location}</td>
-                      <td>{restaurant.number_of_tables}</td>
-                      <td>{restaurant.menu.menuItem}</td>
-                      <td>
-                        {deleted == restaurant.id ? (
-                          <span>Deleted</span>
-                        ) : (
-                          <button onClick={() => handleDelete(restaurant.id)}>
-                            remove
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+            {filteredRestaurants().length > 0 ? (
+              <table>
+                <thead>
+                  <tr className="semibold tr">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Manager</th>
+                    <th>Logo</th>
+                    <th>Location</th>
+                    <th>tables</th>
+                    <th>Menu</th>
+                    <th>action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {restaurants &&
+                    filteredRestaurants().map((restaurant) => (
+                      <tr
+                        className="normalweight mediumsize"
+                        key={restaurant.id}
+                      >
+                        <td>{restaurant.id}</td>
+                        <td>{restaurant.name}</td>
+                        <td>{restaurant.manager_id}</td>
+                        <td>{restaurant.logo}</td>
+                        <td>{restaurant.location}</td>
+                        <td>{restaurant.number_of_tables}</td>
+                        <td>{restaurant.menu.menuItem}</td>
+                        <td>
+                          {deleted == restaurant.id ? (
+                            <span>Deleted</span>
+                          ) : (
+                            <button onClick={() => handleDelete(restaurant.id)}>
+                              remove
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>no data</p>
+            )}
           </div>
         </div>
       </div>
