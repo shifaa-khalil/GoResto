@@ -13,9 +13,25 @@ const Inquiries = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
   const [inquiries, setInquiries] = useState([]);
-  const [solved, setSolved] = useState("");
-  const [ignored, setIgnored] = useState("");
-  const [sortOption, setSortOption] = useState("newest first");
+  const [selectedFilter, setSelectedFilter] = useState("pending");
+
+  const handleFilter = (event) => {
+    setSelectedFilter(event.target.value);
+  };
+
+  const filteredInquiries = () => {
+    switch (selectedFilter) {
+      case "pending":
+        return inquiries.filter((i) => i.status === "pending");
+      case "solved":
+        return inquiries.filter((i) => i.status === "solved");
+      case "ignored":
+        return inquiries.filter((i) => i.status === "ignored");
+      case "all":
+      default:
+        return inquiries;
+    }
+  };
 
   useEffect(() => {
     if (token) {
@@ -77,10 +93,10 @@ const Inquiries = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Inquiries" />
-        <DropDownList />
+        <DropDownList onChange={handleFilter} />
         <div className={`semibold ${styles.body}`}>
-          {inquiries &&
-            inquiries.map((inquiry) => (
+          {filteredInquiries().length > 0 ? (
+            filteredInquiries().map((inquiry) => (
               <InquiryCard
                 restaurantName={inquiry.restaurant.name}
                 content={inquiry.content}
@@ -90,84 +106,14 @@ const Inquiries = () => {
                 solvedStatus={inquiry.status == "solved" ? true : false}
                 ignoredStatus={inquiry.status == "ignored" ? true : false}
               />
-            ))}
+            ))
+          ) : (
+            <p>no data</p>
+          )}
         </div>
       </div>
     </div>
   );
-
-  //   return (
-  //     <div className={styles.container}>
-  //       <div>
-  //         <LeftMenu requestsClassName={styles.open} />
-  //       </div>
-  //       <div className={`flex-column ${styles.sectionContainer}`}>
-  //         <NavBar2 sectionName="Requests" className="block" />
-  //         <DropDownList onChange={handleSortChange} />
-  //         <div className={styles.body}>
-  //           <div className={styles.tableContainer}>
-  //             {restoRequests.length > 0 ? (
-  //               <table>
-  //                 <thead>
-  //                   <tr className="semibold tr">
-  //                     <th>ID</th>
-  //                     <th>Name</th>
-  //                     <th>Manager</th>
-  //                     <th>Logo</th>
-  //                     <th>Location</th>
-  //                     <th>tables</th>
-  //                     <th>Menu</th>
-  //                     <th>approval</th>
-  //                   </tr>
-  //                 </thead>
-  //                 <tbody>
-  //                   {restoRequests &&
-  //                     restoRequests.map((restoRequest) => (
-  //                       <tr
-  //                         className="normalweight mediumsize"
-  //                         key={restoRequest.id}
-  //                       >
-  //                         <td>{restoRequest.id}</td>
-  //                         <td>{restoRequest.restaurant.name}</td>
-  //                         <td>{restoRequest.restaurant.manager_id}</td>
-  //                         <td>{restoRequest.restaurant.logo}</td>
-  //                         <td>{restoRequest.restaurant.location}</td>
-  //                         <td>{restoRequest.restaurant.number_of_tables}</td>
-  //                         <td>{restoRequest.restaurant.menu.menuItem}</td>
-  //                         <td>
-  //                           <div className={styles.row}>
-  //                             {solved === restoRequest.id ? (
-  //                               <span>Solved</span>
-  //                             ) : ignored === restoRequest.id ? (
-  //                               <span>Ignored</span>
-  //                             ) : (
-  //                               <>
-  //                                 <button
-  //                                   onClick={() => handleApprove(restoRequest.id)}
-  //                                 >
-  //                                   approve
-  //                                 </button>
-  //                                 <button
-  //                                   onClick={() => handleReject(restoRequest.id)}
-  //                                 >
-  //                                   reject
-  //                                 </button>
-  //                               </>
-  //                             )}
-  //                           </div>
-  //                         </td>
-  //                       </tr>
-  //                     ))}
-  //                 </tbody>
-  //               </table>
-  //             ) : (
-  //               <p>no data</p>
-  //             )}
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
 };
 
 export default Inquiries;

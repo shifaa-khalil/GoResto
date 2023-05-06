@@ -6,10 +6,10 @@ const DropDownListInquiries = (props) => {
   return (
     <div>
       <select className={styles.dropDownList} onChange={props.onChange}>
-        <option>all</option>
-        <option>solved</option>
         <option>pending</option>
+        <option>solved</option>
         <option>ignored</option>
+        <option>all</option>
       </select>
     </div>
   );
