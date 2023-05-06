@@ -13,6 +13,7 @@ const Setup = () => {
   const [name, setName] = useState("");
   const [logo, setLogo] = useState(null);
   const [tables, setTables] = useState("");
+  const [seats, setSeats] = useState("");
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [deposit, setDeposit] = useState("");
@@ -48,6 +49,7 @@ const Setup = () => {
         data.append("name", name);
         data.append("location", location);
         data.append("number_of_tables", tables);
+        data.append("number_of_seats", seats);
         data.append("logo", logo);
         data.append("deposit", deposit);
         data.append("phone_number", phoneNumber);
@@ -118,23 +120,11 @@ const Setup = () => {
             }}
           />
           <Input
-            label="Enter the number of tables in your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={tables}
-            placeholder="type here"
-            className={styles.input}
-            onChange={(e) => {
-              setTables(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-          <Input
             label="Add the location of your restaurant"
             labelClassName="semibold"
             type="text"
             value={location}
-            placeholder="type here"
+            placeholder="city-street"
             className={styles.input}
             onChange={(e) => {
               setLocation(e.target.value);
@@ -145,7 +135,7 @@ const Setup = () => {
             label="Add the phone number of your restaurant"
             labelClassName="semibold"
             type="text"
-            value={phone_number}
+            value={phoneNumber}
             placeholder="00-000-000"
             className={styles.input}
             onChange={(e) => {
@@ -154,11 +144,36 @@ const Setup = () => {
             }}
           />
           <Input
-            label="Add the deposit for reservation in your restaurant"
+            label="Enter the number of tables in your restaurant"
+            labelClassName="semibold"
+            type="text"
+            value={tables}
+            placeholder="eg. 15"
+            className={styles.input}
+            onChange={(e) => {
+              setTables(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Add the number of seats in your restaurant"
+            labelClassName="semibold"
+            type="text"
+            value={seats}
+            placeholder="eg. 15"
+            className={styles.input}
+            onChange={(e) => {
+              setSeats(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+
+          <Input
+            label="Add the average lunch cost per person in your restaurant"
             labelClassName="semibold"
             type="text"
             value={deposit}
-            placeholder="type here"
+            placeholder="eg. 40"
             className={styles.input}
             onChange={(e) => {
               setDeposit(e.target.value);

@@ -13,6 +13,7 @@ class Restaurant extends Model
         'logo',
         'location',
         'number_of_tables',
+        'number_of_seats',
         'approved',
         'status',
         'deposit',
