@@ -98,7 +98,6 @@ const Users = () => {
                         <td>
                           {new Date(user.created_at).toLocaleDateString()}
                         </td>
-                        <td></td>
                         <td>
                           {removed == user.id ? (
                             <span>Removed</span>

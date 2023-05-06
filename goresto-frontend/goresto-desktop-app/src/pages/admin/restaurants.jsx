@@ -106,7 +106,7 @@ const Restaurants = () => {
                         <td>{restaurant.menu.menuItem}</td>
                         <td>
                           {deleted == restaurant.id ? (
-                            <span>Deleted</span>
+                            <span>Removed</span>
                           ) : (
                             <button onClick={() => handleDelete(restaurant.id)}>
                               remove
