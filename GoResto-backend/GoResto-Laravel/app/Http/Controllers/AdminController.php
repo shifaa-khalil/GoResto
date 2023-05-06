@@ -32,6 +32,13 @@ class AdminController extends Controller
         return response()->json(['restaurants' => $restaurants]);
     }
 
+    function getUsers()
+    {
+        $users = User::where('role', 'manager')->orWhere('role', 'customer')->get();
+
+        return response()->json(['users' => $users]);
+    }
+
     function approveRequest($id)
     {
         $restoRequest = RestoRequest::where('id', $id)->first();

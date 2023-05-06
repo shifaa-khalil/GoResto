@@ -3,7 +3,7 @@
 }
 .input {
   height: 30px;
-  width: 250px;
+  width: 300px;
   border: 1px solid var(--red);
   border-left: 10px solid var(--red);
   border-radius: 8px;

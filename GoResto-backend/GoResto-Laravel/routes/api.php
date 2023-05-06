@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::middleware(['admin'])->group(function(){
     Route::get('getRestaurantsdata',[AdminController::class,'getRestaurants']);
     Route::get('getRequests',[AdminController::class,'getRequests']);
+    Route::get('getUsers',[AdminController::class,'getUsers']);
 
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
 

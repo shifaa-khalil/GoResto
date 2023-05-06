@@ -55,6 +55,7 @@ class RestaurantController extends Controller
             $restaurant->logo = $logo->getData()->message;
             $restaurant->location = $request->location;
             $restaurant->number_of_tables = $request->number_of_tables;
+            $restaurant->number_of_seats = $request->number_of_seats;
             $restaurant->manager_id = $manager->id;
             $restaurant->deposit = $request->deposit;
             $restaurant->phone_number = $request->phone_number;
