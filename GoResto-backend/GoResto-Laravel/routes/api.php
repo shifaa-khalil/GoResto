@@ -64,6 +64,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('getRestaurantsdata',[AdminController::class,'getRestaurants']);
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::get('getUsers',[AdminController::class,'getUsers']);
+    Route::get('getInquiries',[AdminController::class,'getInquiries']);
 
     Route::put('approveRequest/{id}',[AdminController::class,'approveRequest']);
 

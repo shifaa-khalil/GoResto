@@ -39,6 +39,13 @@ class AdminController extends Controller
         return response()->json(['users' => $users]);
     }
 
+    function getInquiries()
+    {
+        $inquiries = User::all();
+
+        return response()->json(['inquiries' => $inquiries]);
+    }
+
     function approveRequest($id)
     {
         $restoRequest = RestoRequest::where('id', $id)->first();
