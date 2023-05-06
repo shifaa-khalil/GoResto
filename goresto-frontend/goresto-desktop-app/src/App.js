@@ -19,6 +19,7 @@ import About from "./pages/about";
 import Requests from "./pages/admin/requests";
 import Restaurants from "./pages/admin/restaurants";
 import Users from "./pages/admin/users";
+import Inquiries from "./pages/admin/inquiries";
 import NoAccess from "./pages/noAccess";
 
 function App() {
@@ -232,6 +233,20 @@ function App() {
             isAuthenticated ? (
               isAdmin ? (
                 <Users />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/inquiries"
+          element={
+            isAuthenticated ? (
+              isAdmin ? (
+                <Inquiries />
               ) : (
                 <Navigate to="/noAccess" replace />
               )

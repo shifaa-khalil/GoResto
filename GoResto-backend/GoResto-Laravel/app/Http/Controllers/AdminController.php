@@ -10,6 +10,7 @@ use App\Models\RestoRequest;
 use App\Models\Restaurant;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Models\Inquiry;
 
 class AdminController extends Controller
 {
@@ -41,7 +42,7 @@ class AdminController extends Controller
 
     function getInquiries()
     {
-        $inquiries = User::all();
+        $inquiries = Inquiry::with('restaurant')->get();
 
         return response()->json(['inquiries' => $inquiries]);
     }
