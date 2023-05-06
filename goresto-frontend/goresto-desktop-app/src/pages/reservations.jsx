@@ -30,21 +30,21 @@ const Reservations = () => {
   }, []);
 
   const handleCancel = (id) => {
-    setCancelled(id);
-    console.log(cancelled);
-
-    // axios
-    //   .delete(`http://127.0.0.1:8000/api/cancelReservation/${id}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setRejected(id);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    console.log(id);
+    axios
+      .delete(`http://127.0.0.1:8000/api/cancelReservationResto/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setCancelled(id);
+        console.log(cancelled, "cancelled");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

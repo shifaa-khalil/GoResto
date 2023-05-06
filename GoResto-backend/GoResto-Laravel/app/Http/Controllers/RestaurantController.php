@@ -106,7 +106,7 @@ class RestaurantController extends Controller
             return response()->json(['status' => 'success', 'message' => $menuItem]);
     }
 
-    function getReservationsReso()
+    function getReservationsResto()
     {
         $manager = auth()->user();
 
