@@ -15,11 +15,11 @@ import SearchBar from "../components/searchBar";
 const Chats = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [inputText, setInputText] = useState("");
   const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
   const [activeChatId, setActiveChatId] = useState("");
+  const [messageContent, setMessageContent] = useState("");
   const [receiverId, setReceiverId] = useState("");
   const [receiverName, setReceiverName] = useState("");
 
@@ -38,6 +38,31 @@ const Chats = () => {
           console.error(error);
         });
     } else console.log("no token");
+  };
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    if (!token) return console.log("no token");
+
+    // if (validateForm()) {
+    const data = { chatId: activeChatId, content: messageContent };
+    console.log(data);
+    axios
+      .post(`http://localhost:3000/user/message`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setMessageContent("");
+      })
+      .catch((error) => {
+        console.error(error);
+        console.log("error", error);
+      });
   };
 
   // const renderChatCards = () => {
@@ -146,12 +171,12 @@ const Chats = () => {
             <div className={styles.inputContainer}>
               <input
                 type="text"
-                value={inputText}
+                value={messageContent}
                 placeholder="type your message here..."
-                onChange={(event) => setInputText(event.target.value)}
+                onChange={(event) => setMessageContent(event.target.value)}
                 className={styles.input}
               />
-              <img src={Send} className={styles.send} />
+              <img src={Send} className={styles.send} onClick={sendMessage} />
             </div>
           </div>
         </div>
