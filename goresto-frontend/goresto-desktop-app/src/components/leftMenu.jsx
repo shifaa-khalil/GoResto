@@ -13,6 +13,7 @@ import earnings from "../images/earnings.png";
 import about from "../images/about.png";
 import signout from "../images/signout.png";
 import logo from "../images/logo.png";
+import Inquiry from "../images/inquiries.png";
 
 const LeftMenu = (props) => {
   const navigate = useNavigate();
@@ -54,18 +55,12 @@ const LeftMenu = (props) => {
           className={props.reservationsClassName}
           onClick={() => navigate("/reservations")}
         />
-        <LeftMenuItem
-          icon={customers}
-          sectionName="Customers"
-          className={props.customersClassName}
-          onClick={() => navigate("/")}
-        />
-        <LeftMenuItem
+        {/* <LeftMenuItem
           icon={offers}
           sectionName="Offers"
           className={props.offersClassName}
           onClick={() => navigate("/")}
-        />
+        /> */}
         <LeftMenuItem
           icon={chats}
           sectionName="Reviews"
@@ -78,17 +73,24 @@ const LeftMenu = (props) => {
           className={props.chatsClassName}
           onClick={() => navigate("/chats")}
         />
-        <LeftMenuItem
+        {/* <LeftMenuItem
           icon={earnings}
           sectionName="Earnings"
           className={props.earningsClassName}
           onClick={() => navigate("/")}
-        />
+        /> */}{" "}
+        {/* ++orders */}
         <LeftMenuItem
           icon={about}
           sectionName="About"
           className={props.aboutClassName}
           onClick={() => navigate("/about")}
+        />
+        <LeftMenuItem
+          icon={Inquiry}
+          sectionName="Inquiries"
+          className={props.inquiryClassName}
+          onClick={() => navigate("/inquiry")}
         />
         <LeftMenuItem
           icon={signout}

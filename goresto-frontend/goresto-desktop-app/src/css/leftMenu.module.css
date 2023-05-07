@@ -1,6 +1,7 @@
 .container {
   width: 220px;
-  height: 92vh;
+  /* height: 72vh; */
+  row-gap: 28px;
   position: fixed;
   justify-content: space-between;
 }

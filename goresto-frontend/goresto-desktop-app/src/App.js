@@ -23,6 +23,7 @@ import Users from "./pages/admin/users";
 import Inquiries from "./pages/admin/inquiries";
 import NoAccess from "./pages/noAccess";
 import NotFound from "./pages/notFound";
+import Inquiry from "./pages/inquiry";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -208,6 +209,20 @@ function App() {
             isAuthenticated ? (
               isManager ? (
                 <About />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/inquiry"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <Inquiry />
               ) : (
                 <Navigate to="/noAccess" replace />
               )

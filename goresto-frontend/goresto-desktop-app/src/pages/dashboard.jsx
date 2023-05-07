@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [totalReservations, setTotalReservations] = useState("");
   const [totalReviews, setTotalReviews] = useState("");
   const [rating, setRating] = useState("");
-  const [logo, setLogo] = useState("");
+  // const [logo, setLogo] = useState("");
 
   if (token) {
     axios
@@ -33,7 +33,7 @@ const Dashboard = () => {
         setTotalReservations(response.data.totalReservations);
         setTotalReviews(response.data.totalReviews);
         setRating(response.data.restaurant.rating);
-        setLogo(response.data.restaurant.logo);
+        // setLogo(response.data.restaurant.logo);
       })
       .catch((error) => {
         console.error(error);
@@ -48,7 +48,7 @@ const Dashboard = () => {
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Dashboard" className="block" />
         <DropDownList />
-        <img src={logo} alt="logo" />
+        {/* <img src={logo} alt="logo" /> */}
         <div className={`semibold ${styles.body}`}>
           <DashboardCard
             className={styles.grey}
