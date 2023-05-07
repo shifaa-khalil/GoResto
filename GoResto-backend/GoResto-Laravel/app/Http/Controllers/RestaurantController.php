@@ -124,20 +124,11 @@ class RestaurantController extends Controller
         return response()->json(['reservations' => $reservations]);
     }
 
-    function updateRestaurant(Request $request)
+    function updateRestaurant(Request $request, $restaurant_id)
     {
         $manager = auth()->user();
 
-        try{
-            $request->validate(['name' => 'unique:restaurants']);
-        } catch (\Illuminate\Validation\ValidationException $e){
-            return response()->json(['status' => 'failure', 'message' => 'taken'], 400);
-            // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
-        }
-
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first()->update(['name' => $request->name, 'logo' => $request->logo, 'location' => $request->location, 'number_of_tables' => $request->number_of_tables, 'deposit' => $request->deposit]);
-
-        // $restaurant = Restaurant::where('manager_id', $manager->id)->first();
+        $restaurant = Restaurant::find($restaurant_id)->update(['logo' => $request->logo, 'location' => $request->location, 'phone_number' => $request->phone_number, 'number_of_tables' => $request->number_of_tables, 'number_of_seats' => $request->number_of_seats, 'deposit' => $request->deposit]);
 
         return response()->json(['status'=>'success', 'message'=>'restaurant updated']);
     }

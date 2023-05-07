@@ -13,15 +13,17 @@ const About = () => {
   const [success, setSuccess] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
-  const [name, setName] = useState("");
   const [logo, setLogo] = useState(null);
   const [tables, setTables] = useState("");
+  const [seats, setSeats] = useState("");
   const [location, setLocation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [id, setId] = useState("");
   const [deposit, setDeposit] = useState("");
 
   const validateForm = () => {
     let isValid = true;
-    if (!name || !logo || !tables || !location || !deposit) {
+    if (!logo || !tables || !location || !deposit) {
       setError("All fields are required");
       isValid = false;
     }
@@ -46,17 +48,18 @@ const About = () => {
     if (token) {
       if (validateForm()) {
         const data = new FormData();
-        data.append("name", name);
         data.append("location", location);
         data.append("number_of_tables", tables);
+        data.append("number_of_seats", seats);
         data.append("logo", logo);
         data.append("deposit", deposit);
+        data.append("phone_number", phoneNumber);
 
         axios
-          .post(`http://127.0.0.1:8000/api/updateRestaurant`, data, {
+          .put(`http://127.0.0.1:8000/api/updateRestaurant/${id}`, data, {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
             },
           })
           .then((response) => {
@@ -85,11 +88,13 @@ const About = () => {
           },
         })
         .then((response) => {
-          setName(response.data.restaurant.name);
+          setId(response.data.restaurant.id);
           setLogo(response.data.restaurant.logo);
           setLocation(response.data.restaurant.location);
           setTables(response.data.restaurant.number_of_tables);
           setDeposit(response.data.restaurant.deposit);
+          setSeats(response.data.restaurant.number_of_seats);
+          setPhoneNumber(response.data.restaurant.phone_number);
         })
         .catch((error) => {
           console.error(error);
@@ -108,18 +113,7 @@ const About = () => {
           <div className={`flexcolumn ${styles.form}`}>
             {success && <p className={styles.success}>{success}</p>}
             {error && <p className={styles.error}>{error}</p>}
-            <Input
-              label="Restaurant name"
-              labelClassName="semibold"
-              type="text"
-              value={name}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setName(e.target.value);
-                handleInputChange(e);
-              }}
-            />
+
             <Input
               label="Restaurant logo"
               labelClassName="semibold"
@@ -132,23 +126,11 @@ const About = () => {
               }}
             />
             <Input
-              label="Number of tables"
-              labelClassName="semibold"
-              type="text"
-              value={tables}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setTables(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <Input
               label="Restaurant location"
               labelClassName="semibold"
               type="text"
               value={location}
-              placeholder="type here"
+              placeholder="city-street"
               className={styles.input}
               onChange={(e) => {
                 setLocation(e.target.value);
@@ -156,7 +138,43 @@ const About = () => {
               }}
             />
             <Input
-              label="Reservation deposit"
+              label="Add the phone number of your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={phoneNumber}
+              placeholder="00-000-000"
+              className={styles.input}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Number of tables"
+              labelClassName="semibold"
+              type="text"
+              value={tables}
+              placeholder="eg. 15"
+              className={styles.input}
+              onChange={(e) => {
+                setTables(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Number of seats"
+              labelClassName="semibold"
+              type="text"
+              value={seats}
+              placeholder="eg. 15"
+              className={styles.input}
+              onChange={(e) => {
+                setSeats(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Average per person"
               labelClassName="semibold"
               type="text"
               value={deposit}

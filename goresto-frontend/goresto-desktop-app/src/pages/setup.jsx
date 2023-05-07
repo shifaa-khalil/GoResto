@@ -167,7 +167,6 @@ const Setup = () => {
               handleInputChange(e);
             }}
           />
-
           <Input
             label="Add the average lunch cost per person in your restaurant"
             labelClassName="semibold"

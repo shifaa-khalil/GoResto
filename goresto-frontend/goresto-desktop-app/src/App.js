@@ -190,7 +190,7 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <Restaurants />
+                <About />
               ) : (
                 <Navigate to="/noAccess" replace />
               )
