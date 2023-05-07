@@ -22,6 +22,7 @@ const Menu = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
+  const [formOpen, setFormOpen] = useState(false);
 
   const validateForm = () => {
     let isValid = true;
@@ -108,143 +109,143 @@ const Menu = () => {
         />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Menu" className="block" />
-        <div className={`${styles.body}`}>
-          <div className={`flex-column ${styles.form}`}>
-            {success && <p className={styles.success}>{success}</p>}
-            {error && <p className={styles.error}>{error}</p>}
-            <Input
-              label="Name"
-              labelClassName="semibold"
-              type="text"
-              value={name}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setName(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <Input
-              label="Image"
-              labelClassName="semibold"
-              type="file"
-              placeholder="file name"
-              className={styles.input}
-              onChange={(e) => {
-                setImage(e.target.files[0]);
-                handleFileChange(e);
-              }}
-            />
-            <Input
-              label="Description"
-              labelClassName="semibold"
-              type="text"
-              value={description}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setDescription(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <Input
-              label="Price"
-              labelClassName="semibold"
-              type="text"
-              value={price}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setPrice(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <Input
-              label="Category"
-              labelClassName="semibold"
-              type="text"
-              value={category}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setCategory(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <Input
-              label="Cuisine"
-              labelClassName="semibold"
-              type="text"
-              value={cuisine}
-              placeholder="type here"
-              className={styles.input}
-              onChange={(e) => {
-                setCuisine(e.target.value);
-                handleInputChange(e);
-              }}
-            />
-            <div className="flex-row">
-              <MyButton
-                className={styles.formButton}
-                label="add item"
-                onClick={(event) => handleSubmit(event)}
-              />
-              <MyButton
-                className={styles.done}
-                label="done"
-                onClick={(event) => handleDone(event)}
-              />
-            </div>
+        <NavBar2 sectionName="Menu" />
+        {/* <DropDownList onChange={handleFilter} /> */}
+        <div className={[styles.body]}>
+          <div className={styles.tableContainer}>
+            {/* {filteredRestaurants().length > 0 ? ( */}
+            <table>
+              <thead>
+                <tr className="semibold tr">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Manager</th>
+                  <th>Logo</th>
+                  <th>Location</th>
+                  <th>tables</th>
+                  <th>Menu</th>
+                  <th>action</th>
+                </tr>
+              </thead>
+              {/* <tbody>
+                  {restaurants &&
+                    filteredRestaurants().map((restaurant) => (
+                      <tr
+                        className="normalweight mediumsize"
+                        key={restaurant.id}
+                      >
+                        <td>{restaurant.id}</td>
+                        <td>{restaurant.name}</td>
+                        <td>{restaurant.manager_id}</td>
+                        <td>{restaurant.logo}</td>
+                        <td>{restaurant.location}</td>
+                        <td>{restaurant.number_of_tables}</td>
+                        <td>{restaurant.menu.menuItem}</td>
+                        <td>
+                          {deleted == restaurant.id ? (
+                            <span>Removed</span>
+                          ) : (
+                            <button onClick={() => handleDelete(restaurant.id)}>
+                              remove
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody> */}
+            </table>
+            {/* ) : (
+              <p>no data</p>
+            )} */}
           </div>
-          <div className={styles.screen}>
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
+        </div>
+
+        <div
+          className={`flex-column ${formOpen ? styles.form : styles.hidden}`}
+        >
+          {success && <p className={styles.success}>{success}</p>}
+          {error && <p className={styles.error}>{error}</p>}
+          <Input
+            label="Name"
+            labelClassName="semibold"
+            type="text"
+            value={name}
+            placeholder="type here"
+            className={styles.input}
+            onChange={(e) => {
+              setName(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Image"
+            labelClassName="semibold"
+            type="file"
+            placeholder="file name"
+            className={styles.input}
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+              handleFileChange(e);
+            }}
+          />
+          <Input
+            label="Description"
+            labelClassName="semibold"
+            type="text"
+            value={description}
+            placeholder="type here"
+            className={styles.input}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Price"
+            labelClassName="semibold"
+            type="text"
+            value={price}
+            placeholder="type here"
+            className={styles.input}
+            onChange={(e) => {
+              setPrice(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Category"
+            labelClassName="semibold"
+            type="text"
+            value={category}
+            placeholder="type here"
+            className={styles.input}
+            onChange={(e) => {
+              setCategory(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <Input
+            label="Cuisine"
+            labelClassName="semibold"
+            type="text"
+            value={cuisine}
+            placeholder="type here"
+            className={styles.input}
+            onChange={(e) => {
+              setCuisine(e.target.value);
+              handleInputChange(e);
+            }}
+          />
+          <div className={`flex-row ${styles.buttons}`}>
+            <MyButton
+              className={styles.formButton}
+              label="add item"
+              onClick={(event) => handleSubmit(event)}
             />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
-            />
-            <MenuItem
-              image={Food}
-              name="burger"
-              description="with cheese, lettus, mustard"
-              price="$15"
+            <MyButton
+              className={styles.done}
+              label="done"
+              onClick={(event) => handleDone(event)}
             />
           </div>
         </div>

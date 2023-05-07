@@ -72,7 +72,7 @@ const Restaurants = () => {
         <LeftMenu restaurantClassName={styles.open} />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
-        <NavBar2 sectionName="Restaurants" className="block" />
+        <NavBar2 sectionName="Restaurants" />
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
