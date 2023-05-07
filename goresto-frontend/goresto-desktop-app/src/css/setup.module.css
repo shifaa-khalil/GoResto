@@ -11,6 +11,7 @@
   color: white;
   width: fit-content;
   padding: 5px;
+  border-radius: 8px;
 }
 .container {
   display: flex;
@@ -31,11 +32,9 @@
 input[type="file"] {
   font-size: 15px;
 }
-
 .parent {
   position: relative;
 }
-
 .overlay {
   position: absolute;
   top: 0;
