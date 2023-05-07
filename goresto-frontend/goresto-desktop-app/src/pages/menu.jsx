@@ -108,7 +108,7 @@ const Menu = () => {
           },
         })
         .then((response) => {
-          console.log(response.data.menu);
+          setMenu(response.data.menu);
         })
         .catch((error) => {
           console.error(error);
@@ -137,40 +137,42 @@ const Menu = () => {
                 <tr className="semibold tr">
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Manager</th>
-                  <th>Logo</th>
-                  <th>Location</th>
-                  <th>tables</th>
-                  <th>Menu</th>
-                  <th>action</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Cuisine</th>
+                  <th>Image</th>
+                  <th>Added in</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
-              {/* <tbody>
-                  {restaurants &&
-                    filteredRestaurants().map((restaurant) => (
-                      <tr
-                        className="normalweight mediumsize"
-                        key={restaurant.id}
-                      >
-                        <td>{restaurant.id}</td>
-                        <td>{restaurant.name}</td>
-                        <td>{restaurant.manager_id}</td>
-                        <td>{restaurant.logo}</td>
-                        <td>{restaurant.location}</td>
-                        <td>{restaurant.number_of_tables}</td>
-                        <td>{restaurant.menu.menuItem}</td>
-                        <td>
-                          {deleted == restaurant.id ? (
-                            <span>Removed</span>
-                          ) : (
-                            <button onClick={() => handleDelete(restaurant.id)}>
-                              remove
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody> */}
+              <tbody>
+                {menu &&
+                  menu.map((m) => (
+                    <tr className="normalweight mediumsize" key={m.id}>
+                      <td>{m.id}</td>
+                      <td>{m.name}</td>
+                      <td>{m.description}</td>
+                      <td>{m.price}</td>
+                      <td>{m.category}</td>
+                      <td>{m.cuisine}</td>
+                      <td>{m.image}</td>
+                      <td>{new Date(m.created_at).toLocaleDateString()}</td>
+                      <td>{m.enabled}</td>
+
+                      {/* <td>
+                        {deleted == restaurant.id ? (
+                          <span>Removed</span>
+                        ) : (
+                          <button onClick={() => handleDelete(restaurant.id)}>
+                            remove
+                          </button>
+                        )}
+                      </td> */}
+                    </tr>
+                  ))}
+              </tbody>
             </table>
             {/* ) : (
               <p>no data</p>
