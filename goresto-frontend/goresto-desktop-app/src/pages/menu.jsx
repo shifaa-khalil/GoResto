@@ -24,6 +24,7 @@ const Menu = () => {
   const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
   const [formOpen, setFormOpen] = useState(false);
   const [menu, setMenu] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const validateForm = () => {
     let isValid = true;
@@ -141,6 +142,7 @@ const Menu = () => {
         })
         .then((response) => {
           setMenu(response.data.menu);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -163,67 +165,65 @@ const Menu = () => {
         {/* <DropDownList onChange={handleFilter} /> */}
         <div className={[styles.body]}>
           <div className={styles.tableContainer}>
-            {/* {filteredRestaurants().length > 0 ? ( */}
-            <table>
-              <thead>
-                <tr className="semibold tr">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Cuisine</th>
-                  <th>Image</th>
-                  <th>Added in</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {menu &&
-                  menu.map((m) => (
-                    <tr className="normalweight mediumsize" key={m.id}>
-                      <td>{m.id}</td>
-                      <td>{m.name}</td>
-                      <td>{m.description}</td>
-                      <td>{m.price}</td>
-                      <td>{m.category}</td>
-                      <td>{m.cuisine}</td>
-                      <td>{m.image}</td>
-                      <td>{new Date(m.created_at).toLocaleDateString()}</td>
-                      <td>{m.enabled ? "enabled" : "disabled"}</td>
-
-                      <td>
-                        {/* {deleted == restaurant.id ? (
-                          <span>Removed</span>
-                        ) : ( */}
-                        {m.enabled ? (
-                          <button
-                            onClick={() => {
-                              handleDisable(m.id);
-                            }}
-                          >
-                            disable
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              handleEnable(m.id);
-                            }}
-                          >
-                            Enable
-                          </button>
-                        )}
-
-                        {/* )} */}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-            {/* ) : (
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : menu.length > 0 ? (
+              <table>
+                <thead>
+                  <tr className="semibold tr">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Cuisine</th>
+                    <th>Image</th>
+                    <th>Added in</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {menu &&
+                    menu.map((m) => (
+                      <tr className="normalweight mediumsize" key={m.id}>
+                        <td>{m.id}</td>
+                        <td>{m.name}</td>
+                        <td>{m.description}</td>
+                        <td>{m.price}</td>
+                        <td>{m.category}</td>
+                        <td>{m.cuisine}</td>
+                        <td>{m.image}</td>
+                        <td>{new Date(m.created_at).toLocaleDateString()}</td>
+                        <td>{m.enabled ? "enabled" : "disabled"}</td>
+                        <td>
+                          {m.enabled ? (
+                            <button
+                              onClick={() => {
+                                handleDisable(m.id);
+                              }}
+                            >
+                              disable
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                handleEnable(m.id);
+                              }}
+                            >
+                              Enable
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            ) : (
               <p>no data</p>
-            )} */}
+            )}
           </div>
         </div>
 
