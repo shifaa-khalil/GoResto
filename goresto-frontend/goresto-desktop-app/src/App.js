@@ -9,6 +9,7 @@ import Landing from "./pages/landing";
 import Signin from "./pages/signin";
 import Register from "./pages/register";
 import Setup from "./pages/setup";
+import LogoUpload from "./pages/logoUpload";
 import Pending from "./pages/pending";
 import Dashboard from "./pages/dashboard";
 import Chats from "./pages/chats";
@@ -89,6 +90,20 @@ function App() {
             isAuthenticated ? (
               isManager ? (
                 <Setup />
+              ) : (
+                <Navigate to="/noAccess" replace />
+              )
+            ) : (
+              <Navigate to="/signin" replace />
+            )
+          }
+        />
+        <Route
+          path="/logoUpload"
+          element={
+            isAuthenticated ? (
+              isManager ? (
+                <LogoUpload />
               ) : (
                 <Navigate to="/noAccess" replace />
               )

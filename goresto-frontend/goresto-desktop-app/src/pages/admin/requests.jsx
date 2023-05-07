@@ -14,7 +14,7 @@ const Requests = () => {
   const [restoRequests, setRestoRequests] = useState([]);
   const [approved, setApproved] = useState("");
   const [rejected, setRejected] = useState("");
-  const [sortOption, setSortOption] = useState("newest first");
+  const [sortOption, setSortOption] = useState("oldest first");
 
   useEffect(() => {
     // if (token) {

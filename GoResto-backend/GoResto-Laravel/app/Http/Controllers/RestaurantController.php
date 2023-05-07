@@ -28,6 +28,9 @@ class RestaurantController extends Controller
             $file->storeAs('public/logos', $fileName);
             $logoUrl = url(Storage::url('public/logos/' . $fileName));
     
+            // $restaurant->logo = $logoUrl;
+            // $restaurant->save();
+
             return response()->json(['status' => 'success', 'message' => $logoUrl]);
         } else {
             return response()->json(['status' => 'failure', 'message' => 'No file uploaded.'], 400);

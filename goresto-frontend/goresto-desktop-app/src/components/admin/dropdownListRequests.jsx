@@ -8,8 +8,8 @@ const DropDownList = (props) => {
   return (
     <div>
       <select className={styles.dropDownList} onChange={props.onChange}>
-      <option>newest first</option>
         <option>oldest first</option>
+        <option>newest first</option>
       </select>
     </div>
   );
