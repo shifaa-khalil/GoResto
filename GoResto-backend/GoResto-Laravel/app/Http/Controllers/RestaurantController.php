@@ -12,6 +12,7 @@ use App\Models\MenuItem;
 use App\Models\Restaurant;
 use App\Models\RestoRequest;
 use App\Models\Reservation;
+use App\Models\Inquiry;
 
 class RestaurantController extends Controller
 {
@@ -231,5 +232,19 @@ class RestaurantController extends Controller
         $user = User::find($id);
 
         return response()->json(["userName" => $user->name]);
+    }
+
+    function inquiry(Request $request){
+        $inquiry = new Inquiry;
+
+        $manager = auth()->user();
+        $restaurant = Restaurant::where('manager_id',$manager->id)->first();
+
+        $inquiry->restaurant_id = $restaurant->id;
+        $inquiry->content = $request->content;
+
+        $inquiry->save();
+
+        return response()->json(['status'=>'success', 'message'=>'inquiry added']);
     }
 }

@@ -11,6 +11,7 @@ class Inquiry extends Model
 
     protected $fillable = [
         'status',
+        'content',
     ];
 
     public function restaurant()

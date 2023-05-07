@@ -86,6 +86,7 @@ Route::middleware(['manager'])->group(function(){
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);
     Route::post('/addMenuItem', [RestaurantController::class, 'addMenuItem']);
+    Route::post('/inquiry', [RestaurantController::class, 'inquiry']);
 
     Route::put('/updateRestaurant/{restaurant_id}', [RestaurantController::class,'updateRestaurant']);
     Route::put('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem']);
