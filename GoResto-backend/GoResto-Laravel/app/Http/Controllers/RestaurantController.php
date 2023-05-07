@@ -179,7 +179,7 @@ class RestaurantController extends Controller
         
         $restaurant = Restaurant::where('manager_id', $manager->id)->first();
         $menu_id = Menu::where('restaurant_id', $restaurant->id)->first()->id;
-        $menuItems = MenuItem::where('menu_id', $menu_id)->where('enabled', true)->get();
+        $menuItems = MenuItem::where('menu_id', $menu_id)->get();
 
         return response()->json(['menu' => $menuItems]);
 

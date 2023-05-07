@@ -99,6 +99,38 @@ const Menu = () => {
     } else navigate("/signin");
   };
 
+  const handleEnable = (id) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/enableMenuItem/${id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        // setApproved(id);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleDisable = (id) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/disableMenuItem/${id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        // setApproved(id);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
     if (token) {
       axios
@@ -159,17 +191,32 @@ const Menu = () => {
                       <td>{m.cuisine}</td>
                       <td>{m.image}</td>
                       <td>{new Date(m.created_at).toLocaleDateString()}</td>
-                      <td>{m.enabled}</td>
+                      <td>{m.enabled ? "enabled" : "disabled"}</td>
 
-                      {/* <td>
-                        {deleted == restaurant.id ? (
+                      <td>
+                        {/* {deleted == restaurant.id ? (
                           <span>Removed</span>
+                        ) : ( */}
+                        {m.enabled ? (
+                          <button
+                            onClick={() => {
+                              handleDisable(m.id);
+                            }}
+                          >
+                            disable
+                          </button>
                         ) : (
-                          <button onClick={() => handleDelete(restaurant.id)}>
-                            remove
+                          <button
+                            onClick={() => {
+                              handleEnable(m.id);
+                            }}
+                          >
+                            Enable
                           </button>
                         )}
-                      </td> */}
+
+                        {/* )} */}
+                      </td>
                     </tr>
                   ))}
               </tbody>
