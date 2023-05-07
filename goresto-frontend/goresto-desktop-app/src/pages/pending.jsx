@@ -15,7 +15,11 @@ const Pending = () => {
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu />
+        <LeftMenu
+          overlay={styles.overlay}
+          parent={styles.parent}
+          disabled={styles.disabled}
+        />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Pending" />

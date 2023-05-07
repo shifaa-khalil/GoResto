@@ -100,7 +100,12 @@ const Menu = () => {
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu menuClassName={styles.open} />
+        <LeftMenu
+          menuClassName={styles.open}
+          overlay={styles.overlay}
+          parent={styles.parent}
+          disabled={styles.disabled}
+        />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Menu" className="block" />
