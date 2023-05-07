@@ -13,6 +13,16 @@
   color: white;
   width: fit-content;
   padding: 5px;
+  align-self: center;
+  border-radius: 8px;
+}
+.success {
+  background-color: var(--yellow);
+  color: white;
+  width: fit-content;
+  padding: 5px;
+  align-self: center;
+  border-radius: 8px;
 }
 .container {
   display: flex;
