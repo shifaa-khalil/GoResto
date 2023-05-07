@@ -6,7 +6,7 @@
   width: 100vw;
 }
 .form {
-  width: 280px;
+  width: 320px;
   align-self: self-start;
   margin-top: 20px;
 }
@@ -14,10 +14,12 @@
   height: 35px;
   width: 120px;
   font-size: 20px;
+  align-self: center;
+  margin-bottom: 20px;
 }
 .formLink {
   color: var(--red);
-  font-size: 20px;
+  font-size: 19px;
 }
 .error {
   background-color: var(--red);
@@ -28,4 +30,8 @@
 .heading {
   align-self: center;
   margin-bottom: 30px;
+}
+.buttons {
+  width: 325px;
+  justify-content: space-between;
 }

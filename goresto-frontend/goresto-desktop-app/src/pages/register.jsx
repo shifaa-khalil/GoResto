@@ -112,14 +112,15 @@ const Register = () => {
               handleInputChange(e);
             }}
           />
-          <div className="flex-row buttons">
-            <MyButton
-              className={styles.formButton}
-              label="Register"
-              onClick={(event) => handleSubmit(event)}
-            />
+          <MyButton
+            className={styles.formButton}
+            label="Register"
+            onClick={(event) => handleSubmit(event)}
+          />
+          <div className={`flex-row ${styles.buttons}`}>
+            <span>Don't have an account?</span>
             <Link to="/signin" className={styles.formLink}>
-              sign in instead
+              Sign in instead
             </Link>
           </div>
         </div>
