@@ -90,7 +90,11 @@ const Setup = () => {
   return (
     <div className={styles.container}>
       <div>
-        <LeftMenu overlay={styles.overlay} parent={styles.parent} />
+        <LeftMenu
+          overlay={styles.overlay}
+          parent={styles.parent}
+          disabled={styles.disabled}
+        />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Setup" className="hidden" />

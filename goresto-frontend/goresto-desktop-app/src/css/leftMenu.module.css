@@ -5,3 +5,6 @@
   position: fixed;
   justify-content: space-between;
 }
+.disabled {
+  pointer-events: none;
+}

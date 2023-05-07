@@ -41,18 +41,21 @@ const LeftMenu = (props) => {
           icon={dashboard}
           sectionName="Dashboard"
           className={props.dashboardClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/dashboard")}
         />
         <LeftMenuItem
           icon={menu}
           sectionName="Menu"
           className={props.menuClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/menu")}
         />
         <LeftMenuItem
           icon={reservations}
           sectionName="Reservations"
           className={props.reservationsClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/reservations")}
         />
         {/* <LeftMenuItem
@@ -65,12 +68,14 @@ const LeftMenu = (props) => {
           icon={chats}
           sectionName="Reviews"
           className={props.reviewsClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/reviews")}
         />
         <LeftMenuItem
           icon={chats}
           sectionName="Chats"
           className={props.chatsClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/chats")}
         />
         {/* <LeftMenuItem
@@ -84,12 +89,14 @@ const LeftMenu = (props) => {
           icon={about}
           sectionName="About"
           className={props.aboutClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/about")}
         />
         <LeftMenuItem
           icon={Inquiry}
           sectionName="Inquiries"
           className={props.inquiryClassName}
+          disabled={props.disabled}
           onClick={() => navigate("/inquiry")}
         />
         <LeftMenuItem

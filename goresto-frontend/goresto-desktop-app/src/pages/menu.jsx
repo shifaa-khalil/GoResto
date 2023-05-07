@@ -49,9 +49,10 @@ const Menu = () => {
     event.preventDefault();
     if (token) {
       if (menuItems < 10) setError("Add at least 10 items");
-      else navigate("/dashboard");
+      else navigate("/pending");
     } else navigate("/signin");
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (token) {
@@ -81,8 +82,6 @@ const Menu = () => {
             setSuccess("Item added successfully!");
             setError("");
             setMenuItems(menuItems + 1);
-            // navigate("/pending");
-            // localStorage.setItem("name", response.data.message.name);
           })
           .catch((error) => {
             console.error(error);
