@@ -47,6 +47,7 @@ exports.sendMessage = async (req, res) => {
       senderId: message.senderId,
       chatId: message.chatId,
       content: message.content,
+      createdAt: message.createdAt,
     });
   } catch (error) {
     console.error(error);

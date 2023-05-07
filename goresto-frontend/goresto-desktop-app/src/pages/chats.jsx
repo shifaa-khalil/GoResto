@@ -57,6 +57,7 @@ const Chats = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setMessages([...messages, response.data]);
         setMessageContent("");
       })
       .catch((error) => {
