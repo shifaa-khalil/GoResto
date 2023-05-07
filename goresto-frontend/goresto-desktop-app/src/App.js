@@ -22,6 +22,7 @@ import Restaurants from "./pages/admin/restaurants";
 import Users from "./pages/admin/users";
 import Inquiries from "./pages/admin/inquiries";
 import NoAccess from "./pages/noAccess";
+import NotFound from "./pages/notFound";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -80,6 +81,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/noAccess" element={<NoAccess />} />
         <Route path="/" element={<Landing />} />
         <Route path="/signin" element={<Signin />} />
