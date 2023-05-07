@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
@@ -23,6 +23,7 @@ const Menu = () => {
   const [success, setSuccess] = useState("");
   const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
   const [formOpen, setFormOpen] = useState(false);
+  const [menu, setMenu] = useState([]);
 
   const validateForm = () => {
     let isValid = true;
@@ -97,6 +98,23 @@ const Menu = () => {
       }
     } else navigate("/signin");
   };
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`http://127.0.0.1:8000/api/getMenu`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.menu);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else navigate("/signin");
+  }, []);
 
   return (
     <div className={styles.container}>
