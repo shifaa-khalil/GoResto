@@ -101,10 +101,10 @@ const Menu = () => {
     <div className={styles.container}>
       <div>
         <LeftMenu
-          menuClassName={styles.open}
-          overlay={styles.overlay}
-          parent={styles.parent}
-          disabled={styles.disabled}
+          menuClassName={menuItems > 10 ? styles.open : undefined}
+          overlay={menuItems <= 10 ? styles.overlay : undefined}
+          parent={menuItems <= 10 ? styles.parent : undefined}
+          disabled={menuItems <= 10 ? styles.disabled : undefined}
         />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
