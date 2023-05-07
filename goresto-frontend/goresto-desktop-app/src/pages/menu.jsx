@@ -4,10 +4,9 @@ import axios from "axios";
 import "../App.css";
 import NavBar2 from "../components/navBar2";
 import LeftMenu from "../components/leftMenu";
-import MenuItem from "../components/menuItem";
+import DropDownList from "../components/dropDownListMenu";
 import Input from "../components/input";
 import MyButton from "../components/button";
-import Food from "../images/french.jpg";
 import styles from "../css/menu.module.css";
 
 const Menu = () => {
@@ -25,6 +24,7 @@ const Menu = () => {
   const [formOpen, setFormOpen] = useState(false);
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedFilter, setSelectedFilter] = useState("enabled");
 
   const validateForm = () => {
     let isValid = true;
@@ -46,6 +46,22 @@ const Menu = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
+  };
+
+  const handleFilter = (event) => {
+    setSelectedFilter(event.target.value);
+  };
+
+  const filteredMenu = () => {
+    switch (selectedFilter) {
+      case "enabled":
+        return menu.filter((m) => m.enabled === 1);
+      case "disabled":
+        return menu.filter((m) => m.enabled === 0);
+      case "all":
+      default:
+        return menu;
+    }
   };
 
   const handleDone = (event) => {
@@ -162,14 +178,14 @@ const Menu = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Menu" />
-        {/* <DropDownList onChange={handleFilter} /> */}
+        <DropDownList onChange={handleFilter} />
         <div className={[styles.body]}>
           <div className={styles.tableContainer}>
             {isLoading ? (
               <div className="container">
                 <div className="spinner"></div>
               </div>
-            ) : menu.length > 0 ? (
+            ) : filteredMenu().length > 0 ? (
               <table>
                 <thead>
                   <tr className="semibold tr">
@@ -187,7 +203,7 @@ const Menu = () => {
                 </thead>
                 <tbody>
                   {menu &&
-                    menu.map((m) => (
+                    filteredMenu().map((m) => (
                       <tr className="normalweight mediumsize" key={m.id}>
                         <td>{m.id}</td>
                         <td>{m.name}</td>
