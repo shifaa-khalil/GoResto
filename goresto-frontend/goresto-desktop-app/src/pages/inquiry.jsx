@@ -59,6 +59,7 @@ const Inquiry = () => {
             type="text"
             value={inquiryContent}
             placeholder="type here"
+            maxLength={250}
             className={`smallsize ${styles.input}`}
             onChange={(e) => {
               setInquiryContent(e.target.value);
@@ -66,6 +67,7 @@ const Inquiry = () => {
               setSuccess("");
             }}
           />
+          <span>{inquiryContent.length}/250</span>
           <MyButton
             className={styles.formButton}
             label="Submit"
