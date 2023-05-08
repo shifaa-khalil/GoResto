@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Image, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import Input from "../components/input";
 import MyButton from "../components/button";
@@ -17,6 +18,23 @@ const Signin = () => {
   const [error, setError] = useState("");
 
   const navigation = useNavigation();
+
+  async function saveData(key, value) {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  }
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      return value !== null ? JSON.parse(value) : null;
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
 
   const validateForm = () => {
     let isValid = true;
@@ -37,12 +55,17 @@ const Signin = () => {
     if (validateForm()) {
       const data = { email, password };
       axios
-        .post("http://127.0.0.1:8000/api/login/customer", data)
+        .post(`${URL}/api/login/customer`, data)
         .then((response) => {
+          saveData("name", response.data.user.name);
+          saveData("token", response.data.authorisation.token);
+          navigation.navigate("Home");
+
           console.log("loggedin");
-          // navigation.navigate("Setup");
-          // localStorage.setItem("name", response.data.user.name);
-          // localStorage.setItem("token", response.data.authorisation.token);
+          // const token = AsyncStorage.getItem("token");
+          // const name = AsyncStorage.getItem("name");
+          // console.log("Stored data:", token, name);
+
         })
         .catch((error) => {
           console.error(error);
@@ -120,6 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D43325",
     borderRadius: 8,
     padding: 5,
+    marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
   },

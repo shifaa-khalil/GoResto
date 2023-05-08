@@ -82,7 +82,7 @@ const Register = () => {
     if (validateForm()) {
       const data = { name, email, password, confirmPassword };
       axios
-        .post("http://127.0.0.1:8000/api/register/customer", data)
+        .post(`${URL}/api/register/customer`, data)
         .then((response) => {
           console.log("registered");
           // navigation.navigate("Setup");
@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D43325",
     borderRadius: 8,
     padding: 5,
+    marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
   },
