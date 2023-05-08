@@ -38,7 +38,6 @@ const Reservations = () => {
   useEffect(() => {
     getData("token");
   }, []);
-  // console.log(token);
 
   useEffect(() => {
     if (token !== "") {

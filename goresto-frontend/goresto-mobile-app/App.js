@@ -44,19 +44,6 @@ function App() {
     );
   }
 
-  // useEffect(() => {
-  //   getData("token");
-  // }, []);
-  // console.log(token);
-  // useEffect(() => {
-  //   if (token == "") console.log("no token");
-  //   console.log(token);
-  // }, [token]);
-
-  // if (!token) {
-  //   return null; // or a loading screen or something else
-  // }
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={token ? "Home" : "Signin"}>
