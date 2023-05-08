@@ -1,4 +1,6 @@
 import React from "react";
+// import { useDispatch } from "react-redux";
+// import { resetManager, resetAdmin } from "../store/actions";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import styles from "../css/leftMenu.module.css";
@@ -17,10 +19,14 @@ import Inquiry from "../images/inquiries.png";
 
 const LeftMenu = (props) => {
   const navigate = useNavigate();
-  const [token, setToken] = localStorage.getItem("token");
+  // const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   const handleSignoutClick = () => {
     if (token) {
+      // dispatch(resetManager());
+      // dispatch(resetAdmin());
+
       localStorage.removeItem("token");
       localStorage.removeItem("name");
       localStorage.removeItem("role");

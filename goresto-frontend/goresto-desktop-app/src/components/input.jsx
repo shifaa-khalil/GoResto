@@ -13,7 +13,7 @@ const Input = (props) => {
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}
-        className={styles.input}
+        className={`${styles.input} ${props.className}`}
       />
     </div>
   );

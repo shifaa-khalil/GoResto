@@ -22,6 +22,7 @@ const Chats = () => {
   const [messageContent, setMessageContent] = useState("");
   const [receiverId, setReceiverId] = useState("");
   const [receiverName, setReceiverName] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const openChat = () => {
     if (token) {
@@ -118,6 +119,7 @@ const Chats = () => {
         })
         .then((response) => {
           setChats(response.data.chats);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -135,8 +137,11 @@ const Chats = () => {
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
             <SearchBar />
-            {/* {renderChatCards} */}
-            {chats &&
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : chats.length > 0 ? (
               chats.map((chat) => (
                 <ChatCard
                   name="Unknown"
@@ -149,7 +154,10 @@ const Chats = () => {
                     openChat();
                   }}
                 />
-              ))}
+              ))
+            ) : (
+              <p>no chats! Search for a user and start a chat</p>
+            )}
           </div>
           <div
             className={messages.length > 0 ? styles.conversation : styles.none}

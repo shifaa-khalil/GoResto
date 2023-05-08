@@ -18,7 +18,6 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  height: 65vh;
   width: 100%;
 }
 .open {
@@ -27,13 +26,21 @@
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  border-radius: 10px;
 }
-/* tr {
-  height: 10px;
-  max-height: 15px;
-  line-height: 40px;
+.moreWidth {
+  width: 100%;
+}
+/* .red {
+  background-color: var(--red);
+  border: none;
+  color: white;
+}
+.yellow {
+  background-color: var(--yellow);
+  border: none;
+  color: white;
 } */
+
 th,
 td {
   border: 1px solid rgb(136, 132, 132);

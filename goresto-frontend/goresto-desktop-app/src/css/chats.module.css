@@ -42,7 +42,7 @@
   padding-right: 27px;
 }
 .input {
-  flex-basis: 85%;
+  flex-basis: 87%;
   border-radius: 15px;
   padding: 0 15px;
   height: 100%;
@@ -62,7 +62,7 @@
 }
 .send {
   height: 40px;
-  background-color: var(--grey);
+  /* background-color: var(--grey); */
   border-radius: 8px;
   /* width: 20px; */
 }

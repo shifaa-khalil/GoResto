@@ -3,10 +3,11 @@
   padding: 20px 20px 20px 0;
   border-bottom: 1px solid black;
   height: 7vh;
+  /* width: 100%; */
 }
-.navBar p {
+.navBar p,
+.navBar2 p {
   font-size: 20px;
-  cursor: pointer;
 }
 .navLinks {
   flex-basis: 35%;
@@ -17,7 +18,4 @@
 }
 .navBar2 h1 {
   font-weight: bold;
-}
-.navBar2 p {
-  font-size: 20px;
 }

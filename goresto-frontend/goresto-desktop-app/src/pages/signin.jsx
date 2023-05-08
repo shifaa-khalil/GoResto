@@ -7,7 +7,6 @@ import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
 import NavBar from "../components/navBar";
 import Input from "../components/input";
-// import gopro from "../images/GoPro.png";
 import styles from "../css/register.module.css";
 
 const Signin = () => {
@@ -41,15 +40,12 @@ const Signin = () => {
           `http://127.0.0.1:8000/api/login/manager`,
           data
         );
+        localStorage.setItem("role", response.data.user.role);
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("token", response.data.authorisation.token);
-        localStorage.setItem("role", response.data.user.role);
-        localStorage.setItem("menuItems", response.data.menuItems);
         localStorage.setItem("restaurant", response.data.restaurant);
 
-        await new Promise((resolve) => setTimeout(resolve, 0));
         if (response.data.restaurant == null) navigate("/setup");
-        else if (response.data.menuItems < 10) navigate("/menu");
         else if (response.data.restaurant.approved === 0) navigate("/pending");
         else navigate("/dashboard");
       } catch (error) {
@@ -66,14 +62,14 @@ const Signin = () => {
     }
   };
 
-  const submitAdmin = () => {
+  const submitAdmin = async () => {
     const data = { email, password };
-    axios
+    await axios
       .post(`http://127.0.0.1:8000/api/login/admin`, data)
       .then((response) => {
+        localStorage.setItem("role", response.data.user.role);
         localStorage.setItem("name", response.data.user.name);
         localStorage.setItem("token", response.data.authorisation.token);
-        localStorage.setItem("role", response.data.user.role);
         navigate("/requests");
       })
       .catch((error) => {
@@ -104,6 +100,7 @@ const Signin = () => {
             label="Email"
             value={email}
             placeholder="example@domain.com"
+            className={styles.input}
             onChange={(e) => {
               setEmail(e.target.value);
               handleInputChange(e);
@@ -114,6 +111,7 @@ const Signin = () => {
             label="Password"
             value={password}
             placeholder="********"
+            className={styles.input}
             onChange={(e) => {
               setPassword(e.target.value);
               handleInputChange(e);

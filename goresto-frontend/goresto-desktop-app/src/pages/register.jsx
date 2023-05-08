@@ -77,6 +77,7 @@ const Register = () => {
             label="Name"
             value={name}
             placeholder="John Doe"
+            className={styles.input}
             onChange={(e) => {
               setName(e.target.value);
               handleInputChange(e);
@@ -87,6 +88,7 @@ const Register = () => {
             label="Email"
             value={email}
             placeholder="example@domain.com"
+            className={styles.input}
             onChange={(e) => {
               setEmail(e.target.value);
               handleInputChange(e);
@@ -97,6 +99,7 @@ const Register = () => {
             label="Password"
             value={password}
             placeholder="********"
+            className={styles.input}
             onChange={(e) => {
               setPassword(e.target.value);
               handleInputChange(e);
@@ -107,6 +110,7 @@ const Register = () => {
             label="Confirm password"
             value={confirmPassword}
             placeholder="********"
+            className={styles.input}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
               handleInputChange(e);

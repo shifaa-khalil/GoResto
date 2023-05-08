@@ -110,7 +110,7 @@ const About = () => {
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="About" className="block" />
         <div className={`semibold ${styles.body}`}>
-          <div className={`flexcolumn ${styles.form}`}>
+          <div className={`flex-column ${styles.form}`}>
             {success && <p className={styles.success}>{success}</p>}
             {error && <p className={styles.error}>{error}</p>}
 

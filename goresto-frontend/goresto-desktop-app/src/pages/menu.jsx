@@ -20,7 +20,7 @@ const Menu = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
+  // const [menuItems, setMenuItems] = useState(localStorage.getItem("menuItems"));
   const [formOpen, setFormOpen] = useState(false);
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -66,10 +66,11 @@ const Menu = () => {
 
   const handleDone = (event) => {
     event.preventDefault();
-    if (token) {
-      if (menuItems < 10) setError("Add at least 10 items");
-      else navigate("/pending");
-    } else navigate("/signin");
+    setFormOpen(false);
+    // if (token) {
+    //   if (menuItems < 10) setError("Add at least 10 items");
+    //   else navigate("/pending");
+    // } else navigate("/signin");
   };
 
   const handleSubmit = (event) => {
@@ -100,7 +101,7 @@ const Menu = () => {
             setCuisine("");
             setSuccess("Item added successfully!");
             setError("");
-            setMenuItems(menuItems + 1);
+            // setMenuItems(menuItems + 1);
           })
           .catch((error) => {
             console.error(error);
@@ -124,7 +125,6 @@ const Menu = () => {
         },
       })
       .then((response) => {
-        // setApproved(id);
         window.location.reload();
       })
       .catch((error) => {
@@ -140,7 +140,6 @@ const Menu = () => {
         },
       })
       .then((response) => {
-        // setApproved(id);
         window.location.reload();
       })
       .catch((error) => {
@@ -170,79 +169,84 @@ const Menu = () => {
     <div className={styles.container}>
       <div>
         <LeftMenu
-          menuClassName={menuItems > 10 ? styles.open : undefined}
-          overlay={menuItems <= 10 ? styles.overlay : undefined}
-          parent={menuItems <= 10 ? styles.parent : undefined}
-          disabled={menuItems <= 10 ? styles.disabled : undefined}
+          menuClassName={styles.open}
+          // menuClassName={menuItems > 10 ? styles.open : undefined}
+          // overlay={menuItems <= 10 ? styles.overlay : undefined}
+          // parent={menuItems <= 10 ? styles.parent : undefined}
+          // disabled={menuItems <= 10 ? styles.disabled : undefined}
         />
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Menu" />
-        <DropDownList onChange={handleFilter} />
-        <div className={[styles.body]}>
-          <div className={styles.tableContainer}>
-            {isLoading ? (
-              <div className="container">
-                <div className="spinner"></div>
-              </div>
-            ) : filteredMenu().length > 0 ? (
-              <table>
-                <thead>
-                  <tr className="semibold tr">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Cuisine</th>
-                    <th>Image</th>
-                    <th>Added in</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {menu &&
-                    filteredMenu().map((m) => (
-                      <tr className="normalweight mediumsize" key={m.id}>
-                        <td>{m.id}</td>
-                        <td>{m.name}</td>
-                        <td>{m.description}</td>
-                        <td>{m.price}</td>
-                        <td>{m.category}</td>
-                        <td>{m.cuisine}</td>
-                        <td>{m.image}</td>
-                        <td>{new Date(m.created_at).toLocaleDateString()}</td>
-                        <td>{m.enabled ? "enabled" : "disabled"}</td>
-                        <td>
-                          {m.enabled ? (
-                            <button
-                              onClick={() => {
-                                handleDisable(m.id);
-                              }}
-                            >
-                              disable
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => {
-                                handleEnable(m.id);
-                              }}
-                            >
-                              Enable
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>no data</p>
-            )}
+        <div className={`flex-column ${formOpen ? styles.hidden : undefined}`}>
+          <div className={`flex-row ${styles.topRow}`}>
+            <DropDownList onChange={handleFilter} />
+            <button onClick={() => setFormOpen(true)}>add item</button>
+          </div>
+          <div className={[styles.body]}>
+            <div className={styles.tableContainer}>
+              {isLoading ? (
+                <div className="container">
+                  <div className="spinner"></div>
+                </div>
+              ) : filteredMenu().length > 0 ? (
+                <table>
+                  <thead>
+                    <tr className="semibold tr">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                      <th>Category</th>
+                      <th>Cuisine</th>
+                      <th>Image</th>
+                      <th>Added in</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {menu &&
+                      filteredMenu().map((m) => (
+                        <tr className="normalweight mediumsize" key={m.id}>
+                          <td>{m.id}</td>
+                          <td>{m.name}</td>
+                          <td>{m.description}</td>
+                          <td>{m.price}</td>
+                          <td>{m.category}</td>
+                          <td>{m.cuisine}</td>
+                          <td>{m.image}</td>
+                          <td>{new Date(m.created_at).toLocaleDateString()}</td>
+                          <td>{m.enabled ? "enabled" : "disabled"}</td>
+                          <td>
+                            {m.enabled ? (
+                              <button
+                                onClick={() => {
+                                  handleDisable(m.id);
+                                }}
+                              >
+                                disable
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => {
+                                  handleEnable(m.id);
+                                }}
+                              >
+                                Enable
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>no data</p>
+              )}
+            </div>
           </div>
         </div>
-
         <div
           className={`flex-column ${formOpen ? styles.form : styles.hidden}`}
         >

@@ -13,6 +13,7 @@ const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [deleted, setDeleted] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleFilter = (event) => {
@@ -43,6 +44,7 @@ const Restaurants = () => {
         })
         .then((response) => {
           setRestaurants(response.data.restaurants);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -76,7 +78,11 @@ const Restaurants = () => {
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            {filteredRestaurants().length > 0 ? (
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : filteredRestaurants().length > 0 ? (
               <table>
                 <thead>
                   <tr className="semibold tr">

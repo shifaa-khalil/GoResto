@@ -14,6 +14,7 @@ const Reservations = () => {
   const [reservations, setReservations] = useState("");
   const [cancelled, setCancelled] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("upcoming");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (token) {
@@ -23,7 +24,10 @@ const Reservations = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => setReservations(response.data.reservations))
+        .then((response) => {
+          setReservations(response.data.reservations);
+          setIsLoading(false);
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -83,42 +87,52 @@ const Reservations = () => {
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            <table>
-              <thead>
-                <tr className="semibold">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Count</th>
-                  <th>Cancel</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reservations &&
-                  filteredReservations().map((reservation) => (
-                    <tr
-                      className="normalweight mediumsize"
-                      key={reservation.id}
-                    >
-                      <td>{reservation.id}</td>
-                      <td>{reservation.name}</td>
-                      <td>{reservation.date}</td>
-                      <td>{reservation.time}</td>
-                      <td>{reservation.count}</td>
-                      <td>
-                        {cancelled === reservation.id ? (
-                          <span>Cancelled</span>
-                        ) : (
-                          <button onClick={() => handleCancel(reservation.id)}>
-                            cancel
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : filteredReservations().length > 0 ? (
+              <table>
+                <thead>
+                  <tr className="semibold">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Count</th>
+                    <th>Cancel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reservations &&
+                    filteredReservations().map((reservation) => (
+                      <tr
+                        className="normalweight mediumsize"
+                        key={reservation.id}
+                      >
+                        <td>{reservation.id}</td>
+                        <td>{reservation.name}</td>
+                        <td>{reservation.date}</td>
+                        <td>{reservation.time}</td>
+                        <td>{reservation.count}</td>
+                        <td>
+                          {cancelled === reservation.id ? (
+                            <span>Cancelled</span>
+                          ) : (
+                            <button
+                              onClick={() => handleCancel(reservation.id)}
+                            >
+                              cancel
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>no data</p>
+            )}
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ import Landing from "./pages/landing";
 import Signin from "./pages/signin";
 import Register from "./pages/register";
 import Setup from "./pages/setup";
-import LogoUpload from "./pages/logoUpload";
 import Pending from "./pages/pending";
 import Dashboard from "./pages/dashboard";
 import Chats from "./pages/chats";
@@ -30,35 +29,30 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isManager, setIsManager] = useState(false);
   const [hasRestaurant, setHasRestaurant] = useState(false);
-  const [hasMenu, setHasMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    const menuItems = localStorage.getItem("menuItems");
-    // const name = localStorage.getItem("name");
     const restaurant = localStorage.getItem("restaurant");
 
     // if (response.data.restaurant == null) navigate("/setup");
-    // else if (response.data.menuItems < 10) navigate("/menu");
     // else if (response.data.restaurant.approved === 0) navigate("/pending");
     // else navigate("/dashboard");
 
     if (token) {
       setIsAuthenticated(true);
-      if (role == "admin") {
+      if (role && role == "admin") {
         setIsAdmin(true);
+        // setIsManager(false);
         setIsLoading(false);
       }
-      if (role == "manager") {
+      if (role && role == "manager") {
         setIsManager(true);
+        // setIsAdmin(false);
         if (restaurant !== null) {
           setHasRestaurant(true);
-          if (menuItems) {
-            setHasMenu(true);
-            setIsLoading(false);
-          }
+          setIsLoading(false);
         }
       }
     }
@@ -70,7 +64,7 @@ function App() {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [isLoading]);
 
   if (isLoading)
     return (
@@ -91,26 +85,13 @@ function App() {
           path="/setup"
           element={
             isAuthenticated ? (
-              isManager ? (
-                <Setup />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              <Setup />
             ) : (
-              <Navigate to="/signin" replace />
-            )
-          }
-        />
-        <Route
-          path="/logoUpload"
-          element={
-            isAuthenticated ? (
-              isManager ? (
-                <LogoUpload />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
-            ) : (
+              // isManager ? (
+              //   <Setup />
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -151,12 +132,17 @@ function App() {
           path="/dashboard"
           element={
             isAuthenticated ? (
-              isManager ? (
-                <Dashboard />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              <Dashboard />
             ) : (
+              // isManager ? (
+              //   hasRestaurant ? (
+              //     <Dashboard />
+              //   ) : (
+              //     <Navigate to="/setup" replace />
+              //   )
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -166,7 +152,11 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <Reviews />
+                hasRestaurant ? (
+                  <Reviews />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -180,7 +170,11 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <Reservations />
+                hasRestaurant ? (
+                  <Reservations />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -194,7 +188,11 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <Chats />
+                hasRestaurant ? (
+                  <Chats />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -208,7 +206,11 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <About />
+                hasRestaurant ? (
+                  <About />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -222,7 +224,11 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                <Inquiry />
+                hasRestaurant ? (
+                  <Inquiry />
+                ) : (
+                  <Navigate to="/setup" replace />
+                )
               ) : (
                 <Navigate to="/noAccess" replace />
               )
@@ -235,12 +241,14 @@ function App() {
           path="/requests"
           element={
             isAuthenticated ? (
-              isAdmin ? (
-                <Requests />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              <Requests />
             ) : (
+              // isAdmin ? (
+              //   <Requests />
+              // )
+              // : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }

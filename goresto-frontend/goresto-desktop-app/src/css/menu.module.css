@@ -8,7 +8,6 @@
 }
 .body {
   text-align: center;
-  /* margin-top: 80px; */
   font-size: 25px;
   padding-right: 60px;
   flex-wrap: wrap;
@@ -18,25 +17,18 @@
 .tableContainer {
   display: flex;
   overflow-y: scroll;
-  height: 65vh;
   width: 100%;
 }
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  border-radius: 10px;
+  width: 100%;
 }
-/* tr {
-  height: 10px;
-  max-height: 15px;
-  line-height: 40px;
-} */
 th,
 td {
   border: 1px solid rgb(136, 132, 132);
   width: 120px;
   max-width: 190px;
-  /* min-height: 15px; */
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,8 +52,24 @@ td {
 .hidden {
   display: none;
 }
+.topRow {
+  justify-content: space-between;
+  padding-right: 60px;
+  margin-bottom: 52px;
+}
+.topRow button {
+  height: 35px;
+  width: 150px;
+  font-size: 18px;
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  padding: 0 10px;
+  cursor: pointer;
+}
 
-/* For Webkit Browsers */
 ::-webkit-scrollbar {
   width: 8px;
 }

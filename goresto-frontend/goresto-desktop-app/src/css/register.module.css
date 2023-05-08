@@ -30,9 +30,11 @@
 }
 .heading {
   align-self: center;
-  margin-bottom: 30px;
 }
 .buttons {
   width: 325px;
   justify-content: space-between;
+}
+.input {
+  width: 300px;
 }

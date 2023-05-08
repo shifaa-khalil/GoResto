@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [totalReservations, setTotalReservations] = useState("");
   const [totalReviews, setTotalReviews] = useState("");
   const [rating, setRating] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   // const [logo, setLogo] = useState("");
 
   if (token) {
@@ -34,6 +35,7 @@ const Dashboard = () => {
         setTotalReviews(response.data.totalReviews);
         setRating(response.data.restaurant.rating);
         // setLogo(response.data.restaurant.logo);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -48,44 +50,50 @@ const Dashboard = () => {
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Dashboard" className="block" />
         <DropDownList />
-        {/* <img src={logo} alt="logo" /> */}
-        <div className={`semibold ${styles.body}`}>
-          <DashboardCard
-            className={styles.grey}
-            title="Total reservations"
-            value={totalReservations}
-            src={reservations}
-            onClick={() => navigate("/reservations")}
-          />
-          <DashboardCard
-            className={styles.grey}
-            title="Total earnings"
-            value="$12.4k"
-            src={earnings}
-            // onClick={() => navigate("/earnings")}
-          />
-          <DashboardCard
-            className={styles.grey}
-            title="Total customers"
-            value="62"
-            src={customers}
-            // onClick={() => navigate("/customers")}
-          />
-          <DashboardCard
-            className={styles.grey}
-            title="Total reviews"
-            value={totalReviews}
-            src={chats}
-            onClick={() => navigate("/reviews")}
-          />
-          <DashboardCard
-            className={styles.red}
-            title="Rating"
-            value={rating}
-            src={star}
-            onClick={() => navigate("/reviews")}
-          />
-        </div>
+        {isLoading ? (
+          <div className="container">
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          /* <img src={logo} alt="logo" /> */
+          <div className={`semibold ${styles.body}`}>
+            <DashboardCard
+              className={styles.grey}
+              title="Total reservations"
+              value={totalReservations}
+              src={reservations}
+              onClick={() => navigate("/reservations")}
+            />
+            <DashboardCard
+              className={styles.grey}
+              title="Total earnings"
+              value="$12.4k"
+              src={earnings}
+              // onClick={() => navigate("/earnings")}
+            />
+            <DashboardCard
+              className={styles.grey}
+              title="Total customers"
+              value="62"
+              src={customers}
+              // onClick={() => navigate("/customers")}
+            />
+            <DashboardCard
+              className={styles.grey}
+              title="Total reviews"
+              value={totalReviews}
+              src={chats}
+              onClick={() => navigate("/reviews")}
+            />
+            <DashboardCard
+              className={styles.red}
+              title="Rating"
+              value={rating}
+              src={star}
+              onClick={() => navigate("/reviews")}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

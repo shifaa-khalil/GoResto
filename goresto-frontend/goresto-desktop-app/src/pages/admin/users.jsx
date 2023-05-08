@@ -13,7 +13,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [removed, setRemoved] = useState("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleFilter = (event) => {
@@ -42,6 +42,7 @@ const Users = () => {
         })
         .then((response) => {
           setUsers(response.data.users);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -75,8 +76,12 @@ const Users = () => {
         <DropDownList onChange={handleFilter} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            {filteredUsers().length > 0 ? (
-              <table>
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : filteredUsers().length > 0 ? (
+              <table className={styles.moreWidth}>
                 <thead>
                   <tr className="semibold tr">
                     <th>ID</th>

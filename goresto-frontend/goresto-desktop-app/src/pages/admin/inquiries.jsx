@@ -14,6 +14,7 @@ const Inquiries = () => {
   const navigate = useNavigate();
   const [inquiries, setInquiries] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("pending");
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleFilter = (event) => {
     setSelectedFilter(event.target.value);
@@ -43,6 +44,7 @@ const Inquiries = () => {
         })
         .then((response) => {
           setInquiries(response.data.inquiries);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -95,7 +97,11 @@ const Inquiries = () => {
         <NavBar2 sectionName="Inquiries" />
         <DropDownList onChange={handleFilter} />
         <div className={`semibold ${styles.body}`}>
-          {filteredInquiries().length > 0 ? (
+          {isLoading ? (
+            <div className="container">
+              <div className="spinner"></div>
+            </div>
+          ) : filteredInquiries().length > 0 ? (
             filteredInquiries().map((inquiry) => (
               <InquiryCard
                 restaurantName={inquiry.restaurant.name}

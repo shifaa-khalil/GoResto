@@ -20,15 +20,9 @@ const NavBar = () => {
       <div className="logo">
         <img src={logo} />
       </div>
-
-      <div className={`flex-row ${styles.navLinks}`}>
-        <p onClick={() => navigate("/")}>How it works</p>
-        <p onClick={() => navigate("/")}>About</p>
-        <p onClick={() => navigate("/")}>Contact</p>
-        <p onClick={() => navigate("/signin")}>
-          {authenticated ? name : "Sign in"}
-        </p>
-      </div>
+      <p onClick={() => navigate("/signin")}>
+        {authenticated ? name : undefined}
+      </p>
     </div>
   );
 };

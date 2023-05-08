@@ -15,22 +15,24 @@ const Requests = () => {
   const [approved, setApproved] = useState("");
   const [rejected, setRejected] = useState("");
   const [sortOption, setSortOption] = useState("oldest first");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // if (token) {
-    axios
-      .get(`http://127.0.0.1:8000/api/getRequests`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setRestoRequests(response.data.restoRequests);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // } else navigate("/signin");
+    if (token) {
+      axios
+        .get(`http://127.0.0.1:8000/api/getRequests`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setRestoRequests(response.data.restoRequests);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else navigate("/signin");
   }, []);
 
   useEffect(() => {
@@ -94,7 +96,11 @@ const Requests = () => {
         <DropDownList onChange={handleSortChange} />
         <div className={styles.body}>
           <div className={styles.tableContainer}>
-            {restoRequests.length > 0 ? (
+            {isLoading ? (
+              <div className="container">
+                <div className="spinner"></div>
+              </div>
+            ) : restoRequests.length > 0 ? (
               <table>
                 <thead>
                   <tr className="semibold tr">
