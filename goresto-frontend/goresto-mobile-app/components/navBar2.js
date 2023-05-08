@@ -105,85 +105,96 @@ const NavBar2 = ({
         onRequestClose={() => setVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <TouchableWithoutFeedback
-            onPress={() => handleFilterSelection("price")}
-          >
-            <Text style={[styles.filterText]}>price</Text>
-          </TouchableWithoutFeedback>
-          <View
-            style={[styles.price, { display: priceVisible ? "flex" : "none" }]}
-          >
-            <TextInput
-              style={styles.filterInput}
-              value={minPrice}
-              onChangeText={(text) => {
-                setMinPrice(text);
-                handleMinPriceChange(text);
-              }}
-            />
-            <TextInput
-              style={styles.filterInput}
-              value={maxPrice}
-              onChangeText={(text) => {
-                setMaxPrice(text);
-                handleMaxPriceChange(text);
-              }}
-            />
+          <View style={styles.row}>
+            <TouchableWithoutFeedback
+              onPress={() => handleFilterSelection("price")}
+            >
+              <Text style={[styles.filterText]}>price</Text>
+            </TouchableWithoutFeedback>
+            <View
+              style={[
+                styles.price,
+                { display: priceVisible ? "flex" : "none" },
+              ]}
+            >
+              <TextInput
+                style={styles.filterInput}
+                value={minPrice}
+                onChangeText={(text) => {
+                  setMinPrice(text);
+                  handleMinPriceChange(text);
+                }}
+              />
+              <TextInput
+                style={styles.filterInput}
+                value={maxPrice}
+                onChangeText={(text) => {
+                  setMaxPrice(text);
+                  handleMaxPriceChange(text);
+                }}
+              />
+            </View>
           </View>
-          <TouchableWithoutFeedback
-            onPress={() => handleFilterSelection("rating")}
-          >
-            <Text style={[styles.filterText]}>rating</Text>
-          </TouchableWithoutFeedback>
-          <View
-            style={[
-              styles.rating,
-              { display: ratingVisible ? "flex" : "none" },
-            ]}
-          >
-            <TextInput
-              style={styles.filterInput}
-              value={minRating}
-              onChangeText={(text) => {
-                setMinRating(text);
-                handleMinRatingChange(text);
-              }}
-            />
-            <TextInput
-              style={styles.filterInput}
-              value={maxRating}
-              onChangeText={(text) => {
-                setMaxRating(text);
-                handleMaxRatingChange(text);
-              }}
-            />
+          <View style={styles.row}>
+            <TouchableWithoutFeedback
+              onPress={() => handleFilterSelection("rating")}
+            >
+              <Text style={[styles.filterText]}>rating</Text>
+            </TouchableWithoutFeedback>
+            <View
+              style={[
+                styles.rating,
+                { display: ratingVisible ? "flex" : "none" },
+              ]}
+            >
+              <TextInput
+                style={styles.filterInput}
+                value={minRating}
+                onChangeText={(text) => {
+                  setMinRating(text);
+                  handleMinRatingChange(text);
+                }}
+              />
+              <TextInput
+                style={styles.filterInput}
+                value={maxRating}
+                onChangeText={(text) => {
+                  setMaxRating(text);
+                  handleMaxRatingChange(text);
+                }}
+              />
+            </View>
           </View>
-          <TouchableWithoutFeedback
-            onPress={() => handleFilterSelection("location")}
-          >
-            <Text style={[styles.filterText]}>location</Text>
-          </TouchableWithoutFeedback>
-          <View
-            style={[
-              styles.location,
-              { display: locationVisible ? "flex" : "none" },
-            ]}
-          >
-            <TextInput
-              style={styles.filterInput}
-              value={location}
-              onChangeText={(text) => {
-                setLocation(text);
-                handleLocationChange(text);
-              }}
-            />
+          <View style={styles.row}>
+            <TouchableWithoutFeedback
+              onPress={() => handleFilterSelection("location")}
+            >
+              <Text style={[styles.filterText]}>location</Text>
+            </TouchableWithoutFeedback>
+            <View
+              style={[
+                styles.location,
+                { display: locationVisible ? "flex" : "none" },
+              ]}
+            >
+              <TextInput
+                style={styles.filterInput}
+                value={location}
+                onChangeText={(text) => {
+                  setLocation(text);
+                  handleLocationChange(text);
+                }}
+              />
+            </View>
           </View>
-          <TouchableOpacity onPress={onSubmit}>
-            <Text style={[styles.filter]}>Submit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setVisible(false)}>
-            <Text style={[styles.filter]}>Hide</Text>
-          </TouchableOpacity>
+          <View style={styles.row}>
+            <TouchableOpacity onPress={onSubmit}>
+              <Text style={[styles.filterModal]}>Submit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setVisible(false)}>
+              <Text style={[styles.filterModal]}>Hide</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -207,13 +218,16 @@ const styles = StyleSheet.create({
   },
   filter: {
     fontWeight: "bold",
-    color: "black",
+    textDecorationLine: "underline",
+  },
+  filterModal: {
     fontSize: 15,
+    color: "white",
     textDecorationLine: "underline",
   },
   filters: {
     flexDirection: "row",
-    width: 310,
+    width: 150,
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 20,
@@ -223,12 +237,18 @@ const styles = StyleSheet.create({
     height: 15,
     borderWidth: 1,
     textAlign: "center",
+    borderColor: "white",
+    color: "white",
   },
   price: {
     flexDirection: "row",
+    justifyContent: "space-around",
+    width: 90,
   },
   rating: {
     flexDirection: "row",
+    justifyContent: "space-around",
+    width: 90,
   },
   location: {},
   navBar: {
@@ -244,13 +264,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#D43325",
     padding: 20,
     borderRadius: 10,
-    marginTop: 180,
-    width: 80,
-    alignItems: "center",
+    marginTop: 200,
+    width: 190,
+    height: 200,
+    alignItems: "flex-start",
+    justifyContent: "space-around",
     alignSelf: "flex-end",
   },
   filterText: {
     fontSize: 15,
+    color: "white",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    columnGap: 30,
   },
 });
 

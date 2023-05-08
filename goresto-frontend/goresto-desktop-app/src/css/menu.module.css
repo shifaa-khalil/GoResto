@@ -82,7 +82,7 @@ td {
   background-color: rgb(136, 132, 132);
 }
 .buttons {
-  width: 330px;
+  width: 480px;
   justify-content: space-between;
   margin-bottom: 40px;
 }
@@ -102,12 +102,12 @@ td {
 }
 .formButton {
   height: 35px;
-  width: 120px;
+  width: 150px;
   font-size: 22px;
 }
 .done {
   height: 35px;
-  width: 120px;
+  width: 150px;
   font-size: 22px;
   background-color: var(--yellow);
 }

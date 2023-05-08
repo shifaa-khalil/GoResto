@@ -28,7 +28,7 @@ const Input = ({
 };
 
 const styles = StyleSheet.create({
-  inputContainer: { marginBottom: 20, width: 260 },
+  inputContainer: { marginBottom: 20, width: 310 },
   label: { fontSize: 20, marginBottom: 5 },
   input: {
     width: "100%",

@@ -68,7 +68,7 @@ const ReviewCard = ({
       </View>
       {commentsVisible && (
         <View style={styles.commentSection}>
-          <View style={[styles.inputComment, styles.row]}>
+          <View style={[styles.inputComment]}>
             <Input
               value={content}
               onChangeText={setContent}
@@ -78,14 +78,15 @@ const ReviewCard = ({
               numberOfLines={4}
             />
             <TouchableOpacity onPress={handleSend} style={[styles.send]}>
-              <Image source={Send} />
+              {/* <Image source={Send} /> */}
+              <Text style={[styles.text]}>Send</Text>
             </TouchableOpacity>
           </View>
           {comments &&
             comments.map((comment) => (
               <CommentCard
                 key={comment.id}
-                customer={comment.user_id}
+                customer={comment.user.name}
                 date={new Date(comment.created_at).toLocaleDateString()}
                 comment={comment.content}
               />
@@ -140,10 +141,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   send: {
-    width: 30,
+    width: 70,
     height: 20,
     borderRadius: 15,
     backgroundColor: "#D43325",
+    alignSelf: "center",
   },
   text: {
     fontSize: 12,

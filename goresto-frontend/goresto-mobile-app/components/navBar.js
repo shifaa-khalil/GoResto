@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 const NavBar = () => {
   return (
     <View style={[styles.navBar]}>
-      <Text style={styles.userName}>Welcome, Name!</Text>
+      <Text style={styles.userName}>Welcome, Mahdi!</Text>
     </View>
   );
 };

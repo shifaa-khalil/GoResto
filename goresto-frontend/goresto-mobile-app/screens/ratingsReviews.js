@@ -35,7 +35,7 @@ const Ratings = ({ route }) => {
               key={review.id}
               restaurant={review.restaurant_id}
               date={new Date(review.created_at).toLocaleDateString()}
-              customerName={review.customer_id}
+              customerName={review.user.name}
               rating={review.rating}
               review={review.content}
               reviewId={review.id}

@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
   },
   name: {
     fontSize: 24,
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "underline",
     fontSize: 20,
+    color: "#D43325",
   },
   cost: {
     fontSize: 20,

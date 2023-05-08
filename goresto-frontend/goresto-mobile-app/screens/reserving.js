@@ -131,12 +131,9 @@ const Reserving = ({ route }) => {
           }}
         />
       </View>
-      <View style={styles.buttons}>
-        <MyButton
-          title={update ? "Update" : "Reserve"}
-          onPress={handleSubmit}
-        />
-      </View>
+      {/* <View style={styles.buttons}> */}
+      <MyButton title={update ? "Update" : "Reserve"} onPress={handleSubmit} />
+      {/* </View> */}
     </View>
   );
 };

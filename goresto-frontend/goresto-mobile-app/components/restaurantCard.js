@@ -8,16 +8,24 @@ const RestaurantCard = ({ name, onPress, image, rating, location }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.card]}>
-        <Image source={{ uri: image }} style={[styles.image]} />
+        <Image
+          source={{ uri: image }}
+          style={[styles.image]}
+          accessibilityLabel="No image"
+        />
         <View style={[styles.text]}>
           <Text style={[styles.name]} numberOfLines={1}>
             {name}
           </Text>
-          <View style={[styles.row]}>
-            <Text style={[styles.rating]}>{rating}</Text>
-            <Image source={Star} style={styles.star} />
-            {/* <Text style={[styles.cuisine]}>{cuisine}</Text> */}
-          </View>
+          {rating ? (
+            <View style={[styles.row]}>
+              <Text style={[styles.rating]}>{rating}</Text>
+              <Image source={Star} style={styles.star} />
+            </View>
+          ) : (
+            <Text>No ratings</Text>
+          )}
+
           <Text style={[styles.location]} numberOfLines={1}>
             {location}
           </Text>
@@ -64,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   location: {
-    fontSize: 20,
+    fontSize: 18,
     overflow: "hidden",
     textOverflow: "ellipsis",
   },

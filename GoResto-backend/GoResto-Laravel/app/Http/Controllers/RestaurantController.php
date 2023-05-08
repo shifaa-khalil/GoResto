@@ -120,11 +120,11 @@ class RestaurantController extends Controller
             // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
         }      
 
-        if ($request->hasFile('logo')) {
+        if ($request->hasFile('image')) {
             $request->validate([
-                'logo' => 'mimes:jpg,png,jpeg|max:6000'
+                'image' => 'mimes:jpg,png,jpeg|max:6000'
             ]);
-            $file = $request->file('logo');
+            $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move(public_path('storage/logos/'), $filename);

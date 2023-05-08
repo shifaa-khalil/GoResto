@@ -70,13 +70,13 @@ const LeftMenu = (props) => {
           className={props.offersClassName}
           onClick={() => navigate("/")}
         /> */}
-        <LeftMenuItem
+        {/* <LeftMenuItem
           icon={chats}
           sectionName="Reviews"
           className={props.reviewsClassName}
           disabled={props.disabled}
           onClick={() => navigate("/reviews")}
-        />
+        /> */}
         <LeftMenuItem
           icon={chats}
           sectionName="Chats"
