@@ -16,6 +16,8 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+  const [name, setName] = useState("");
 
   const navigation = useNavigation();
 
@@ -24,15 +26,6 @@ const Signin = () => {
       await AsyncStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error("Error saving data:", error);
-    }
-  }
-
-  async function getData(key) {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      return value !== null ? JSON.parse(value) : null;
-    } catch (error) {
-      console.error("Error retrieving data:", error);
     }
   }
 
@@ -65,7 +58,6 @@ const Signin = () => {
           // const token = AsyncStorage.getItem("token");
           // const name = AsyncStorage.getItem("name");
           // console.log("Stored data:", token, name);
-
         })
         .catch((error) => {
           console.error(error);

@@ -1,6 +1,7 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Register from "./screens/register";
 import Signin from "./screens/signin";
 import Home from "./screens/home";
@@ -15,9 +16,30 @@ import Ratings from "./screens/ratingsReviews";
 const Stack = createStackNavigator();
 
 function App() {
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
+  console.log(token);
+
+  // if (!token) {
+  //   return null; // or a loading screen or something else
+  // }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName={"Home"}>
         <Stack.Screen
           name="Register"
           component={Register}
