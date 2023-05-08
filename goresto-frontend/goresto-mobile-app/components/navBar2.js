@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "black",
     fontWeight: "bold",
+    cursor: "pointer",
   },
   sortBy: {
     fontWeight: "bold",
@@ -219,6 +220,7 @@ const styles = StyleSheet.create({
   filter: {
     fontWeight: "bold",
     textDecorationLine: "underline",
+    cursor: "pointer",
   },
   filterModal: {
     fontSize: 15,
@@ -274,6 +276,7 @@ const styles = StyleSheet.create({
   filterText: {
     fontSize: 15,
     color: "white",
+    cursor: "pointer",
   },
   row: {
     flexDirection: "row",

@@ -116,7 +116,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: "rgba(0,0,0,0.2)",
+    // color: "rgba(0,0,0,0.2)",
+    color: "black",
+    cursor: "pointer",
   },
   iconLeft: {
     paddingHorizontal: 3,
@@ -128,6 +130,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     fontSize: 15,
+    cursor: "pointer",
   },
 });
 

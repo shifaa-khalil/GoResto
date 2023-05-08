@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   Modal,
+  RefreshControl,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
@@ -20,34 +21,40 @@ const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [questionVisible, setQuestionVisible] = useState(false);
   const [reservationId, setReservationId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     axios
       .get(`${URL}/api/getReservations`)
       .then((response) => {
-        console.log(response.data.reservations);
         setReservations(response.data.reservations);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [refreshing]);
 
   const handleCancel = () => {
     setQuestionVisible(false);
     axios
       .delete(`${URL}/api/cancelReservation/${reservationId}`)
       .then((response) => {
-        console.log(response.data.stutus);
-        console.log(response.data.message);
+        console.log(response.data.status);
+        setRefreshing(true);
       })
       .catch((error) => {
         console.log(error);
       });
+    setRefreshing(false);
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleCancel} />
+      }
+    >
       <View style={[styles.container]}>
         {/* <NavBar2 /> */}
         <Image source={Reserved} style={[styles.backgroundImage]} />
@@ -103,6 +110,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     height: 250,
+    width: 360,
     resizeMode: "contain",
   },
   restaurants: {

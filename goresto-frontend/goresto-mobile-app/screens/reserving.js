@@ -72,8 +72,6 @@ const Reserving = ({ route }) => {
             }
           )
           .then((response) => {
-            console.log(response.data.stutus);
-            console.log(response.data.message);
             navigation.navigate("Reservations");
           })
           .catch((error) => {
@@ -85,8 +83,6 @@ const Reserving = ({ route }) => {
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then((response) => {
-            console.log(response.data.stutus);
-            console.log(response.data.message);
             navigation.navigate("Reservations");
           })
           .catch((error) => {

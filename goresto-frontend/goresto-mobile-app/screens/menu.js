@@ -27,7 +27,7 @@ const Menu = ({ route }) => {
         });
     } else {
       axios
-        .get(`${URL}/api/getMenu/17`)
+        .get(`${URL}/api/getMenu/${route.params.restaurant_id}`)
         .then((response) => {
           setMenuItems(response.data.menu);
         })
@@ -42,7 +42,7 @@ const Menu = ({ route }) => {
       <View style={[styles.container]}>
         {/* <NavBar2 /> */}
         <View style={styles.heading}>
-          <Text style={styles.restaurantName}>KFC</Text>
+          <Text style={styles.restaurantName}>{route.params.name}</Text>
           <SearchBar
             onChangeText={(text) => {
               setSearchInput(text);

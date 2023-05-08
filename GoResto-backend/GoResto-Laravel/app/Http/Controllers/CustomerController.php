@@ -34,21 +34,21 @@ class CustomerController extends Controller
     
     function filterByPrice($minimum, $maximum)
     {
-        $restaurants = Restaurant::whereBetween('deposit', [$minimum, $maximum])->get();
+        $restaurants = Restaurant::whereBetween('deposit', [$minimum, $maximum])->where('approved', true)->get();
         
         return response()->json(['restaurants' => $restaurants]);
     }
 
     function filterByLocation($location)
     {
-        $restaurants = Restaurant::where('location', 'like', '%'.$location.'%')->get();
+        $restaurants = Restaurant::where('location', 'like', '%'.$location.'%')->where('approved', true)->get();
 
         return response()->json(['restaurants' => $restaurants]);
     }
 
     function filterByRating($minimum, $maximum)
     {
-        $restaurants = Restaurant::whereBetween('rating', [$minimum, $maximum])->get();
+        $restaurants = Restaurant::whereBetween('rating', [$minimum, $maximum])->where('approved', true)->get();
         
         return response()->json(['restaurants' => $restaurants]);
     }
@@ -62,7 +62,7 @@ class CustomerController extends Controller
 
     function searchRestaurant($q)
     {
-        $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->get();
+        $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
         
         return response()->json(['restaurants' => $restaurants]);
     }
