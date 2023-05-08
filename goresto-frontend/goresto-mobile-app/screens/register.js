@@ -8,6 +8,7 @@ import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
 import GoPro from "../assets/GoPro.png";
+import Logo from "../assets/Logo.png";
 import NavBar from "../components/navBar";
 import { URL } from "../configs/URL";
 
@@ -39,84 +40,76 @@ const Register = () => {
   };
 
   const handleChangeText = () => {
-    if (validateForm()) {
+    if (validateForm) {
       setError("");
     }
   };
 
-  async function saveData(key, value) {
-    try {
-      await AsyncStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  }
+  // async function saveData(key, value) {
+  //   try {
+  //     await AsyncStorage.setItem(key, JSON.stringify(value));
+  //   } catch (error) {
+  //     console.error("Error saving data:", error);
+  //   }
+  // }
 
-  async function getData(key) {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      return value !== null ? JSON.parse(value) : null;
-    } catch (error) {
-      console.error("Error retrieving data:", error);
-    }
-  }
+  // async function getData(key) {
+  //   try {
+  //     const value = await AsyncStorage.getItem(key);
+  //     return value !== null ? JSON.parse(value) : null;
+  //   } catch (error) {
+  //     console.error("Error retrieving data:", error);
+  //   }
+  // }
 
-  async function registerUser(data) {
-    try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/register/customer`,
-        data
-      );
-      const { user, authorisation } = response.data;
-      await saveData("name", user.name);
-      await saveData("token", authorisation.token);
-      return { success: true };
-    } catch (error) {
-      console.error("Error registering user:", error);
-      return { success: false, error: "An error occurred" };
-    }
-  }
+  // async function registerUser(data) {
+  //   try {
+  //     const response = await axios.post(
+  //       `http://127.0.0.1:8000/api/register/customer`,
+  //       data
+  //     );
+  //     const { user, authorisation } = response.data;
+  //     // await saveData("name", user.name);
+  //     // await saveData("token", authorisation.token);
+  //     return { success: true };
+  //   } catch (error) {
+  //     console.error("Error registering user:", error);
+  //     return { success: false, error: "An error occurred" };
+  //   }
+  // }
 
-  async function handleSubmit() {
+  const handleSubmit = () => {
     if (validateForm()) {
       const data = { name, email, password, confirmPassword };
-      const result = await registerUser(data);
-      if (result.success) {
-        navigation.navigate("Setup");
-      } else {
-        setError(result.error);
-      }
-    }
-  }
-
-  // const handleSubmit = () => {
-  //   if (validateForm()) {
-  //     console.log("submitted");
-
-  // const data = { name, email, password, confirmPassword };
-  // axios
-  //   .post("http://127.0.0.1:8000/api/register/customer", data)
-  //   .then((response) => {
-  //     navigation.navigate("Setup");
-  //     localStorage.setItem("name", response.data.user.name);
-  //     localStorage.setItem("token", response.data.authorisation.token);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //     setError("Email already exists");
-  //   });
-  //   } else console.log({ error });
-  // };
+      axios
+        .post("http://127.0.0.1:8000/api/register/customer", data)
+        .then((response) => {
+          console.log("registered");
+          // navigation.navigate("Setup");
+          // localStorage.setItem("name", response.data.user.name);
+          // localStorage.setItem("token", response.data.authorisation.token);
+        })
+        .catch((error) => {
+          console.error(error);
+          setError("Email already exists");
+        });
+    } else console.log(error);
+  };
 
   return (
     <View style={[styles.container]}>
-      <NavBar />
-      <Image source={GoPro} style={[styles.heading]} />
-      <Text>{error}</Text>
+      {/* <NavBar /> */}
+      <Image source={Logo} style={[styles.heading]} />
+      {error && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.error}>{error}</Text>
+        </View>
+      )}
+
       <View style={[styles.form]}>
         <Input
           title="Name"
-          placeHolder="Name"
+          placeHolder="John Doe"
           value={name}
           onChangeText={(text) => {
             setName(text);
@@ -125,7 +118,7 @@ const Register = () => {
         />
         <Input
           title="Email"
-          placeHolder="Email"
+          placeHolder="example@domain.com"
           value={email}
           onChangeText={(text) => {
             setEmail(text);
@@ -134,7 +127,7 @@ const Register = () => {
         />
         <Input
           title="Password"
-          placeHolder="Password"
+          placeHolder="********"
           value={password}
           onChangeText={(text) => {
             setPassword(text);
@@ -143,7 +136,7 @@ const Register = () => {
         />
         <Input
           title="Confirm password"
-          placeHolder="Confirm password"
+          placeHolder="********"
           value={confirmPassword}
           onChangeText={(text) => {
             setConfirmPassword(text);
@@ -151,8 +144,9 @@ const Register = () => {
           }}
         />
       </View>
-      <View style={styles.buttons}>
-        <MyButton title="Register" onPress={handleSubmit} />
+      <MyButton title="Register" onPress={handleSubmit} />
+      <View style={styles.row}>
+        <Text>Already have an account?</Text>
         <MyLink
           title="Sign in instead"
           onPress={() => navigation.replace("Signin")}
@@ -169,19 +163,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    width: 260,
-    height: 30,
+    width: 120,
+    height: 70,
     marginBottom: 40,
     marginTop: 20,
   },
   form: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  buttons: {
-    width: 260,
+  row: {
+    width: 310,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 10,
+  },
+  errorContainer: {
+    backgroundColor: "#D43325",
+    borderRadius: 8,
+    padding: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  error: {
+    color: "white",
   },
 });
 

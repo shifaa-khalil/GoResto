@@ -198,7 +198,7 @@ class CustomerController extends Controller
     function addComment(Request $request, $review_id)
     {
         // $customer = auth()->user();
-        $customer_id=9;
+        $customer_id=8;
         $comment = new Comment;
         $comment->review_id = $review_id;
         $comment->user_id = $customer_id;

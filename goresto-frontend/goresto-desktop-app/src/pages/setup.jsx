@@ -62,7 +62,7 @@ const Setup = () => {
             },
           })
           .then((response) => {
-            navigate("/menu");
+            navigate("/pending");
             // localStorage.setItem("name", response.data.message.name);
           })
           .catch((error) => {

@@ -63,7 +63,7 @@ const Rating = ({ route }) => {
       {/* <NavBar /> */}
       <Text>{error}</Text>
       <View style={[styles.form]}>
-        <Text>Rate {route.params.name}</Text>
+        <Text style={styles.restoName}>{route.params.name}</Text>
         <Input
           title="Rating"
           placeHolder="Rating"
@@ -83,9 +83,7 @@ const Rating = ({ route }) => {
           }}
         />
       </View>
-      <View style={styles.buttons}>
-        <MyButton title="Add" onPress={handleSubmit} />
-      </View>
+      <MyButton title="Add" onPress={handleSubmit} style={styles.button} />
     </View>
   );
 };
@@ -105,11 +103,14 @@ const styles = StyleSheet.create({
   form: {
     marginBottom: 20,
   },
-  buttons: {
-    width: 260,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  button: {
+    alignSelf: "center",
+  },
+  restoName: {
+    textAlign: "center",
+    fontWeight: "bold",
+    marginVertical: 30,
+    fontSize: 25,
   },
 });
 

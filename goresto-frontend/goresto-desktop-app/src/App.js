@@ -100,12 +100,13 @@ function App() {
           path="/pending"
           element={
             isAuthenticated ? (
-              isManager ? (
-                <Pending />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              <Pending />
             ) : (
+              // isManager ? (
+              //   <Pending />
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -114,16 +115,18 @@ function App() {
           path="/menu"
           element={
             isAuthenticated ? (
-              isManager ? (
-                hasRestaurant ? (
-                  <Menu />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              <Menu />
             ) : (
+              //   isManager ? (
+              //     hasRestaurant ? (
+              //       <Menu />
+              //     ) : (
+              //       <Navigate to="/setup" replace />
+              //     )
+              //   ) : (
+              //     <Navigate to="/noAccess" replace />
+              //   )
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -170,12 +173,13 @@ function App() {
           element={
             isAuthenticated ? (
               isManager ? (
-                hasRestaurant ? (
-                  <Reservations />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
+                <Reservations />
               ) : (
+                // hasRestaurant ? (
+                //   <Reservations />
+                // ) : (
+                //   <Navigate to="/setup" replace />
+                // )
                 <Navigate to="/noAccess" replace />
               )
             ) : (
