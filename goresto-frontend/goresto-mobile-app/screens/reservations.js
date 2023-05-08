@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import {
   ScrollView,
@@ -22,17 +23,39 @@ const Reservations = () => {
   const [questionVisible, setQuestionVisible] = useState(false);
   const [reservationId, setReservationId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
 
   useEffect(() => {
-    axios
-      .get(`${URL}/api/getReservations`)
-      .then((response) => {
-        setReservations(response.data.reservations);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [refreshing]);
+    getData("token");
+  }, []);
+  // console.log(token);
+
+  useEffect(() => {
+    if (token !== "") {
+      axios
+        .get(`${URL}/api/getReservations`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setReservations(response.data.reservations);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else console.log("no token");
+  }, [token, refreshing]);
 
   const handleCancel = () => {
     setQuestionVisible(false);

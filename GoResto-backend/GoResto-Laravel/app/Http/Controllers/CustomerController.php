@@ -107,18 +107,18 @@ class CustomerController extends Controller
 
     function reserveTable(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
-        $customer_id=8;
+        $customer = auth()->user();
+        // $customer_id=8;
 
         $restaurant = Restaurant::find($restaurant_id);
-        $countReservations = Reservation::where('restaurant_id', $restaurant_id)->count();
+        $countReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
 
         if($countReservations == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
         else
         {
             $reservation = new Reservation;
             $reservation->restaurant_id = $restaurant_id;
-            $reservation->customer_id = $customer_id;
+            $reservation->customer_id = $customer->id;
             $reservation->date = $request->date;
             $reservation->time = $request->time;
             $reservation->count = $request->count;
@@ -130,10 +130,10 @@ class CustomerController extends Controller
 
     function getReservations()
     {
-        // $customer = auth()->user();
-        $customer_id=8;
+        $customer = auth()->user();
+        // $customer_id=8;
 
-        $reservations = Reservation::where('customer_id', $customer_id)->with('restaurant')->get();
+        $reservations = Reservation::where('customer_id', $customer->id)->with('restaurant')->get();
 
         return response()->json(['reservations' => $reservations]);
     }
@@ -170,15 +170,15 @@ class CustomerController extends Controller
     
     function rateRestaurant(Request $request, $restaurant_id)
     {
-        // $customer = auth()->user();
-        $customer_id=8;
+        $customer = auth()->user();
+        // $customer_id=8;
 
-        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer_id])->first();
+        $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
         if($review) $review->delete();
         
         $review = new Review;
         $review->restaurant_id = $restaurant_id;
-        $review->customer_id = $customer_id;
+        $review->customer_id = $customer->id;
         $review->content = $request->content;
         $review->rating = $request->rating;
         $review->save();
@@ -197,11 +197,11 @@ class CustomerController extends Controller
 
     function addComment(Request $request, $review_id)
     {
-        // $customer = auth()->user();
-        $customer_id=8;
+        $customer = auth()->user();
+        // $customer_id=8;
         $comment = new Comment;
         $comment->review_id = $review_id;
-        $comment->user_id = $customer_id;
+        $comment->user_id = $customer->id;
         $comment->content = $request->content;
         $comment->save();
 

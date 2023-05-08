@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
 });
 
-// Route::middleware(['customer'])->group(function(){
+Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::put('/updateReservation/{reservation_id}', [customerController::class, 'updateReservation']);
     
     Route::delete('/cancelReservation/{reservation_id}', [CustomerController::class, 'cancelReservation']);
-// });
+});
 
 Route::middleware(['admin'])->group(function(){
     Route::get('getRestaurantsdata',[AdminController::class,'getRestaurants']);
