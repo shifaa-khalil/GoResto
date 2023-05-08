@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { Image, View, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
-// import GoPro from "../assets/GoPro.png";
 import NavBar from "../components/navBar";
 import Calendar from "../components/calendar";
 import TimePicker from "../components/timePicker";
@@ -19,14 +18,28 @@ const Reserving = ({ route }) => {
   const [time, setTime] = useState("");
   const [count, setCount] = useState("");
   const [error, setError] = useState("");
-  const today = new Date();
-  const now = new Date().toLocaleTimeString();
+  const today = new Date().toISOString().slice(0, 10);
+  const now = new Date().toLocaleTimeString("en-US", { hour12: false });
   const [update, setUpdate] = useState(false);
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
 
   useEffect(() => {
     if (route.params.reservation_id) {
       setUpdate(true);
-      // console.log(route.params.reservation_id);
       setTime(route.params.time);
       setDate(route.params.date);
       setCount(route.params.count);
@@ -35,40 +48,46 @@ const Reserving = ({ route }) => {
 
   const validateForm = () => {
     let isValid = true;
-    // if (!date || !time || !count) {
-    //   setError("All fields are required");
-    //   isValid = false;
-    // } else if (date < today) {
-    //   setError("Invalid date");
-    //   isValid = false;
-    // } else if (time < now) {
-    //   setError("Invalid time");
-    //   isValid = false;
-    // }
+    if (!date || !time || !count) {
+      setError("All fields are required");
+      isValid = false;
+    } else if (date < today) {
+      setError("Invalid date");
+      isValid = false;
+    } else if (date == today && time < now) {
+      setError("Invalid time");
+      isValid = false;
+    }
     return isValid;
   };
 
   const handleChangeText = () => {
-    if (validateForm()) {
+    if (validateForm) {
       setError("");
     }
   };
 
   const handleDateSelection = (date) => {
-    setDate(`${date._i.year}-${date._i.month + 1}-${date._i.day}`);
+    setDate(
+      `${date._i.year}-${(date._i.month + 1)
+        .toString()
+        .padStart(2, "0")}-${date._i.day.toString().padStart(2, "0")}`
+    );
   };
 
   const handleSubmit = () => {
     if (validateForm()) {
       const data = { date, time, count };
-      console.log(data);
       if (update) {
         axios
           .put(
             `${URL}/api/updateReservation/${route.params.reservation_id}`,
             data,
             {
-              headers: { "Content-Type": "application/json" },
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
             }
           )
           .then((response) => {
@@ -80,7 +99,10 @@ const Reserving = ({ route }) => {
       } else {
         axios
           .post(`${URL}/api/reserveTable/${route.params.restaurant_id}`, data, {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
           })
           .then((response) => {
             navigation.navigate("Reservations");
@@ -94,8 +116,11 @@ const Reserving = ({ route }) => {
 
   return (
     <View style={[styles.container]}>
-      {/* <NavBar /> */}
-      <Text>{error}</Text>
+      {error && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.error}>{error}</Text>
+        </View>
+      )}{" "}
       <View style={[styles.form]}>
         <Calendar onDateSelect={handleDateSelection} />
         {/* <Input
@@ -154,6 +179,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  errorContainer: {
+    backgroundColor: "#D43325",
+    borderRadius: 8,
+    padding: 5,
+    marginVertical: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  error: {
+    color: "white",
   },
 });
 

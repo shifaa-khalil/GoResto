@@ -40,6 +40,7 @@ const Reservations = () => {
   }, []);
 
   useEffect(() => {
+    setRefreshing(true);
     if (token !== "") {
       axios
         .get(`${URL}/api/getReservations`, {
@@ -49,20 +50,25 @@ const Reservations = () => {
         })
         .then((response) => {
           setReservations(response.data.reservations);
+          setRefreshing(false);
         })
         .catch((error) => {
           console.log(error);
         });
     } else console.log("no token");
-  }, [token, refreshing]);
+  }, [refreshing, token]);
 
   const handleCancel = () => {
     setQuestionVisible(false);
     axios
-      .delete(`${URL}/api/cancelReservation/${reservationId}`)
+      .delete(`${URL}/api/cancelReservation/${reservationId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        console.log(response.data.status);
         setRefreshing(true);
+        console.log(response.data.status);
       })
       .catch((error) => {
         console.log(error);
