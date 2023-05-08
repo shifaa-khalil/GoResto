@@ -8,21 +8,34 @@ import MenuItem from "../components/menuItem";
 import Reserved from "../assets/reserved.png";
 import { URL } from "../configs/URL";
 
-const Menu = () => {
+const Menu = ({ route }) => {
   const navigation = useNavigation();
   const [menuItems, setMenuItems] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${URL}/api/getMenu/17`)
-      .then((response) => {
-        console.log(response.data.menu);
-        setMenuItems(response.data.menu);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    if (searchInput.length > 0) {
+      axios
+        .get(
+          `${URL}/api/searchMenuItem/${searchInput}/${route.params.restaurant_id}`
+        )
+        .then((response) => {
+          setMenuItems(response.data.menuItems);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(`${URL}/api/getMenu/17`)
+        .then((response) => {
+          setMenuItems(response.data.menu);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [searchInput]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -30,7 +43,11 @@ const Menu = () => {
         {/* <NavBar2 /> */}
         <View style={styles.heading}>
           <Text style={styles.restaurantName}>KFC</Text>
-          <SearchBar />
+          <SearchBar
+            onChangeText={(text) => {
+              setSearchInput(text);
+            }}
+          />
         </View>
         <View style={styles.menu}>
           {menuItems.map((menuItem) => (

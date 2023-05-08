@@ -67,6 +67,15 @@ class CustomerController extends Controller
         return response()->json(['restaurants' => $restaurants]);
     }
 
+    function searchMenuItem($q, $restaurant_id)
+    {
+        $menu_id = Restaurant::find($restaurant_id)->menu_id;
+        
+        $menuItems = MenuItem::where('name', 'like', '%'.$q.'%')->where('menu_id', $menu_id)->get();
+        
+        return response()->json(['menuItems' => $menuItems]);
+    }
+
     function getRestaurant($restaurant_id)
     {
             $restaurant = Restaurant::find($restaurant_id);

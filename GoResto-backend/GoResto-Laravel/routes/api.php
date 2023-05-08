@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
     Route::get('/searchRestaurant/{q}', [CustomerController::class, 'searchRestaurant']);
+    Route::get('/searchMenuItem/{q}/{restaurant_id}', [CustomerController::class, 'searchMenuItem']);
     Route::get('/filterByPrice/{minimum}/{maximum}', [CustomerController::class, 'filterByPrice']);
     Route::get('/filterByLocation/{location}', [CustomerController::class, 'filterByLocation']);
     Route::get('/filterByRating/{min_rating}/{max_rating}', [CustomerController::class, 'filterByRating']);
@@ -50,7 +51,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/filterMenuByCategory/{category}', [CustomerController::class, 'filterMenuByCategory']);
     Route::get('/getReservations', [CustomerController::class, 'getReservations']);
     Route::get('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
-
+    
     Route::middleware('cors')->post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);
     Route::post('/addComment/{review_id}', [CustomerController::class, 'addComment']);

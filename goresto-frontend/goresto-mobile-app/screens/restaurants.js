@@ -106,8 +106,6 @@ const Restaurants = ({ route }) => {
         <NavBar2
           onChangeText={(text) => {
             setSearchInput(text);
-            console.log(text);
-            console.log(searchInput);
           }}
           onFilterSelected={handleFilterSelection}
           onMinPriceChange={handleMinPriceChange}

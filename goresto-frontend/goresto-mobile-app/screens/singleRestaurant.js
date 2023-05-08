@@ -77,7 +77,15 @@ const Restaurant = ({ route }) => {
           >
             <Text style={[styles.link]}>Ratings & Reviews</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Menu", {
+                restaurant_id: route.params.restaurant_id,
+                name: route.params.name,
+                image: route.params.image,
+              })
+            }
+          >
             <Text style={[styles.link]}>View menu</Text>
           </TouchableOpacity>
           <Text style={[styles.link]}>Contact</Text>
@@ -101,6 +109,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 230,
+    borderRadius: 15,
   },
   details: {
     flexDirection: "row",
