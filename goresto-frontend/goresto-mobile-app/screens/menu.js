@@ -38,7 +38,7 @@ const Menu = () => {
               key={menuItem.id}
               itemName={menuItem.name}
               price={`$${menuItem.price}`}
-              image={Reserved}
+              image={menuItem.image}
               onPress={() => console.log("menuItem")}
             />
           ))}
