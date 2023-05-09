@@ -27,7 +27,6 @@ const Restaurants = ({ route }) => {
   async function getData(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-      // return value !== null ? JSON.parse(value) : null;
       setToken(JSON.parse(value));
     } catch (error) {
       console.error("Error retrieving data:", error);
@@ -59,7 +58,7 @@ const Restaurants = ({ route }) => {
     if (route.params?.cuisine && justEntered) {
       setParams(route.params.cuisine);
     }
-    if ((params && justEntered) || !route.params.cuisine) {
+    if ((params && justEntered) || !route.params) {
       setJustEntered(false);
     }
   }, [params]);
@@ -80,13 +79,11 @@ const Restaurants = ({ route }) => {
 
   useEffect(() => {
     if (selectedCategory == "all") {
-      callAxios(`${URL}/api/getRestaurants`);
       setParams("");
     } else if (selectedCategory) {
-      // callAxios(`${URL}/api/filterByCuisine/${selectedCategory}`);
       setParams(selectedCategory);
     }
-  }, [token, selectedCategory]);
+  }, [selectedCategory]);
 
   const handleSubmit = () => {
     if (selectedFilter == "price") {
