@@ -23,9 +23,7 @@ const Restaurant = ({ route }) => {
                 {route.params.location}
               </Text>
             </View>
-            <View style={[styles.heart]}>
-              <Image source={Heart} />
-            </View>
+
             <View>
               <TouchableOpacity
                 onPress={() =>
@@ -142,10 +140,7 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
   },
-  heart: {
-    borderLeftWidth: 1,
-    paddingLeft: 25,
-  },
+
   link: {
     textDecorationLine: "underline",
     fontSize: 20,

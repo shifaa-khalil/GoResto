@@ -13,19 +13,24 @@ const Rating = ({ route }) => {
   const [rating, setRating] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
 
   const validateForm = () => {
     let isValid = true;
-    // if (!date || !time || !count) {
-    //   setError("All fields are required");
-    //   isValid = false;
-    // } else if (date < today) {
-    //   setError("Invalid date");
-    //   isValid = false;
-    // } else if (time < now) {
-    //   setError("Invalid time");
-    //   isValid = false;
-    // }
     return isValid;
   };
 
@@ -38,15 +43,15 @@ const Rating = ({ route }) => {
   const handleSubmit = () => {
     if (validateForm()) {
       const data = { rating, content };
-      console.log(route.params.restaurant_id);
       axios
         .post(`${URL}/api/rateRestaurant/${route.params.restaurant_id}`, data, {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((response) => {
-          console.log(response.data.status);
-          console.log(response.data.message);
-          navigation.navigate("Ratings", {
+          navigation.replace("Ratings", {
             restaurant_id: route.params.restaurant_id,
           });
         })

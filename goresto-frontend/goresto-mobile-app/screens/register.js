@@ -17,6 +17,15 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+  
+  async function saveData(key, value) {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  }
 
   const validateForm = () => {
     let isValid = true;
@@ -50,9 +59,9 @@ const Register = () => {
         .post(`${URL}/api/register/customer`, data)
         .then((response) => {
           console.log("registered");
-          // navigation.navigate("Setup");
-          // localStorage.setItem("name", response.data.user.name);
-          // localStorage.setItem("token", response.data.authorisation.token);
+          saveData("name", response.data.user.name);
+          saveData("token", response.data.authorisation.token);
+          navigation.navigate("Home");
         })
         .catch((error) => {
           console.error(error);

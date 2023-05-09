@@ -42,7 +42,7 @@ const Reserving = ({ route }) => {
       setDate(route.params.date);
       setCount(route.params.count);
     }
-  }, []);
+  }, [route.params.reservation_id]);
 
   const validateForm = () => {
     let isValid = true;
@@ -89,7 +89,7 @@ const Reserving = ({ route }) => {
             }
           )
           .then((response) => {
-            navigation.navigate("Reservations");
+            navigation.replace("Reservations");
           })
           .catch((error) => {
             console.log(error);
@@ -103,7 +103,7 @@ const Reserving = ({ route }) => {
             },
           })
           .then((response) => {
-            navigation.navigate("Reservations");
+            navigation.replace("Reservations");
           })
           .catch((error) => {
             console.log(error);
