@@ -26,6 +26,7 @@ const Reservations = () => {
         })
         .then((response) => {
           setReservations(response.data.reservations);
+          console.log(reservations);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -91,7 +92,7 @@ const Reservations = () => {
               <div className="container">
                 <div className="spinner"></div>
               </div>
-            ) : filteredReservations().length > 0 ? (
+            ) : reservations ? (
               <table>
                 <thead>
                   <tr className="semibold">

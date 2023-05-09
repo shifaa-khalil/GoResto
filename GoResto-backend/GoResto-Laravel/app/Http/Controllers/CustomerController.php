@@ -60,11 +60,30 @@ class CustomerController extends Controller
         return response()->json(['restaurants' => $restaurants]);
     }
 
-    function searchRestaurant($q)
-    {
-        $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
+    // function searchRestaurant($q)
+    // {
+    //     $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
         
-        return response()->json(['restaurants' => $restaurants]);
+    //     return response()->json(['restaurants' => $restaurants]);
+    // }
+
+    function searchRestaurant($q, $cuisine = null)
+    {
+        if($cuisine)
+        {
+            $menuItems = MenuItem::where('cuisine', $cuisine)->with('menu')->get();
+
+            $restaurantIds = $menuItems->pluck('menu.restaurant_id')->unique();
+
+            $restaurants = Restaurant::whereIn('id', $restaurantIds)->where('approved', true)->where('name', 'like', '%'.$q.'%')->get();
+                    // $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
+
+            // if($restaurants) $restaurants = $restaurants->pluck('restaurants.id');
+            
+        }
+        // else $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
+        
+        return response()->json(['restaurants' => $restaurants, 'restaurantIds'=>$restaurantIds]);
     }
 
     function searchMenuItem($q, $restaurant_id)
@@ -108,7 +127,6 @@ class CustomerController extends Controller
     function reserveTable(Request $request, $restaurant_id)
     {
         $customer = auth()->user();
-        // $customer_id=8;
 
         $restaurant = Restaurant::find($restaurant_id);
         $countReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
@@ -131,7 +149,6 @@ class CustomerController extends Controller
     function getReservations()
     {
         $customer = auth()->user();
-        // $customer_id=8;
 
         $reservations = Reservation::where('customer_id', $customer->id)->with('restaurant')->get();
 
@@ -171,7 +188,6 @@ class CustomerController extends Controller
     function rateRestaurant(Request $request, $restaurant_id)
     {
         $customer = auth()->user();
-        // $customer_id=8;
 
         $review = Review::where(['restaurant_id'=> $restaurant_id, 'customer_id'=> $customer->id])->first();
         if($review) $review->delete();
@@ -198,7 +214,7 @@ class CustomerController extends Controller
     function addComment(Request $request, $review_id)
     {
         $customer = auth()->user();
-        // $customer_id=8;
+
         $comment = new Comment;
         $comment->review_id = $review_id;
         $comment->user_id = $customer->id;

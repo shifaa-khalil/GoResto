@@ -57,28 +57,22 @@ const Restaurants = ({ route }) => {
   };
 
   useEffect(() => {
-    if (route.params?.cuisine) {
+    if (searchInput.length > 0) {
+      callAxios(`${URL}/api/searchRestaurant/${searchInput}`);
+    } else if (route.params?.cuisine) {
       callAxios(`${URL}/api/filterByCuisine/${route.params.cuisine}`);
-    } else {
+    } else if (searchInput.length == 0) {
       callAxios(`${URL}/api/getRestaurants`);
     }
-  }, [token]);
+  }, [token, searchInput]);
 
   useEffect(() => {
     if (selectedCategory == "all") {
       callAxios(`${URL}/api/getRestaurants`);
-    } else {
+    } else if (selectedCategory) {
       callAxios(`${URL}/api/filterByCuisine/${selectedCategory}`);
     }
   }, [token, selectedCategory]);
-
-  useEffect(() => {
-    if (searchInput.length > 0) {
-      callAxios(`${URL}/api/searchRestaurant/${searchInput}`);
-    } else {
-      callAxios(`${URL}/api/getRestaurants`);
-    }
-  }, [token, searchInput]);
 
   const handleSubmit = () => {
     if (selectedFilter == "price") {

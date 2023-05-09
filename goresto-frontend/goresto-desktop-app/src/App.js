@@ -84,16 +84,18 @@ function App() {
         <Route
           path="/setup"
           element={
-            isAuthenticated ? (
-              <Setup />
-            ) : (
-              // isManager ? (
-              //   <Setup />
-              // ) : (
-              //   <Navigate to="/noAccess" replace />
-              // )
-              <Navigate to="/signin" replace />
-            )
+            <Setup />
+
+            // isAuthenticated ? (
+            //   <Setup />
+            // ) : (
+            // isManager ? (
+            //   <Setup />
+            // ) : (
+            //   <Navigate to="/noAccess" replace />
+            // )
+            // <Navigate to="/signin" replace />
+            // )
           }
         />
         <Route
@@ -154,16 +156,16 @@ function App() {
           path="/reviews"
           element={
             isAuthenticated ? (
-              isManager ? (
-                hasRestaurant ? (
-                  <Reviews />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isManager ? (
+              //   hasRestaurant ? (
+              <Reviews />
             ) : (
+              //   ) : (
+              //     <Navigate to="/setup" replace />
+              //   )
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -172,17 +174,17 @@ function App() {
           path="/reservations"
           element={
             isAuthenticated ? (
-              isManager ? (
-                <Reservations />
-              ) : (
-                // hasRestaurant ? (
-                //   <Reservations />
-                // ) : (
-                //   <Navigate to="/setup" replace />
-                // )
-                <Navigate to="/noAccess" replace />
-              )
+              // isManager ? (
+              <Reservations />
             ) : (
+              // ) : (
+              // hasRestaurant ? (
+              //   <Reservations />
+              // ) : (
+              //   <Navigate to="/setup" replace />
+              // )
+              // <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -191,16 +193,16 @@ function App() {
           path="/chats"
           element={
             isAuthenticated ? (
-              isManager ? (
-                hasRestaurant ? (
-                  <Chats />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isManager ? (
+              //   hasRestaurant ? (
+              <Chats />
             ) : (
+              //   ) : (
+              //     <Navigate to="/setup" replace />
+              //   )
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -209,16 +211,16 @@ function App() {
           path="/about"
           element={
             isAuthenticated ? (
-              isManager ? (
-                hasRestaurant ? (
-                  <About />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isManager ? (
+              //   hasRestaurant ? (
+              <About />
             ) : (
+              //   ) : (
+              //     <Navigate to="/setup" replace />
+              //   )
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -227,16 +229,16 @@ function App() {
           path="/inquiry"
           element={
             isAuthenticated ? (
-              isManager ? (
-                hasRestaurant ? (
-                  <Inquiry />
-                ) : (
-                  <Navigate to="/setup" replace />
-                )
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isManager ? (
+              //   hasRestaurant ? (
+              <Inquiry />
             ) : (
+              //   ) : (
+              //     <Navigate to="/setup" replace />
+              //   )
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -261,12 +263,12 @@ function App() {
           path="/restaurants"
           element={
             isAuthenticated ? (
-              isAdmin ? (
-                <Restaurants />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isAdmin ? (
+              <Restaurants />
             ) : (
+              // ) : (
+              // <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -275,12 +277,12 @@ function App() {
           path="/users"
           element={
             isAuthenticated ? (
-              isAdmin ? (
-                <Users />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isAdmin ? (
+              <Users />
             ) : (
+              // ) : (
+              //   <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
@@ -289,12 +291,12 @@ function App() {
           path="/inquiries"
           element={
             isAuthenticated ? (
-              isAdmin ? (
-                <Inquiries />
-              ) : (
-                <Navigate to="/noAccess" replace />
-              )
+              // isAdmin ? (
+              <Inquiries />
             ) : (
+              // ) : (
+              // <Navigate to="/noAccess" replace />
+              // )
               <Navigate to="/signin" replace />
             )
           }
