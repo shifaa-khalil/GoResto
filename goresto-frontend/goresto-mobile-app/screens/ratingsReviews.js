@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollView, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
 // import NavBar2 from "../components/navBar2";
 import ReviewCard from "../components/reviewCard";
@@ -10,10 +11,29 @@ import { URL } from "../configs/URL";
 const Ratings = ({ route }) => {
   const navigation = useNavigation();
   const [reviews, setReviews] = useState([]);
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
 
   useEffect(() => {
     axios
-      .get(`${URL}/api/getReviews/${route.params.restaurant_id}`)
+      .get(`${URL}/api/getReviews/${route.params.restaurant_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.reviews);
         setReviews(response.data.reviews);
@@ -21,7 +41,7 @@ const Ratings = ({ route }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [token]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

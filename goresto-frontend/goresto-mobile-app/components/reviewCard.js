@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
 import axios from "axios";
 import Input from "./input";
-import Send from "../assets/send.png";
+import Star from "../assets/Star.png";
 import { URL } from "../configs/URL";
 import CommentCard from "./commentCard";
 
@@ -20,13 +21,31 @@ const ReviewCard = ({
   const [commentsVisible, setCommentsVisible] = useState(false);
   const [content, setContent] = useState("");
   const navigation = useNavigation();
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
 
   const handleSend = () => {
     if (content !== "") {
       const data = { content };
       axios
         .post(`${URL}/api/addComment/${reviewId}`, data, {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((response) => {
           console.log(response.data.status);
@@ -46,7 +65,10 @@ const ReviewCard = ({
       <View style={[styles.reviewCard]}>
         <View style={styles.row}>
           <Text style={[styles.name]}>{customerName}</Text>
-          <Text style={[styles.rating]}>{rating}</Text>
+          <View style={styles.ratingContainer}>
+            <Text style={[styles.rating]}>{rating}</Text>
+            <Image source={Star} style={styles.star} />
+          </View>
         </View>
         <View style={styles.review}>
           <Text style={[styles.content]}>{review}</Text>
@@ -78,7 +100,6 @@ const ReviewCard = ({
               numberOfLines={4}
             />
             <TouchableOpacity onPress={handleSend} style={[styles.send]}>
-              {/* <Image source={Send} /> */}
               <Text style={[styles.text]}>Send</Text>
             </TouchableOpacity>
           </View>
@@ -111,6 +132,11 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    // justifyContent: "space-between",
     alignItems: "center",
   },
   name: {
@@ -160,6 +186,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 120,
     // borderBottomWidth: 1,
+  },
+  star: {
+    height: 20,
+    width: 20,
   },
 });
 
