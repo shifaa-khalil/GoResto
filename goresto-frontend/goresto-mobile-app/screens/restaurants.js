@@ -21,6 +21,8 @@ const Restaurants = ({ route }) => {
   const [locationSelected, setLocationSelected] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [token, setToken] = useState("");
+  const [params, setParams] = useState("");
+  const [justEntered, setJustEntered] = useState(true);
 
   async function getData(key) {
     try {
@@ -31,10 +33,6 @@ const Restaurants = ({ route }) => {
       console.error("Error retrieving data:", error);
     }
   }
-
-  useEffect(() => {
-    getData("token");
-  }, []);
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
@@ -57,20 +55,36 @@ const Restaurants = ({ route }) => {
   };
 
   useEffect(() => {
-    if (searchInput.length > 0) {
-      callAxios(`${URL}/api/searchRestaurant/${searchInput}`);
-    } else if (route.params?.cuisine) {
-      callAxios(`${URL}/api/filterByCuisine/${route.params.cuisine}`);
-    } else if (searchInput.length == 0) {
-      callAxios(`${URL}/api/getRestaurants`);
+    getData("token");
+    if (route.params?.cuisine && justEntered) {
+      setParams(route.params.cuisine);
     }
-  }, [token, searchInput]);
+    if ((params && justEntered) || !route.params.cuisine) {
+      setJustEntered(false);
+    }
+  }, [params]);
+
+  useEffect(() => {
+    if (!justEntered) {
+      if (searchInput.length > 0) {
+        callAxios(`${URL}/api/searchRestaurant/${searchInput}/${params}`);
+      } else if (searchInput.length == 0) {
+        if (params) {
+          callAxios(`${URL}/api/filterByCuisine/${params}`);
+        } else {
+          callAxios(`${URL}/api/getRestaurants`);
+        }
+      }
+    }
+  }, [token, searchInput, params, justEntered]);
 
   useEffect(() => {
     if (selectedCategory == "all") {
       callAxios(`${URL}/api/getRestaurants`);
+      setParams("");
     } else if (selectedCategory) {
-      callAxios(`${URL}/api/filterByCuisine/${selectedCategory}`);
+      // callAxios(`${URL}/api/filterByCuisine/${selectedCategory}`);
+      setParams(selectedCategory);
     }
   }, [token, selectedCategory]);
 

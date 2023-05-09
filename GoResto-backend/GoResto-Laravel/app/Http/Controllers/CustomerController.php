@@ -76,14 +76,11 @@ class CustomerController extends Controller
             $restaurantIds = $menuItems->pluck('menu.restaurant_id')->unique();
 
             $restaurants = Restaurant::whereIn('id', $restaurantIds)->where('approved', true)->where('name', 'like', '%'.$q.'%')->get();
-                    // $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
-
-            // if($restaurants) $restaurants = $restaurants->pluck('restaurants.id');
             
         }
-        // else $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
+        else $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
         
-        return response()->json(['restaurants' => $restaurants, 'restaurantIds'=>$restaurantIds]);
+        return response()->json(['restaurants' => $restaurants]);
     }
 
     function searchMenuItem($q, $restaurant_id)
