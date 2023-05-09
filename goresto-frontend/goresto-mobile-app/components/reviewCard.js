@@ -52,7 +52,6 @@ const ReviewCard = ({
           console.log(response.data.message);
           setContent("");
           navigation.replace("Ratings", { restaurant_id: restaurant });
-          // navigation.navigate("Ratings");
         })
         .catch((error) => {
           console.log(error);
@@ -136,7 +135,6 @@ const styles = StyleSheet.create({
   },
   ratingContainer: {
     flexDirection: "row",
-    // justifyContent: "space-between",
     alignItems: "center",
   },
   name: {
@@ -185,7 +183,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     justifyContent: "space-between",
     height: 120,
-    // borderBottomWidth: 1,
   },
   star: {
     height: 20,

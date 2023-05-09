@@ -7,9 +7,7 @@ import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
-import GoPro from "../assets/GoPro.png";
 import Logo from "../assets/Logo.png";
-import NavBar from "../components/navBar";
 import { URL } from "../configs/URL";
 
 const Register = () => {
@@ -45,39 +43,6 @@ const Register = () => {
     }
   };
 
-  // async function saveData(key, value) {
-  //   try {
-  //     await AsyncStorage.setItem(key, JSON.stringify(value));
-  //   } catch (error) {
-  //     console.error("Error saving data:", error);
-  //   }
-  // }
-
-  // async function getData(key) {
-  //   try {
-  //     const value = await AsyncStorage.getItem(key);
-  //     return value !== null ? JSON.parse(value) : null;
-  //   } catch (error) {
-  //     console.error("Error retrieving data:", error);
-  //   }
-  // }
-
-  // async function registerUser(data) {
-  //   try {
-  //     const response = await axios.post(
-  //       `http://127.0.0.1:8000/api/register/customer`,
-  //       data
-  //     );
-  //     const { user, authorisation } = response.data;
-  //     // await saveData("name", user.name);
-  //     // await saveData("token", authorisation.token);
-  //     return { success: true };
-  //   } catch (error) {
-  //     console.error("Error registering user:", error);
-  //     return { success: false, error: "An error occurred" };
-  //   }
-  // }
-
   const handleSubmit = () => {
     if (validateForm()) {
       const data = { name, email, password, confirmPassword };
@@ -98,7 +63,6 @@ const Register = () => {
 
   return (
     <View style={[styles.container]}>
-      {/* <NavBar /> */}
       <Image source={Logo} style={[styles.heading]} />
       {error && (
         <View style={styles.errorContainer}>

@@ -2,11 +2,7 @@ import * as React from "react";
 import { ScrollView, Image, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
-import NavBar2 from "../components/navBar2";
-import Chinese from "../assets/chinese.png";
-import Heart from "../assets/heart.png";
 import Star from "../assets/Star.png";
-import { URL } from "../configs/URL";
 
 const Restaurant = ({ route }) => {
   const navigation = useNavigation();
@@ -14,7 +10,6 @@ const Restaurant = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        {/* <NavBar2 /> */}
         <View style={[styles.restaurant]}>
           <Image source={route.params.image} style={[styles.image]} />
           <View style={[styles.details]}>
@@ -23,7 +18,6 @@ const Restaurant = ({ route }) => {
               <View style={[styles.row]}>
                 <Text style={[styles.rating]}>{route.params.rating}</Text>
                 <Image source={Star} style={styles.star} />
-                {/* <Text style={[styles.cuisine]}>{route.params.cuisine}</Text> */}
               </View>
               <Text style={[styles.location]} numberOfLines={1}>
                 {route.params.location}
@@ -32,7 +26,7 @@ const Restaurant = ({ route }) => {
             <View style={[styles.heart]}>
               <Image source={Heart} />
             </View>
-            <View style={styles.links}>
+            <View>
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Reserving", {
@@ -127,7 +121,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "space-between",
   },
   name: {
     fontSize: 24,
@@ -161,7 +154,6 @@ const styles = StyleSheet.create({
   cost: {
     fontSize: 20,
   },
-  links: {},
 });
 
 export default Restaurant;

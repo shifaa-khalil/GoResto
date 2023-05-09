@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
-import moment from "moment";
-
 export default class Calendar extends Component {
   constructor(props) {
     super(props);
@@ -21,16 +19,7 @@ export default class Calendar extends Component {
     date._i.year = "16:30:00";
     console.log(date);
   }
-
-  // onDateChange(date) {
-  //   const newDate = moment(date).set({ hour: 15, minute: 30 });
-
-  //   this.setState({
-  //     selectedStartDate: newDate,
-  //   });
-  //   this.props.onDateSelect(newDate);
-  //   console.log(newDate);
-  // }
+  y;
 
   render() {
     const { selectedStartDate } = this.state;

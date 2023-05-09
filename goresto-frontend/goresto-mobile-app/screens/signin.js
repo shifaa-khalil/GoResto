@@ -7,9 +7,7 @@ import axios from "axios";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import MyLink from "../components/link";
-import GoPro from "../assets/GoPro.png";
 import Logo from "../assets/Logo.png";
-import NavBar from "../components/navBar";
 import { URL } from "../configs/URL";
 
 const Signin = () => {
@@ -55,9 +53,6 @@ const Signin = () => {
           navigation.navigate("Home");
 
           console.log("loggedin");
-          // const token = AsyncStorage.getItem("token");
-          // const name = AsyncStorage.getItem("name");
-          // console.log("Stored data:", token, name);
         })
         .catch((error) => {
           console.error(error);
@@ -70,7 +65,6 @@ const Signin = () => {
 
   return (
     <View style={[styles.container]}>
-      {/* <NavBar /> */}
       <Image source={Logo} style={[styles.heading]} />
       {error && (
         <View style={styles.errorContainer}>

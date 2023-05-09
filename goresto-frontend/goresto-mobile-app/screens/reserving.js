@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { Image, View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
-import MyLink from "../components/link";
-import NavBar from "../components/navBar";
 import Calendar from "../components/calendar";
 import TimePicker from "../components/timePicker";
 import { URL } from "../configs/URL";
@@ -123,15 +121,6 @@ const Reserving = ({ route }) => {
       )}{" "}
       <View style={[styles.form]}>
         <Calendar onDateSelect={handleDateSelection} />
-        {/* <Input
-          title="Date"
-          placeHolder="Date"
-          value={date}
-          onChangeText={(text) => {
-            setDate(text);
-            handleChangeText();
-          }}
-        /> */}
         {/* <TimePicker /> */}
         <Input
           title="Time"
@@ -152,9 +141,7 @@ const Reserving = ({ route }) => {
           }}
         />
       </View>
-      {/* <View style={styles.buttons}> */}
       <MyButton title={update ? "Update" : "Reserve"} onPress={handleSubmit} />
-      {/* </View> */}
     </View>
   );
 };

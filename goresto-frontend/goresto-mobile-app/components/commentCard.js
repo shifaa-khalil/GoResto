@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, View } from "react-native";
 import { StyleSheet } from "react-native";
-import axios from "axios";
-import Input from "./input";
-import Send from "../assets/send.png";
-import { URL } from "../configs/URL";
 
 const CommentCard = ({ customer, date, comment }) => {
-  const [content, setContent] = useState("");
 
   return (
     <View style={styles.commentCard}>
@@ -61,7 +56,6 @@ const styles = StyleSheet.create({
     width: 70,
     height: 20,
     borderRadius: 15,
-    // marginTop: 20,
     backgroundColor: "#D43325",
     alignSelf: "center",
   },
@@ -77,7 +71,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     justifyContent: "space-between",
     height: 120,
-    // borderBottomWidth: 1,
   },
 });
 

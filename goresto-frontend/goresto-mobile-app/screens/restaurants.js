@@ -7,7 +7,6 @@ import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
 import RestaurantCard from "../components/restaurantCard";
 import CategoryBar from "../components/categoriesBar";
-// import FilterBar from "../components/filterBar";
 import { URL } from "../configs/URL";
 
 const Restaurants = ({ route }) => {
@@ -39,30 +38,6 @@ const Restaurants = ({ route }) => {
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
-  };
-
-  const handleFilterSelection = (filter) => {
-    setSelectedFilter(filter);
-  };
-
-  const handleMinPriceChange = (minPrice) => {
-    setMinPriceSelected(minPrice);
-  };
-
-  const handleMaxPriceChange = (maxPrice) => {
-    setMaxPriceSelected(maxPrice);
-  };
-
-  const handleMinRatingChange = (minRating) => {
-    setMinRatingSelected(minRating);
-  };
-
-  const handleMaxRatingChange = (maxRating) => {
-    setMaxRatingSelected(maxRating);
-  };
-
-  const handleLocationChange = (location) => {
-    setLocationSelected(location);
   };
 
   const callAxios = (url) => {
@@ -127,12 +102,12 @@ const Restaurants = ({ route }) => {
           onChangeText={(text) => {
             setSearchInput(text);
           }}
-          onFilterSelected={handleFilterSelection}
-          onMinPriceChange={handleMinPriceChange}
-          onMaxPriceChange={handleMaxPriceChange}
-          onMinRatingChange={handleMinRatingChange}
-          onMaxRatingChange={handleMaxRatingChange}
-          onLocationChange={handleLocationChange}
+          onFilterSelected={(filter) => setSelectedFilter(filter)}
+          onMinPriceChange={(minPrice) => setMinPriceSelected(minPrice)}
+          onMaxPriceChange={(maxPrice) => setMaxPriceSelected(maxPrice)}
+          onMinRatingChange={(minRating) => setMinRatingSelected(minRating)}
+          onMaxRatingChange={(maxRating) => setMaxRatingSelected(maxRating)}
+          onLocationChange={(location) => setLocationSelected(location)}
           onSubmit={handleSubmit}
         />
         <View style={[styles.restaurants]}>

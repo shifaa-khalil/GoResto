@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
-import NavBar2 from "../components/navBar2";
 import ReservationCard from "../components/reservationCard";
 import Reserved from "../assets/reserved.png";
 import { URL } from "../configs/URL";
@@ -84,7 +83,6 @@ const Reservations = () => {
       }
     >
       <View style={[styles.container]}>
-        {/* <NavBar2 /> */}
         <Image source={Reserved} style={[styles.backgroundImage]} />
         {reservations.map((reservation) => (
           <ReservationCard

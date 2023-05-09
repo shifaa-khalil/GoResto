@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Image, View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
-import MyLink from "../components/link";
-import NavBar from "../components/navBar";
 import { URL } from "../configs/URL";
 
 const Rating = ({ route }) => {
@@ -60,7 +58,6 @@ const Rating = ({ route }) => {
 
   return (
     <View style={[styles.container]}>
-      {/* <NavBar /> */}
       <Text>{error}</Text>
       <View style={[styles.form]}>
         <Text style={styles.restoName}>{route.params.name}</Text>

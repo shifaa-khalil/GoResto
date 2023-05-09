@@ -1,23 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ScrollView, View, Image, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { ScrollView, View, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import SearchBar from "../components/searchBar";
 import MenuItem from "../components/menuItem";
-import Reserved from "../assets/reserved.png";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { URL } from "../configs/URL";
 
 const Menu = ({ route }) => {
-  const navigation = useNavigation();
   const [menuItems, setMenuItems] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [token, setToken] = useState("");
+
+  async function getData(key) {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      // return value !== null ? JSON.parse(value) : null;
+      setToken(JSON.parse(value));
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getData("token");
+  }, []);
 
   useEffect(() => {
     if (searchInput.length > 0) {
       axios
         .get(
-          `${URL}/api/searchMenuItem/${searchInput}/${route.params.restaurant_id}`
+          `${URL}/api/searchMenuItem/${searchInput}/${route.params.restaurant_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         )
         .then((response) => {
           setMenuItems(response.data.menuItems);
@@ -27,7 +45,11 @@ const Menu = ({ route }) => {
         });
     } else {
       axios
-        .get(`${URL}/api/getMenu/${route.params.restaurant_id}`)
+        .get(`${URL}/api/getMenu/${route.params.restaurant_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           setMenuItems(response.data.menu);
         })
@@ -35,12 +57,11 @@ const Menu = ({ route }) => {
           console.log(error);
         });
     }
-  }, [searchInput]);
+  }, [token, searchInput]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        {/* <NavBar2 /> */}
         <View style={styles.heading}>
           <Text style={styles.restaurantName}>{route.params.name}</Text>
           <SearchBar
@@ -85,13 +106,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     marginBottom: 25,
-    // textAlign: "center",
   },
   menu: {
     width: 310,
     flexDirection: "row",
     justifyContent: "space-between",
-    // columnGap: 60,
     flexWrap: "wrap",
     marginTop: 50,
   },

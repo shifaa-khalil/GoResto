@@ -4,7 +4,6 @@ import { ScrollView, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet } from "react-native";
-// import NavBar2 from "../components/navBar2";
 import ReviewCard from "../components/reviewCard";
 import { URL } from "../configs/URL";
 
@@ -46,9 +45,6 @@ const Ratings = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[styles.container]}>
-        {/* <NavBar2 /> */}
-        {/* <Image source={Reserved} style={[styles.backgroundImage]} /> */}
-
         {reviews.length > 0 ? (
           reviews.map((review) => (
             <ReviewCard

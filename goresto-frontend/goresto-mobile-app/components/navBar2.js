@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { StyleSheet } from "react-native";
 import SearchBar from "../components/searchBar";
-import { useNavigation } from "@react-navigation/native";
 
 const NavBar2 = ({
   onChangeText,
