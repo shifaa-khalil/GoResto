@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 import {
   ScrollView,
@@ -9,14 +10,15 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ReviewCard from "../components/reviewCard";
+import ChatCard from "../components/chatCard";
 import { URL } from "../configs/URL";
 
 const Chats = ({ route }) => {
   const navigation = useNavigation();
-  const [reviews, setReviews] = useState([]);
+  const [chats, setChats] = useState([]);
   const [token, setToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [userId, setUserId] = useState("");
 
   async function getData(key) {
     try {
@@ -33,20 +35,31 @@ const Chats = ({ route }) => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${URL}/api/getReviews/${route.params.restaurant_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setReviews(response.data.reviews);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [token]);
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      if (decodedToken) {
+        console.log("decodedToken.sub", decodedToken.sub);
+        setUserId(decodedToken.sub);
+      } else console.log("not decoded");
+
+      if (userId) console.log("userId", userId);
+      else console.log("no userId");
+      axios
+        .get(`http://localhost:3000/user/chats`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setChats(response.data.chats);
+          setIsLoading(false);
+          console.log(response.data.chats);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else console.log("no token");
+  }, [token, userId]);
 
   return (
     <ScrollView
@@ -58,21 +71,18 @@ const Chats = ({ route }) => {
           <View style={styles.spinner}>
             <ActivityIndicator size="large" color="#d43325" />
           </View>
-        ) : reviews.length > 0 ? (
-          reviews.map((review) => (
-            <ReviewCard
-              key={review.id}
-              restaurant={review.restaurant_id}
-              date={new Date(review.created_at).toLocaleDateString()}
-              customerName={review.user.name}
-              rating={review.rating}
-              review={review.content}
-              reviewId={review.id}
-              comments={review.comment}
+        ) : chats.length > 0 ? (
+          chats.map((chat) => (
+            <ChatCard
+              key={chat.id}
+              lastMessage={chat.lastMessage.content}
+              date={new Date(chat.lastMessage.createdAt).toLocaleDateString()}
+              name={chat.firstUserId}
+              onPress={() => console.log("chatCard")}
             />
           ))
         ) : (
-          <Text>No reviews</Text>
+          <Text>No chats</Text>
         )}
       </View>
     </ScrollView>
@@ -97,7 +107,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     marginTop: 20,
   },
   title: {

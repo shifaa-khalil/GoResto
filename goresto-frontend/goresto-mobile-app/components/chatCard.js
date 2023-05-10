@@ -16,10 +16,10 @@ const ChatCard = ({ name, lastMessage, date, onPress }) => {
 const styles = StyleSheet.create({
   card: {
     width: 310,
+    height: 60,
     paddingVertical: 20,
     justifyContent: "space-between",
-    height: 260,
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
   },
   row: {
     flexDirection: "row",
