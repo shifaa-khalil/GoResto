@@ -84,13 +84,13 @@
 
 ### Manager Screens (Web)
 
-| Login screen                              | Register screen                         | Landing screen                         |
-| ----------------------------------------- | --------------------------------------- | -------------------------------------- |
-| ![Login](./readme/demo/login.png)         | ![Register](./readme/demo/register.png) | ![fsdaf](./readme/demo/1440x1024.png)  |
-| Home screen                               | Menu Screen                             | Add Menu Item Screen Screen            |
-| ![Dashboard](./readme/demo/dashboard.png) | ![Menu](./readme/demo/menu.png)         | ![MenuItem](./readme/demo/addItem.png) |
-| Chats screen                              | Inquiry Screen                          | About Screen                           |
-| ![Dashboard](./readme/demo/dashboard.png) | ![Inquiry](./readme/demo/inquiry.png)   | ![About](./readme/demo/about.png)      |
+| Login screen                                     | Register screen                                | Landing screen                                |
+| ------------------------------------------------ | ---------------------------------------------- | --------------------------------------------- |
+| ![Login](./readme/readme/demo/login.png)         | ![Register](./readme/readme/demo/register.png) | ![fsdaf](./readme/readme/demo/1440x1024.png)  |
+| Home screen                                      | Menu Screen                                    | Add Menu Item Screen Screen                   |
+| ![Dashboard](./readme/readme/demo/dashboard.png) | ![Menu](./readme/readme/demo/menu.png)         | ![MenuItem](./readme/readme/demo/addItem.png) |
+| Chats screen                                     | Inquiry Screen                                 | About Screen                                  |
+| ![Dashboard](./readme/readme/demo/dashboard.png) | ![Inquiry](./readme/readme/demo/inquiry.png)   | ![About](./readme/readme/demo/about.png)      |
 
 <br><br>
 
