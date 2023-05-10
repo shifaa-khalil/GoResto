@@ -19,6 +19,9 @@ const Chats = ({ route }) => {
   const [token, setToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState("");
+  //   const [receiverId, setReceiverId] = useState("");
+  const [receiverNames, setReceiverNames] = useState("");
+  const [done, setDone] = useState(false);
 
   async function getData(key) {
     try {
@@ -37,13 +40,8 @@ const Chats = ({ route }) => {
   useEffect(() => {
     if (token) {
       const decodedToken = jwt_decode(token);
-      if (decodedToken) {
-        console.log("decodedToken.sub", decodedToken.sub);
-        setUserId(decodedToken.sub);
-      } else console.log("not decoded");
+      setUserId(decodedToken.sub);
 
-      if (userId) console.log("userId", userId);
-      else console.log("no userId");
       axios
         .get(`http://localhost:3000/user/chats`, {
           headers: {
@@ -52,7 +50,6 @@ const Chats = ({ route }) => {
         })
         .then((response) => {
           setChats(response.data.chats);
-          setIsLoading(false);
           console.log(response.data.chats);
         })
         .catch((error) => {
@@ -60,6 +57,56 @@ const Chats = ({ route }) => {
         });
     } else console.log("no token");
   }, [token, userId]);
+
+  var i = -1;
+
+  useEffect(() => {
+    let names = [];
+
+    chats &&
+      chats.map((chat) => {
+        let receiverId;
+        if (chat.firstUserId == userId) receiverId = chat.secondUserId;
+        else if (chat.secondUserId == userId) receiverId = chat.firstUserId;
+
+        axios
+          .get(`${URL}/api/getUserName/${receiverId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((response) => {
+            names.push(response.data.userName);
+            if (chats.length == names.length) {
+              setDone(true);
+              setIsLoading(false);
+              setReceiverNames(names);
+            }
+            console.log(names);
+            console.log(receiverNames);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+  }, [chats]);
+
+  //   const getReceiverName = (firstUserId, secondUserId) => {
+  //     let receiverId;
+  //     if (firstUserId == userId) receiverId = secondUserId;
+  //     else if (secondUserId == userId) receiverId = firstUserId;
+
+  //     axios
+  //       .get(`${URL}/api/getUserName/${receiverId}`, {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       })
+  //       .then((response) => {
+  //         // receiverNames.push(response.data.userName);
+  //         console.log(response.data.userName);
+  //         return response.data.userName;
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   };
 
   return (
     <ScrollView
@@ -71,20 +118,28 @@ const Chats = ({ route }) => {
           <View style={styles.spinner}>
             <ActivityIndicator size="large" color="#d43325" />
           </View>
-        ) : chats.length > 0 ? (
-          chats.map((chat) => (
-            <ChatCard
-              key={chat.chatId}
-              lastMessage={chat.lastMessage.content}
-              date={new Date(chat.lastMessage.createdAt).toLocaleDateString()}
-              name={chat.firstUserId}
-              onPress={() =>
-                navigation.navigate("Conversation", {
-                  chatId: chat.chatId,
-                })
-              }
-            />
-          ))
+        ) : receiverNames ? (
+          chats.map((chat) => {
+            // const receiverName = getReceiverName(
+            //   chat.firstUserId,
+            //   chat.secondUserId
+            // );
+            console.log(receiverNames);
+            i = i + 1;
+            return (
+              <ChatCard
+                key={chat.chatId}
+                lastMessage={chat.lastMessage.content}
+                date={new Date(chat.lastMessage.createdAt).toLocaleDateString()}
+                name={receiverNames[i]}
+                onPress={() =>
+                  navigation.navigate("Conversation", {
+                    chatId: chat.chatId,
+                  })
+                }
+              />
+            );
+          })
         ) : (
           <Text>No chats</Text>
         )}

@@ -84,29 +84,32 @@ const Conversation = ({ route }) => {
           <View style={styles.spinner}>
             <ActivityIndicator size="large" color="#d43325" />
           </View>
-        ) : messages.length > 0 ? (
-          messages.map((message) => (
-            <MessageCard
-              key={message.id}
-              message={message.content}
-              date={
-                new Date(message.createdAt).toLocaleDateString() ==
-                today.toLocaleDateString()
-                  ? "today"
-                  : new Date(message.createdAt).toLocaleDateString() ==
-                    yesterday.toLocaleDateString()
-                  ? "yesterday"
-                  : new Date(message.createdAt).toLocaleDateString()
-              }
-              addedStyle={
-                message.senderId == userId ? styles.right : styles.left
-              }
-              messageStyle={message.senderId == userId ? styles.white : null}
-              dateStyle={message.senderId == userId ? styles.white : null}
-            />
-          ))
         ) : (
-          <Text>No messages</Text>
+          <View style={styles.messagesContainer}>
+            {messages &&
+              messages.map((message) => (
+                <MessageCard
+                  key={message.id}
+                  message={message.content}
+                  date={
+                    new Date(message.createdAt).toLocaleDateString() ==
+                    today.toLocaleDateString()
+                      ? "today"
+                      : new Date(message.createdAt).toLocaleDateString() ==
+                        yesterday.toLocaleDateString()
+                      ? "yesterday"
+                      : new Date(message.createdAt).toLocaleDateString()
+                  }
+                  addedStyle={
+                    message.senderId == userId ? styles.right : styles.left
+                  }
+                  messageStyle={
+                    message.senderId == userId ? styles.white : null
+                  }
+                  dateStyle={message.senderId == userId ? styles.white : null}
+                />
+              ))}
+          </View>
         )}
         <View style={styles.inputContainer}>
           <TextInput
@@ -146,6 +149,9 @@ const styles = StyleSheet.create({
   },
   white: {
     color: "white",
+  },
+  messagesContainer: {
+    // flexBasis: "70%",
   },
   input: {
     width: "90%",

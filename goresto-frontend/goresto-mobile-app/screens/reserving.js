@@ -124,7 +124,7 @@ const Reserving = ({ route }) => {
         {/* <TimePicker /> */}
         <Input
           title="Time"
-          placeHolder="Time"
+          placeHolder="00:00:00"
           value={time}
           onChangeText={(text) => {
             setTime(text);
@@ -132,8 +132,8 @@ const Reserving = ({ route }) => {
           }}
         />
         <Input
-          title="Count"
-          placeHolder="Count"
+          title="Number of people"
+          placeHolder="eg. 2"
           value={count}
           onChangeText={(text) => {
             setCount(text);
