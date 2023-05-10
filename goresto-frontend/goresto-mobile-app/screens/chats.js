@@ -19,14 +19,12 @@ const Chats = ({ route }) => {
   const [token, setToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState("");
-  //   const [receiverId, setReceiverId] = useState("");
   const [receiverNames, setReceiverNames] = useState("");
   const [done, setDone] = useState(false);
 
   async function getData(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-      // return value !== null ? JSON.parse(value) : null;
       setToken(JSON.parse(value));
     } catch (error) {
       console.error("Error retrieving data:", error);
@@ -50,7 +48,6 @@ const Chats = ({ route }) => {
         })
         .then((response) => {
           setChats(response.data.chats);
-          console.log(response.data.chats);
         })
         .catch((error) => {
           console.error(error);
@@ -81,32 +78,12 @@ const Chats = ({ route }) => {
               setReceiverNames(names);
             }
             console.log(names);
-            console.log(receiverNames);
           })
           .catch((error) => {
             console.error(error);
           });
       });
   }, [chats]);
-
-  //   const getReceiverName = (firstUserId, secondUserId) => {
-  //     let receiverId;
-  //     if (firstUserId == userId) receiverId = secondUserId;
-  //     else if (secondUserId == userId) receiverId = firstUserId;
-
-  //     axios
-  //       .get(`${URL}/api/getUserName/${receiverId}`, {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((response) => {
-  //         // receiverNames.push(response.data.userName);
-  //         console.log(response.data.userName);
-  //         return response.data.userName;
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   };
 
   return (
     <ScrollView
@@ -120,11 +97,6 @@ const Chats = ({ route }) => {
           </View>
         ) : receiverNames ? (
           chats.map((chat) => {
-            // const receiverName = getReceiverName(
-            //   chat.firstUserId,
-            //   chat.secondUserId
-            // );
-            console.log(receiverNames);
             i = i + 1;
             return (
               <ChatCard

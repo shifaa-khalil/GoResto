@@ -20,8 +20,8 @@ const Chats = () => {
   const [userId, setUserId] = useState("");
   const [activeChatId, setActiveChatId] = useState("");
   const [messageContent, setMessageContent] = useState("");
-  const [receiverId, setReceiverId] = useState("");
-  const [receiverName, setReceiverName] = useState("");
+  const [receiverNames, setReceiverNames] = useState([]);
+  const [receiverName, setReceiverName] = useState("Unknown");
   const [isLoading, setIsLoading] = useState(true);
 
   const openChat = () => {
@@ -48,7 +48,6 @@ const Chats = () => {
 
     // if (validateForm()) {
     const data = { chatId: activeChatId, content: messageContent };
-    console.log(data);
     axios
       .post(`http://localhost:3000/user/message`, data, {
         headers: {
@@ -57,60 +56,20 @@ const Chats = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setMessages([...messages, response.data]);
         setMessageContent("");
       })
       .catch((error) => {
         console.error(error);
-        console.log("error", error);
       });
   };
-
-  // const renderChatCards = () => {
-  //   {
-  //     chats &&
-  //       chats.map((chat) => {
-  //         if (chat.firstUserId == userId) setReceiverId(chat.secondUserId);
-  //         else if (chat.secondUserId == userId) setReceiverId(chat.firstUserId);
-  //         else setReceiverName("Unknown");
-
-  //         axios
-  //           .get(`http://localhost:8000/api/getUserName/${receiverId}`, {
-  //             headers: { Authorization: `Bearer ${token}` },
-  //           })
-  //           .then((response) => setReceiverName(response.data.userName))
-  //           .catch((error) => {
-  //             console.error(error);
-  //           });
-
-  //         return (
-  //           <ChatCard
-  //             name={receiverName}
-  //             content={chat.lastMessage.content}
-  //             dateTime={new Date(
-  //               chat.lastMessage.createdAt
-  //             ).toLocaleDateString()}
-  //             onClick={() => {
-  //               setActiveChatId(chat.chatId);
-  //               openChat();
-  //             }}
-  //           />
-  //         );
-  //       });
-  //   }
-  // };
 
   useEffect(() => {
     if (token) {
       const decodedToken = jwt_decode(token);
       if (decodedToken) {
-        console.log("decodedToken.sub", decodedToken.sub);
         setUserId(decodedToken.sub);
-      } else console.log("not decoded");
-
-      if (userId) console.log("userId", userId);
-      else console.log("no userId");
+      }
       axios
         .get(`http://localhost:3000/user/chats`, {
           headers: {
@@ -127,6 +86,32 @@ const Chats = () => {
     } else console.log("no token");
   }, []);
 
+  useEffect(() => {
+    let names = [];
+
+    chats &&
+      chats.map((chat) => {
+        let receiverId;
+        if (chat.firstUserId == userId) receiverId = chat.secondUserId;
+        else if (chat.secondUserId == userId) receiverId = chat.firstUserId;
+
+        axios
+          .get(`http://localhost:8000/api/getUserName/${receiverId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((response) => {
+            names.push(response.data.userName);
+            if (chats.length == names.length) {
+              setIsLoading(false);
+              setReceiverNames(names);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+  }, [chats]);
+
   return (
     <div className={styles.container}>
       <div>
@@ -141,20 +126,24 @@ const Chats = () => {
               <div className="container">
                 <div className="spinner"></div>
               </div>
-            ) : chats.length > 0 ? (
-              chats.map((chat) => (
-                <ChatCard
-                  name="Unknown"
-                  content={chat.lastMessage.content}
-                  dateTime={new Date(
-                    chat.lastMessage.createdAt
-                  ).toLocaleDateString()}
-                  onClick={() => {
-                    setActiveChatId(chat.chatId);
-                    openChat();
-                  }}
-                />
-              ))
+            ) : receiverNames ? (
+              chats.map((chat, i) => {
+                return (
+                  <ChatCard
+                    key={chat.chatId}
+                    name={receiverNames[i]}
+                    content={chat.lastMessage.content}
+                    dateTime={new Date(
+                      chat.lastMessage.createdAt
+                    ).toLocaleDateString()}
+                    onClick={() => {
+                      setActiveChatId(chat.chatId);
+                      setReceiverName(receiverNames[i]);
+                      openChat();
+                    }}
+                  />
+                );
+              })
             ) : (
               <p>no chats! Search for a user and start a chat</p>
             )}
@@ -163,7 +152,7 @@ const Chats = () => {
             className={messages.length > 0 ? styles.conversation : styles.none}
           >
             <span className={`semibold mediumsize ${styles.name}`}>
-              Unknown
+              {receiverName}
             </span>
             <div className={styles.messages}>
               {messages &&
