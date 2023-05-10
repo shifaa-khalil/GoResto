@@ -5,12 +5,16 @@ import {
   ScrollView,
   View,
   Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MessageCard from "../components/messageCard";
+import Send from "../assets/send.png";
 
 const Conversation = ({ route }) => {
   const navigation = useNavigation();
@@ -19,6 +23,7 @@ const Conversation = ({ route }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState("");
   const [chatId, setChatId] = useState("");
+  const [inputContent, setInputContent] = useState("");
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(today.getDate() - 1);
@@ -64,6 +69,10 @@ const Conversation = ({ route }) => {
     } else console.log("no token");
   }, [token, userId, chatId]);
 
+  const handleSend = () => {
+    console.log(inputContent);
+  };
+
   return (
     <ScrollView
       style={styles.screenContainer}
@@ -89,11 +98,29 @@ const Conversation = ({ route }) => {
                   ? "yesterday"
                   : new Date(message.createdAt).toLocaleDateString()
               }
+              addedStyle={
+                message.senderId == userId ? styles.right : styles.left
+              }
+              messageStyle={message.senderId == userId ? styles.white : null}
+              dateStyle={message.senderId == userId ? styles.white : null}
             />
           ))
         ) : (
           <Text>No messages</Text>
         )}
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={inputContent}
+            onChangeText={(value) => {
+              setInputContent(value);
+            }}
+            placeholder="type here..."
+            style={styles.input}
+          />
+          <TouchableOpacity onPress={handleSend}>
+            <Image source={Send} style={styles.send} />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -105,38 +132,35 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   container: {
-    alignItems: "center",
-  },
-  backgroundImage: {
-    height: 250,
-    resizeMode: "contain",
-  },
-  restaurants: {
-    width: 310,
-    marginVertical: 40,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-  },
-  modalContainer: {
-    backgroundColor: "#D43325",
     padding: 20,
-    borderRadius: 10,
-    marginTop: 200,
-    width: "70%",
-    alignItems: "center",
-    alignSelf: "center",
-  },
-  modalText: {
-    color: "white",
   },
   spinner: {
     marginTop: 150,
+  },
+  left: {
+    backgroundColor: "#f5f5f5",
+  },
+  right: {
+    backgroundColor: "grey",
+    alignSelf: "flex-end",
+  },
+  white: {
+    color: "white",
+  },
+  input: {
+    width: "90%",
+    height: 40,
+    paddingLeft: 15,
+    borderColor: "#D43325",
+    borderLeftColor: "#D43325",
+    borderLeftWidth: 10,
+    borderWidth: 1,
+    fontSize: 18,
+    borderRadius: 8,
+  },
+  send: {
+    height: 50,
+    width: 50,
   },
 });
 
