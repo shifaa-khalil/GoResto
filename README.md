@@ -82,13 +82,15 @@
 | Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
-### Admin Screens (Web)
+### Manager Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login screen                              | Register screen                         | Landing screen                         |
+| ----------------------------------------- | --------------------------------------- | -------------------------------------- |
+| ![Login](./readme/demo/login.png)         | ![Register](./readme/demo/register.png) | ![fsdaf](./readme/demo/1440x1024.png)  |
+| Home screen                               | Menu Screen                             | Add Menu Item Screen Screen            |
+| ![Dashboard](./readme/demo/dashboard.png) | ![Menu](./readme/demo/menu.png)         | ![MenuItem](./readme/demo/addItem.png) |
+| Chats screen                              | Inquiry Screen                          | About Screen                           |
+| ![Dashboard](./readme/demo/dashboard.png) | ![Inquiry](./readme/demo/inquiry.png)   | ![About](./readme/demo/about.png)      |
 
 <br><br>
 

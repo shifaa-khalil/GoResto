@@ -56,8 +56,9 @@ td {
   padding-left: 10px;
 }
 th {
-  background-color: rgba(133, 128, 128, 0.719);
+  background-color: black;
   font-size: 14px;
+  color: white;
 }
 td {
   font-size: 13px;
@@ -68,7 +69,6 @@ td {
   justify-content: space-between;
 }
 
-/* For Webkit Browsers */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -78,5 +78,5 @@ td {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(136, 132, 132);
+  background-color: black;
 }
