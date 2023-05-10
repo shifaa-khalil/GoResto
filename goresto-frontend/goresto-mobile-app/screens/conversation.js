@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ChatCard from "../components/chatCard";
-import { URL } from "../configs/URL";
+import MessageCard from "../components/messageCard";
 
 const Conversation = ({ route }) => {
   const navigation = useNavigation();
@@ -33,7 +32,7 @@ const Conversation = ({ route }) => {
 
   useEffect(() => {
     getData("token");
-    setChatId(route.params.chatId);
+    setChatId("6455273d3372d15408f88421");
   }, []);
 
   useEffect(() => {
@@ -47,13 +46,14 @@ const Conversation = ({ route }) => {
       if (userId) console.log("userId", userId);
       else console.log("no userId");
       axios
-        .get(`http://localhost:3000/user/messages/645558c94334b9a4c661f3cd`, {
+        .get(`http://localhost:3000/user/messages/${chatId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          console.log(response.data.messages);
+          setMessages(response.data.messages);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
@@ -62,32 +62,30 @@ const Conversation = ({ route }) => {
   }, [token, userId, chatId]);
 
   return (
-    <Text>Hello</Text>
-    // <ScrollView
-    //   style={styles.screenContainer}
-    //   showsVerticalScrollIndicator={false}
-    // >
-    //   <View style={[styles.container]}>
-    //   <Text style={[styles.name]}>{name}</Text>
-    //     {isLoading ? (
-    //       <View style={styles.spinner}>
-    //         <ActivityIndicator size="large" color="#d43325" />
-    //       </View>
-    //     ) : chats.length > 0 ? (
-    //       chats.map((chat) => (
-    //         <MessageCard
-    //           key={chat.id}
-    //           lastMessage={chat.lastMessage.content}
-    //           date={new Date(chat.lastMessage.createdAt).toLocaleDateString()}
-    //           name={chat.firstUserId}
-    //           onPress={() => console.log("messageCard")}
-    //         />
-    //       ))
-    //     ) : (
-    //       <Text>No chats</Text>
-    //     )}
-    //   </View>
-    // </ScrollView>
+    <ScrollView
+      style={styles.screenContainer}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={[styles.container]}>
+        {/* <Text style={[styles.name]}>{}</Text> */}
+        {isLoading ? (
+          <View style={styles.spinner}>
+            <ActivityIndicator size="large" color="#d43325" />
+          </View>
+        ) : messages.length > 0 ? (
+          messages.map((message) => (
+            <MessageCard
+              key={message.id}
+              message={message.content}
+              date={new Date(message.createdAt).toLocaleDateString()}
+              onPress={() => console.log("messageCard")}
+            />
+          ))
+        ) : (
+          <Text>No messages</Text>
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
