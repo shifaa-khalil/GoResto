@@ -74,13 +74,13 @@ const Chats = ({ route }) => {
         ) : chats.length > 0 ? (
           chats.map((chat) => (
             <ChatCard
-              key={chat.id}
+              key={chat.chatId}
               lastMessage={chat.lastMessage.content}
               date={new Date(chat.lastMessage.createdAt).toLocaleDateString()}
               name={chat.firstUserId}
               onPress={() =>
                 navigation.navigate("Conversation", {
-                  chatId: chat.id,
+                  chatId: chat.chatId,
                 })
               }
             />

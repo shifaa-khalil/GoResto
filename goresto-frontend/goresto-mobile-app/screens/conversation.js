@@ -35,7 +35,7 @@ const Conversation = ({ route }) => {
 
   useEffect(() => {
     getData("token");
-    setChatId("6455273d3372d15408f88421");
+    setChatId(route.params.chatId);
   }, []);
 
   useEffect(() => {
