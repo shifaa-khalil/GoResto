@@ -19,6 +19,9 @@ const Conversation = ({ route }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState("");
   const [chatId, setChatId] = useState("");
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
 
   async function getData(key) {
     try {
@@ -77,8 +80,15 @@ const Conversation = ({ route }) => {
             <MessageCard
               key={message.id}
               message={message.content}
-              date={new Date(message.createdAt).toLocaleDateString()}
-              onPress={() => console.log("messageCard")}
+              date={
+                new Date(message.createdAt).toLocaleDateString() ==
+                today.toLocaleDateString()
+                  ? "today"
+                  : new Date(message.createdAt).toLocaleDateString() ==
+                    yesterday.toLocaleDateString()
+                  ? "yesterday"
+                  : new Date(message.createdAt).toLocaleDateString()
+              }
             />
           ))
         ) : (

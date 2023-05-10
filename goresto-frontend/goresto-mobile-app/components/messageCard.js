@@ -1,14 +1,14 @@
 import React from "react";
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
-const ChatCard = ({ message, date, onPress }) => {
+const ChatCard = ({ message, date }) => {
   return (
-    <TouchableOpacity style={[styles.card]} onPress={onPress}>
+    <View style={[styles.card]}>
       <Text style={[styles.message]} numberOfLines={1000} breakMode="word-wrap">
         {message}
       </Text>
       <Text style={[styles.date]}>{date}</Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
