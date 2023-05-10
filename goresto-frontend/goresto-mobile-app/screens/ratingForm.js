@@ -56,7 +56,6 @@ const Rating = ({ route }) => {
           },
         })
         .then((response) => {
-          updateRating(); //
           navigation.replace("Ratings", {
             restaurant_id: route.params.restaurant_id,
           });
@@ -65,22 +64,6 @@ const Rating = ({ route }) => {
           console.log(error);
         });
     }
-  };
-
-  const updateRating = () => {
-    axios
-      .put(`${URL}/api/calculateRating/${route.params.restaurant_id}`, null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log("updated");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   const handlePress = (p) => {

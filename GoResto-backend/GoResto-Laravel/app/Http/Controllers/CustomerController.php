@@ -196,6 +196,12 @@ class CustomerController extends Controller
         $review->rating = $request->rating;
         $review->save();
 
+        $countRatings = Review::where('restaurant_id', $restaurant_id)->count();
+        $sumRatings = Review::where('restaurant_id', $restaurant_id)->sum('rating');
+        $rating = $sumRatings/$countRatings;
+
+        Restaurant::find($restaurant_id)->update(['rating' => $rating]);
+
         return response()->json(['status' => 'success', 'message' => 'review added', 'review' => $review]);
     }
 

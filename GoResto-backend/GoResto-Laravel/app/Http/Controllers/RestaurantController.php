@@ -193,21 +193,6 @@ class RestaurantController extends Controller
         return response()->json(['status'=>'success', 'message'=>'item updated']);
     }
 
-    function calculateRating($restaurant_id)
-    {
-        // $manager = auth()->user();
-        
-        // $restaurant_id = Restaurant::where('manager_id', $manager->id)->first()->id;
-
-        $countRatings = Review::where('restaurant_id', $restaurant_id)->count();
-        $sumRatings = Review::where('restaurant_id', $restaurant_id)->sum('rating');
-        $rating = $sumRatings/$countRatings;
-
-        Restaurant::find($restaurant_id)->update(['rating' => $rating]);
-
-        return response()->json(['rating' => $rating, 'number_of_ratings'=> $countRatings]);
-    }
-
     function getMenu()
     {
         $manager = auth()->user();

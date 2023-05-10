@@ -36,8 +36,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
 });
 
-Route::put('/calculateRating/{restaurant_id}', [RestaurantController::class, 'calculateRating']);
-
 Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);

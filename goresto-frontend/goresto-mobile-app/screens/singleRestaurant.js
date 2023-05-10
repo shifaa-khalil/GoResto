@@ -15,10 +15,14 @@ const Restaurant = ({ route }) => {
           <View style={[styles.details]}>
             <View style={[styles.text]}>
               <Text style={[styles.name]}>{route.params.name}</Text>
-              <View style={[styles.row]}>
-                <Text style={[styles.rating]}>{route.params.rating}</Text>
-                <Image source={Star} style={styles.star} />
-              </View>
+              {route.params.rating ? (
+                <View style={[styles.row]}>
+                  <Text style={[styles.rating]}>{route.params.rating}</Text>
+                  <Image source={Star} style={styles.star} />
+                </View>
+              ) : (
+                <Text>No ratings</Text>
+              )}
               <Text style={[styles.location]} numberOfLines={1}>
                 {route.params.location}
               </Text>
