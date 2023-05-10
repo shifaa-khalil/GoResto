@@ -32,9 +32,13 @@
   display: flex;
   flex-direction: column;
 }
+.logoContainer {
+}
 .logo {
-  /* flex-basis: 10%; */
+  width: 130px;
+  height: 70px;
   padding: 10px 20px;
+  align-self: center;
 }
 .normalweight {
   font-weight: 500;

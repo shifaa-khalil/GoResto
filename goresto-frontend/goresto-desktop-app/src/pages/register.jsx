@@ -5,10 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import polygon1 from "../images/Polygon1.png";
 import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
-import NavBar from "../components/navBar";
 import Input from "../components/input";
-import gopro from "../images/GoPro.png";
 import styles from "../css/register.module.css";
+import logo from "../images/logo.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -64,10 +63,11 @@ const Register = () => {
 
   return (
     <div className={`flex-column ${styles.registerContainer}`}>
-      <NavBar />
       <div className={`flex-row ${styles.bodyContainer}`}>
         <img src={polygon1} className="polygon1" />
         <div className={`flex-column ${styles.form}`}>
+          <img src={logo} className="logo" />
+
           <div className={styles.heading}>
             <p className="giantsize bold">Register</p>
           </div>

@@ -5,8 +5,8 @@ import axios from "axios";
 import polygon1 from "../images/Polygon1.png";
 import polygon2 from "../images/Polygon2.png";
 import MyButton from "../components/button";
-import NavBar from "../components/navBar";
 import Input from "../components/input";
+import logo from "../images/logo.png";
 import styles from "../css/register.module.css";
 
 const Signin = () => {
@@ -87,10 +87,12 @@ const Signin = () => {
 
   return (
     <div className={`flex-column ${styles.registerContainer}`}>
-      <NavBar />
       <div className={`flex-row ${styles.bodyContainer}`}>
         <img src={polygon1} className="polygon1" />
         <div className={`flex-column ${styles.form}`}>
+          {/* <div className="logoContainer"> */}
+          <img src={logo} className="logo" />
+          {/* </div> */}
           <div className={styles.heading}>
             <p className="giantsize bold">Sign in</p>
           </div>
