@@ -7,15 +7,17 @@ import { StyleSheet } from "react-native";
 import Input from "../components/input";
 import MyButton from "../components/button";
 import EmptyStar from "../assets/emptyStar.png";
+import Star from "../assets/Star.png";
 import { URL } from "../configs/URL";
 
 const Rating = ({ route }) => {
   const navigation = useNavigation();
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(null);
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
-  const [starPressed, setStarPressed] = useState(null);
+  const [done, setDone] = useState(false);
+  // const [stars, setStars] = useState([]);
 
   async function getData(key) {
     try {
@@ -62,14 +64,31 @@ const Rating = ({ route }) => {
         });
     }
   };
+  const [emptyStars, setEmptyStars] = useState([]);
+  const [filledStars, setFilledStars] = useState([]);
 
-  useEffect(() => {
-    if (starPressed == 1) setRating(1);
-    else if (starPressed == 2) setRating(2);
-    else if (starPressed == 3) setRating(3);
-    else if (starPressed == 4) setRating(4);
-    else if (starPressed == 5) setRating(5);
-  }, [starPressed]);
+  const handlePress = (p) => {
+    setDone(false);
+    setRating(p);
+    const tempFilled = [];
+    const tempEmpty = [];
+
+    for (let i = 1; i <= p; i++) {
+      tempFilled.push(i);
+      if (i == p && p == 5) setDone(true);
+    }
+    setFilledStars(tempFilled);
+
+    if (p < 5) {
+      for (let j = p + 1; j <= 5; j++) {
+        tempEmpty.push(j);
+        if (j == 5) {
+          setDone(true);
+        }
+      }
+    }
+    setEmptyStars(tempEmpty);
+  };
 
   return (
     <View style={[styles.container]}>
@@ -86,23 +105,40 @@ const Rating = ({ route }) => {
           }}
         /> */}
         <Text style={styles.label}>Rating</Text>
-        <View style={styles.stars}>
-          <TouchableOpacity onPress={() => setStarPressed(1)}>
-            <Image source={EmptyStar} style={styles.emptyStar} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setStarPressed(2)}>
-            <Image source={EmptyStar} style={styles.emptyStar} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setStarPressed(3)}>
-            <Image source={EmptyStar} style={styles.emptyStar} />
-          </TouchableOpacity>{" "}
-          <TouchableOpacity onPress={() => setStarPressed(4)}>
-            <Image source={EmptyStar} style={styles.emptyStar} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setStarPressed(5)}>
-            <Image source={EmptyStar} style={styles.emptyStar} />
-          </TouchableOpacity>{" "}
-        </View>
+
+        {done == false ? (
+          <View style={styles.stars}>
+            <TouchableOpacity onPress={() => handlePress(1)}>
+              <Image source={EmptyStar} style={styles.emptyStar} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlePress(2)}>
+              <Image source={EmptyStar} style={styles.emptyStar} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlePress(3)}>
+              <Image source={EmptyStar} style={styles.emptyStar} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlePress(4)}>
+              <Image source={EmptyStar} style={styles.emptyStar} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlePress(5)}>
+              <Image source={EmptyStar} style={styles.emptyStar} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.stars}>
+            {filledStars.map((s) => (
+              <TouchableOpacity onPress={() => handlePress(s)}>
+                <Image source={Star} style={styles.emptyStar} />
+              </TouchableOpacity>
+            ))}
+            {emptyStars.map((s) => (
+              <TouchableOpacity onPress={() => handlePress(s)}>
+                <Image source={EmptyStar} style={styles.emptyStar} />
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
+
         <Input
           title="Content"
           placeHolder="Content"
