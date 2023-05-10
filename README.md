@@ -97,10 +97,8 @@
 | Login screen                                           | Register screen                                      | Requests screen                                |
 | ------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
 | ![Login](./readme/readme/demo/login.png)               | ![Register](./readme/readme/demo/register.png)       | ![Requests](./readme/readme/demo/requests.png) |
-| Reservations screen                                    | restaurants Screen                                   | Users Screen                                   |
+| Reservations screen                                    | Restaurants Screen                                   | Users Screen                                   |
 | ![Reservations](./readme/readme/demo/reservations.png) | ![restaurants](./readme/readme/demo/restaurants.png) | ![Users](./readme/readme/demo/users.png)       |
-
-|
 
 <br><br>
 

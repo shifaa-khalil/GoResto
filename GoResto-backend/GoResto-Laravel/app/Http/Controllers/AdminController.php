@@ -47,6 +47,15 @@ class AdminController extends Controller
         return response()->json(['inquiries' => $inquiries]);
     }
 
+    
+    function getMenu($restaurant_id)
+    {        
+        $menu_id = Menu::where('restaurant_id', $restaurant_id)->first()->id;
+        $menuItems = MenuItem::where('menu_id', $menu_id)->get();
+
+        return response()->json(['menu' => $menuItems]);
+    }
+
     function approveRequest($id)
     {
         $restoRequest = RestoRequest::where('id', $id)->first();

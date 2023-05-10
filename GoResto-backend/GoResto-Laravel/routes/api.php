@@ -62,6 +62,7 @@ Route::middleware(['customer'])->group(function(){
 });
 
 Route::middleware(['admin'])->group(function(){
+    Route::get('/getMenu/{restaurant_id}', [AdminController::class, 'getMenu']);
     Route::get('getRestaurantsdata',[AdminController::class,'getRestaurants']);
     Route::get('getRequests',[AdminController::class,'getRequests']);
     Route::get('getUsers',[AdminController::class,'getUsers']);
