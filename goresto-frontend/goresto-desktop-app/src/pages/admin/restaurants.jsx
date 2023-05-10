@@ -91,9 +91,9 @@ const Restaurants = () => {
                     <th>Manager</th>
                     <th>Logo</th>
                     <th>Location</th>
-                    <th>tables</th>
+                    <th>Number of tables</th>
                     <th>Menu</th>
-                    <th>action</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -25,9 +25,8 @@ const InquiryCard = (props) => {
         ) : props.ignoredStatus ? (
           <>
             <button
-              className={`bold ${styles.disabled}`}
+              className={`bold ${styles.enabled}`}
               onClick={props.onSolve}
-              disabled
             >
               mark as solved
             </button>

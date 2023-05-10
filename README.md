@@ -84,13 +84,23 @@
 
 ### Manager Screens (Web)
 
-| Login screen                                     | Register screen                                | Reservations screen                                    |
-| ------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------ |
-| ![Login](./readme/readme/demo/login.png)         | ![Register](./readme/readme/demo/register.png) | ![Reservations](./readme/readme/demo/reservations.png) |
-| Home screen                                      | Menu Screen                                    | Add Menu Item Screen                                   |
-| ![Dashboard](./readme/readme/demo/dashboard.png) | ![Menu](./readme/readme/demo/menu.png)         | ![MenuItem](./readme/readme/demo/addItem.png)          |
-| Chats screen                                     | Inquiry Screen                                 | About Screen                                           |
-| ![Dashboard](./readme/readme/demo/dashboard.png) | ![Inquiry](./readme/readme/demo/inquiry.png)   | ![About](./readme/readme/demo/about.png)               |
+| Login screen                                           | Register screen                                | Home screen                                      |
+| ------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------ |
+| ![Login](./readme/readme/demo/login.png)               | ![Register](./readme/readme/demo/register.png) | ![Dashboard](./readme/readme/demo/dashboard.png) |
+| Reservations screen                                    | Menu Screen                                    | Add Menu Item Screen                             |
+| ![Reservations](./readme/readme/demo/reservations.png) | ![Menu](./readme/readme/demo/menu.png)         | ![MenuItem](./readme/readme/demo/addItem.png)    |
+| Chats screen                                           | Inquiry Screen                                 | About Screen                                     |
+| ![Dashboard](./readme/readme/demo/dashboard.png)       | ![Inquiry](./readme/readme/demo/inquiry.png)   | ![About](./readme/readme/demo/about.png)         |
+
+### Admin Screens (Web)
+
+| Login screen                                           | Register screen                                      | Requests screen                                |
+| ------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
+| ![Login](./readme/readme/demo/login.png)               | ![Register](./readme/readme/demo/register.png)       | ![Requests](./readme/readme/demo/requests.png) |
+| Reservations screen                                    | restaurants Screen                                   | Users Screen                                   |
+| ![Reservations](./readme/readme/demo/reservations.png) | ![restaurants](./readme/readme/demo/restaurants.png) | ![Users](./readme/readme/demo/users.png)       |
+
+|
 
 <br><br>
 

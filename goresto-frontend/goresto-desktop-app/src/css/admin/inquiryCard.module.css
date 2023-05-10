@@ -25,16 +25,16 @@
 .buttons button {
   border: none;
   border-radius: 8px;
-  background-color: grey;
+  background-color: black;
   padding: 5px 10px;
   cursor: pointer;
 }
 .buttons span {
-  color: grey;
+  color: black;
 }
 .enabled {
   color: white;
 }
 .disabled {
-  color: rgb(163, 161, 161);
+  color: rgb(53, 52, 52);
 }
