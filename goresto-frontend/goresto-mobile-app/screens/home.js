@@ -68,7 +68,7 @@ const Home = () => {
           color={styles.red}
           text="Go to chats"
           icon={Chats}
-          onPress={() => console.log("pressed")}
+          onPress={() => navigation.navigate("Chats")}
         />
         <Text style={[styles.text]}>Check categories</Text>
         <TouchableOpacity onPress={handleScroll}>

@@ -13,6 +13,7 @@ import Reserving from "./screens/reserving";
 import Menu from "./screens/menu";
 import Rating from "./screens/ratingForm";
 import Ratings from "./screens/ratingsReviews";
+import Chats from "./screens/chats";
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,7 @@ function App() {
         <Stack.Screen name="Menu" component={Menu} />
         <Stack.Screen name="Rating" component={Rating} />
         <Stack.Screen name="Ratings" component={Ratings} />
+        <Stack.Screen name="Chats" component={Chats} />
       </Stack.Navigator>
     </NavigationContainer>
   );
