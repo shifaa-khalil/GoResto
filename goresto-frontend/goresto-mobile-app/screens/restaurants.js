@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { ActivityIndicator, ScrollView, View } from "react-native";
+import { ActivityIndicator, ScrollView, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import NavBar2 from "../components/navBar2";
@@ -46,7 +46,6 @@ const Restaurants = ({ route }) => {
         },
       })
       .then((response) => {
-        console.log(response.data.restaurants);
         setRestaurants(response.data.restaurants);
         setIsLoading(false);
       })
@@ -127,26 +126,31 @@ const Restaurants = ({ route }) => {
               onSubmit={handleSubmit}
             />
             <View style={[styles.restaurants]}>
-              {restaurants.map((restaurant) => (
-                <RestaurantCard
-                  key={restaurant.id}
-                  image={restaurant.logo}
-                  name={restaurant.name}
-                  rating={restaurant.rating}
-                  // deposit={restaurant.deposit}
-                  location={restaurant.location}
-                  onPress={() =>
-                    navigation.navigate("Restaurant", {
-                      restaurant_id: restaurant.id,
-                      name: restaurant.name,
-                      rating: restaurant.rating,
-                      location: restaurant.location,
-                      deposit: restaurant.deposit,
-                      image: restaurant.logo,
-                    })
-                  }
-                />
-              ))}
+              {restaurants ? (
+                restaurants.map((restaurant) => (
+                  <RestaurantCard
+                    key={restaurant.id}
+                    image={restaurant.logo}
+                    name={restaurant.name}
+                    rating={restaurant.rating}
+                    location={restaurant.location}
+                    onPress={() =>
+                      navigation.navigate("Restaurant", {
+                        restaurant_id: restaurant.id,
+                        name: restaurant.name,
+                        rating: restaurant.rating,
+                        location: restaurant.location,
+                        deposit: restaurant.deposit,
+                        image: restaurant.logo,
+                      })
+                    }
+                  />
+                ))
+              ) : (
+                <View>
+                  <Text>No data</Text>
+                </View>
+              )}
             </View>
           </>
         )}

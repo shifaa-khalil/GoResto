@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ScrollView, View, Text } from "react-native";
+import {
+  ScrollView,
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet } from "react-native";
 import ReviewCard from "../components/reviewCard";
 import { URL } from "../configs/URL";
 
@@ -11,6 +16,7 @@ const Ratings = ({ route }) => {
   const navigation = useNavigation();
   const [reviews, setReviews] = useState([]);
   const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   async function getData(key) {
     try {
@@ -34,8 +40,8 @@ const Ratings = ({ route }) => {
         },
       })
       .then((response) => {
-        console.log(response.data.reviews);
         setReviews(response.data.reviews);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -43,9 +49,16 @@ const Ratings = ({ route }) => {
   }, [token]);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styles.screenContainer}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={[styles.container]}>
-        {reviews.length > 0 ? (
+        {isLoading ? (
+          <View style={styles.spinner}>
+            <ActivityIndicator size="large" color="#d43325" />
+          </View>
+        ) : reviews.length > 0 ? (
           reviews.map((review) => (
             <ReviewCard
               key={review.id}
@@ -67,9 +80,11 @@ const Ratings = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screenContainer: {
     flex: 1,
     backgroundColor: "white",
+  },
+  container: {
     alignItems: "center",
   },
   backgroundImage: {
@@ -99,6 +114,9 @@ const styles = StyleSheet.create({
   },
   modalText: {
     color: "white",
+  },
+  spinner: {
+    marginTop: 150,
   },
 });
 

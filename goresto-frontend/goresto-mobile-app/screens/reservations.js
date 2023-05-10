@@ -9,9 +9,10 @@ import {
   TouchableOpacity,
   Modal,
   RefreshControl,
+  ActivityIndicator,
+  StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
 import ReservationCard from "../components/reservationCard";
 import Reserved from "../assets/reserved.png";
 import { URL } from "../configs/URL";
@@ -23,6 +24,7 @@ const Reservations = () => {
   const [reservationId, setReservationId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   async function getData(key) {
     try {
@@ -50,6 +52,7 @@ const Reservations = () => {
         .then((response) => {
           setReservations(response.data.reservations);
           setRefreshing(false);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -67,7 +70,6 @@ const Reservations = () => {
       })
       .then((response) => {
         setRefreshing(true);
-        console.log(response.data.status);
       })
       .catch((error) => {
         console.log(error);
@@ -77,6 +79,7 @@ const Reservations = () => {
 
   return (
     <ScrollView
+      style={styles.screenContainer}
       showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={handleCancel} />
@@ -84,29 +87,35 @@ const Reservations = () => {
     >
       <View style={[styles.container]}>
         <Image source={Reserved} style={[styles.backgroundImage]} />
-        {reservations.map((reservation) => (
-          <ReservationCard
-            key={reservation.id}
-            restaurant={reservation.restaurant.name}
-            date={reservation.date}
-            time={reservation.time}
-            location={reservation.restaurant.location}
-            count={reservation.count}
-            onEdit={() =>
-              navigation.navigate("Reserving", {
-                reservation_id: reservation.id,
-                date: reservation.date,
-                time: reservation.time,
-                count: reservation.count,
-                restaurant_id: reservation.restaurant_id,
-              })
-            }
-            onCancel={() => {
-              setQuestionVisible(true);
-              setReservationId(reservation.id);
-            }}
-          />
-        ))}
+        {isLoading ? (
+          <View style={styles.spinner}>
+            <ActivityIndicator size="large" color="#d43325" />
+          </View>
+        ) : (
+          reservations.map((reservation) => (
+            <ReservationCard
+              key={reservation.id}
+              restaurant={reservation.restaurant.name}
+              date={reservation.date}
+              time={reservation.time}
+              location={reservation.restaurant.location}
+              count={reservation.count}
+              onEdit={() =>
+                navigation.navigate("Reserving", {
+                  reservation_id: reservation.id,
+                  date: reservation.date,
+                  time: reservation.time,
+                  count: reservation.count,
+                  restaurant_id: reservation.restaurant_id,
+                })
+              }
+              onCancel={() => {
+                setQuestionVisible(true);
+                setReservationId(reservation.id);
+              }}
+            />
+          ))
+        )}
         <Modal
           visible={questionVisible}
           animationType="slide"
@@ -129,9 +138,11 @@ const Reservations = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screenContainer: {
     flex: 1,
     backgroundColor: "white",
+  },
+  container: {
     alignItems: "center",
   },
   backgroundImage: {
