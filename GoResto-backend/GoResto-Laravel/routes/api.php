@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
 });
 
+Route::put('/calculateRating/{restaurant_id}', [RestaurantController::class, 'calculateRating']);
+
 Route::middleware(['customer'])->group(function(){
     Route::get('/getCuisines', [CustomerController::class, 'getCuisines']);
     Route::get('/getRestaurants', [CustomerController::class, 'getRestaurants']);
@@ -93,7 +95,6 @@ Route::middleware(['manager'])->group(function(){
     Route::put('/disableMenuItem/{menu_item_id}', [RestaurantController::class, 'disableMenuItem']);
     Route::put('/enableMenuItem/{menu_item_id}', [RestaurantController::class, 'enableMenuItem']);
     Route::put('/updateMenuItem/{menu_item_id}', [RestaurantController::class, 'updateMenuItem']);
-    Route::put('/calculateRating', [RestaurantController::class, 'calculateRating']);
    
     Route::delete('/cancelReservationResto/{reservation_id}', [RestaurantController::class, 'cancelReservationResto']);
 

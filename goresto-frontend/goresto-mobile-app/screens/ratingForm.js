@@ -17,7 +17,8 @@ const Rating = ({ route }) => {
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
   const [done, setDone] = useState(false);
-  // const [stars, setStars] = useState([]);
+  const [emptyStars, setEmptyStars] = useState([]);
+  const [filledStars, setFilledStars] = useState([]);
 
   async function getData(key) {
     try {
@@ -64,8 +65,6 @@ const Rating = ({ route }) => {
         });
     }
   };
-  const [emptyStars, setEmptyStars] = useState([]);
-  const [filledStars, setFilledStars] = useState([]);
 
   const handlePress = (p) => {
     setDone(false);
