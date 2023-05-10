@@ -1,9 +1,9 @@
-<img src="./readme/title1.svg"/>
+<img src="./readme/readme/title1.svg"/>
 
 <br><br>
 
 <!-- project philosophy -->
-<img src="./readme/title2.svg"/>
+<img src="./readme/readme/title2.svg"/>
 
 > A platform for restaurants to add their restaurants and manage their statistics, and a mobile app for customers to discover restaurants and reserve a table in a certain restaurant.
 
@@ -51,7 +51,7 @@
 <br><br>
 
 <!-- Prototyping -->
-<img src="./readme/title3.svg"/>
+<img src="./readme/readme/title3.svg"/>
 
 > I designed GoResto using wireframes and mockups, continually refining the layout until achieving an optimal design.
 
@@ -70,7 +70,7 @@
 <br><br>
 
 <!-- Implementation -->
-<img src="./readme/title4.svg"/>
+<img src="./readme/readme/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, I implemented the GoResto app with the following features:
 
@@ -93,7 +93,7 @@
 <br><br>
 
 <!-- Tech stack -->
-<img src="./readme/title5.svg"/>
+<img src="./readme/readme/title5.svg"/>
 
 ### GoResto is built using the following technologies:
 
@@ -104,7 +104,7 @@
 <br><br>
 
 <!-- How to run -->
-<img src="./readme/title6.svg"/>
+<img src="./readme/readme/title6.svg"/>
 
 > To set up GoResto locally, follow these steps:
 
