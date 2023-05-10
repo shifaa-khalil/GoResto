@@ -23,6 +23,7 @@ const Chats = () => {
   const [receiverNames, setReceiverNames] = useState([]);
   const [receiverName, setReceiverName] = useState("Unknown");
   const [isLoading, setIsLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
 
   const openChat = () => {
     if (token) {
@@ -121,7 +122,9 @@ const Chats = () => {
         <NavBar2 sectionName="Chats" className="block" />
         <div className={styles.body}>
           <div className={`semibold flex-column ${styles.chats}`}>
-            <SearchBar />
+            <SearchBar
+              onChange={(event) => setSearchInput(event.target.value)}
+            />
             {isLoading ? (
               <div className="container">
                 <div className="spinner"></div>

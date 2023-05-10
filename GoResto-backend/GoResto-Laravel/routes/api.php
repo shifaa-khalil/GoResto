@@ -83,6 +83,7 @@ Route::middleware(['manager'])->group(function(){
     Route::get('/getRestaurant', [RestaurantController::class, 'getRestaurant']);
     Route::get('/getReviewsRestaurant', [RestaurantController::class, 'getReviews']);
     Route::get('/getReservationsResto', [RestaurantController::class, 'getReservationsResto']);
+    Route::get('/searchCustomer/{q}', [RestaurantController::class, 'searchCustomer']);
 
     Route::post('/addRestaurant', [RestaurantController::class, 'addRestaurant']);
     Route::post('/uploadLogo', [RestaurantController::class, 'uploadLogo']);

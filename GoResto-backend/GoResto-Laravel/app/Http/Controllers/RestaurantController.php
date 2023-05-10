@@ -267,4 +267,11 @@ class RestaurantController extends Controller
 
         return response()->json(['status'=>'success', 'message'=>'inquiry added']);
     }
+
+    function searchCustomer($q)
+    {        
+        $customers = User::where('name', 'like', '%'.$q.'%')->where('role', 'customer')->get();
+        
+        return response()->json(['customers' => $customers]);
+    }
 }
