@@ -71,6 +71,21 @@ const Conversation = ({ route }) => {
 
   const handleSend = () => {
     console.log(inputContent);
+    const data = { chatId: route.params.chatId, content: inputContent };
+    axios
+      .post(`http://localhost:3000/user/message`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setMessages([...messages, response.data]);
+        setInputContent("");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -79,13 +94,13 @@ const Conversation = ({ route }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={[styles.container]}>
-        {/* <Text style={[styles.name]}>{}</Text> */}
+        <Text style={[styles.name]}>{route.params.name}</Text>
         {isLoading ? (
           <View style={styles.spinner}>
             <ActivityIndicator size="large" color="#d43325" />
           </View>
         ) : (
-          <View style={styles.messagesContainer}>
+          <ScrollView style={styles.messagesContainer}>
             {messages &&
               messages.map((message) => (
                 <MessageCard
@@ -109,7 +124,7 @@ const Conversation = ({ route }) => {
                   dateStyle={message.senderId == userId ? styles.white : null}
                 />
               ))}
-          </View>
+          </ScrollView>
         )}
         <View style={styles.inputContainer}>
           <TextInput
@@ -135,7 +150,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   container: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   spinner: {
     marginTop: 150,
@@ -144,14 +160,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   right: {
-    backgroundColor: "grey",
+    backgroundColor: "#D43325",
     alignSelf: "flex-end",
   },
   white: {
     color: "white",
   },
   messagesContainer: {
-    // flexBasis: "70%",
+    marginVertical: 20,
+    height: 350,
+  },
+  inputContainer: {
+    flexDirection: "row",
   },
   input: {
     width: "90%",
@@ -167,6 +187,10 @@ const styles = StyleSheet.create({
   send: {
     height: 50,
     width: 50,
+  },
+  name: {
+    fontWeight: 600,
+    fontSize: 20,
   },
 });
 

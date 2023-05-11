@@ -55,8 +55,6 @@ const Chats = ({ route }) => {
     } else console.log("no token");
   }, [token, userId]);
 
-  var i = -1;
-
   useEffect(() => {
     let names = [];
 
@@ -96,8 +94,7 @@ const Chats = ({ route }) => {
             <ActivityIndicator size="large" color="#d43325" />
           </View>
         ) : receiverNames ? (
-          chats.map((chat) => {
-            i = i + 1;
+          chats.map((chat, i) => {
             return (
               <ChatCard
                 key={chat.chatId}
@@ -107,6 +104,7 @@ const Chats = ({ route }) => {
                 onPress={() =>
                   navigation.navigate("Conversation", {
                     chatId: chat.chatId,
+                    name: receiverNames[i],
                   })
                 }
               />

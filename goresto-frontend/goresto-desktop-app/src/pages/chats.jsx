@@ -70,7 +70,6 @@ const Chats = () => {
 
     if (!token) return console.log("no token");
 
-    // if (validateForm()) {
     const data = { chatId: activeChatId, content: messageContent };
     axios
       .post(`http://localhost:3000/user/message`, data, {
