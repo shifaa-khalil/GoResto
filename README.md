@@ -94,6 +94,8 @@
 | ![Reservations](./readme/readme/demo/reservations.png) | ![Menu](./readme/readme/demo/menu.png)         | ![MenuItem](./readme/readme/demo/addItem.png)    |
 | Chats screen                                           | Inquiry Screen                                 | About Screen                                     |
 | ![Dashboard](./readme/readme/demo/dashboard.png)       | ![Inquiry](./readme/readme/demo/inquiry.png)   | ![About](./readme/readme/demo/about.png)         |
+| Setup screen                                           | Pending Screen Screen                          |
+| ![Setup](./readme/readme/demo/setup.png)               | ![Pending](./readme/readme/demo/pending.png)   |
 
 ### Admin Screens (Web)
 

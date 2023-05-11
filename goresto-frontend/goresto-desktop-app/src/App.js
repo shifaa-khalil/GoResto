@@ -78,7 +78,7 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/noAccess" element={<NoAccess />} />
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Signin />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/register" element={<Register />} />
         <Route
