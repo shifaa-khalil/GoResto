@@ -27,7 +27,8 @@ const Pending = () => {
           <p>Not approved yet!</p>
           <p>Try to refresh the page...</p>
           <p>
-            If you think there is a problem, please <a>contact us</a>
+            If you think there is a problem, please contact us<span> </span>
+            <a>+96176772321</a>
           </p>
         </div>
       </div>

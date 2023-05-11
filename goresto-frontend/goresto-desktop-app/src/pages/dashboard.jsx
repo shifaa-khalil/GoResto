@@ -49,7 +49,7 @@ const Dashboard = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Dashboard" className="block" />
-        <DropDownList />
+        {/* <DropDownList /> */}
         {isLoading ? (
           <div className="container">
             <div className="spinner"></div>
@@ -67,14 +67,14 @@ const Dashboard = () => {
             <DashboardCard
               className={styles.grey}
               title="Total earnings"
-              value="$12.4k"
+              value="0"
               src={earnings}
               // onClick={() => navigate("/earnings")}
             />
             <DashboardCard
               className={styles.grey}
               title="Total customers"
-              value="62"
+              value="0"
               src={customers}
               // onClick={() => navigate("/customers")}
             />

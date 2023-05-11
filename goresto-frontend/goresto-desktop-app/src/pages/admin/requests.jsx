@@ -110,7 +110,7 @@ const Requests = () => {
                     <th>Logo</th>
                     <th>Location</th>
                     <th>tables</th>
-                    <th>Menu</th>
+                    {/* <th>Menu</th> */}
                     <th>approval</th>
                   </tr>
                 </thead>
@@ -127,7 +127,7 @@ const Requests = () => {
                         <td>{restoRequest.restaurant.logo}</td>
                         <td>{restoRequest.restaurant.location}</td>
                         <td>{restoRequest.restaurant.number_of_tables}</td>
-                        <td>{restoRequest.restaurant.menu.menuItem}</td>
+                        {/* <td>{restoRequest.restaurant.menu.menuItem}</td> */}
                         <td>
                           <div className={styles.row}>
                             {approved === restoRequest.id ? (

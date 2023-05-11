@@ -46,3 +46,7 @@ input[type="file"] {
 .disabled {
   pointer-events: none;
 }
+a {
+  text-decoration: underline;
+  color: var(--red);
+}
