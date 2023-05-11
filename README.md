@@ -57,15 +57,15 @@
 
 ### Wireframes
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Landing screen                                        | Register screen                                         | Login screen                                      |
+| ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------- |
+| ![Landing](./readme/readme/demo/landingWireframe.png) | ![Register](./readme/readme/demo/registerWireframe.png) | ![Login](./readme/readme/demo/loginWireframe.png) |
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Setup screen                                    | Dashboard Screen                                         | Reservations Screen                                          |
+| ----------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
+| ![Setup](./readme/readme/demo/setupMockups.png) | ![Dashoboard](./readme/readme/demo/dashboardMockups.png) | ![Reservations](./readme/readme/demo/reservationsMockup.png) |
 
 <br><br>
 
