@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Register from "./screens/register";
 import Signin from "./screens/signin";
@@ -40,7 +40,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <View>
+      <View style={styles.spinner}>
         <ActivityIndicator size="large" color="#d43325" />
       </View>
     );
@@ -70,4 +70,10 @@ function App() {
   );
 }
 
+const styles = StyleSheet.create({
+  spinner: {
+    marginTop: 100,
+    marginRight: 50,
+  },
+});
 export default App;
