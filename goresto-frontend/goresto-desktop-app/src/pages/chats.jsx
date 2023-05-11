@@ -26,6 +26,28 @@ const Chats = () => {
   const [searchInput, setSearchInput] = useState("");
   const [customers, setCustomers] = useState([]);
 
+  const createChat = (receiver_id) => {
+    if (token) {
+      axios
+        .post(`http://localhost:3000/user/chat/${receiver_id}`, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.chatId);
+          setActiveChatId(response.data.chatId);
+          // setReceiverName("unknown");
+          window.location.reload();
+
+          openChat();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else console.log("no token");
+  };
+
   const openChat = () => {
     if (token) {
       axios
@@ -145,7 +167,13 @@ const Chats = () => {
               </div>
             ) : searchInput && customers ? (
               customers.map((customer) => {
-                return <ChatCard key={customer.id} name={customer.name} />;
+                return (
+                  <ChatCard
+                    key={customer.id}
+                    name={customer.name}
+                    onClick={() => createChat(customer.id)}
+                  />
+                );
               })
             ) : receiverNames ? (
               chats.map((chat, i) => {
@@ -153,10 +181,14 @@ const Chats = () => {
                   <ChatCard
                     key={chat.chatId}
                     name={receiverNames[i]}
-                    content={chat.lastMessage.content}
-                    dateTime={new Date(
-                      chat.lastMessage.createdAt
-                    ).toLocaleDateString()}
+                    content={chat.lastMessage ? chat.lastMessage.content : null}
+                    dateTime={
+                      chat.lastMessage
+                        ? new Date(
+                            chat.lastMessage.createdAt
+                          ).toLocaleDateString()
+                        : null
+                    }
                     onClick={() => {
                       setActiveChatId(chat.chatId);
                       setReceiverName(receiverNames[i]);
@@ -169,13 +201,14 @@ const Chats = () => {
               <p>no chats! Search for a user and start a chat</p>
             )}
           </div>
-          <div
-            className={messages.length > 0 ? styles.conversation : styles.none}
-          >
+
+          <div className={activeChatId ? styles.conversation : styles.none}>
             <span className={`semibold mediumsize ${styles.name}`}>
               {receiverName}
             </span>
-            <div className={styles.messages}>
+            <div
+              className={messages.length > 0 ? styles.messages : styles.none}
+            >
               {messages &&
                 messages.map((message) => (
                   <MessageCard
