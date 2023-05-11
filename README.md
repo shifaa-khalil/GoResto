@@ -82,7 +82,6 @@
 | Home screen                                     | Restaurants Screen                                         | Display Restaurant Screen                                | Menu Screen                                                |
 | ![Home](./readme/readme/demo/home2.png)         | ![Restaurants](./readme/readme/demo/mobileRestaurants.png) | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/mobileMenu.png)               |
 | Ratings & Reviews screen                        | Rating Form screen                                         | Reserving Form screen                                    | Reservings screen                                          |
-| ----------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------               |
 | ![Ratings](./readme/readme/demo/ratings.png)    | ![Regiter](./readme/readme/demo/rating.png)                | ![Reserving](./readme/readme/demo/reserving.png)         | ![Reservings](./readme/readme/demo/mobileReservations.png) |
 
 ### Manager Screens (Web)
