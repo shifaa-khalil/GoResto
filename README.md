@@ -78,7 +78,7 @@
 
 | Login screen                                    | Register screen                                            | Loading screen                                           | Home screen                                                |
 | ----------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------- |
-| ![Login](./readme/readme/demo/mobileSignin.png) | ![Regiter](./readme/readme/demo/mobileRegister.png)        | ![fsdaf](https://placehold.co/900x1600)                  | ![Home](./readme/readme/demo/home.png)                     |
+| ![Login](./readme/readme/demo/mobileSignin.png) | ![Regiter](./readme/readme/demo/mobileRegister.png)        | ![Loading](./readme/readme/demo/loading.png)             | ![Home](./readme/readme/demo/home.png)                     |
 | Home screen                                     | Restaurants Screen                                         | Display Restaurant Screen                                | Menu Screen                                                |
 | ![Home](./readme/readme/demo/home2.png)         | ![Restaurants](./readme/readme/demo/mobileRestaurants.png) | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/mobileMenu.png)               |
 | Ratings & Reviews screen                        | Rating Form screen                                         | Reserving Form screen                                    | Reservings screen                                          |
