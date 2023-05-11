@@ -24,6 +24,7 @@ const Chats = () => {
   const [receiverName, setReceiverName] = useState("Unknown");
   const [isLoading, setIsLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
+  const [customers, setCustomers] = useState([]);
 
   const openChat = () => {
     if (token) {
@@ -113,6 +114,19 @@ const Chats = () => {
       });
   }, [chats]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/searchCustomer/${searchInput}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setCustomers(response.data.customers);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [searchInput]);
+
   return (
     <div className={styles.container}>
       <div>
@@ -129,6 +143,10 @@ const Chats = () => {
               <div className="container">
                 <div className="spinner"></div>
               </div>
+            ) : searchInput && customers ? (
+              customers.map((customer) => {
+                return <ChatCard key={customer.id} name={customer.name} />;
+              })
             ) : receiverNames ? (
               chats.map((chat, i) => {
                 return (

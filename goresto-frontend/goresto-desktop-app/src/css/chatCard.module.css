@@ -29,3 +29,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.chatIcon {
+  height: 30px;
+  width: 30px;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import styles from "../css/chatCard.module.css";
+import Chat from "../images/startChat.png";
 
 const ChatCard = (props) => {
   return (
@@ -13,7 +14,11 @@ const ChatCard = (props) => {
         <span className={`normalweight xsmallsize ${styles.content}`}>
           {props.content}
         </span>
-        <span className="normalweight tinysize">{props.dateTime}</span>
+        {props.dateTime ? (
+          <span className="normalweight tinysize">{props.dateTime}</span>
+        ) : (
+          <img src={Chat} className={styles.chatIcon} />
+        )}
       </div>
     </div>
   );
