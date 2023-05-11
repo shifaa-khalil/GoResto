@@ -46,7 +46,7 @@ Route::middleware(['customer'])->group(function(){
     Route::get('/filterByRating/{min_rating}/{max_rating}', [CustomerController::class, 'filterByRating']);
     Route::get('/filterByCuisine/{cuisine}', [CustomerController::class, 'filterByCuisine']);
     Route::get('/getRestaurant/{restaurant_id}', [CustomerController::class, 'getRestaurant']);
-    Route::get('/getMenu/{restaurant_id}', [CustomerController::class, 'getMenu']);
+    Route::get('/getMenuCus/{restaurant_id}', [CustomerController::class, 'getMenu']);
     Route::get('/filterMenuByCuisine/{cuisine}', [CustomerController::class, 'filterMenuByCuisine']);
     Route::get('/filterMenuByCategory/{category}', [CustomerController::class, 'filterMenuByCategory']);
     Route::get('/getReservations', [CustomerController::class, 'getReservations']);

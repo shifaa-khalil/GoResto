@@ -76,11 +76,11 @@
 
 ### User Screens (Mobile)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Login screen                                    | Register screen                                            | Loading screen                                           | Home screen                                  |
+| ----------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------- |
+| ![Login](./readme/readme/demo/mobileSignin.png) | ![Regiter](./readme/readme/demo/mobileRegister.png)        | ![fsdaf](https://placehold.co/900x1600)                  | ![Home](./readme/readme/demo/home.png)       |
+| Home screen                                     | Restaurants Screen                                         | Display Restaurant Screen                                | Menu Screen                                  |
+| ![Home](./readme/readme/demo/home2.png)         | ![Restaurants](./readme/readme/demo/mobileRestaurants.png) | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/mobileMenu.png) |
 
 ### Manager Screens (Web)
 

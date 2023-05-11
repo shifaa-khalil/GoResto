@@ -53,7 +53,7 @@ const Menu = ({ route }) => {
         });
     } else {
       axios
-        .get(`${URL}/api/getMenu/${route.params.restaurant_id}`, {
+        .get(`${URL}/api/getMenuCus/${route.params.restaurant_id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
