@@ -94,7 +94,13 @@ class AdminController extends Controller
     {
         $user = User::find($user_id);
 
+        if($user->role == "manager")
+        {
+            $restaurant = Restaurant::where('manager_id', $user_id)->first();
+            $restaurant->delete();
+        }
         $user->delete();
+
 
         return response()->json(['status' => 'success', 'message' => 'user deleted']);
     }
