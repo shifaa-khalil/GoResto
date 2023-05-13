@@ -76,14 +76,14 @@
 
 ### User Screens (Mobile)
 
-| Login screen                                    | Register screen                                      | Loading screen                                           | Home screen                                          |
-| ----------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- |
-| ![Login](./readme/readme/demo/mobileSignin.png) | ![Regiter](./readme/readme/demo/mobileRegister.png)  | ![Loading](./readme/readme/demo/loading.png)             | ![Home](./readme/readme/demo/home.png)               |
-| Home screen                                     | Restaurants Screen                                   | Display Restaurant Screen                                | Menu Screen                                          |
-| ![Home](./readme/readme/demo/home2.png)         | ![Restaurants](./readme/readme/demo/restaurants.gif) | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/menu.gif)               |
-| Ratings & Reviews screen                        | Rating Form screen                                   | Reserving Form screen                                    | Reservations screen                                  |
-| ![Ratings](./readme/readme/demo/ratings.gif)    | ![Rating](./readme/readme/demo/rating.gif)           | ![Reserving](./readme/readme/demo/restaurant.gif)        | ![Reservings](./readme/readme/demo/reservations.gif) |
-| Chats screen                                    |
+| Login screen                                         | Register screen                                     | Loading screen                                           | Home screen                                          |
+| ---------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- |
+| ![Login](./readme/readme/demo/mobileSignin.png)      | ![Regiter](./readme/readme/demo/mobileRegister.png) | ![Loading](./readme/readme/demo/loading.png)             | ![Home](./readme/readme/demo/home.gif)               |
+| Restaurants screen                                   | Chats Screen                                        | Display Restaurant Screen                                | Menu Screen                                          |
+| ![Restaurants](./readme/readme/demo/restaurants.gif) | ![Chats](./readme/readme/demo/chats.gif)            | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/menu.gif)               |
+| Ratings & Reviews screen                             | Rating Form screen                                  | Reserving Form screen                                    | Reservations screen                                  |
+| ![Ratings](./readme/readme/demo/ratings.gif)         | ![Rating](./readme/readme/demo/rating.gif)          | ![Reserving](./readme/readme/demo/restaurant.gif)        | ![Reservings](./readme/readme/demo/reservations.gif) |
+| Chats screen                                         |
 
 | ![Ratings](./readme/readme/demo/chats.gif)
 
