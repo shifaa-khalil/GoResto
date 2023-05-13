@@ -86,15 +86,15 @@
 
 ### Manager Screens (Web)
 
-| Login screen                                           | Register screen                                | Home screen                                      |
-| ------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------ |
-| ![Login](./readme/readme/demo/login.png)               | ![Register](./readme/readme/demo/register.png) | ![Dashboard](./readme/readme/demo/dashboard.png) |
-| Reservations screen                                    | Menu Screen                                    | Add Menu Item Screen                             |
-| ![Reservations](./readme/readme/demo/reservations.png) | ![Menu](./readme/readme/demo/menu.png)         | ![MenuItem](./readme/readme/demo/addItem.png)    |
-| Chats screen                                           | Inquiry Screen                                 | About Screen                                     |
-| ![Dashboard](./readme/readme/demo/dashboard.png)       | ![Inquiry](./readme/readme/demo/inquiry.png)   | ![About](./readme/readme/demo/about.png)         |
-| Setup screen                                           | Pending Screen Screen                          |
-| ![Setup](./readme/readme/demo/setup.png)               | ![Pending](./readme/readme/demo/pending.png)   |
+| Login screen                                              | Register screen                                 | Home screen                                      |
+| --------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------ |
+| ![Login](./readme/readme/demo/login.png)                  | ![Register](./readme/readme/demo/register.png)  | ![Dashboard](./readme/readme/demo/dashboard.png) |
+| Reservations screen                                       | Menu Screen                                     | Add Menu Item Screen                             |
+| ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif)       | ![MenuItem](./readme/readme/demo/addItem.png)    |
+| Chats screen                                              | Inquiry Screen                                  | About Screen                                     |
+| ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/about.png)         |
+| Setup screen                                              | Pending Screen Screen                           |
+| ![Setup](./readme/readme/demo/setup.png)                  | ![Pending](./readme/readme/demo/pending.png)    |
 
 ### Admin Screens (Web)
 
