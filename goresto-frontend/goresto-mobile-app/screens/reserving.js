@@ -8,12 +8,13 @@ import Input from "../components/input";
 import MyButton from "../components/button";
 import Calendar from "../components/calendar";
 import TimePicker from "../components/timePicker";
+import { CommonActions } from "@react-navigation/native";
 import { URL } from "../configs/URL";
 
 const Reserving = ({ route }) => {
   const navigation = useNavigation();
   const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState("10:00:00");
   const [count, setCount] = useState("");
   const [error, setError] = useState("");
   const today = new Date().toISOString().slice(0, 10);
@@ -24,7 +25,6 @@ const Reserving = ({ route }) => {
   async function getData(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-      // return value !== null ? JSON.parse(value) : null;
       setToken(JSON.parse(value));
     } catch (error) {
       console.error("Error retrieving data:", error);
@@ -76,6 +76,7 @@ const Reserving = ({ route }) => {
   const handleSubmit = () => {
     if (validateForm()) {
       const data = { date, time, count };
+      console.log(data);
       if (update) {
         axios
           .put(
@@ -89,7 +90,19 @@ const Reserving = ({ route }) => {
             }
           )
           .then((response) => {
-            navigation.replace("Reservations");
+            // navigation.popToTop();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [
+                  { name: "Home" },
+                  {
+                    name: "Reservations",
+                    params: { updated: true },
+                  },
+                ],
+              })
+            );
           })
           .catch((error) => {
             console.log(error);
@@ -107,6 +120,11 @@ const Reserving = ({ route }) => {
           })
           .catch((error) => {
             console.log(error);
+            if (
+              error.response.data.status === "failure" &&
+              error.response.data.message === "no tables available"
+            )
+              setError("no availability");
           });
       }
     }
@@ -118,18 +136,14 @@ const Reserving = ({ route }) => {
         <View style={styles.errorContainer}>
           <Text style={styles.error}>{error}</Text>
         </View>
-      )}{" "}
+      )}
       <View style={[styles.form]}>
         <Calendar onDateSelect={handleDateSelection} />
-        {/* <TimePicker /> */}
-        <Input
-          title="Time"
-          placeHolder="00:00:00"
-          value={time}
-          onChangeText={(text) => {
-            setTime(text);
-            handleChangeText();
-          }}
+        <TimePicker
+          selectedValue={time}
+          onValueChange={(itemValue, itemIndex) => setTime(itemValue)}
+          restaurant_id={route.params.restaurant_id}
+          selectedDate={date}
         />
         <Input
           title="Number of people"

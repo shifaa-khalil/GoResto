@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Reservation;
 use App\Models\Restaurant;
 use App\Models\MenuItem;
@@ -59,13 +58,6 @@ class CustomerController extends Controller
         
         return response()->json(['restaurants' => $restaurants]);
     }
-
-    // function searchRestaurant($q)
-    // {
-    //     $restaurants = Restaurant::where('name', 'like', '%'.$q.'%')->where('approved', true)->get();
-        
-    //     return response()->json(['restaurants' => $restaurants]);
-    // }
 
     function searchRestaurant($q, $cuisine = null)
     {
@@ -126,21 +118,24 @@ class CustomerController extends Controller
         $customer = auth()->user();
 
         $restaurant = Restaurant::find($restaurant_id);
-        $countReservations = Reservation::where('restaurant_id', $restaurant->id)->count();
+        $countReservationTables = Reservation::where('restaurant_id', $restaurant->id)->sum('number_of_tables');
 
-        if($countReservations == $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available']);
-        else
-        {
-            $reservation = new Reservation;
-            $reservation->restaurant_id = $restaurant_id;
-            $reservation->customer_id = $customer->id;
-            $reservation->date = $request->date;
-            $reservation->time = $request->time;
-            $reservation->count = $request->count;
-            $reservation->save();
+        $seats_per_table = floor($restaurant->number_of_seats / $restaurant->number_of_tables);
+        $reservation_number_of_tables = ceil($request->count/$seats_per_table);
 
-            return response()->json(['status' => 'success', 'message' => 'table reserved']);
-        }
+        if($countReservationTables + $reservation_number_of_tables > $restaurant->number_of_tables) return response()->json(['status' => 'failure', 'message' => 'no tables available'], 401);
+       
+        $reservation = new Reservation;
+        $reservation->restaurant_id = $restaurant_id;
+        $reservation->customer_id = $customer->id;
+        $reservation->date = $request->date;
+        $reservation->time = $request->time;
+        $reservation->count = $request->count;
+        $reservation->number_of_tables = $reservation_number_of_tables;
+        $reservation->save();
+
+        return response()->json(['status' => 'success', 'message' => 'table reserved']);
+    
     }
 
     function getReservations()
@@ -227,16 +222,14 @@ class CustomerController extends Controller
         return response()->json(['status' => 'success', 'message' => 'comment added']);
     }
 
-    // function getComments($review_id)
-    // {
-    //     $comment = Comment::where('review_id', $review_id)->get();
-
-    //     if(!$comment) return response()->json('no comment');
+    function getAvailabilities($restaurant_id, $selectedDate)
+    {
+        $time = ['10:00:00', '12:00:00', '14:00:00', '16:00:00', '18:00:00', '20:00:00', '22:00:00', '00:00:00'];
+        $reservedTime = Reservation::where('restaurant_id', $restaurant_id)->where('date', $selectedDate)->whereIn('time', $time)->pluck('time')->toArray();
+        $availableTime = array_diff($time, $reservedTime);
         
-    //     // $comments = Comment::all();
-
-    //     return response()->json(['comment' => $comment]);
-    // }
+        return response()->json(['availabilities' => array_values($availableTime)]);
+    }
 
     function getCustomerCount()
     {}

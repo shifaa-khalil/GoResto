@@ -71,9 +71,9 @@ const CategoryBar = ({ onCategorySelected }) => {
               <Text style={[styles.text]}>Turkish</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("Spanish")}
+              onPress={() => handleCategorySelection("spanish")}
             >
-              <Text style={[styles.text]}>spanish</Text>
+              <Text style={[styles.text]}>Spanish</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
               onPress={() => handleCategorySelection("greek")}

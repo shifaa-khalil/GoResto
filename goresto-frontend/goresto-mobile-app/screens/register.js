@@ -18,7 +18,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
-  
+
   async function saveData(key, value) {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value));
@@ -58,10 +58,9 @@ const Register = () => {
       axios
         .post(`${URL}/api/register/customer`, data)
         .then((response) => {
-          console.log("registered");
           saveData("name", response.data.user.name);
           saveData("token", response.data.authorisation.token);
-          navigation.navigate("Home");
+          window.location.replace("Home");
         })
         .catch((error) => {
           console.error(error);
@@ -102,6 +101,7 @@ const Register = () => {
           title="Password"
           placeHolder="********"
           value={password}
+          secureTextEntry={true}
           onChangeText={(text) => {
             setPassword(text);
             handleChangeText();
@@ -111,6 +111,7 @@ const Register = () => {
           title="Confirm password"
           placeHolder="********"
           value={confirmPassword}
+          secureTextEntry={true}
           onChangeText={(text) => {
             setConfirmPassword(text);
             handleChangeText();

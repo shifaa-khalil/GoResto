@@ -51,6 +51,7 @@ Route::middleware(['customer'])->group(function(){
     Route::get('/filterMenuByCategory/{category}', [CustomerController::class, 'filterMenuByCategory']);
     Route::get('/getReservations', [CustomerController::class, 'getReservations']);
     Route::get('/getReviews/{restaurant_id}', [CustomerController::class, 'getReviews']);
+    Route::get('/getAvailabilities/{restaurant_id}/{date}', [CustomerController::class, 'getAvailabilities']);
     
     Route::middleware('cors')->post('/reserveTable/{restaurant_id}', [CustomerController::class, 'reserveTable']);
     Route::post('/rateRestaurant/{restaurant_id}', [CustomerController::class, 'rateRestaurant']);

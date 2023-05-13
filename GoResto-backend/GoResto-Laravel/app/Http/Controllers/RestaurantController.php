@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use App\Models\User;
 use App\Models\Menu;
 use App\Models\Review;
@@ -16,41 +15,6 @@ use App\Models\Inquiry;
 
 class RestaurantController extends Controller
 {
-    function uploadLogo(Request $request)
-    {
-        $manager = auth()->user();
-
-        $restaurant = Restaurant::where('manager_id', $manager->id)->first();
-
-        // if ($request->hasFile('logo')) {
-            
-        //     $file = $request->file('logo');
-
-
-
-        //     // $fileName = $manager->id . '_' . time() . '.' . $file->getClientOriginalExtension();
-        //     // $file->storeAs('public/logos', $fileName);
-        //     // $logoUrl = url(Storage::url('public/logos/' . $fileName));
-    
-        //     // $restaurant->logo = $logoUrl;
-        //     // $restaurant->save();
-
-        //     return response()->json(['status' => 'success', 'message' => $logoUrl]);
-
-        if ($request->hasFile('logo')) {
-            $request->validate([
-                'logo' => 'mimes:jpg,png,jpeg|max:6000'
-            ]);
-            $file = $request->file('logo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move(public_path('storage/logos/'), $filename);
-        
-        } else {
-            return response()->json(['status' => 'failure', 'message' => 'No file uploaded.'], 400);
-        }
-    }
-
     function addRestaurant(Request $request)
     {
         $manager = auth()->user();
@@ -64,7 +28,6 @@ class RestaurantController extends Controller
                 $request->validate(['name' => 'unique:restaurants']);
             } catch (\Illuminate\Validation\ValidationException $e){
                 return response()->json(['status' => 'failure', 'message' => 'taken'], 400);
-                // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
             }
             if ($request->hasFile('logo')) {
                 $request->validate([
@@ -77,7 +40,6 @@ class RestaurantController extends Controller
             
             $restaurant = new Restaurant;
             $restaurant->name = $request->name;
-            // $logo = $this->uploadLogo($request);
             $restaurant->logo = 'http://localhost:8000/storage/logos/' . $filename;
             $restaurant->location = $request->location;
             $restaurant->number_of_tables = $request->number_of_tables;
@@ -117,7 +79,6 @@ class RestaurantController extends Controller
             $request->validate([ 'name' => 'unique:menu_items,name,NULL,id,menu_id,' . $menu_id]);
         } catch (\Illuminate\Validation\ValidationException $e){
             return response()->json(['status' => 'failure', 'message' => 'item already exists'], 400);
-            // return redirect()->back()->withInput()->withErrors(['name'=>'name taken']);
         }      
 
         if ($request->hasFile('image')) {

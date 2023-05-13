@@ -13,7 +13,7 @@ class Reservation extends Model
         'date',
         'time',
         'count', //seats
-        // 'number_of_tables',
+        'number_of_tables',
     ];
 
     public function user(){

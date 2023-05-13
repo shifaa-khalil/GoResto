@@ -15,50 +15,40 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const validateForm = () => {
-    let isValid = true;
-    if (!email || !password) {
-      setError("All fields are required");
-      isValid = false;
-    }
-    return isValid;
-  };
-
   const handleInputChange = (event) => {
-    setError(event.target.value);
-    if (validateForm) {
-      setError("");
-    }
+    if (error === "") return;
+    if (email || password) setError("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      const data = { email, password };
-      try {
-        const response = await axios.post(
-          `http://127.0.0.1:8000/api/login/manager`,
-          data
-        );
-        localStorage.setItem("role", response.data.user.role);
-        localStorage.setItem("name", response.data.user.name);
-        localStorage.setItem("token", response.data.authorisation.token);
-        localStorage.setItem("restaurant", response.data.restaurant);
 
-        if (response.data.restaurant == null) navigate("/setup");
-        else if (response.data.restaurant.approved === 0) navigate("/pending");
-        else navigate("/dashboard");
-      } catch (error) {
-        console.error(error);
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.status === "failure" &&
-          error.response.data.message === "no access"
-        )
-          submitAdmin();
-        else setError("Email/Password is wrong");
-      }
+    if (!email || !password) return setError("All fields are required");
+
+    const data = { email, password };
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/login/manager`,
+        data
+      );
+      localStorage.setItem("role", response.data.user.role);
+      localStorage.setItem("name", response.data.user.name);
+      localStorage.setItem("token", response.data.authorisation.token);
+      localStorage.setItem("restaurant", response.data.restaurant);
+
+      if (response.data.restaurant == null) navigate("/setup");
+      else if (response.data.restaurant.approved === 0) navigate("/pending");
+      else navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.status === "failure" &&
+        error.response.data.message === "no access"
+      )
+        submitAdmin();
+      else setError("Email/Password is wrong");
     }
   };
 

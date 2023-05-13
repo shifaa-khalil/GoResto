@@ -14,8 +14,6 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState("");
-  const [name, setName] = useState("");
 
   const navigation = useNavigation();
 
@@ -50,9 +48,7 @@ const Signin = () => {
         .then((response) => {
           saveData("name", response.data.user.name);
           saveData("token", response.data.authorisation.token);
-          navigation.navigate("Home");
-
-          console.log("loggedin");
+          window.location.replace("Home");
         })
         .catch((error) => {
           console.error(error);
@@ -85,6 +81,7 @@ const Signin = () => {
           title="Password"
           placeHolder="********"
           value={password}
+          secureTextEntry={true}
           onChangeText={(text) => {
             setPassword(text);
             handleChangeText();

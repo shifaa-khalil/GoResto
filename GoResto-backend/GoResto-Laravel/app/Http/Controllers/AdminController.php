@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Auth;
-// use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\RestoRequest;
 use App\Models\Restaurant;
@@ -14,11 +12,6 @@ use App\Models\Inquiry;
 
 class AdminController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
-
     function getRequests()
     {
         $restoRequests = RestoRequest::with(['restaurant', 'restaurant.menu', 'restaurant.menu.menuItem'])->get();
@@ -100,7 +93,6 @@ class AdminController extends Controller
             $restaurant->delete();
         }
         $user->delete();
-
 
         return response()->json(['status' => 'success', 'message' => 'user deleted']);
     }

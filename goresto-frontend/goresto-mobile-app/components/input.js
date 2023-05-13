@@ -10,6 +10,7 @@ const Input = ({
   maxLength,
   multiline,
   numberOfLines,
+  secureTextEntry,
 }) => {
   return (
     <View style={[styles.inputContainer]}>
@@ -19,6 +20,7 @@ const Input = ({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeHolder}
+        secureTextEntry={secureTextEntry}
         maxLength={maxLength}
         multiline={multiline}
         numberOfLines={numberOfLines}

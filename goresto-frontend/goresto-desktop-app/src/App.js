@@ -33,6 +33,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log("token", token);
     const role = localStorage.getItem("role");
     const restaurant = localStorage.getItem("restaurant");
 

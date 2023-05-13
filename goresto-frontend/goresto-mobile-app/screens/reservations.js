@@ -41,7 +41,7 @@ const Reservations = () => {
   }, []);
 
   useEffect(() => {
-    setRefreshing(true);
+    // setRefreshing(true);
     if (token !== "") {
       axios
         .get(`${URL}/api/getReservations`, {
@@ -51,14 +51,14 @@ const Reservations = () => {
         })
         .then((response) => {
           setReservations(response.data.reservations);
-          setRefreshing(false);
+          // setRefreshing(false);
           setIsLoading(false);
         })
         .catch((error) => {
           console.log(error);
         });
     } else console.log("no token");
-  }, [refreshing, token]);
+  }, [token]);
 
   const handleCancel = () => {
     setQuestionVisible(false);
@@ -69,12 +69,13 @@ const Reservations = () => {
         },
       })
       .then((response) => {
-        setRefreshing(true);
+        // setRefreshing(true);
+        window.location.replace("Reservations");
       })
       .catch((error) => {
         console.log(error);
       });
-    setRefreshing(false);
+    // setRefreshing(false);
   };
 
   return (
@@ -125,10 +126,10 @@ const Reservations = () => {
           <View style={styles.modalContainer}>
             <Text style={styles.modalText}>Are you sure?</Text>
             <TouchableOpacity onPress={handleCancel}>
-              <Text style={styles.modalText}>yes</Text>
+              <Text style={[styles.modalText, styles.modalLink]}>yes</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setQuestionVisible(false)}>
-              <Text style={styles.modalText}>cancel</Text>
+              <Text style={[styles.modalText, styles.modalLink]}>cancel</Text>
             </TouchableOpacity>
           </View>
         </Modal>
@@ -173,6 +174,9 @@ const styles = StyleSheet.create({
   },
   modalText: {
     color: "white",
+  },
+  modalLink: {
+    textDecorationLine: "underline",
   },
 });
 

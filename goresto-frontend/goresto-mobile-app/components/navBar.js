@@ -53,7 +53,7 @@ const NavBar = () => {
         onPress={() => {
           removeData("name");
           removeData("token");
-          navigation.navigate("Signin");
+          window.location.replace("Home");
         }}
       >
         Sign out
