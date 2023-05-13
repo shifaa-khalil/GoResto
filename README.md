@@ -83,9 +83,6 @@
 | ![Restaurants](./readme/readme/demo/restaurants.gif) | ![Chats](./readme/readme/demo/chats.gif)            | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/menu.gif)               |
 | Ratings & Reviews screen                             | Rating Form screen                                  | Reserving Form screen                                    | Reservations screen                                  |
 | ![Ratings](./readme/readme/demo/ratings.gif)         | ![Rating](./readme/readme/demo/rating.gif)          | ![Reserving](./readme/readme/demo/restaurant.gif)        | ![Reservings](./readme/readme/demo/reservations.gif) |
-| Chats screen                                         |
-
-| ![Ratings](./readme/readme/demo/chats.gif)
 
 ### Manager Screens (Web)
 
