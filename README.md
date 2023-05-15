@@ -78,10 +78,10 @@
 | Login screen                                 | Register screen                                                        | Requests screen                                                |
 | -------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | ![Login](./readme/readme/demo/login.png)     | ![Register](./readme/readme/demo/register.png)                         | ![Requests](./readme/readme/demo/requestsAdmin.gif)            |
-| Removing User                                | Filtering Restaurants                                                  | Removing Restaurant Screen                                     |
+| Removing User                                | Filtering Restaurants                                                  | Removing Restaurant                                            |
 | ![Users](./readme/readme/demo/userAdmin.gif) | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Removing Restaurant](./readme/readme/demo/removingResto.gif) |
-| Displaying menu                              | Filtering Restaurants                                                  | Removing Restaurant Screen                                     |
-| ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Users](./readme/readme/demo/users.png)                       |
+| Displaying menu                              | Filtering Inquiries                                                    |
+| ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif)             |
 
 <br><br>
 
