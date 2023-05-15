@@ -75,11 +75,13 @@
 
 ### Admin Screens (Web)
 
-| Login screen                                           | Register screen                                      | Requests screen                                |
-| ------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------- |
-| ![Login](./readme/readme/demo/login.png)               | ![Register](./readme/readme/demo/register.png)       | ![Requests](./readme/readme/demo/requests.png) |
-| Reservations screen                                    | Restaurants Screen                                   | Users Screen                                   |
-| ![Reservations](./readme/readme/demo/reservations.png) | ![restaurants](./readme/readme/demo/restaurants.png) | ![Users](./readme/readme/demo/users.png)       |
+| Login screen                                 | Register screen                                                        | Requests screen                                                |
+| -------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
+| ![Login](./readme/readme/demo/login.png)     | ![Register](./readme/readme/demo/register.png)                         | ![Requests](./readme/readme/demo/requestsAdmin.gif)            |
+| Removing User                                | Filtering Restaurants                                                  | Removing Restaurant Screen                                     |
+| ![Users](./readme/readme/demo/userAdmin.gif) | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Removing Restaurant](./readme/readme/demo/removingResto.gif) |
+| Displaying menu                              | Filtering Restaurants                                                  | Removing Restaurant Screen                                     |
+| ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Users](./readme/readme/demo/users.png)                       |
 
 <br><br>
 
@@ -112,9 +114,9 @@ To install GoResto locally:
 
 1. Open any terminal (like command prompt or vs terminal) and navigate to where you want to install the project
 
-```sh
-run cd folder-name
-```
+   ```sh
+   run cd folder-name
+   ```
 
 2. Clone the repo
    ```sh
@@ -128,38 +130,38 @@ run cd folder-name
 
 4. Run the web app
 
-```sh
-  npm start
-```
+   ```sh
+   npm start
+   ```
 
 5. Make sure you have Node.js installed on your computer by visiting the official website
 
-```sh
-https://nodejs.org/en/download
-```
+   ```sh
+   https://nodejs.org/en/download
+   ```
 
 6. Navigate to the mobile app folder and install NPM packages
 
-```sh
+   ```sh
    npm install
-```
+   ```
 
 7. Install expo
 
-```sh
+   ```sh
    npm install -g expo-cli
-```
+   ```
 
 8. Run the mobile app
 
-```sh
+   ```sh
    expo start
-```
+   ```
 
 9. Run it on the web
 
-```sh
+   ```sh
    press w
-```
+   ```
 
-Now, you should be able to run GoResto (desktop app and mobile app) locally and explore its features.
+Now, you should be able to run GoResto (web app and mobile app) locally and explore its features.
