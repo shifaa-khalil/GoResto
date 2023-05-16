@@ -79,7 +79,7 @@
 
 ### Admin Screens (Web)
 
-| Reservations screen                      | Register screen                                |
+| Login screen                             | Register screen                                |
 | ---------------------------------------- | ---------------------------------------------- |
 | ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
 
@@ -123,7 +123,7 @@ To install GoResto locally:
 1. Open any terminal (like command prompt or vs terminal) and navigate to where you want to install the project
 
    ```sh
-   run cd folder-name
+   cd folder-name
    ```
 
 2. Clone the repo
@@ -174,22 +174,22 @@ To install GoResto locally:
 
 10. Run the server in Laravel
 
-a. Visit https://getcomposer.org/download/ to install Composer then run the below command to install the dependencies
+    a. Visit https://getcomposer.org/download/ to install Composer then run the below command to install the dependencies
 
-      ```sh
-      expo start
-      ```
+    ```sh
+    expo start
+    ```
 
-b. Migrate to the database
+    b. Migrate to the database
 
-      ```sh
-      php artisan migrate
-      ```
+    ```sh
+    php artisan migrate
+    ```
 
-a. Run the server
+    c. Run the server
 
-      ```sh
-      php artisan serve
-      ```
+    ```sh
+    php artisan serve
+    ```
 
 Now, you should be able to run GoResto (web app and mobile app) locally and explore its features.
