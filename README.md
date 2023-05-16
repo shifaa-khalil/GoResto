@@ -63,25 +63,31 @@
 
 ### Manager Screens (Web)
 
-| Login screen                                              | Register screen                                 | Home screen                                       |
-| --------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------- |
-| ![Login](./readme/readme/demo/login.png)                  | ![Register](./readme/readme/demo/register.png)  | ![Dashboard](./readme/readme/demo/dashboard.png)  |
-| Reservations screen                                       | Menu Screen                                     | Add Menu Item Screen                              |
-| ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif)       | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
-| Chats screen                                              | Inquiry Screen                                  | About Screen                                      |
-| ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif)      |
-| Setup screen                                              | Pending Screen Screen                           |
-| ![Setup](./readme/readme/demo/setup.png)                  | ![Pending](./readme/readme/demo/pending.png)    |
+| Login screen                             | Register screen                                | Home screen                                      |
+| ---------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
+| ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) | ![Dashboard](./readme/readme/demo/dashboard.png) |
+| Setup screen                             | Pending Screen Screen                          |
+| ![Setup](./readme/readme/demo/setup.png) | ![Pending](./readme/readme/demo/pending.png)   |
+
+### Manager Screens /Animated (Web)
+
+| Reservations screen | Menu Screen | Add Menu Item Screen |
+| ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif) | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
+| Chats screen | Inquiry Screen | About Screen |
+| ![Chats](./readme/readme/demo/webChats.gif) | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif) |
 
 ### Admin Screens (Web)
 
-| Login screen                                 | Register screen                                                        | Requests screen                                                |
-| -------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
-| ![Login](./readme/readme/demo/login.png)     | ![Register](./readme/readme/demo/register.png)                         | ![Requests](./readme/readme/demo/requestsAdmin.gif)            |
-| Removing User                                | Filtering Restaurants                                                  | Removing Restaurant                                            |
+| Login screen                             | Register screen                                |     |
+| ---------------------------------------- | ---------------------------------------------- | --- |
+| ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
+
+### Admin Screens /Animated (Web)
+
+| Removing User | Filtering Restaurants | Removing Restaurant |
 | ![Users](./readme/readme/demo/userAdmin.gif) | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Removing Restaurant](./readme/readme/demo/removingResto.gif) |
-| Displaying menu                              | Filtering Inquiries                                                    |
-| ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif)             |
+| Displaying menu | Filtering Inquiries | Requests screen
+| ![Menu](./readme/readme/demo/menuAdmin.gif) | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif) | ![Requests](./readme/readme/demo/requestsAdmin.gif) |
 
 <br><br>
 
