@@ -71,14 +71,15 @@
 
 ### Manager Screens /Animated (Web)
 
-| Reservations screen | Menu Screen | Add Menu Item Screen |
-| ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif) | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
-| Chats screen | Inquiry Screen | About Screen |
-| ![Chats](./readme/readme/demo/webChats.gif) | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif) |
+| Reservations screen                                       | Menu Screen                                     | Add Menu Item Screen                              |
+| --------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------- |
+| ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif)       | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
+| Chats screen                                              | Inquiry Screen                                  | About Screen                                      |
+| ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif)      |
 
 ### Admin Screens (Web)
 
-| Login screen                             | Register screen                                |     |
+| Reservations screen                      | Register screen                                |     |
 | ---------------------------------------- | ---------------------------------------------- | --- |
 | ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
 
