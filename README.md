@@ -79,16 +79,17 @@
 
 ### Admin Screens (Web)
 
-| Reservations screen                      | Register screen                                |     |
-| ---------------------------------------- | ---------------------------------------------- | --- |
+| Reservations screen                      | Register screen                                |
+| ---------------------------------------- | ---------------------------------------------- |
 | ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
 
 ### Admin Screens /Animated (Web)
 
-| Removing User | Filtering Restaurants | Removing Restaurant |
+| Removing User                                | Filtering Restaurants                                                  | Removing Restaurant                                            |
+| -------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | ![Users](./readme/readme/demo/userAdmin.gif) | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Removing Restaurant](./readme/readme/demo/removingResto.gif) |
-| Displaying menu | Filtering Inquiries | Requests screen
-| ![Menu](./readme/readme/demo/menuAdmin.gif) | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif) | ![Requests](./readme/readme/demo/requestsAdmin.gif) |
+| Displaying menu                              | Filtering Inquiries                                                    | Requests screen                                                |
+| ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif)             | ![Requests](./readme/readme/demo/requestsAdmin.gif)            |
 
 <br><br>
 
