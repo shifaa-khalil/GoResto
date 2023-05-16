@@ -38,7 +38,7 @@ td {
   padding-left: 10px;
 }
 th {
-  background-color: rgba(133, 128, 128, 0.719);
+  background-color: black;
   font-size: 14px;
 }
 td {
@@ -79,7 +79,7 @@ td {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(136, 132, 132);
+  background-color: black;
 }
 .buttons {
   width: 480px;
@@ -127,4 +127,7 @@ td {
 }
 .disabled {
   pointer-events: none;
+}
+.capital {
+  text-transform: capitalize;
 }

@@ -1,13 +1,22 @@
 .form {
-  margin: 40px 0;
+  margin: 55px 0;
+  width: 450px;
 }
 .formButton {
   height: 35px;
-  width: 120px;
+  width: 150px;
   font-size: 22px;
+  align-self: center;
 }
 .error {
   background-color: var(--red);
+  color: white;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 8px;
+}
+.success {
+  background-color: var(--yellow);
   color: white;
   width: fit-content;
   padding: 5px;
@@ -21,8 +30,6 @@
   width: 75%;
 }
 .body {
-  text-align: center;
-  margin-top: 180px;
   font-size: 25px;
   padding-right: 60px;
 }
@@ -32,21 +39,9 @@
 input[type="file"] {
   font-size: 15px;
 }
-.parent {
-  position: relative;
+.open {
+  box-shadow: 10px 0 0 var(--red);
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 85%;
-  background-color: rgba(255, 255, 255, 0.692);
-}
-.disabled {
-  pointer-events: none;
-}
-a {
-  text-decoration: underline;
-  color: var(--red);
+.capital {
+  text-transform: capitalize;
 }

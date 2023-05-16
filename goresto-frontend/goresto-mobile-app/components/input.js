@@ -11,6 +11,7 @@ const Input = ({
   multiline,
   numberOfLines,
   secureTextEntry,
+  autoCapitalize,
 }) => {
   return (
     <View style={[styles.inputContainer]}>
@@ -24,6 +25,7 @@ const Input = ({
         maxLength={maxLength}
         multiline={multiline}
         numberOfLines={numberOfLines}
+        autoCapitalize={autoCapitalize}
       />
     </View>
   );

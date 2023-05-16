@@ -38,3 +38,6 @@
 .input {
   width: 300px;
 }
+.capital {
+  text-transform: capitalize;
+}

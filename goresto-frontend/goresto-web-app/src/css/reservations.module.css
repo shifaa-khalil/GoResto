@@ -45,7 +45,7 @@ td {
   padding-left: 10px;
 }
 th {
-  background-color: grey;
+  background-color: black;
   font-size: 14px;
 }
 td {
@@ -67,5 +67,5 @@ td {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(136, 132, 132);
+  background-color: black;
 }

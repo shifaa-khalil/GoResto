@@ -131,7 +131,7 @@ const About = () => {
               type="text"
               value={location}
               placeholder="city-street"
-              className={styles.input}
+              className={`${styles.input} ${styles.capital}`}
               onChange={(e) => {
                 setLocation(e.target.value);
                 handleInputChange(e);

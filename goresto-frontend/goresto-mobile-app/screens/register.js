@@ -87,6 +87,7 @@ const Register = () => {
             setName(text);
             handleChangeText();
           }}
+          autoCapitalize="words"
         />
         <Input
           title="Email"

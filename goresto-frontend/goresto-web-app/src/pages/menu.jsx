@@ -258,7 +258,7 @@ const Menu = () => {
             type="text"
             value={name}
             placeholder="type here"
-            className={styles.input}
+            className={`${styles.input} ${styles.capital}`}
             onChange={(e) => {
               setName(e.target.value);
               handleInputChange(e);

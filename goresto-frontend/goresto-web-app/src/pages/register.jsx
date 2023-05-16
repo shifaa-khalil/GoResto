@@ -77,7 +77,7 @@ const Register = () => {
             label="Name"
             value={name}
             placeholder="John Doe"
-            className={styles.input}
+            className={`${styles.input} ${styles.capital}`}
             onChange={(e) => {
               setName(e.target.value);
               handleInputChange(e);
