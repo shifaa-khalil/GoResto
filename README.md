@@ -5,25 +5,25 @@
 <!-- project philosophy -->
 <img src="./readme/readme/title2.svg"/>
 
-> A platform for restaurants to add their restaurants and manage their statistics, and a mobile app for customers to discover restaurants and reserve a table in a certain restaurant.
+> A platform for business owners to list their restaurants and manage their statistics, and a mobile app for customers to discover restaurants and reserve a table in a certain restaurant.
 
 ### Customer Stories
 
-- As a customer, I want to be able to filter by location, price, category and rating to choose a restaurant according to my preferences.
-- As a customer, I want to be able to check ratings, reviews and comments, and comment on others reviews so that I can ask them more detailed questions about their experience in a certain restaurant.
-- As a customer, I want to be able to reserve a table so that I make sure there is a vacancy before going.
+- As a customer, I want to be able to filter by location, price, category, and rating to choose a restaurant according to my preferences.
+- As a customer, I want to be able to check ratings, reviews, and comments, and comment on others' reviews so that I can ask them more detailed questions about their experience at a specific restaurant.
+- As a customer, I want to be able to reserve a table to ensure there is availability before visiting.
 
 ### Manager Stories
 
-- As a restaurant manager, I want to be able to add my restaurant and menu so that I get more famous.
+- As a restaurant manager, I want to be able to add my restaurant and menu to increase its popularity.
 - As a restaurant manager, I want to be able to remove an item from the menu that is no longer served in my restaurant.
-- As a restaurant manager, I want to be able to display reservations and restaurant statistics.
+- As a restaurant manager, I want to be able to view reservations and restaurant statistics.
 
 ### Admin Stories
 
-- As an admin, I want to be able to approve and reject adding new restaurants.
+- As an admin, I want to be able to approve or reject requests to add new restaurants.
 - As an admin, I want to be able to remove a restaurant.
-- As an admin, I want to be able to use the support system that allows me to manage restaurant inquiries and issues.
+- As an admin, I want to be able to use the support system to manage restaurant inquiries and issues.
 
 <br><br>
 
@@ -49,7 +49,7 @@
 <!-- Implementation -->
 <img src="./readme/readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, I implemented the GoResto app with the following features:
+> Using the wireframes and mockups as a guide, I implemented GoResto app with the following features:
 
 ### User Screens (Mobile)
 
@@ -171,5 +171,25 @@ To install GoResto locally:
    ```sh
    press w
    ```
+
+10. Run the server in Laravel
+
+a. Visit https://getcomposer.org/download/ to install Composer then run the below command to install the dependencies
+
+      ```sh
+      expo start
+      ```
+
+b. Migrate to the database
+
+      ```sh
+      php artisan migrate
+      ```
+
+a. Run the server
+
+      ```sh
+      php artisan serve
+      ```
 
 Now, you should be able to run GoResto (web app and mobile app) locally and explore its features.
