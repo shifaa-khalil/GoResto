@@ -63,8 +63,8 @@
 
 ### Manager Screens (Web)
 
-| Login screen                             | Register screen                                |
-| ---------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
+| Login screen                             | Register screen                                
+| ---------------------------------------- | ---------------------------------------------- 
 | ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
 | Setup screen                             | Pending Screen Screen                          | Home screen                                      |
 | ![Setup](./readme/readme/demo/setup.png) | ![Pending](./readme/readme/demo/pending.png)   | ![Dashboard](./readme/readme/demo/dashboard.png) |
