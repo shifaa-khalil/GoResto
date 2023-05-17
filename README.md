@@ -76,6 +76,8 @@
 | ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif)       | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
 | Chats screen                                              | Inquiry Screen                                  | About Screen                                      |
 | ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif)      |
+| Choosing Location                                         |
+| ![Map](./readme/readme/demo/map.gif)                      |
 
 ### Admin Screens /Animated (Web)
 
