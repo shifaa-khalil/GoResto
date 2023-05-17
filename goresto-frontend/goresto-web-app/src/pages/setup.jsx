@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 import "../App.css";
 import NavBar2 from "../components/navBar2";
@@ -46,13 +47,21 @@ const Setup = () => {
     if (token) {
       if (validateForm()) {
         const data = new FormData();
-        data.append("name", name);
+        const inputValue = "example text";
+        data.append(
+          "name",
+          name.replace(/\b\w/g, (char) => char.toUpperCase())
+        );
         data.append("location", location);
         data.append("number_of_tables", tables);
         data.append("number_of_seats", seats);
         data.append("logo", logo);
         data.append("deposit", deposit);
         data.append("phone_number", phoneNumber);
+        data.append(
+          "address",
+          address.replace(/\b\w/g, (char) => char.toUpperCase())
+        );
 
         axios
           .post(`http://127.0.0.1:8000/api/addRestaurant`, data, {
@@ -67,25 +76,41 @@ const Setup = () => {
           })
           .catch((error) => {
             console.error(error);
-            if (
-              error.response &&
-              error.response.data &&
-              error.response.data.status === "failure" &&
-              error.response.data.message === "taken"
-            )
+            if (error.response.data.message === "taken")
               setError("Name is taken");
             else if (
-              error.response &&
-              error.response.data &&
-              error.response.data.status === "failure" &&
               error.response.data.message ===
-                "you already added a restaurant on this account"
+              "you already added a restaurant on this account"
             )
               setError("You already added a restaurant on this account");
           });
       }
     } else navigate("/signin");
   };
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  });
+
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [address, setAddress] = useState("");
+
+  const handleMapClick = (event) => {
+    const { latLng } = event;
+    const latitude = latLng.lat();
+    const longitude = latLng.lng();
+    setSelectedLocation({ lat: latitude, lng: longitude });
+    console.log(selectedLocation);
+    setIsOpen(false);
+    setLocation(`${latitude}, ${longitude}`);
+  };
+
+  const handleInputClick = () => {
+    setIsOpen(true);
+  };
+
+  const center = useMemo(() => ({ lat: 33.890003, lng: 35.508635 }), []);
 
   return (
     <div className={styles.container}>
@@ -98,99 +123,132 @@ const Setup = () => {
       </div>
       <div className={`flex-column ${styles.sectionContainer}`}>
         <NavBar2 sectionName="Setup" className="hidden" />
-        <div className={`flexcolumn ${styles.form}`}>
-          {error && <p className={styles.error}>{error}</p>}
-          <Input
-            label="Enter the name of your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={name}
-            placeholder="type here"
-            className={styles.input}
-            onChange={(e) => {
-              setName(e.target.value);
-              handleInputChange(e);
-            }}
-            autoCapitalize="words"
-          />
-          <Input
-            label="Upload the logo of your restaurant"
-            labelClassName="semibold"
-            type="file"
-            placeholder="file name"
-            className={styles.input}
-            onChange={(e) => {
-              setLogo(e.target.files[0]);
-              handleFileChange(e);
-            }}
-          />
-          <Input
-            label="Add the location of your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={location}
-            placeholder="city-street"
-            className={`${styles.input} ${styles.capital}`}
-            onChange={(e) => {
-              setLocation(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-          <Input
-            label="Add the phone number of your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={phoneNumber}
-            placeholder="00-000-000"
-            className={styles.input}
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-          <Input
-            label="Enter the number of tables in your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={tables}
-            placeholder="eg. 15"
-            className={styles.input}
-            onChange={(e) => {
-              setTables(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-          <Input
-            label="Add the number of seats in your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={seats}
-            placeholder="eg. 15"
-            className={styles.input}
-            onChange={(e) => {
-              setSeats(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-
-          <Input
-            label="Add the average lunch cost per person in your restaurant"
-            labelClassName="semibold"
-            type="text"
-            value={deposit}
-            placeholder="eg. 40"
-            className={styles.input}
-            onChange={(e) => {
-              setDeposit(e.target.value);
-              handleInputChange(e);
-            }}
-          />
-          <MyButton
-            className={styles.formButton}
-            label="Submit"
-            onClick={(event) => handleSubmit(event)}
-          />
-        </div>
+        {isOpen ? (
+          <div className="map">
+            {!isLoaded ? (
+              <h1>Loading...</h1>
+            ) : (
+              <GoogleMap
+                mapContainerClassName="map-container"
+                center={center}
+                zoom={10}
+                onClick={handleMapClick}
+              >
+                {selectedLocation && <Marker position={selectedLocation} />}
+              </GoogleMap>
+            )}
+          </div>
+        ) : (
+          <div className={`flexcolumn ${styles.form}`}>
+            {error && <p className={styles.error}>{error}</p>}
+            <Input
+              label="Enter the name of your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={name}
+              placeholder="type here"
+              className={styles.input}
+              inputClassName={styles.capital}
+              onChange={(e) => {
+                setName(e.target.value);
+                handleInputChange(e);
+              }}
+              // autoCapitalize="words"
+            />
+            <Input
+              label="Upload the logo of your restaurant"
+              labelClassName="semibold"
+              type="file"
+              placeholder="file name"
+              className={styles.input}
+              onChange={(e) => {
+                setLogo(e.target.files[0]);
+                handleFileChange(e);
+              }}
+            />
+            <Input
+              label="Add the location of your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={location}
+              placeholder="no location chosen"
+              className={styles.input}
+              onChange={(e) => {
+                setLocation(e.target.value);
+                handleInputChange(e);
+              }}
+              onClick={handleInputClick}
+              readOnly={true}
+            />
+            <Input
+              label="Add the address to be displayed"
+              labelClassName="semibold"
+              type="text"
+              value={address}
+              placeholder="city-street"
+              className={styles.input}
+              inputClassName={styles.capital}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Add the phone number of your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={phoneNumber}
+              placeholder="00-000-000"
+              className={styles.input}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+                handleInputChange(e);
+              }}
+              maxLength={8}
+            />
+            <Input
+              label="Enter the number of tables in your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={tables}
+              placeholder="eg. 15"
+              className={styles.input}
+              onChange={(e) => {
+                setTables(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Add the number of seats in your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={seats}
+              placeholder="eg. 15"
+              className={styles.input}
+              onChange={(e) => {
+                setSeats(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <Input
+              label="Add the average lunch cost per person in your restaurant"
+              labelClassName="semibold"
+              type="text"
+              value={deposit}
+              placeholder="eg. 40"
+              className={styles.input}
+              onChange={(e) => {
+                setDeposit(e.target.value);
+                handleInputChange(e);
+              }}
+            />
+            <MyButton
+              className={styles.formButton}
+              label="Submit"
+              onClick={(event) => handleSubmit(event)}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

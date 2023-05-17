@@ -46,7 +46,12 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      const data = { name, email, password, confirmPassword };
+      const data = {
+        name: name.replace(/\b\w/g, (char) => char.toUpperCase()),
+        email,
+        password,
+        confirmPassword,
+      };
       axios
         .post(`http://127.0.0.1:8000/api/register/manager`, data)
         .then((response) => {

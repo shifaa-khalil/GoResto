@@ -9,9 +9,30 @@
   border-radius: 8px;
   background-color: white;
   font-size: 20px;
-  padding-left: 20px;
+  padding: 0 20px;
+}
+.input:focus {
+  outline: none;
 }
 .label {
   font-size: 20px;
   margin-bottom: 10px;
+}
+.miniInput {
+  height: 30px;
+  flex-basis: 77%;
+  border: none;
+  font-size: 20px;
+}
+.miniInput:focus {
+  outline: none;
+}
+.button {
+  height: 30px;
+  width: 80px;
+  border-radius: 8px;
+  background-color: var(--yellow);
+  border: none;
+  color: white;
+  cursor: pointer;
 }
