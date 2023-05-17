@@ -131,3 +131,23 @@ td {
 .capital {
   text-transform: capitalize;
 }
+.dropDownList {
+  height: 40px;
+  width: 500px;
+  border: 1px solid var(--red);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  background-color: white;
+  font-size: 20px;
+  padding: 0 20px;
+}
+.dropDownList:focus {
+  outline: none;
+}
+.selectContainer {
+  margin-bottom: 20px;
+}
+.label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}

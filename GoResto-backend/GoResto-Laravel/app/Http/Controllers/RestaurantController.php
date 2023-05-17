@@ -12,6 +12,7 @@ use App\Models\Restaurant;
 use App\Models\RestoRequest;
 use App\Models\Reservation;
 use App\Models\Inquiry;
+use App\Models\Cuisine;
 
 class RestaurantController extends Controller
 {
@@ -234,5 +235,12 @@ class RestaurantController extends Controller
         $customers = User::where('name', 'like', '%'.$q.'%')->where('role', 'customer')->get();
         
         return response()->json(['customers' => $customers]);
+    }
+
+    function getCuisines()
+    {        
+        $cuisines = Cuisine::all();
+
+        return response()->json(['cuisines' => $cuisines]);
     }
 }

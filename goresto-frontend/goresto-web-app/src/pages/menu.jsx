@@ -25,10 +25,11 @@ const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState("enabled");
+  const [cuisines, setCuisines] = useState([]);
 
   const validateForm = () => {
     let isValid = true;
-    if (!name || !image || !description || !price) {
+    if (!name || !image || !description || !price || !category) {
       setError("All fields are required");
       isValid = false;
     }
@@ -78,11 +79,17 @@ const Menu = () => {
     if (token) {
       if (validateForm()) {
         const data = new FormData();
-        data.append("name", name);
+        data.append(
+          "name",
+          name.replace(/\b\w/g, (char) => char.toUpperCase())
+        );
         data.append("image", image);
         data.append("description", description);
         data.append("price", price);
-        data.append("category", category);
+        data.append(
+          "category",
+          category.replace(/\b\w/g, (char) => char.toUpperCase())
+        );
         data.append("cuisine", cuisine);
 
         axios
@@ -98,7 +105,7 @@ const Menu = () => {
             setDescription("");
             setPrice("");
             setCategory("");
-            setCuisine("");
+            setCuisine("American");
             setSuccess("Item added successfully!");
             setError("");
             // setMenuItems(menuItems + 1);
@@ -164,6 +171,22 @@ const Menu = () => {
         });
     } else navigate("/signin");
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/api/getCuisinesResto`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setCuisines(response.data.cuisines);
+        console.log(response.data.cuisines);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [token]);
 
   return (
     <div className={styles.container}>
@@ -311,7 +334,7 @@ const Menu = () => {
               handleInputChange(e);
             }}
           />
-          <Input
+          {/* <Input
             label="Cuisine"
             labelClassName="semibold"
             type="text"
@@ -322,7 +345,16 @@ const Menu = () => {
               setCuisine(e.target.value);
               handleInputChange(e);
             }}
-          />
+          /> */}
+          <div className={`flex-column ${styles.selectContainer}`}>
+            <label className={`semibold ${styles.label}`}>Cuisine</label>
+            <select
+              className={styles.dropDownList}
+              onChange={(e) => setCuisine(e.target.value)}
+            >
+              {cuisines && cuisines.map((c) => <option>{c.name}</option>)}
+            </select>
+          </div>
           <div className={`flex-row ${styles.buttons}`}>
             <MyButton
               className={styles.formButton}
