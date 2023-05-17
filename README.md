@@ -34,15 +34,15 @@
 
 ### Wireframes
 
-| Landing screen                                        | Register screen                                         | Login screen                                      |
+| Landing Screen                                        | Register Screen                                         | Login Screen                                      |
 | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------- |
 | ![Landing](./readme/readme/demo/landingWireframe.png) | ![Register](./readme/readme/demo/registerWireframe.png) | ![Login](./readme/readme/demo/loginWireframe.png) |
 
 ### Mockups
 
-| Setup screen                                    | Dashboard Screen                                         | Reservations Screen                                          |
-| ----------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| ![Setup](./readme/readme/demo/setupMockups.png) | ![Dashoboard](./readme/readme/demo/dashboardMockups.png) | ![Reservations](./readme/readme/demo/reservationsMockup.png) |
+| Setup Screen                                    | Dashboard Screen                                        | Reservations Screen                                          |
+| ----------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| ![Setup](./readme/readme/demo/setupMockups.png) | ![Dashboard](./readme/readme/demo/dashboardMockups.png) | ![Reservations](./readme/readme/demo/reservationsMockup.png) |
 
 <br><br>
 
@@ -53,28 +53,28 @@
 
 ### User Screens (Mobile)
 
-| Login screen                                         | Register screen                                     | Loading screen                                           | Home screen                                          |
+| Login Screen                                         | Register Screen                                     | Loading Screen                                           | Home Screen                                          |
 | ---------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- |
 | ![Login](./readme/readme/demo/mobileSignin.png)      | ![Regiter](./readme/readme/demo/mobileRegister.png) | ![Loading](./readme/readme/demo/loading.gif)             | ![Home](./readme/readme/demo/home.gif)               |
-| Restaurants screen                                   | Chats Screen                                        | Display Restaurant Screen                                | Menu Screen                                          |
+| Restaurants Screen                                   | Chats Screen                                        | Display Restaurant Screen                                | Menu Screen                                          |
 | ![Restaurants](./readme/readme/demo/restaurants.gif) | ![Chats](./readme/readme/demo/chats.gif)            | ![Restaurant](./readme/readme/demo/mobileRestaurant.png) | ![Menu](./readme/readme/demo/menu.gif)               |
-| Ratings & Reviews screen                             | Rating Form screen                                  | Reserving Form screen                                    | Reservations screen                                  |
+| Ratings & Reviews Screen                             | Rating Form Screen                                  | Reserving Form Screen                                    | Reservations Screen                                  |
 | ![Ratings](./readme/readme/demo/ratings.gif)         | ![Rating](./readme/readme/demo/rating.gif)          | ![Reserving](./readme/readme/demo/restaurant.gif)        | ![Reservings](./readme/readme/demo/reservations.gif) |
 
 ### Manager Screens (Web)
 
-| Login screen                             | Register screen                                | Home screen                                      |
+| Login Screen                             | Register Screen                                | Home Screen                                      |
 | ---------------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
 | ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) | ![Dashboard](./readme/readme/demo/dashboard.png) |
-| Setup screen                             | Pending Screen Screen                          |
+| Setup Screen                             | Pending Screen                                 |
 | ![Setup](./readme/readme/demo/setup.png) | ![Pending](./readme/readme/demo/pending.png)   |
 
 ### Manager Screens /Animated (Web)
 
-| Reservations screen                                       | Menu Screen                                     | Add Menu Item Screen                              |
+| Reservations Screen                                       | Menu Screen                                     | Add Menu Item Screen                              |
 | --------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------- |
 | ![Reservations](./readme/readme/demo/webReservations.gif) | ![Menu](./readme/readme/demo/webMenu.gif)       | ![MenuItem](./readme/readme/demo/addMenuItem.gif) |
-| Chats screen                                              | Inquiry Screen                                  | About Screen                                      |
+| Chats Screen                                              | Inquiry Screen                                  | About Screen                                      |
 | ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif)      |
 | Choosing Location                                         |
 | ![Map](./readme/readme/demo/map.gif)                      |
@@ -84,7 +84,7 @@
 | Removing User                                | Filtering Restaurants                                                  | Removing Restaurant                                            |
 | -------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | ![Users](./readme/readme/demo/userAdmin.gif) | ![Filtering Restaurants](./readme/readme/demo/filteringRestoAdmin.gif) | ![Removing Restaurant](./readme/readme/demo/removingResto.gif) |
-| Displaying menu                              | Filtering Inquiries                                                    | Requests screen                                                |
+| Displaying Menu                              | Filtering Inquiries                                                    | Requests Screen                                                |
 | ![Menu](./readme/readme/demo/menuAdmin.gif)  | ![Filtering Inquiries](./readme/readme/demo/inquiries.gif)             | ![Requests](./readme/readme/demo/requestsAdmin.gif)            |
 
 <br><br>
