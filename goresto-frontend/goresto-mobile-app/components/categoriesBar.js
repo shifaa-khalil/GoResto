@@ -23,67 +23,72 @@ const CategoryBar = ({ onCategorySelected }) => {
         <View style={[styles.barContainer]} numberOfLines={1}>
           <View style={[styles.bar]}>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("chinese")}
+              onPress={() => handleCategorySelection("Chinese")}
             >
               <Text style={[styles.text]}>Chinese</Text>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("french")}
+              onPress={() => handleCategorySelection("French")}
             >
               <Text style={[styles.text]}>French</Text>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("japanese")}
+              onPress={() => handleCategorySelection("Japanese")}
             >
               <Text style={[styles.text]}>Japanese</Text>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("italian")}
+              onPress={() => handleCategorySelection("Italian")}
             >
               <Text style={[styles.text]}>Italian</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("lebanese")}
+              onPress={() => handleCategorySelection("Lebanese")}
             >
               <Text style={[styles.text]}>Lebanese</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("american")}
+              onPress={() => handleCategorySelection("American")}
             >
               <Text style={[styles.text]}>American</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("mexican")}
+              onPress={() => handleCategorySelection("Mexican")}
             >
               <Text style={[styles.text]}>Mexican</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("indian")}
+              onPress={() => handleCategorySelection("Indian")}
             >
               <Text style={[styles.text]}>Indian</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("turkish")}
+              onPress={() => handleCategorySelection("Turkish")}
             >
               <Text style={[styles.text]}>Turkish</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("spanish")}
+              onPress={() => handleCategorySelection("Spanish")}
             >
               <Text style={[styles.text]}>Spanish</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("greek")}
+              onPress={() => handleCategorySelection("Greek")}
             >
               <Text style={[styles.text]}>Greek</Text>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback
-              onPress={() => handleCategorySelection("thai")}
+              onPress={() => handleCategorySelection("Thai")}
             >
               <Text style={[styles.text]}>Thai</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => handleCategorySelection("International")}
+            >
+              <Text style={[styles.text]}>International</Text>
             </TouchableWithoutFeedback>
           </View>
         </View>

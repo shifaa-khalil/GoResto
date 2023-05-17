@@ -80,84 +80,84 @@ const Home = () => {
             text="Chinese"
             image={Chinese}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "chinese" })
+              navigation.navigate("Restaurants", { cuisine: "Chinese" })
             }
           />
           <CategoryCard
             text="Japanese"
             image={Japanese}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "japanese" })
+              navigation.navigate("Restaurants", { cuisine: "Japanese" })
             }
           />
           <CategoryCard
             text="Italian"
             image={Italian}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "italian" })
+              navigation.navigate("Restaurants", { cuisine: "Italian" })
             }
           />
           <CategoryCard
             text="Lebanese"
             image={Lebanese}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "lebanese" })
+              navigation.navigate("Restaurants", { cuisine: "Lebanese" })
             }
           />
           <CategoryCard
             text="French"
             image={French}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "french" })
+              navigation.navigate("Restaurants", { cuisine: "French" })
             }
           />
           <CategoryCard
             text="American"
             image={American}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "american" })
+              navigation.navigate("Restaurants", { cuisine: "American" })
             }
           />
           <CategoryCard
             text="Mexican"
             image={Mexican}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "mexican" })
+              navigation.navigate("Restaurants", { cuisine: "Mexican" })
             }
           />
           <CategoryCard
             text="Indian"
             image={Indian}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "indian" })
+              navigation.navigate("Restaurants", { cuisine: "Indian" })
             }
           />
           <CategoryCard
             text="Turkish"
             image={Turkish}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "turkish" })
+              navigation.navigate("Restaurants", { cuisine: "Turkish" })
             }
           />
           <CategoryCard
             text="Spanish"
             image={Spanish}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "spanish" })
+              navigation.navigate("Restaurants", { cuisine: "Spanish" })
             }
           />
           <CategoryCard
             text="Greek"
             image={Greek}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "greek" })
+              navigation.navigate("Restaurants", { cuisine: "Greek" })
             }
           />
           <CategoryCard
             text="Thai"
             image={Thai}
             onPress={() =>
-              navigation.navigate("Restaurants", { cuisine: "thai" })
+              navigation.navigate("Restaurants", { cuisine: "Thai" })
             }
           />
         </View>
