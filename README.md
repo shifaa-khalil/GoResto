@@ -77,12 +77,6 @@
 | Chats screen                                              | Inquiry Screen                                  | About Screen                                      |
 | ![Chats](./readme/readme/demo/webChats.gif)               | ![Inquiry](./readme/readme/demo/webInquiry.gif) | ![About](./readme/readme/demo/editResto.gif)      |
 
-### Admin Screens (Web)
-
-| Login screen                             | Register screen                                |
-| ---------------------------------------- | ---------------------------------------------- |
-| ![Login](./readme/readme/demo/login.png) | ![Register](./readme/readme/demo/register.png) |
-
 ### Admin Screens /Animated (Web)
 
 | Removing User                                | Filtering Restaurants                                                  | Removing Restaurant                                            |
