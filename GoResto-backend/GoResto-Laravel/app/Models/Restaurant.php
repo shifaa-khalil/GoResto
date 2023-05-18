@@ -29,5 +29,9 @@ class Restaurant extends Model
     {
         return $this->hasOne(Menu::class);
     }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
 

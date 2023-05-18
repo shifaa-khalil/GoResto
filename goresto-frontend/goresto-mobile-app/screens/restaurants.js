@@ -139,6 +139,7 @@ const Restaurants = ({ route }) => {
                         restaurant_id: restaurant.id,
                         name: restaurant.name,
                         rating: restaurant.rating,
+                        review_count: restaurant.review_count,
                         location: restaurant.location,
                         deposit: restaurant.deposit,
                         image: restaurant.logo,

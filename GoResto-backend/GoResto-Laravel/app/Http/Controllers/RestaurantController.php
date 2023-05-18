@@ -129,7 +129,7 @@ class RestaurantController extends Controller
     {
         $manager = auth()->user();
 
-        $restaurant = Restaurant::find($restaurant_id)->update(['logo' => $request->logo, 'location' => $request->location, 'phone_number' => $request->phone_number, 'number_of_tables' => $request->number_of_tables, 'number_of_seats' => $request->number_of_seats, 'deposit' => $request->deposit]);
+        $restaurant = Restaurant::find($restaurant_id)->update(['location' => $request->location, 'phone_number' => $request->phone_number, 'number_of_tables' => $request->number_of_tables, 'number_of_seats' => $request->number_of_seats, 'deposit' => $request->deposit]);
 
         return response()->json(['status'=>'success', 'message'=>'restaurant updated']);
     }

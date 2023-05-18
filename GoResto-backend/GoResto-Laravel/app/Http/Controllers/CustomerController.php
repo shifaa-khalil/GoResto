@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Restaurant;
@@ -54,7 +55,7 @@ class CustomerController extends Controller
     
     function getRestaurants()
     {
-        $restaurants = Restaurant::where('approved', true)->with('menu')->get();
+        $restaurants = Restaurant::where('approved', true)->with(['menu', 'review'])->withCount('review')->get();
         
         return response()->json(['restaurants' => $restaurants]);
     }

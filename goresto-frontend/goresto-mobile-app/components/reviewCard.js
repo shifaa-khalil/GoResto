@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
   ratingContainer: {
     flexDirection: "row",
     alignItems: "center",
+    columnGap: 3,
   },
   name: {
     fontWeight: 600,

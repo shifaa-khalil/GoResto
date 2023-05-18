@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    columnGap: 3,
   },
   name: {
     fontSize: 24,

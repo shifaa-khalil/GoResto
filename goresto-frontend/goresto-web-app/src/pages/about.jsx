@@ -13,7 +13,6 @@ const About = () => {
   const [success, setSuccess] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
-  const [logo, setLogo] = useState(null);
   const [tables, setTables] = useState("");
   const [seats, setSeats] = useState("");
   const [location, setLocation] = useState("");
@@ -23,7 +22,7 @@ const About = () => {
 
   const validateForm = () => {
     let isValid = true;
-    if (!logo || !tables || !location || !deposit) {
+    if (!tables || !location || !deposit) {
       setError("All fields are required");
       isValid = false;
     }
@@ -38,11 +37,6 @@ const About = () => {
     }
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setLogo(file);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (token) {
@@ -51,7 +45,6 @@ const About = () => {
         data.append("location", location);
         data.append("number_of_tables", tables);
         data.append("number_of_seats", seats);
-        data.append("logo", logo);
         data.append("deposit", deposit);
         data.append("phone_number", phoneNumber);
 
@@ -89,7 +82,6 @@ const About = () => {
         })
         .then((response) => {
           setId(response.data.restaurant.id);
-          setLogo(response.data.restaurant.logo);
           setLocation(response.data.restaurant.location);
           setTables(response.data.restaurant.number_of_tables);
           setDeposit(response.data.restaurant.deposit);
@@ -113,18 +105,6 @@ const About = () => {
           <div className={`flex-column ${styles.form}`}>
             {success && <p className={styles.success}>{success}</p>}
             {error && <p className={styles.error}>{error}</p>}
-
-            <Input
-              label="Restaurant logo"
-              labelClassName="semibold"
-              type="file"
-              placeholder="file name"
-              className={styles.input}
-              onChange={(e) => {
-                setLogo(e.target.files[0]);
-                handleFileChange(e);
-              }}
-            />
             <Input
               label="Restaurant location"
               labelClassName="semibold"
